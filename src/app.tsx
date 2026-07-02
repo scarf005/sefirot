@@ -127,16 +127,47 @@ const layoutStoryGraph = (items: StoryItem[]): StoryGraph => {
   return { nodes, links, width, height: Math.max(480, nodes.length * 92 + 180) }
 }
 
+const roundedElbowPath = (
+  sourceX: number,
+  sourceY: number,
+  targetX: number,
+  targetY: number,
+) => {
+  const middleY = sourceY + Math.max(18, (targetY - sourceY) * 0.55)
+  const direction = Math.sign(targetX - sourceX)
+  if (direction === 0) return `M ${sourceX} ${sourceY} V ${targetY}`
+
+  const radius = Math.min(
+    12,
+    Math.abs(targetX - sourceX) / 2,
+    Math.abs(middleY - sourceY),
+    Math.abs(targetY - middleY),
+  )
+  const sourceCornerX = sourceX + direction * radius
+  const targetCornerX = targetX - direction * radius
+  return [
+    `M ${sourceX} ${sourceY}`,
+    `V ${middleY - radius}`,
+    `Q ${sourceX} ${middleY} ${sourceCornerX} ${middleY}`,
+    `H ${targetCornerX}`,
+    `Q ${targetX} ${middleY} ${targetX} ${middleY + radius}`,
+    `V ${targetY}`,
+  ].join(" ")
+}
+
 const linkPath = ({ source, target, kind }: GraphLink) => {
   const sourceX = source.x + source.width / 2
   const sourceY = source.y + source.height
   const targetX = target.x + target.width / 2
   const targetY = target.y
   if (kind === "branch") {
-    const middleY = sourceY + Math.max(18, (targetY - sourceY) * 0.55)
-    return `M ${sourceX} ${sourceY} V ${middleY} H ${targetX} V ${targetY}`
+    return roundedElbowPath(sourceX, sourceY, targetX, targetY)
   }
   return `M ${sourceX} ${sourceY} V ${targetY}`
+}
+
+const graphNodeTitle = (item: StoryItem) => {
+  return item.kind === "메인" ? item.label : item.title
 }
 
 const kindClass = (kind: string) => {
@@ -202,6 +233,23 @@ export const App = () => {
             aria-label="Blue Archive story order tree, top to bottom from prologue"
             viewBox={`0 0 ${graph.width} ${graph.height}`}
           >
+            <defs>
+              {(["main", "lane", "branch"] as const).map((kind) => (
+                <marker
+                  id={`arrow-${kind}`}
+                  key={kind}
+                  class={`link-arrow ${kind}`}
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 0 L 10 5 L 0 10 z" />
+                </marker>
+              ))}
+            </defs>
             <g class="lane-headings">
               {lanes.map((lane) => {
                 const sample = graph.nodes.find((node) =>
@@ -225,6 +273,7 @@ export const App = () => {
                   key={`${link.kind}-${link.source.id}-${link.target.id}`}
                   class={link.kind}
                   d={linkPath(link)}
+                  marker-end={`url(#arrow-${link.kind})`}
                 />
               ))}
             </g>
@@ -243,10 +292,7 @@ export const App = () => {
                           selectedItemId.value = node.id
                         }}
                       >
-                        <span class="node-meta">
-                          #{node.order} · {node.lane.label} · {node.kind}
-                        </span>
-                        <span class="node-title">{node.label}</span>
+                        <span class="node-title">{graphNodeTitle(node)}</span>
                       </button>
                     </foreignObject>
                   </g>
