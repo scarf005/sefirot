@@ -127,32 +127,17 @@ const layoutStoryGraph = (items: StoryItem[]): StoryGraph => {
   return { nodes, links, width, height: Math.max(480, nodes.length * 92 + 180) }
 }
 
-const roundedElbowPath = (
+const curvedPath = (
   sourceX: number,
   sourceY: number,
   targetX: number,
   targetY: number,
 ) => {
-  const middleY = sourceY + Math.max(18, (targetY - sourceY) * 0.55)
-  const direction = Math.sign(targetX - sourceX)
-  if (direction === 0) return `M ${sourceX} ${sourceY} V ${targetY}`
-
-  const radius = Math.min(
-    12,
-    Math.abs(targetX - sourceX) / 2,
-    Math.abs(middleY - sourceY),
-    Math.abs(targetY - middleY),
-  )
-  const sourceCornerX = sourceX + direction * radius
-  const targetCornerX = targetX - direction * radius
-  return [
-    `M ${sourceX} ${sourceY}`,
-    `V ${middleY - radius}`,
-    `Q ${sourceX} ${middleY} ${sourceCornerX} ${middleY}`,
-    `H ${targetCornerX}`,
-    `Q ${targetX} ${middleY} ${targetX} ${middleY + radius}`,
-    `V ${targetY}`,
-  ].join(" ")
+  const deltaY = targetY - sourceY
+  const controlY = Math.max(32, Math.abs(deltaY) * 0.5)
+  return `M ${sourceX} ${sourceY} C ${sourceX} ${
+    sourceY + controlY
+  } ${targetX} ${targetY - controlY} ${targetX} ${targetY}`
 }
 
 const linkPath = ({ source, target, kind }: GraphLink) => {
@@ -161,7 +146,7 @@ const linkPath = ({ source, target, kind }: GraphLink) => {
   const targetX = target.x + target.width / 2
   const targetY = target.y
   if (kind === "branch") {
-    return roundedElbowPath(sourceX, sourceY, targetX, targetY)
+    return curvedPath(sourceX, sourceY, targetX, targetY)
   }
   return `M ${sourceX} ${sourceY} V ${targetY}`
 }
