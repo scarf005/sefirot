@@ -4,6 +4,13 @@ import { parse } from "@std/jsonc"
 import { scalePoint } from "d3"
 import storyOrderJsonc from "./data/blue-archive-story-order.jsonc?raw"
 import {
+  eraseStoryHistory,
+  loadStoryHistory,
+  parseStoryHistory,
+  saveStoryHistory,
+  serializeStoryHistory,
+} from "./story-history.ts"
+import {
   type Lane,
   laneForItem,
   lanes,
@@ -58,10 +65,32 @@ const orderedItems = treeOrderedItems.length > 0
   ? treeOrderedItems
   : storyOrder.items.slice().sort((a, b) => a.order - b.order)
 const kindOptions = ["전체", ...new Set(orderedItems.map((item) => item.kind))]
+const validItemIds = new Set(orderedItems.map((item) => item.id))
+
+const getHistoryStorage = () => {
+  try {
+    return globalThis.localStorage
+  } catch {
+    return undefined
+  }
+}
+
+const loadReadItemIds = () => {
+  const storage = getHistoryStorage()
+  if (!storage) return new Set<string>()
+  try {
+    return loadStoryHistory({ storage, validIds: validItemIds })
+  } catch {
+    return new Set<string>()
+  }
+}
 
 const selectedKind = signal("전체")
 const searchText = signal("")
 const selectedItemId = signal(orderedItems[0]?.id ?? "")
+const readItemIds = signal<ReadonlySet<string>>(loadReadItemIds())
+const settingsOpen = signal(false)
+const historyStatus = signal("")
 
 const filteredItems = computed(() => {
   const query = searchText.value.trim().toLocaleLowerCase()
@@ -180,9 +209,86 @@ const selectedItem = computed(() =>
     orderedItems[0]
 )
 
+const readStateLabel = (isRead: boolean) => isRead ? "읽음" : "미독"
+
+const persistReadItemIds = (ids: ReadonlySet<string>) => {
+  const storage = getHistoryStorage()
+  if (!storage) {
+    historyStatus.value = "브라우저 저장소를 사용할 수 없습니다."
+    return false
+  }
+  try {
+    saveStoryHistory({ storage, readItemIds: ids })
+    return true
+  } catch {
+    historyStatus.value = "기록 저장에 실패했습니다."
+    return false
+  }
+}
+
+const toggleReadItem = (id: string) => {
+  const nextIds = new Set(readItemIds.value)
+  if (nextIds.has(id)) {
+    nextIds.delete(id)
+  } else {
+    nextIds.add(id)
+  }
+  readItemIds.value = nextIds
+  if (persistReadItemIds(nextIds)) {
+    historyStatus.value = `${readStateLabel(nextIds.has(id))}으로 표시했습니다.`
+  }
+}
+
+const eraseReadHistory = () => {
+  if (!globalThis.confirm("읽음 기록을 모두 지울까요?")) return
+  readItemIds.value = new Set()
+  const storage = getHistoryStorage()
+  if (!storage) {
+    historyStatus.value = "읽음 기록을 지웠습니다."
+    return
+  }
+  try {
+    eraseStoryHistory({ storage })
+    historyStatus.value = "읽음 기록을 지웠습니다."
+  } catch {
+    historyStatus.value = "기록 삭제에 실패했습니다."
+  }
+}
+
+const exportReadHistory = () => {
+  try {
+    const blob = new Blob([serializeStoryHistory(readItemIds.value)], {
+      type: "application/json",
+    })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "sefirot-story-history.json"
+    link.click()
+    setTimeout(() => URL.revokeObjectURL(url), 0)
+    historyStatus.value = "읽음 기록을 내보냈습니다."
+  } catch {
+    historyStatus.value = "기록 내보내기에 실패했습니다."
+  }
+}
+
+const importReadHistoryFile = async (file?: File) => {
+  if (!file) return
+  try {
+    const importedIds = parseStoryHistory(await file.text(), validItemIds)
+    readItemIds.value = importedIds
+    if (persistReadItemIds(importedIds)) {
+      historyStatus.value = `${importedIds.size}개 읽음 기록을 가져왔습니다.`
+    }
+  } catch {
+    historyStatus.value = "기록 파일을 읽을 수 없습니다."
+  }
+}
+
 export const App = () => {
   const graph = storyGraph.value
   const currentItem = selectedItem.value
+  const currentItemRead = readItemIds.value.has(currentItem.id)
 
   return (
     <main class="story-visualizer">
@@ -196,15 +302,52 @@ export const App = () => {
             onInput={(event) => searchText.value = event.currentTarget.value}
           />
         </label>
-        <label>
-          <span>종류</span>
-          <select
-            value={selectedKind.value}
-            onInput={(event) => selectedKind.value = event.currentTarget.value}
+        <div class="kind-settings">
+          <label>
+            <span>종류</span>
+            <select
+              value={selectedKind.value}
+              onInput={(event) =>
+                selectedKind.value = event.currentTarget.value}
+            >
+              {kindOptions.map((kind) => <option key={kind}>{kind}</option>)}
+            </select>
+          </label>
+          <button
+            class="settings-button"
+            type="button"
+            aria-label="기록 설정"
+            aria-expanded={settingsOpen.value}
+            onClick={() => settingsOpen.value = !settingsOpen.value}
           >
-            {kindOptions.map((kind) => <option key={kind}>{kind}</option>)}
-          </select>
-        </label>
+            ⚙
+          </button>
+          {settingsOpen.value && (
+            <div class="settings-menu" role="dialog" aria-label="기록 설정">
+              <button type="button" onClick={exportReadHistory}>
+                기록 내보내기
+              </button>
+              <label class="settings-file-button">
+                기록 가져오기
+                <input
+                  type="file"
+                  accept="application/json,.json"
+                  onChange={(event) => {
+                    const file = event.currentTarget.files?.[0]
+                    event.currentTarget.value = ""
+                    void importReadHistoryFile(file)
+                  }}
+                />
+              </label>
+              <button class="danger" type="button" onClick={eraseReadHistory}>
+                기록 지우기
+              </button>
+              <p role="status">
+                {historyStatus.value || `${readItemIds.value.size}개 읽음`}
+              </p>
+            </div>
+          )}
+        </div>
       </section>
 
       <section class="content-grid">
@@ -265,20 +408,41 @@ export const App = () => {
             <g class="nodes">
               {graph.nodes.map((node) => {
                 const selected = node.id === selectedItemId.value
+                const isRead = readItemIds.value.has(node.id)
                 return (
                   <g key={node.id} transform={`translate(${node.x} ${node.y})`}>
                     <foreignObject width={node.width} height={node.height}>
-                      <button
+                      <div
                         class={`story-node ${kindClass(node.kind)} ${
                           selected ? "selected" : ""
-                        }`}
-                        type="button"
-                        onClick={() => {
-                          selectedItemId.value = node.id
-                        }}
+                        } ${isRead ? "read" : "unread"}`}
                       >
-                        <span class="node-title">{graphNodeTitle(node)}</span>
-                      </button>
+                        <button
+                          class="node-select"
+                          type="button"
+                          onClick={() => {
+                            selectedItemId.value = node.id
+                          }}
+                        >
+                          <span class="read-symbol" aria-hidden="true">
+                            {isRead ? "●" : "○"}
+                          </span>
+                          <span class="node-title">{graphNodeTitle(node)}</span>
+                        </button>
+                        <button
+                          class="node-read-toggle"
+                          type="button"
+                          aria-pressed={isRead}
+                          aria-label={`${node.label} ${
+                            isRead ? "미독" : "읽음"
+                          }으로 표시`}
+                          title={`${readStateLabel(isRead)} 상태`}
+                          onClick={() =>
+                            toggleReadItem(node.id)}
+                        >
+                          {isRead ? "✓" : "○"}
+                        </button>
+                      </div>
                     </foreignObject>
                   </g>
                 )
@@ -288,9 +452,21 @@ export const App = () => {
         </section>
 
         <aside class="details-panel" aria-label="Selected story details">
-          <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
-            {currentItem.kind}
-          </span>
+          <div class="detail-heading">
+            <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
+              {currentItem.kind}
+            </span>
+            <button
+              class={`detail-read-toggle ${
+                currentItemRead ? "read" : "unread"
+              }`}
+              type="button"
+              aria-pressed={currentItemRead}
+              onClick={() => toggleReadItem(currentItem.id)}
+            >
+              {currentItemRead ? "✓ 읽음" : "○ 미독"}
+            </button>
+          </div>
           <h2>{currentItem.label}</h2>
           <dl>
             <div>

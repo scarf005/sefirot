@@ -19,7 +19,7 @@
 
 .toolbar {
   display: grid;
-  grid-template-columns: 1fr minmax(220px, 320px) 160px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
   gap: 16px;
   align-items: end;
   padding: 20px;
@@ -57,6 +57,84 @@ select {
   background: #ffffff;
   color: #172033;
   font: inherit;
+}
+
+.kind-settings {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 8px;
+  align-items: end;
+}
+
+.settings-button {
+  width: 44px;
+  height: 42px;
+  border: 1px solid #b9c1d1;
+  background: #ffffff;
+  color: #172033;
+  cursor: pointer;
+  font-size: 1.15rem;
+}
+
+.settings-button:hover,
+.settings-button:focus-visible {
+  border-color: #2f65d9;
+  outline: none;
+}
+
+.settings-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 5;
+  display: grid;
+  gap: 8px;
+  min-width: 220px;
+  padding: 12px;
+  border: 1px solid #d7dce7;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgb(23 32 51 / 12%);
+}
+
+.settings-menu button,
+.settings-file-button {
+  width: 100%;
+  border: 1px solid #b9c1d1;
+  padding: 8px 10px;
+  background: #ffffff;
+  color: #172033;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.settings-menu button:hover,
+.settings-menu button:focus-visible,
+.settings-file-button:hover,
+.settings-file-button:focus-within {
+  border-color: #2f65d9;
+  outline: none;
+}
+
+.settings-menu .danger {
+  color: #b42318;
+}
+
+.settings-file-button {
+  display: block;
+}
+
+.settings-file-button input {
+  display: none;
+}
+
+.settings-menu p {
+  margin: 0;
+  color: #5c6680;
+  font-size: 0.78rem;
 }
 
 .content-grid {
@@ -127,29 +205,72 @@ select {
 }
 
 .story-node {
-  display: flex;
-  align-items: center;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30px;
+  align-items: stretch;
   width: 100%;
   height: 100%;
-  padding: 8px 10px;
   border: 2px solid #c9d0de;
   border-left-width: 6px;
   background: #ffffff;
   color: #172033;
   text-align: left;
+}
+
+.node-select {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 8px 6px 8px 10px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
   cursor: pointer;
 }
 
+.node-read-toggle {
+  border: 0;
+  border-left: 1px solid #e3e7ef;
+  padding: 0;
+  background: #f4f7fc;
+  color: #778196;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.node-select:focus-visible,
+.node-read-toggle:focus-visible {
+  outline: 2px solid #2f65d9;
+  outline-offset: -2px;
+}
+
 .story-node:hover,
-.story-node:focus-visible,
+.story-node:focus-within,
 .story-node.selected {
   border-color: #2f65d9;
-  outline: none;
+}
+
+.read-symbol {
+  flex: 0 0 auto;
+  color: #778196;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.story-node.read .read-symbol,
+.story-node.read .node-read-toggle {
+  color: #248a5d;
 }
 
 .node-title {
   overflow: hidden;
   display: -webkit-box;
+  min-width: 0;
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.25;
@@ -189,6 +310,13 @@ select {
   border-width: 0;
 }
 
+.detail-heading {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .kind-pill {
   display: inline-block;
   border-left: 6px solid #778196;
@@ -197,6 +325,27 @@ select {
   color: #172033;
   font-size: 0.8rem;
   font-weight: 800;
+}
+
+.detail-read-toggle {
+  border: 1px solid #b9c1d1;
+  padding: 4px 8px;
+  background: #ffffff;
+  color: #5c6680;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.detail-read-toggle.read {
+  border-color: #248a5d;
+  color: #248a5d;
+}
+
+.detail-read-toggle:hover,
+.detail-read-toggle:focus-visible {
+  border-color: #2f65d9;
+  outline: none;
 }
 
 .details-panel h2 {
@@ -258,6 +407,11 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .settings-menu {
+    right: 0;
+    left: 0;
+  }
+
   .tree-panel {
     max-height: 70vh;
     border-right: 0;
@@ -283,7 +437,12 @@ select {
   .tree-summary,
   input,
   select,
-  .story-node {
+  .settings-button,
+  .settings-menu,
+  .settings-menu button,
+  .settings-file-button,
+  .story-node,
+  .detail-read-toggle {
     border-color: #33405a;
     background: #182235;
     color: #edf2ff;
@@ -292,6 +451,7 @@ select {
   .eyebrow,
   label,
   .tree-summary,
+  .settings-menu p,
   .details-panel dt,
   .details-panel footer {
     color: #aab3c5;
@@ -301,9 +461,14 @@ select {
     fill: #edf2ff;
   }
 
-  .kind-pill {
+  .kind-pill,
+  .node-read-toggle {
     background: #243149;
     color: #edf2ff;
+  }
+
+  .node-read-toggle {
+    border-left-color: #33405a;
   }
 
   .details-panel dl div {
