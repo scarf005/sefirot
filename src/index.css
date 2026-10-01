@@ -9,7 +9,7 @@
   --ba-line: #b5c1c9;
   --ba-surface: #f8fbff;
   --ba-surface-soft: #ebedef;
-  --ba-panel: rgb(255 255 255 / 72%);
+  --ba-panel: rgb(255 255 255 / 62%);
   --ba-input: #ffffff;
   --ba-chip: #2d4663;
   --ba-chip-text: #ffffff;
@@ -17,6 +17,8 @@
   --ba-page-from: #d3e5f3;
   --ba-page-to: #e9e3ed;
   --ba-pattern: rgb(255 255 255 / 45%);
+  --ba-scene: url("https://static.wikitide.net/bluearchivewiki/8/8d/BG_SchaleOvernightRoom.jpg");
+  --ba-scene-overlay: rgb(222 236 248 / 35%);
   --ba-plate: rgb(255 255 255 / 85%);
   --ba-plate-text: #2d4663;
   --ba-danger: #d9484d;
@@ -72,6 +74,8 @@ button {
     --ba-page-from: #14243b;
     --ba-page-to: #1e2236;
     --ba-pattern: rgb(255 255 255 / 5%);
+    --ba-scene: url("https://static.wikitide.net/bluearchivewiki/4/46/BG_SchaleOvernightRoom_Night.jpg");
+    --ba-scene-overlay: rgb(16 30 52 / 50%);
     --ba-plate: rgb(20 36 59 / 88%);
     --ba-plate-text: #ffffff;
     --ba-danger: #ff7a7e;

@@ -3,8 +3,33 @@
 }
 
 .story-visualizer {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   padding: 16px;
+  background: linear-gradient(180deg, var(--ba-page-from), var(--ba-page-to));
+  color: var(--ba-navy);
+}
+
+/* Blurred in-game scene behind everything; the gradient above shows if it fails to load. */
+.story-visualizer::before,
+.story-visualizer::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+}
+
+.story-visualizer::before {
+  background:
+    linear-gradient(var(--ba-scene-overlay), var(--ba-scene-overlay)),
+    var(--ba-scene) center / cover no-repeat;
+  filter: blur(4px);
+  transform: scale(1.05);
+}
+
+.story-visualizer::after {
   background:
     repeating-linear-gradient(
     0deg,
@@ -20,10 +45,7 @@
     120deg,
     transparent 0 138px,
     var(--ba-pattern) 138px 140px
-  ),
-    linear-gradient(180deg, var(--ba-page-from), var(--ba-page-to));
-  background-attachment: fixed;
-  color: var(--ba-navy);
+  );
 }
 
 .toolbar,
