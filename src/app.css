@@ -254,6 +254,22 @@ select:focus {
   text-align: left;
 }
 
+.thumb-contain {
+  --thumb-size: contain;
+}
+
+.story-node.thumb-cover,
+.story-node.thumb-contain {
+  background:
+    linear-gradient(
+    90deg,
+    var(--ba-surface-soft) 45%,
+    transparent 100%
+  ),
+    var(--thumb) right center / var(--thumb-size, cover) no-repeat,
+    var(--ba-surface-soft);
+}
+
 .node-select {
   display: flex;
   gap: 6px;
@@ -412,6 +428,15 @@ select:focus {
 .detail-read-toggle:focus-visible {
   outline: 2px solid var(--ba-yellow);
   outline-offset: 2px;
+}
+
+.detail-thumbnail {
+  aspect-ratio: 16 / 9;
+  margin-top: 12px;
+  border: 1px solid var(--ba-line);
+  border-radius: 6px;
+  background: var(--thumb) center / var(--thumb-size, cover) no-repeat
+    var(--ba-surface-soft);
 }
 
 .details-panel h2 {

@@ -20,9 +20,11 @@ import {
 
 type StoryRelease = { japan?: string[]; global?: string[]; krDub?: string[] }
 type StoryLink = { label: string; url: string }
+type StoryThumbnail = { url: string; fit: "cover" | "contain" }
 type StoryItem = ClassifiedStoryItem & {
   release: StoryRelease
   links: StoryLink[]
+  thumbnail?: StoryThumbnail
 }
 type StoryTreeNode = { id: string; itemId?: string; children?: StoryTreeNode[] }
 type StoryData = {
@@ -194,6 +196,9 @@ const kindClass = (kind: string) => {
   if (kind === "미니") return "kind-mini"
   return "kind-other"
 }
+
+const thumbnailStyle = (thumbnail: StoryThumbnail | undefined) =>
+  thumbnail ? { "--thumb": `url("${thumbnail.url}")` } : undefined
 
 const releaseText = (item: StoryItem) => {
   return [
@@ -424,7 +429,10 @@ export const App = () => {
                       <div
                         class={`story-node ${kindClass(node.kind)} ${
                           selected ? "selected" : ""
-                        } ${isRead ? "read" : "unread"}`}
+                        } ${isRead ? "read" : "unread"} ${
+                          node.thumbnail ? `thumb-${node.thumbnail.fit}` : ""
+                        }`}
+                        style={thumbnailStyle(node.thumbnail)}
                       >
                         <button
                           class="node-select"
@@ -476,6 +484,12 @@ export const App = () => {
               {currentItemRead ? "✓ 읽음" : "○ 미독"}
             </button>
           </div>
+          {currentItem.thumbnail && (
+            <div
+              class={`detail-thumbnail thumb-${currentItem.thumbnail.fit}`}
+              style={thumbnailStyle(currentItem.thumbnail)}
+            />
+          )}
           <h2>{currentItem.label}</h2>
           <dl>
             <div>

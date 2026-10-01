@@ -57,7 +57,7 @@ button {
   :root {
     --ba-blue: #6cc6e2;
     --ba-navy: #e3edf6;
-    --ba-bar: #213b5e;
+    --ba-bar: #2a4a73;
     --ba-title: #8fb5dc;
     --ba-muted: #93a8bf;
     --ba-line: #3a4e67;
@@ -66,7 +66,7 @@ button {
     --ba-panel: rgb(33 59 94 / 78%);
     --ba-input: #162841;
     --ba-chip: #3a4e67;
-    --ba-chip-bar: #3a4e67;
+    --ba-chip-bar: #142840;
     --ba-page-from: #14243b;
     --ba-page-to: #1e2236;
     --ba-pattern: rgb(255 255 255 / 5%);
