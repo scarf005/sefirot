@@ -180,6 +180,9 @@ const linkPath = ({ source, target, kind }: GraphLink) => {
   return `M ${sourceX} ${sourceY} V ${targetY}`
 }
 
+// Lane headings live in the sticky HTML header, so skip their old SVG band.
+const graphTopOffset = 48
+
 const graphNodeTitle = (item: StoryItem) => {
   return item.kind === "메인" ? item.label : item.title
 }
@@ -362,11 +365,34 @@ export const App = () => {
           class="tree-panel"
           aria-label="Story tree from prologue to latest"
         >
+          <div class="lane-headings" style={{ width: `${graph.width}px` }}>
+            {lanes.map((lane) => {
+              const sample = graph.nodes.find((node) =>
+                node.lane.id === lane.id
+              )
+              if (!sample && lane.id !== "main") return null
+              return (
+                <span
+                  key={lane.id}
+                  class={`lane-heading ${lane.id === "main" ? "main" : ""}`}
+                  style={{
+                    left: `${(sample?.x ?? 80) + (sample?.width ?? 240) / 2}px`,
+                  }}
+                >
+                  {lane.label}
+                </span>
+              )
+            })}
+          </div>
           <svg
             class="story-tree"
             role="img"
             aria-label="Blue Archive story order tree, top to bottom from prologue"
-            viewBox={`0 0 ${graph.width} ${graph.height}`}
+            width={graph.width}
+            height={graph.height - graphTopOffset}
+            viewBox={`0 ${graphTopOffset} ${graph.width} ${
+              graph.height - graphTopOffset
+            }`}
           >
             <defs>
               {(["main", "lane", "branch"] as const).map((kind) => (
@@ -385,23 +411,6 @@ export const App = () => {
                 </marker>
               ))}
             </defs>
-            <g class="lane-headings">
-              {lanes.map((lane) => {
-                const sample = graph.nodes.find((node) =>
-                  node.lane.id === lane.id
-                )
-                if (!sample && lane.id !== "main") return null
-                return (
-                  <text
-                    key={lane.id}
-                    x={(sample?.x ?? 80) + (sample?.width ?? 240) / 2}
-                    y="36"
-                  >
-                    {lane.label}
-                  </text>
-                )
-              })}
-            </g>
             <g class="links">
               {graph.links.map((link) => (
                 <path
