@@ -1,23 +1,31 @@
 :root {
-  --ba-blue: #128afa;
-  --ba-blue-deep: #0b6fd6;
-  --ba-cyan: #4fd1ff;
-  --ba-yellow: #ffdd3c;
-  --ba-navy: #2b3f5c;
-  --ba-muted: #6b7f99;
-  --ba-line: #d6e6f5;
-  --ba-surface: #ffffff;
-  --ba-surface-soft: #f2f8ff;
-  --ba-page: #e8f4ff;
-  --ba-danger: #e5484d;
-  --ba-read: #19a7a0;
-  --ba-shadow: 0 6px 18px rgb(24 92 168 / 12%);
+  --ba-blue: #2c8fc6;
+  --ba-sky: #6cc6e2;
+  --ba-yellow: #ffd701;
+  --ba-navy: #2d4663;
+  --ba-bar: #2f4e72;
+  --ba-title: #3a6592;
+  --ba-muted: #66788b;
+  --ba-line: #b5c1c9;
+  --ba-surface: #f8fbff;
+  --ba-surface-soft: #ebedef;
+  --ba-panel: rgb(255 255 255 / 72%);
+  --ba-input: #ffffff;
+  --ba-chip: #2d4663;
+  --ba-chip-text: #ffffff;
+  --ba-chip-bar: #1b2f4b;
+  --ba-page-from: #d3e5f3;
+  --ba-page-to: #e9e3ed;
+  --ba-pattern: rgb(255 255 255 / 45%);
+  --ba-danger: #d9484d;
+  --ba-read: #2c8fc6;
+  --ba-shadow: 0 3px 10px rgb(45 70 99 / 18%);
 
   font-family: "Pretendard", "Noto Sans KR", Inter, ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ba-navy);
-  background: var(--ba-page);
-  font-synthesis: none;
+  background: var(--ba-page-from);
+  font-synthesis: style;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,7 +40,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--ba-page);
+  background: var(--ba-page-from);
 }
 
 button,
@@ -47,17 +55,23 @@ button {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ba-blue: #3da2ff;
-    --ba-blue-deep: #1f86ec;
-    --ba-cyan: #5fd8ff;
-    --ba-navy: #e6f1ff;
-    --ba-muted: #93a8c6;
-    --ba-line: #26405f;
-    --ba-surface: #13233a;
-    --ba-surface-soft: #182c47;
-    --ba-page: #0b1626;
-    --ba-danger: #ff6b6f;
-    --ba-read: #3fd0c8;
-    --ba-shadow: 0 6px 18px rgb(0 0 0 / 35%);
+    --ba-blue: #6cc6e2;
+    --ba-navy: #e3edf6;
+    --ba-bar: #213b5e;
+    --ba-title: #8fb5dc;
+    --ba-muted: #93a8bf;
+    --ba-line: #3a4e67;
+    --ba-surface: #1b2f4b;
+    --ba-surface-soft: #243b5c;
+    --ba-panel: rgb(33 59 94 / 78%);
+    --ba-input: #162841;
+    --ba-chip: #3a4e67;
+    --ba-chip-bar: #3a4e67;
+    --ba-page-from: #14243b;
+    --ba-page-to: #1e2236;
+    --ba-pattern: rgb(255 255 255 / 5%);
+    --ba-danger: #ff7a7e;
+    --ba-read: #6cc6e2;
+    --ba-shadow: 0 3px 10px rgb(0 0 0 / 35%);
   }
 }
