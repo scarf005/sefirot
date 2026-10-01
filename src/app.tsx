@@ -293,7 +293,14 @@ export const App = () => {
   return (
     <main class="story-visualizer">
       <section class="toolbar" aria-label="Story filters">
-        <label>
+        <div class="brand">
+          <span class="halo" aria-hidden="true" />
+          <div>
+            <p class="eyebrow">Blue Archive Story Timeline</p>
+            <h1>Sefirot</h1>
+          </div>
+        </div>
+        <label class="search-field">
           <span>검색</span>
           <input
             type="search"
