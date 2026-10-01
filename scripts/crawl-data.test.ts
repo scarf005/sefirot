@@ -1,22 +1,28 @@
 /// <reference lib="deno.ns" />
 
 import { assertEquals } from "@std/assert"
+import { parse } from "node-html-parser"
 import {
   backgroundCandidates,
   buildData,
+  chapterIntro,
   eventCandidates,
   fileCandidates,
   firstBackground,
   firstFile,
+  itemSummary,
   mainBackgrounds,
   mainVolumeKey,
   matchName,
   normalizeName,
+  overviewSynopsis,
   parseEventPromos,
   parseImageInfo,
   pickThumbnail,
   releaseFrom,
   stringifyJsonc,
+  summaryCoverage,
+  summarySources,
   thumbnailCoverage,
 } from "./crawl-data.ts"
 
@@ -329,6 +335,220 @@ Deno.test("summarizes thumbnail coverage per kind", () => {
       { kind: "메인", series: 1, matched: 1, unmatched: [] },
       { kind: "미니", series: 2, matched: 0, unmatched: ["a", "b"] },
       { kind: "이벤트", series: 1, matched: 1, unmatched: [] },
+    ],
+  )
+})
+
+// Namu nests each heading in wrappers and puts the section's content in the
+// heading's following sibling blocks.
+const section = (title: string, ...blocks: string[]) =>
+  `<div><div>&nbsp;</div><div><h2>${title}<a href="#edit">[편집]</a></h2></div><div>&nbsp;</div></div>${
+    blocks.map((block) => `<div><div>${block}</div></div>`).join("")
+  }`
+const article = (...sections: string[]) =>
+  parse(
+    `<body><h1>문서</h1><div class="article">${sections.join("")}</div></body>`,
+  )
+
+const titleTable =
+  `<table><tr><td><span><strong>덜렁대는 수녀님</strong><br>JA<br>EN</span></td></tr>
+  <tr><td><iframe src="//youtube"></iframe></td></tr>
+  <tr><td><details><summary>해외 버전 펼치기</summary><table>
+    <tr><td><div>일본 서버 배너</div></td></tr></table></details></td></tr></table>`
+const serviceDates =
+  `<ul><li><div>일본 서비스: 2022년 2월 23일 ~ 3월 9일 <a href="https://news">공지</a></div></li></ul>`
+const quote =
+  `<blockquote><div>트리니티의 발굴구역, 경전이 발굴된다.<br>운반을 맡은 <a href="/w/a">히나타</a>였으나 사고가 났다!<a href="#fn-1">&#91;1&#93;</a><br>과연 복원은 제때 해낼 수 있을까?</div></blockquote>`
+const wikiProse =
+  `<div>트리니티를 배경으로 하는 이벤트.<a href="#fn-2">&#91;2&#93;</a></div>`
+const eventSynopsis =
+  "트리니티의 발굴구역, 경전이 발굴된다. 운반을 맡은 히나타였으나 사고가 났다! 과연 복원은 제때 해낼 수 있을까?"
+const eventOptions = { plainCell: false }
+
+Deno.test("extracts the official event synopsis and stops before the service dates", () => {
+  assertEquals(
+    overviewSynopsis(
+      article(
+        section("1. 개요", titleTable, quote, serviceDates, wikiProse),
+        section("2. 등장인물", "<blockquote>다른 인용</blockquote>"),
+      ),
+      eventOptions,
+    ),
+    eventSynopsis,
+  )
+})
+
+Deno.test("reads an event synopsis box placed after the service dates", () => {
+  const box =
+    `<table><tr><td></td><td><div><div>보더랜드 유원지의 이야기. <a href="/w/b">라브</a>가 이끄는 무리.</div></div><hr><div><span>이벤트 개요</span></div></td></tr></table>`
+  assertEquals(
+    overviewSynopsis(
+      article(section("1. 개요", titleTable, serviceDates, box, wikiProse)),
+      eventOptions,
+    ),
+    "보더랜드 유원지의 이야기. 라브가 이끄는 무리.",
+  )
+})
+
+Deno.test("omits the event summary without an official synopsis", () => {
+  const caption =
+    `<table><tr><td><div><span>로비 및 전투 BGM - Step of Terror</span></div></td></tr></table>`
+  assertEquals(
+    overviewSynopsis(
+      article(section("1. 개요", titleTable, caption, serviceDates, wikiProse)),
+      eventOptions,
+    ),
+    undefined,
+  )
+  assertEquals(
+    overviewSynopsis(
+      article(section("2. 등장인물", quote)),
+      eventOptions,
+    ),
+    undefined,
+  )
+  assertEquals(overviewSynopsis(parse("<p>empty</p>"), eventOptions), undefined)
+})
+
+Deno.test("reads the blurb cell of a volume info box only when asked", () => {
+  const info = `<table>
+    <tr><td><span><strong>대책위원회 편</strong><br>JA</span></td></tr>
+    <tr><td><img src="x"></td></tr>
+    <tr><td><div><span>아비도스가 폐교될 위기에 처했습니다.<br>학교를 지켜야 합니다!</span></div></td></tr></table>`
+  const page = article(section("1. 개요", info, "<div>정리한 문서.</div>"))
+  assertEquals(
+    overviewSynopsis(page, { plainCell: true }),
+    "아비도스가 폐교될 위기에 처했습니다. 학교를 지켜야 합니다!",
+  )
+  assertEquals(overviewSynopsis(page, eventOptions), undefined)
+})
+
+const chapterBox = (label: string, title: string, lines: string) =>
+  `<table><tr><td><div><strong>${label}</strong></div><hr><div><strong>${title}</strong><br>${lines}</div></td></tr></table>`
+const volumePage = article(
+  section("4. 챕터별 정보"),
+  section(
+    "4.1. 1장 기묘한 하루",
+    chapterBox(
+      "1장",
+      "기묘한 하루",
+      "폐교를 막기 위해<br>세워진 대책위원회.[3]",
+    ),
+  ),
+  section("4.1.1. 업데이트 정보", "<div>2021년</div>"),
+  section("4.2. 2장 잃은 것", "<div>상자 없음</div>"),
+  section(
+    "4.3. 3장 흔적들",
+    chapterBox("3장", "흔적들", "새로운 위협에 맞서야 합니다."),
+  ),
+)
+
+Deno.test("reads a chapter intro by its own anchor", () => {
+  assertEquals(
+    chapterIntro(volumePage, "1장 기묘한 하루"),
+    "폐교를 막기 위해 세워진 대책위원회.",
+  )
+  assertEquals(
+    chapterIntro(volumePage, "3장  흔적들"),
+    "새로운 위협에 맞서야 합니다.",
+  )
+})
+
+Deno.test("omits a chapter intro for a missing anchor or a section without a box", () => {
+  assertEquals(chapterIntro(volumePage, "9장 없는 장"), undefined)
+  assertEquals(chapterIntro(volumePage, "2장 잃은 것"), undefined)
+  assertEquals(chapterIntro(volumePage, "업데이트 정보"), undefined)
+})
+
+const link = (url: string) => ({ label: "l", url })
+const volumeUrl = "https://namu.wiki/w/vol1"
+
+Deno.test("picks the namu pages that summarize an item", () => {
+  assertEquals(
+    summarySources({
+      kind: "메인",
+      links: [link(volumeUrl), link(`${volumeUrl}#1%EC%9E%A5%20a`)],
+    }),
+    {
+      urls: [volumeUrl],
+      overviewUrl: volumeUrl,
+      chapter: { url: volumeUrl, anchor: "1장 a" },
+    },
+  )
+  assertEquals(
+    summarySources({
+      kind: "이벤트",
+      links: [
+        link("https://namu.wiki/w/e#frag"),
+        link("https://namu.wiki/w/e"),
+      ],
+    }),
+    {
+      urls: ["https://namu.wiki/w/e"],
+      overviewUrl: "https://namu.wiki/w/e",
+      chapter: undefined,
+    },
+  )
+  assertEquals(
+    summarySources({ kind: "메인", links: [link("https://namu.wiki/w/s#p")] }),
+    {
+      urls: ["https://namu.wiki/w/s"],
+      overviewUrl: undefined,
+      chapter: { url: "https://namu.wiki/w/s", anchor: "p" },
+    },
+  )
+  assertEquals(summarySources({ kind: "그룹", links: [] }), undefined)
+  assertEquals(
+    summarySources({ kind: "이벤트", links: [link("https://n/w/e#f")] }),
+    undefined,
+  )
+  assertEquals(
+    summarySources({ kind: "미니", links: [link("https://namu.wiki/w/m")] }),
+    undefined,
+  )
+})
+
+Deno.test("prefers the chapter intro and falls back to the volume blurb", () => {
+  const withBlurb = article(
+    section(
+      "1. 개요",
+      `<table><tr><td><span>볼륨 소개.</span></td></tr></table>`,
+    ),
+    section(
+      "4.1. 1장 기묘한 하루",
+      chapterBox("1장", "기묘한 하루", "장 소개."),
+    ),
+  )
+  const sources = (anchor: string) => ({
+    urls: [volumeUrl],
+    overviewUrl: volumeUrl as string | undefined,
+    chapter: { url: volumeUrl, anchor },
+  })
+  const pages = new Map([[volumeUrl, withBlurb]])
+  assertEquals(itemSummary(sources("1장 기묘한 하루"), pages), "장 소개.")
+  assertEquals(itemSummary(sources("2장 없음"), pages), "볼륨 소개.")
+  assertEquals(
+    itemSummary({ ...sources("2장 없음"), overviewUrl: undefined }, pages),
+    undefined,
+  )
+  assertEquals(
+    itemSummary(sources("1장 기묘한 하루"), new Map([[volumeUrl, undefined]])),
+    undefined,
+  )
+})
+
+Deno.test("summarizes summary coverage per kind", () => {
+  assertEquals(
+    summaryCoverage([
+      { kind: "메인", summary: "a" },
+      { kind: "메인" },
+      { kind: "이벤트" },
+      { kind: "미니", summary: "ignored" },
+    ]),
+    [
+      { kind: "메인", total: 2, matched: 1 },
+      { kind: "이벤트", total: 1, matched: 0 },
+      { kind: "그룹", total: 0, matched: 0 },
     ],
   )
 })

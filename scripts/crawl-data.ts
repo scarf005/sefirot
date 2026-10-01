@@ -1,7 +1,8 @@
 #!/usr/bin/env -S deno -A
 /// <reference lib="deno.ns" />
 
-import { HTMLElement, parse } from "node-html-parser"
+import { HTMLElement, type Node, parse } from "node-html-parser"
+import { type Browser, chromium } from "playwright-core"
 
 const SOURCE_URL = "https://namu.wiki/w/틀:블루 아카이브 스토리 시점순"
 const OUTPUT_PATH = "src/data/blue-archive-story-order.jsonc"
@@ -15,6 +16,8 @@ const EVENT_PROMO_QUERY =
   '{{#invoke:BlueBucket|get|events|select = Id, PageName, Promo|where = Server = "JP"|order by = Id ASC|limit = 1000|format = json|default = []}}'
 const MIN_CONTAINED_NAME_LENGTH = 4
 const IMAGEINFO_BATCH_SIZE = 50
+const SUMMARY_KINDS = new Set(["메인", "이벤트", "그룹"])
+const NAMU_FETCH_DELAY_MS = 1000
 const SEGMENTS = [
   { id: "part-1-to-final", name: "1부 시작~최종편", sourceTableIndex: 1 },
   {
@@ -41,6 +44,7 @@ type StoryItem = {
   notes: string[]
   links: Link[]
   thumbnail?: Thumbnail
+  summary?: string
 }
 type Thumbnail = { url: string; fit: "cover" | "contain" }
 type StoryTreeNode = {
@@ -82,20 +86,44 @@ const parseArgs = (args: string[]): CliOptions => {
   return options
 }
 
-const fetchHtml = async (options: CliOptions) => {
-  if (options.fromFile) return await Deno.readTextFile(options.fromFile)
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  const response = await fetch(options.source, {
-    headers: {
-      "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.6,en;q=0.5",
-      "user-agent": "Mozilla/5.0 (compatible; sefirot-story-order-crawler/1.0)",
-    },
-  })
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${options.source}: ${response.status}`)
-  }
-  return await response.text()
+// namu.wiki is read through one headless browser for the whole crawl,
+// launched on first use and visited sequentially with a pause in between.
+type NamuBrowser = {
+  load: (url: string) => Promise<{ html: string; url: string }>
+  close: () => Promise<void>
 }
+
+const createNamuBrowser = (): NamuBrowser => {
+  let browser: Browser | undefined
+  let page: Awaited<ReturnType<Browser["newPage"]>> | undefined
+  let visited = false
+  return {
+    load: async (url) => {
+      if (!page) {
+        browser = await chromium.launch()
+        page = await (await browser.newContext({ locale: "ko-KR" })).newPage()
+      }
+      if (visited) await delay(NAMU_FETCH_DELAY_MS)
+      visited = true
+      const response = await page.goto(url, { waitUntil: "domcontentloaded" })
+      if (!response?.ok()) {
+        throw new Error(`Failed to fetch ${url}: ${response?.status()}`)
+      }
+      await page.waitForSelector("h1")
+      return { html: await page.content(), url: page.url() }
+    },
+    close: async () => {
+      await browser?.close()
+    },
+  }
+}
+
+const fetchHtml = async (options: CliOptions, namu: NamuBrowser) =>
+  options.fromFile
+    ? await Deno.readTextFile(options.fromFile)
+    : (await namu.load(options.source)).html
 
 const textOf = (element: HTMLElement) => {
   const htmlWithBreaks = element.innerHTML
@@ -694,21 +722,225 @@ export const enrichThumbnails = async (items: StoryItem[]) => {
   })
 }
 
+const HEADINGS = "h1, h2, h3, h4, h5, h6"
+
+const isHeading = (element: HTMLElement) => /^H[1-6]$/.test(element.tagName)
+
+const isRule = (node: Node) =>
+  node instanceof HTMLElement && node.tagName === "HR"
+
+const headingTitle = (heading: HTMLElement) =>
+  textOf(heading).replace(/\[편집\]$/, "").replace(/^\d+(?:\.\d+)*\.\s*/, "")
+    .trim()
+
+const compact = (element: HTMLElement) =>
+  element.textContent.replace(/[\s\u00a0]+/g, "")
+
+// Namu renders a section as sibling blocks after the heading's wrapper. The
+// wrapper is the outermost ancestor holding nothing but the heading (and
+// blank spacers).
+const sectionBlocks = (heading: HTMLElement) => {
+  let wrapper = heading
+  while (
+    wrapper.parentNode && compact(wrapper.parentNode) === compact(heading)
+  ) wrapper = wrapper.parentNode
+  const blocks: HTMLElement[] = []
+  for (
+    let block = wrapper.nextElementSibling;
+    block && !isHeading(block) && !block.querySelector(HEADINGS);
+    block = block.nextElementSibling
+  ) blocks.push(block)
+  return blocks
+}
+
+// Plain text of nodes without footnote markers, edit links and media; line
+// breaks become spaces but inline tags add none, keeping Korean particles
+// attached to the linked names.
+const proseOf = (nodes: { toString(): string }[]) => {
+  const copy = parse(nodes.join("").replace(/<br\b[^>]*>/gi, " "))
+  for (
+    const noise of copy.querySelectorAll(
+      "a[href^='#fn'], sup, script, style, noscript, img, iframe",
+    )
+  ) noise.remove()
+  return copy.textContent.replace(/\s*\[(?:\d+|편집)\]/g, "").replace(
+    /\s+/g,
+    " ",
+  )
+    .trim()
+}
+
+const isInside = (element: HTMLElement, tagName: string) => {
+  for (let node = element.parentNode; node; node = node.parentNode) {
+    if (node.tagName === tagName) return true
+  }
+  return false
+}
+
+// Official overview text: a quote, a text cell above a label rule, or (for
+// volume pages, where the info box ends in the in-game blurb) a plain text
+// cell. Title rows (bold), media rows, service dates and wiki prose never
+// match; event pages caption their videos in plain cells, so they opt out.
+export const overviewSynopsis = (
+  root: HTMLElement,
+  options: { plainCell: boolean },
+) => {
+  const heading = root.querySelectorAll(HEADINGS)
+    .find((candidate) => headingTitle(candidate) === "개요")
+  if (!heading) return undefined
+  for (const block of sectionBlocks(heading)) {
+    for (const element of block.querySelectorAll("blockquote, td")) {
+      if (isInside(element, "DETAILS")) continue
+      const rule = element.childNodes.findIndex(isRule)
+      if (
+        element.tagName === "TD" &&
+        (element.querySelector("strong, img, iframe, details, table") ||
+          (rule < 0 && !options.plainCell))
+      ) continue
+      const text = proseOf(
+        rule < 0 ? [element] : element.childNodes.slice(0, rule),
+      )
+      if (text) return text
+    }
+  }
+  return undefined
+}
+
+// A chapter heading is followed by a box: chapter number, a rule, then the
+// bold chapter title and the in-game intro lines.
+export const chapterIntro = (root: HTMLElement, anchor: string) => {
+  const wanted = anchor.replace(/\s+/g, " ").trim()
+  const heading = root.querySelectorAll(HEADINGS)
+    .find((candidate) => headingTitle(candidate) === wanted)
+  if (!heading) return undefined
+  for (const block of sectionBlocks(heading)) {
+    for (const cell of block.querySelectorAll("td")) {
+      const head = cell.childNodes.map(isRule).lastIndexOf(true)
+      if (head < 0) continue
+      const intro = parse(cell.childNodes.slice(head + 1).join(""))
+      for (const title of intro.querySelectorAll("strong")) title.remove()
+      const text = proseOf([intro])
+      if (text) return text
+    }
+  }
+  return undefined
+}
+
+const pageUrl = (url: string) => {
+  const page = new URL(url)
+  page.hash = ""
+  return page.href
+}
+
+const hasFragment = (link: Link) => new URL(link.url).hash !== ""
+
+// Pages to read for an item: events and groups use the first link without a
+// fragment; main chapters also use the chapter link's anchor on its page.
+export const summarySources = (item: Pick<StoryItem, "kind" | "links">) => {
+  if (!SUMMARY_KINDS.has(item.kind)) return undefined
+  const page = item.links.find((link) => !hasFragment(link))
+  const chapter = item.kind === "메인"
+    ? item.links.find(hasFragment)
+    : undefined
+  if (!page && !chapter) return undefined
+  return {
+    urls: [
+      ...new Set(
+        [page, chapter].flatMap((link) => link ? [pageUrl(link.url)] : []),
+      ),
+    ],
+    overviewUrl: page && pageUrl(page.url),
+    chapter: chapter && {
+      url: pageUrl(chapter.url),
+      anchor: decodeURIComponent(new URL(chapter.url).hash.slice(1)),
+    },
+  }
+}
+
+export const itemSummary = (
+  sources: NonNullable<ReturnType<typeof summarySources>>,
+  pages: ReadonlyMap<string, HTMLElement | undefined>,
+) => {
+  const chapterPage = sources.chapter && pages.get(sources.chapter.url)
+  const fromChapter = sources.chapter && chapterPage
+    ? chapterIntro(chapterPage, sources.chapter.anchor)
+    : undefined
+  const overviewPage = sources.overviewUrl && pages.get(sources.overviewUrl)
+  return fromChapter ??
+    (overviewPage
+      ? overviewSynopsis(overviewPage, {
+        plainCell: sources.chapter !== undefined,
+      })
+      : undefined)
+}
+
+export const summaryCoverage = (items: Pick<StoryItem, "kind" | "summary">[]) =>
+  [...SUMMARY_KINDS].map((kind) => {
+    const ofKind = items.filter((item) => item.kind === kind)
+    return {
+      kind,
+      total: ofKind.length,
+      matched: ofKind.filter((item) => item.summary).length,
+    }
+  })
+
+// A redirect into a section of a larger page means the page is not this
+// story's own, so it is skipped.
+const loadSummaryPages = async (urls: string[], namu: NamuBrowser) => {
+  const pages = new Map<string, HTMLElement | undefined>()
+  for (const url of urls) {
+    try {
+      const loaded = await namu.load(url)
+      if (new URL(loaded.url).hash) throw new Error("redirected to a section")
+      pages.set(url, parse(loaded.html))
+    } catch (error) {
+      console.warn(`Skipping summary page ${url}: ${error}`)
+      pages.set(url, undefined)
+    }
+  }
+  return pages
+}
+
+export const enrichSummaries = async (
+  items: StoryItem[],
+  namu: NamuBrowser,
+) => {
+  const sourcesOf = items.map(summarySources)
+  const pages = await loadSummaryPages([
+    ...new Set(sourcesOf.flatMap((sources) => sources?.urls ?? [])),
+  ], namu)
+  return items.map((item, index) => {
+    const sources = sourcesOf[index]
+    const summary = sources && itemSummary(sources, pages)
+    return summary ? { ...item, summary } : item
+  })
+}
+
 const main = async () => {
   const options = parseArgs(Deno.args)
-  const html = await fetchHtml(options)
-  const data = buildData(html, options.source)
-  data.items = await enrichThumbnails(data.items)
-  for (
-    const { kind, series, matched, unmatched } of thumbnailCoverage(data.items)
-  ) {
-    console.log(
-      `Thumbnails ${kind}: ${matched}/${series} series` +
-        (unmatched.length > 0 ? ` (missing: ${unmatched.join(", ")})` : ""),
-    )
+  const namu = createNamuBrowser()
+  try {
+    const data = buildData(await fetchHtml(options, namu), options.source)
+    data.items = await enrichThumbnails(data.items)
+    data.items = await enrichSummaries(data.items, namu)
+    for (
+      const { kind, series, matched, unmatched } of thumbnailCoverage(
+        data.items,
+      )
+    ) {
+      console.log(
+        `Thumbnails ${kind}: ${matched}/${series} series` +
+          (unmatched.length > 0 ? ` (missing: ${unmatched.join(", ")})` : ""),
+      )
+    }
+    for (const { kind, matched, total } of summaryCoverage(data.items)) {
+      console.log(`Summaries ${kind}: ${matched}/${total} items`)
+    }
+    await Deno.writeTextFile(options.output, stringifyJsonc(data))
+    console.log(`Wrote ${data.items.length} stories to ${options.output}`)
+  } finally {
+    await namu.close()
   }
-  await Deno.writeTextFile(options.output, stringifyJsonc(data))
-  console.log(`Wrote ${data.items.length} stories to ${options.output}`)
 }
 
 if (import.meta.main) await main()

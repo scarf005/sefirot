@@ -25,6 +25,7 @@
     "@types/d3": "npm:@types/d3@^7.4.3",
     "d3": "npm:d3@^7.9.0",
     "node-html-parser": "npm:node-html-parser@^6.1.13",
+    "playwright-core": "npm:playwright-core@^1.63.0",
     "preact": "npm:preact@^10.28.0",
     "vite": "npm:vite@^7.2.7",
   },

@@ -25,6 +25,7 @@ type StoryItem = ClassifiedStoryItem & {
   release: StoryRelease
   links: StoryLink[]
   thumbnail?: StoryThumbnail
+  summary?: string
 }
 type StoryTreeNode = { id: string; itemId?: string; children?: StoryTreeNode[] }
 type StoryData = {
@@ -496,6 +497,9 @@ export const App = () => {
             />
           )}
           <h2>{currentItem.label}</h2>
+          {currentItem.summary && (
+            <p class="detail-summary">{currentItem.summary}</p>
+          )}
           <dl>
             <div>
               <dt>순서</dt>
