@@ -457,7 +457,9 @@ export const App = () => {
                           onClick={() =>
                             toggleReadItem(node.id)}
                         >
-                          {isRead ? "✓" : "○"}
+                          <span class="read-box" aria-hidden="true">
+                            {isRead ? "✓" : ""}
+                          </span>
                         </button>
                       </div>
                     </foreignObject>
@@ -481,7 +483,10 @@ export const App = () => {
               aria-pressed={currentItemRead}
               onClick={() => toggleReadItem(currentItem.id)}
             >
-              {currentItemRead ? "✓ 읽음" : "○ 미독"}
+              <span class="read-box" aria-hidden="true">
+                {currentItemRead ? "✓" : ""}
+              </span>
+              {readStateLabel(currentItemRead)}
             </button>
           </div>
           {currentItem.thumbnail && (

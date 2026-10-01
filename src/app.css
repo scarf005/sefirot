@@ -240,9 +240,10 @@ select:focus {
 }
 
 .story-node {
+  position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px;
+  grid-template-columns: minmax(0, 1fr) 36px;
   align-items: stretch;
   width: 100%;
   height: 100%;
@@ -254,20 +255,47 @@ select:focus {
   text-align: left;
 }
 
-.thumb-contain {
-  --thumb-size: contain;
+.story-node > * {
+  position: relative;
+  z-index: 1;
 }
 
-.story-node.thumb-cover,
-.story-node.thumb-contain {
-  background:
-    linear-gradient(
-    90deg,
-    var(--ba-surface-soft) 45%,
-    transparent 100%
-  ),
-    var(--thumb) right center / var(--thumb-size, cover) no-repeat,
-    var(--ba-surface-soft);
+.story-node.selected::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  box-shadow: inset 0 0 0 2px var(--ba-yellow);
+  content: "";
+  pointer-events: none;
+}
+
+/* The art fills the whole card; only the title sits on a small plate. */
+.story-node.thumb-cover::before,
+.story-node.thumb-contain::before {
+  position: absolute;
+  inset: 0;
+  background: var(--thumb) center / cover no-repeat;
+  content: "";
+}
+
+.story-node.thumb-contain::before {
+  background-size: contain;
+  background-color: var(--ba-surface-soft);
+}
+
+.story-node.read.thumb-cover::before,
+.story-node.read.thumb-contain::before {
+  filter: grayscale(0.85) brightness(0.9);
+}
+
+.story-node[class*="thumb-"] .node-title {
+  width: fit-content;
+  max-width: 100%;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--ba-plate);
+  color: var(--ba-plate-text);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
 }
 
 .node-select {
@@ -286,17 +314,39 @@ select:focus {
 }
 
 .node-read-toggle {
+  display: grid;
+  place-items: center;
   border: 0;
-  border-left: 1px solid var(--ba-line);
+  border-left: 2px solid var(--ba-navy);
   padding: 0;
   background: var(--ba-surface);
-  color: var(--ba-muted);
   cursor: pointer;
-  font-weight: 900;
 }
 
-.node-read-toggle:hover {
-  color: var(--ba-navy);
+.read-box {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2d4663;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.node-read-toggle:hover .read-box {
+  border-color: var(--ba-blue);
+}
+
+.story-node.read .read-box,
+.detail-read-toggle.read .read-box {
+  border-color: #2d4663;
+  background: #2c8fc6;
 }
 
 .node-select:focus-visible,
@@ -329,8 +379,7 @@ select:focus {
   display: none;
 }
 
-.story-node.read .read-symbol,
-.story-node.read .node-read-toggle {
+.story-node.read .read-symbol {
   color: var(--ba-read);
 }
 
@@ -409,20 +458,17 @@ select:focus {
 }
 
 .detail-read-toggle {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
   border: 1px solid #ffffff;
   border-radius: 4px;
-  padding: 4px 12px;
-  background: transparent;
-  color: #ffffff;
+  padding: 4px 12px 4px 6px;
+  background: #ffffff;
+  color: #2d4663;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 800;
-}
-
-.detail-read-toggle.read {
-  border-color: #c2a600;
-  background: var(--ba-yellow);
-  color: #2d4663;
 }
 
 .detail-read-toggle:focus-visible {

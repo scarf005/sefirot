@@ -17,6 +17,8 @@
   --ba-page-from: #d3e5f3;
   --ba-page-to: #e9e3ed;
   --ba-pattern: rgb(255 255 255 / 45%);
+  --ba-plate: rgb(255 255 255 / 85%);
+  --ba-plate-text: #2d4663;
   --ba-danger: #d9484d;
   --ba-read: #2c8fc6;
   --ba-shadow: 0 3px 10px rgb(45 70 99 / 18%);
@@ -70,6 +72,8 @@ button {
     --ba-page-from: #14243b;
     --ba-page-to: #1e2236;
     --ba-pattern: rgb(255 255 255 / 5%);
+    --ba-plate: rgb(20 36 59 / 88%);
+    --ba-plate-text: #ffffff;
     --ba-danger: #ff7a7e;
     --ba-read: #6cc6e2;
     --ba-shadow: 0 3px 10px rgb(0 0 0 / 35%);
