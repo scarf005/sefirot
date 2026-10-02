@@ -194,8 +194,13 @@ const linkPath = ({ source, target, kind }: GraphLink) => {
 // Lane headings live in the sticky HTML header, so skip their old SVG band.
 const graphTopOffset = 48
 
-const graphNodeTitle = (item: StoryItem) => {
-  return item.kind === "메인" ? item.label : item.title
+// Main-story nodes split into a small series line and a chapter line.
+const graphNodeLines = (item: StoryItem) => {
+  if (item.kind !== "메인") return { title: item.title }
+  const chapter = `${item.chapter} · ${item.episodes}`
+  return item.series === item.chapter
+    ? { title: chapter }
+    : { series: item.series, title: chapter }
 }
 
 const kindClass = (kind: string) => {
@@ -209,15 +214,15 @@ const kindClass = (kind: string) => {
 const thumbnailStyle = (thumbnail: StoryThumbnail | undefined) =>
   thumbnail ? { "--thumb": `url("${thumbnail.url}")` } : undefined
 
-const releaseText = (item: StoryItem) => {
-  return [
+const releaseRows = (item: StoryItem) => {
+  const rows: [string, string[] | undefined][] = [
     ["일본", item.release.japan],
     ["글로벌", item.release.global],
     ["한국어 더빙", item.release.krDub],
   ]
-    .filter(([, values]) => Array.isArray(values) && values.length > 0)
-    .map(([label, values]) => `${label}: ${(values as string[]).join(", ")}`)
-    .join(" · ")
+  return rows.flatMap(([label, values]) =>
+    values && values.length > 0 ? [[label, values.join(", ")]] : []
+  )
 }
 
 const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
@@ -241,6 +246,28 @@ const scrollTick = signal(0)
 
 const prefersReducedMotion = () =>
   globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false
+
+// Scrolls only the tree panel (not the page) so the node sits in the middle of
+// the part of the panel that is visible below the sticky lane headings; the
+// horizontal position only changes when the node is out of view.
+const centerInPanel = (panel: HTMLElement, node: HTMLElement) => {
+  const headings = panel.querySelector<HTMLElement>(".lane-headings")
+  const headingHeight = headings?.offsetHeight ?? 0
+  const coveredBottom =
+    parseFloat(getComputedStyle(panel).scrollPaddingBottom) || 0
+  const panelBox = panel.getBoundingClientRect()
+  const nodeBox = node.getBoundingClientRect()
+  const visibleHeight = panel.clientHeight - headingHeight - coveredBottom
+  const fitsHorizontally = nodeBox.left >= panelBox.left &&
+    nodeBox.right <= panelBox.left + panel.clientWidth
+  panel.scrollTo({
+    top: panel.scrollTop + nodeBox.top - panelBox.top - headingHeight -
+      (visibleHeight - nodeBox.height) / 2,
+    left: fitsHorizontally ? panel.scrollLeft : panel.scrollLeft +
+      nodeBox.left - panelBox.left - (panel.clientWidth - nodeBox.width) / 2,
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+  })
+}
 
 const selectItem = (id: string) => {
   selectedItemId.value = id
@@ -390,11 +417,7 @@ export const App = () => {
       `[data-node-id="${selectedItemId.value}"]`,
     )
     if (!node) return
-    node.scrollIntoView({
-      block: "center",
-      inline: "center",
-      behavior: prefersReducedMotion() ? "auto" : "smooth",
-    })
+    centerInPanel(treeRef.current!, node)
     if (keyboardMoved.current) {
       keyboardMoved.current = false
       node.querySelector<HTMLElement>("button")?.focus({ preventScroll: true })
@@ -571,6 +594,7 @@ export const App = () => {
               {graph.nodes.map((node) => {
                 const selected = node.id === selectedItemId.value
                 const isRead = readItemIds.value.has(node.id)
+                const lines = graphNodeLines(node)
                 return (
                   <g key={node.id} transform={`translate(${node.x} ${node.y})`}>
                     <foreignObject width={node.width} height={node.height}>
@@ -590,9 +614,15 @@ export const App = () => {
                           aria-label={`${node.label}, ${
                             readStateLabel(isRead)
                           }`}
+                          title={node.label}
                           onClick={() => selectItem(node.id)}
                         >
-                          <span class="node-title">{graphNodeTitle(node)}</span>
+                          <span class="node-title">
+                            {lines.series && (
+                              <small class="node-series">{lines.series}</small>
+                            )}
+                            <span class="node-name">{lines.title}</span>
+                          </span>
                         </button>
                       </div>
                     </foreignObject>
@@ -654,24 +684,27 @@ export const App = () => {
               <dt>에피소드</dt>
               <dd>{currentItem.episodes}</dd>
             </div>
-            <div>
-              <dt>공개일</dt>
-              <dd>{releaseText(currentItem) || "-"}</dd>
-            </div>
+            {(releaseRows(currentItem).length > 0
+              ? releaseRows(currentItem)
+              : [["공개일", "-"]]).map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
           </dl>
           {currentItem.links.length > 0 && (
             <div class="detail-links">
               <h3>관련 문서</h3>
-              {currentItem.links.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.label}
-                </a>
-              ))}
+              <ul>
+                {currentItem.links.map((link) => (
+                  <li key={link.url}>
+                    <a href={link.url} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           <footer>
