@@ -22,7 +22,9 @@
   --ba-plate: rgb(255 255 255 / 85%);
   --ba-plate-text: #2d4663;
   --ba-danger: #d9484d;
-  --ba-read: #2c8fc6;
+  --ba-read-bg: #dfe2e6;
+  --ba-read-plate: rgb(226 229 233 / 92%);
+  --ba-read-text: #7b8896;
   --ba-shadow: 0 3px 10px rgb(45 70 99 / 18%);
 
   font-family: "Pretendard", "Noto Sans KR", Inter, ui-sans-serif, system-ui,
@@ -79,7 +81,9 @@ button {
     --ba-plate: rgb(20 36 59 / 88%);
     --ba-plate-text: #ffffff;
     --ba-danger: #ff7a7e;
-    --ba-read: #6cc6e2;
+    --ba-read-bg: #26354a;
+    --ba-read-plate: rgb(38 53 74 / 92%);
+    --ba-read-text: #8394a8;
     --ba-shadow: 0 3px 10px rgb(0 0 0 / 35%);
   }
 }

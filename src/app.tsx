@@ -1,5 +1,6 @@
 import "./app.css"
 import { computed, signal } from "@preact/signals"
+import { useEffect, useRef } from "preact/hooks"
 import { parse } from "@std/jsonc"
 import { scalePoint } from "d3"
 import { isKoreanText } from "./korean-text.ts"
@@ -11,6 +12,12 @@ import {
   saveStoryHistory,
   serializeStoryHistory,
 } from "./story-history.ts"
+import {
+  adjacentVisibleId,
+  nextUnreadId,
+  readProgress,
+  selectionAfterFilter,
+} from "./story-navigation.ts"
 import {
   type Lane,
   laneForItem,
@@ -225,6 +232,53 @@ const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
   },
 ).replace(/\.\s*/g, "-").replace(/-(\d\d:)/, " $1")
 
+const orderedItemIds = orderedItems.map((item) => item.id)
+const progress = computed(() => readProgress(orderedItemIds, readItemIds.value))
+const visibleItemIds = computed(() =>
+  filteredItems.value.map((item) => item.id)
+)
+const scrollTick = signal(0)
+
+const prefersReducedMotion = () =>
+  globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false
+
+const selectItem = (id: string) => {
+  selectedItemId.value = id
+  scrollTick.value += 1
+}
+
+const ensureSelectionVisible = () => {
+  const id = selectionAfterFilter(visibleItemIds.value, selectedItemId.value)
+  if (id !== selectedItemId.value) selectItem(id)
+}
+
+const selectNextUnread = () => {
+  const id = nextUnreadId(orderedItemIds, readItemIds.value)
+  if (!id) return
+  if (!visibleItemIds.value.includes(id)) {
+    searchText.value = ""
+    selectedKind.value = "전체"
+  }
+  selectItem(id)
+}
+
+const moveSelection = (step: 1 | -1) => {
+  const id = adjacentVisibleId(visibleItemIds.value, selectedItemId.value, step)
+  if (id) selectItem(id)
+}
+
+const isTypingTarget = (target: EventTarget | null) =>
+  target instanceof HTMLElement &&
+  (target.isContentEditable ||
+    ["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName))
+
+const keyboardSteps: Record<string, 1 | -1> = {
+  ArrowDown: 1,
+  j: 1,
+  ArrowUp: -1,
+  k: -1,
+}
+
 const storyGraph = computed(() => layoutStoryGraph(filteredItems.value))
 const selectedItem = computed(() =>
   itemsById.get(selectedItemId.value) ?? filteredItems.value[0] ??
@@ -311,30 +365,101 @@ export const App = () => {
   const graph = storyGraph.value
   const currentItem = selectedItem.value
   const currentItemRead = readItemIds.value.has(currentItem.id)
+  const { read: readCount, total: totalCount } = progress.value
+  const treeRef = useRef<HTMLElement>(null)
+  const keyboardMoved = useRef(false)
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const step = keyboardSteps[event.key]
+      if (
+        !step || event.altKey || event.ctrlKey || event.metaKey ||
+        isTypingTarget(event.target)
+      ) return
+      event.preventDefault()
+      keyboardMoved.current = true
+      moveSelection(step)
+    }
+    globalThis.addEventListener("keydown", onKeyDown)
+    return () => globalThis.removeEventListener("keydown", onKeyDown)
+  }, [])
+
+  useEffect(() => {
+    if (scrollTick.value === 0) return
+    const node = treeRef.current?.querySelector<HTMLElement>(
+      `[data-node-id="${selectedItemId.value}"]`,
+    )
+    if (!node) return
+    node.scrollIntoView({
+      block: "center",
+      inline: "center",
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    })
+    if (keyboardMoved.current) {
+      keyboardMoved.current = false
+      node.querySelector<HTMLElement>("button")?.focus({ preventScroll: true })
+    }
+  }, [scrollTick.value])
 
   return (
     <main class="story-visualizer">
       <section class="toolbar" aria-label="스토리 필터">
         <label class="search-field">
-          <span>검색</span>
+          <span class="field-head">
+            검색
+            <small role="status">{filteredItems.value.length}개 표시</small>
+          </span>
           <input
             type="search"
             value={searchText.value}
             placeholder="스토리, 장, 학원, 종류"
-            onInput={(event) => searchText.value = event.currentTarget.value}
+            onInput={(event) => {
+              searchText.value = event.currentTarget.value
+              ensureSelectionVisible()
+            }}
           />
         </label>
-        <div class="kind-settings">
-          <label>
-            <span>종류</span>
-            <select
-              value={selectedKind.value}
-              onInput={(event) =>
-                selectedKind.value = event.currentTarget.value}
-            >
-              {kindOptions.map((kind) => <option key={kind}>{kind}</option>)}
-            </select>
-          </label>
+        <label class="kind-field">
+          <span class="field-head">종류</span>
+          <select
+            value={selectedKind.value}
+            onInput={(event) => {
+              selectedKind.value = event.currentTarget.value
+              ensureSelectionVisible()
+            }}
+          >
+            {kindOptions.map((kind) => <option key={kind}>{kind}</option>)}
+          </select>
+        </label>
+        <div
+          class="progress"
+          role="progressbar"
+          aria-label="읽음 진행도"
+          aria-valuemin={0}
+          aria-valuemax={totalCount}
+          aria-valuenow={readCount}
+        >
+          <span class="progress-text">
+            읽음 <strong>{readCount}</strong> / {totalCount}
+          </span>
+          <span class="progress-track">
+            <span
+              class="progress-fill"
+              style={{
+                width: `${totalCount ? (readCount / totalCount) * 100 : 0}%`,
+              }}
+            />
+          </span>
+        </div>
+        <div class="toolbar-actions">
+          <button
+            class="next-unread-button"
+            type="button"
+            disabled={readCount === totalCount}
+            onClick={selectNextUnread}
+          >
+            다음 미독
+          </button>
           <button
             class="settings-button"
             type="button"
@@ -365,7 +490,7 @@ export const App = () => {
                 기록 지우기
               </button>
               <p role="status">
-                {historyStatus.value || `${readItemIds.value.size}개 읽음`}
+                {historyStatus.value || `읽음 ${readCount} / ${totalCount}`}
               </p>
             </div>
           )}
@@ -375,9 +500,17 @@ export const App = () => {
       <section class="content-grid">
         <section
           class="tree-panel"
+          ref={treeRef}
           aria-label="프롤로그부터 최신까지의 스토리 트리"
         >
-          <div class="lane-headings" style={{ width: `${graph.width}px` }}>
+          {graph.nodes.length === 0 && (
+            <p class="empty-state" role="status">검색 결과가 없습니다</p>
+          )}
+          <div
+            class="lane-headings"
+            hidden={graph.nodes.length === 0}
+            style={{ width: `${graph.width}px` }}
+          >
             {lanes.map((lane) => {
               const sample = graph.nodes.find((node) =>
                 node.lane.id === lane.id
@@ -398,6 +531,7 @@ export const App = () => {
           </div>
           <svg
             class="story-tree"
+            hidden={graph.nodes.length === 0}
             role="img"
             aria-label="블루 아카이브 스토리 순서 트리, 프롤로그부터 위에서 아래로"
             width={graph.width}
@@ -446,34 +580,19 @@ export const App = () => {
                         } ${isRead ? "read" : "unread"} ${
                           node.thumbnail ? `thumb-${node.thumbnail.fit}` : ""
                         }`}
+                        data-node-id={node.id}
                         style={thumbnailStyle(node.thumbnail)}
                       >
                         <button
                           class="node-select"
                           type="button"
-                          onClick={() => {
-                            selectedItemId.value = node.id
-                          }}
+                          aria-current={selected}
+                          aria-label={`${node.label}, ${
+                            readStateLabel(isRead)
+                          }`}
+                          onClick={() => selectItem(node.id)}
                         >
-                          <span class="read-symbol" aria-hidden="true">
-                            {isRead ? "●" : "○"}
-                          </span>
                           <span class="node-title">{graphNodeTitle(node)}</span>
-                        </button>
-                        <button
-                          class="node-read-toggle"
-                          type="button"
-                          aria-pressed={isRead}
-                          aria-label={`${node.label} ${
-                            isRead ? "미독" : "읽음"
-                          }으로 표시`}
-                          title={`${readStateLabel(isRead)} 상태`}
-                          onClick={() =>
-                            toggleReadItem(node.id)}
-                        >
-                          <span class="read-box" aria-hidden="true">
-                            {isRead ? "✓" : ""}
-                          </span>
                         </button>
                       </div>
                     </foreignObject>
@@ -489,19 +608,9 @@ export const App = () => {
             <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
               {currentItem.kind}
             </span>
-            <button
-              class={`detail-read-toggle ${
-                currentItemRead ? "read" : "unread"
-              }`}
-              type="button"
-              aria-pressed={currentItemRead}
-              onClick={() => toggleReadItem(currentItem.id)}
-            >
-              <span class="read-box" aria-hidden="true">
-                {currentItemRead ? "✓" : ""}
-              </span>
-              {readStateLabel(currentItemRead)}
-            </button>
+            <span class="detail-state">
+              #{currentItem.order} · {readStateLabel(currentItemRead)}
+            </span>
           </div>
           {currentItem.thumbnail && (
             <div
@@ -510,6 +619,13 @@ export const App = () => {
             />
           )}
           <h2>{currentItem.label}</h2>
+          <button
+            class={`detail-read-toggle ${currentItemRead ? "read" : "unread"}`}
+            type="button"
+            onClick={() => toggleReadItem(currentItem.id)}
+          >
+            {currentItemRead ? "읽음 취소" : "읽음으로 표시"}
+          </button>
           {currentItem.summary && isKoreanText(currentItem.summary) && (
             <p class="detail-summary">{currentItem.summary}</p>
           )}

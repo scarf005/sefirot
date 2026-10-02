@@ -59,8 +59,8 @@
 .toolbar {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
-  gap: 24px;
+  grid-template-columns: minmax(180px, 1fr) 150px 230px auto;
+  gap: 16px;
   align-items: end;
   padding: 14px 18px;
   margin-bottom: 14px;
@@ -92,12 +92,80 @@ select:focus {
   outline-offset: -1px;
 }
 
-.kind-settings {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 44px;
+.field-head {
+  display: flex;
   gap: 8px;
-  align-items: end;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.field-head small {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.progress {
+  display: grid;
+  gap: 6px;
+  padding: 7px 12px 8px;
+  border-radius: 4px;
+  background: var(--ba-chip-bar);
+  color: #ffffff;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 8px 100%);
+}
+
+.progress-text {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.progress-text strong {
+  color: var(--ba-yellow);
+  font-size: 1rem;
+}
+
+.progress-track {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 25%);
+}
+
+.progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--ba-yellow);
+}
+
+.toolbar-actions {
+  position: relative;
+  display: flex;
+  gap: 8px;
+}
+
+.next-unread-button {
+  height: 42px;
+  border: 1px solid #c2a600;
+  border-radius: 4px;
+  padding: 0 16px;
+  background: var(--ba-yellow);
+  color: #2d4663;
+  cursor: pointer;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.next-unread-button:hover:not(:disabled) {
+  background: #fef02c;
+}
+
+.next-unread-button:disabled {
+  border-color: var(--ba-line);
+  background: var(--ba-surface-soft);
+  color: var(--ba-muted);
+  cursor: default;
 }
 
 .settings-button {
@@ -109,6 +177,11 @@ select:focus {
   color: #2d4663;
   cursor: pointer;
   font-size: 1.15rem;
+}
+
+.next-unread-button:focus-visible {
+  outline: 2px solid var(--ba-navy);
+  outline-offset: 2px;
 }
 
 .settings-button:hover {
@@ -265,7 +338,6 @@ select:focus {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 36px;
   align-items: stretch;
   width: 100%;
   height: 100%;
@@ -305,11 +377,6 @@ select:focus {
   background-color: var(--ba-surface-soft);
 }
 
-.story-node.read.thumb-cover::before,
-.story-node.read.thumb-contain::before {
-  filter: grayscale(0.85) brightness(0.9);
-}
-
 .story-node[class*="thumb-"] .node-title {
   width: fit-content;
   max-width: 100%;
@@ -335,44 +402,7 @@ select:focus {
   cursor: pointer;
 }
 
-.node-read-toggle {
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-left: 2px solid var(--ba-navy);
-  padding: 0;
-  background: var(--ba-surface);
-  cursor: pointer;
-}
-
-.read-box {
-  display: grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #2d4663;
-  border-radius: 3px;
-  background: #ffffff;
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.node-read-toggle:hover .read-box {
-  border-color: var(--ba-blue);
-}
-
-.story-node.read .read-box,
-.detail-read-toggle.read .read-box {
-  border-color: #2d4663;
-  background: #2c8fc6;
-}
-
-.node-select:focus-visible,
-.node-read-toggle:focus-visible {
+.node-select:focus-visible {
   outline: 2px solid var(--ba-navy);
   outline-offset: -2px;
 }
@@ -389,24 +419,36 @@ select:focus {
   box-shadow: inset 0 0 0 2px var(--ba-yellow);
 }
 
-.read-symbol {
-  flex: 0 0 auto;
-  color: var(--ba-muted);
-  font-size: 0.72rem;
-  line-height: 1;
+/* Read stories turn gray; the selection outline (::after) is not filtered. */
+.story-node.read {
+  border-color: var(--ba-line);
+  border-left-color: #8d98a6;
+  background: var(--ba-read-bg);
 }
 
-/* Small nodes already show read state on the toggle; keep room for the title. */
-.story-node:not(.kind-main, .kind-event) .read-symbol {
+.story-node.read.thumb-cover::before,
+.story-node.read.thumb-contain::before {
+  filter: grayscale(1) brightness(0.8);
+  opacity: 0.55;
+}
+
+.story-node.read .node-title,
+.story-node.read[class*="thumb-"] .node-title {
+  background: var(--ba-read-plate);
+  color: var(--ba-read-text);
+}
+
+.empty-state {
+  margin: 0;
+  padding: 64px 16px;
+  color: var(--ba-muted);
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.tree-panel [hidden] {
   display: none;
-}
-
-.story-node.read .read-symbol {
-  color: var(--ba-read);
-}
-
-.story-node.read .node-title {
-  color: var(--ba-muted);
 }
 
 .node-title {
@@ -479,23 +521,42 @@ select:focus {
   background: var(--ba-chip-bar);
 }
 
-.detail-read-toggle {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-  padding: 4px 12px 4px 6px;
-  background: #ffffff;
-  color: #2d4663;
-  cursor: pointer;
+.detail-state {
+  color: #ffffff;
   font-size: 0.8rem;
   font-weight: 800;
 }
 
+.detail-read-toggle {
+  width: 100%;
+  margin: 0 0 16px;
+  border: 1px solid #c2a600;
+  border-radius: 4px;
+  padding: 12px 16px;
+  background: var(--ba-yellow);
+  color: #2d4663;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.detail-read-toggle:hover {
+  background: #fef02c;
+}
+
 .detail-read-toggle:focus-visible {
-  outline: 2px solid var(--ba-yellow);
+  outline: 2px solid var(--ba-navy);
   outline-offset: 2px;
+}
+
+.detail-read-toggle.read {
+  border-color: var(--ba-chip-bar);
+  background: var(--ba-chip-bar);
+  color: #ffffff;
+}
+
+.detail-read-toggle.read:hover {
+  background: var(--ba-bar);
 }
 
 .detail-thumbnail {
@@ -603,6 +664,14 @@ select:focus {
   .toolbar,
   .content-grid {
     grid-template-columns: 1fr;
+  }
+
+  .toolbar-actions {
+    position: static;
+  }
+
+  .toolbar-actions .next-unread-button {
+    flex: 1;
   }
 
   .settings-menu {
