@@ -2,6 +2,7 @@ import "./app.css"
 import { computed, signal } from "@preact/signals"
 import { parse } from "@std/jsonc"
 import { scalePoint } from "d3"
+import { isKoreanText } from "./korean-text.ts"
 import storyOrderJsonc from "./data/blue-archive-story-order.jsonc?raw"
 import {
   eraseStoryHistory,
@@ -203,14 +204,26 @@ const thumbnailStyle = (thumbnail: StoryThumbnail | undefined) =>
 
 const releaseText = (item: StoryItem) => {
   return [
-    ["JP", item.release.japan],
-    ["GL", item.release.global],
-    ["KR dub", item.release.krDub],
+    ["일본", item.release.japan],
+    ["글로벌", item.release.global],
+    ["한국어 더빙", item.release.krDub],
   ]
     .filter(([, values]) => Array.isArray(values) && values.length > 0)
     .map(([label, values]) => `${label}: ${(values as string[]).join(", ")}`)
     .join(" · ")
 }
+
+const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
+  "ko-KR",
+  {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  },
+).replace(/\.\s*/g, "-").replace(/-(\d\d:)/, " $1")
 
 const storyGraph = computed(() => layoutStoryGraph(filteredItems.value))
 const selectedItem = computed(() =>
@@ -301,7 +314,7 @@ export const App = () => {
 
   return (
     <main class="story-visualizer">
-      <section class="toolbar" aria-label="Story filters">
+      <section class="toolbar" aria-label="스토리 필터">
         <label class="search-field">
           <span>검색</span>
           <input
@@ -362,7 +375,7 @@ export const App = () => {
       <section class="content-grid">
         <section
           class="tree-panel"
-          aria-label="Story tree from prologue to latest"
+          aria-label="프롤로그부터 최신까지의 스토리 트리"
         >
           <div class="lane-headings" style={{ width: `${graph.width}px` }}>
             {lanes.map((lane) => {
@@ -386,7 +399,7 @@ export const App = () => {
           <svg
             class="story-tree"
             role="img"
-            aria-label="Blue Archive story order tree, top to bottom from prologue"
+            aria-label="블루 아카이브 스토리 순서 트리, 프롤로그부터 위에서 아래로"
             width={graph.width}
             height={graph.height - graphTopOffset}
             viewBox={`0 ${graphTopOffset} ${graph.width} ${
@@ -471,7 +484,7 @@ export const App = () => {
           </svg>
         </section>
 
-        <aside class="details-panel" aria-label="Selected story details">
+        <aside class="details-panel" aria-label="선택한 스토리 상세">
           <div class="detail-heading">
             <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
               {currentItem.kind}
@@ -497,7 +510,7 @@ export const App = () => {
             />
           )}
           <h2>{currentItem.label}</h2>
-          {currentItem.summary && (
+          {currentItem.summary && isKoreanText(currentItem.summary) && (
             <p class="detail-summary">{currentItem.summary}</p>
           )}
           <dl>
@@ -532,7 +545,7 @@ export const App = () => {
           </dl>
           {currentItem.links.length > 0 && (
             <div class="detail-links">
-              <h3>Links</h3>
+              <h3>관련 문서</h3>
               {currentItem.links.map((link) => (
                 <a
                   key={link.url}
@@ -546,9 +559,7 @@ export const App = () => {
             </div>
           )}
           <footer>
-            <span>
-              Data: {new Date(storyOrder.generatedAt).toLocaleString()}
-            </span>
+            <span>데이터 기준 {generatedAtLabel}</span>
           </footer>
         </aside>
       </section>

@@ -537,6 +537,26 @@ Deno.test("prefers the chapter intro and falls back to the volume blurb", () => 
   )
 })
 
+Deno.test("omits a summary that is not Korean", () => {
+  const japanese = article(
+    section(
+      "4.1. 1장 기묘한 하루",
+      chapterBox("1장", "기묘한 하루", "在りし日の影が学園を覆う。"),
+    ),
+  )
+  assertEquals(
+    itemSummary(
+      {
+        urls: [volumeUrl],
+        overviewUrl: undefined,
+        chapter: { url: volumeUrl, anchor: "1장 기묘한 하루" },
+      },
+      new Map([[volumeUrl, japanese]]),
+    ),
+    undefined,
+  )
+})
+
 Deno.test("summarizes summary coverage per kind", () => {
   assertEquals(
     summaryCoverage([

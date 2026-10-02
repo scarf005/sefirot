@@ -3,6 +3,7 @@
 
 import { HTMLElement, type Node, parse } from "node-html-parser"
 import { type Browser, chromium } from "playwright-core"
+import { isKoreanText } from "../src/korean-text.ts"
 
 const SOURCE_URL = "https://namu.wiki/w/틀:블루 아카이브 스토리 시점순"
 const OUTPUT_PATH = "src/data/blue-archive-story-order.jsonc"
@@ -866,12 +867,13 @@ export const itemSummary = (
     ? chapterIntro(chapterPage, sources.chapter.anchor)
     : undefined
   const overviewPage = sources.overviewUrl && pages.get(sources.overviewUrl)
-  return fromChapter ??
+  const summary = fromChapter ??
     (overviewPage
       ? overviewSynopsis(overviewPage, {
         plainCell: sources.chapter !== undefined,
       })
       : undefined)
+  return summary && isKoreanText(summary) ? summary : undefined
 }
 
 export const summaryCoverage = (items: Pick<StoryItem, "kind" | "summary">[]) =>
