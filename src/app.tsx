@@ -312,7 +312,7 @@ const selectedItem = computed(() =>
     orderedItems[0]
 )
 
-const readStateLabel = (isRead: boolean) => isRead ? "읽음" : "미독"
+const readStateLabel = (isRead: boolean) => isRead ? "읽음" : "안 읽음"
 
 const persistReadItemIds = (ids: ReadonlySet<string>) => {
   const storage = getHistoryStorage()
@@ -481,7 +481,7 @@ export const App = () => {
             disabled={readCount === totalCount}
             onClick={selectNextUnread}
           >
-            다음 미독
+            다음 읽을 스토리
           </button>
           <button
             class="settings-button"
