@@ -478,12 +478,20 @@
   );
 }
 
-.thumb-cover .node-select {
-  background: var(--thumb) center / cover no-repeat var(--ba-surface-soft);
+[class*="thumb-"] .node-select {
+  background: var(--ba-surface-soft);
 }
 
-.thumb-contain .node-select {
-  background: var(--thumb) center / contain no-repeat var(--ba-surface-soft);
+.node-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-contain .node-art {
+  object-fit: contain;
 }
 
 .story-node:hover {

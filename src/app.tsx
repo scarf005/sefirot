@@ -695,7 +695,6 @@ export const App = () => {
                           node.thumbnail ? `thumb-${node.thumbnail.fit}` : ""
                         }`}
                         data-node-id={node.id}
-                        style={thumbnailStyle(node.thumbnail)}
                       >
                         <button
                           class="node-select"
@@ -708,6 +707,16 @@ export const App = () => {
                           onClick={() =>
                             selectItem(node.id)}
                         >
+                          {/* Lazy so only cards near the view download art. */}
+                          {node.thumbnail && (
+                            <img
+                              class="node-art"
+                              src={node.thumbnail.url}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          )}
                           {(isRead || isUnreleasedInKorea(node)) && (
                             <span
                               class={`node-tag ${isRead ? "" : "unreleased"}`}
