@@ -92,6 +92,16 @@ const loadReadItemIds = () => {
   }
 }
 
+const spoilerSettingKey = "sefirot-hide-spoilers"
+// Summaries of unread stories are hidden unless the viewer turned it off.
+const loadHideSpoilers = () => {
+  try {
+    return getHistoryStorage()?.getItem(spoilerSettingKey) !== "off"
+  } catch {
+    return true
+  }
+}
+
 const selectedKind = signal("전체")
 const searchText = signal("")
 const hideMinor = signal(false)
@@ -99,6 +109,17 @@ const selectedItemId = signal(orderedItems[0]?.id ?? "")
 const readItemIds = signal<ReadonlySet<string>>(loadReadItemIds())
 const settingsOpen = signal(false)
 const historyStatus = signal("")
+const hideSpoilers = signal(loadHideSpoilers())
+const revealedSummaryId = signal("")
+
+const setHideSpoilers = (hide: boolean) => {
+  hideSpoilers.value = hide
+  try {
+    getHistoryStorage()?.setItem(spoilerSettingKey, hide ? "on" : "off")
+  } catch {
+    historyStatus.value = "설정을 저장하지 못했습니다."
+  }
+}
 
 const filteredItems = computed(() => {
   const query = searchText.value.trim().toLocaleLowerCase()
@@ -523,6 +544,15 @@ export const App = () => {
               <button class="danger" type="button" onClick={eraseReadHistory}>
                 기록 지우기
               </button>
+              <label class="settings-check">
+                <input
+                  type="checkbox"
+                  checked={hideSpoilers.value}
+                  onChange={(event) =>
+                    setHideSpoilers(event.currentTarget.checked)}
+                />
+                안 읽은 줄거리 가리기
+              </label>
               <p role="status">
                 {historyStatus.value}
               </p>
@@ -694,7 +724,19 @@ export const App = () => {
             {currentItemRead ? "읽음 해제" : "읽음 표시"}
           </button>
           {currentItem.summary && isKoreanText(currentItem.summary) && (
-            <p class="detail-summary">{currentItem.summary}</p>
+            hideSpoilers.value && !currentItemRead &&
+              revealedSummaryId.value !== currentItem.id
+              ? (
+                <button
+                  class="detail-summary spoiler"
+                  type="button"
+                  onClick={() => revealedSummaryId.value = currentItem.id}
+                >
+                  <span aria-hidden="true">{currentItem.summary}</span>
+                  <strong>줄거리 보기</strong>
+                </button>
+              )
+              : <p class="detail-summary">{currentItem.summary}</p>
           )}
           <dl>
             <div>
