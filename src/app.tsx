@@ -106,8 +106,12 @@ const loadHideSpoilers = () => {
 const selectedKind = signal("전체")
 const searchText = signal("")
 const hideMinor = signal(false)
-const selectedItemId = signal(orderedItems[0]?.id ?? "")
 const readItemIds = signal<ReadonlySet<string>>(loadReadItemIds())
+// Opening the page picks up where the reader left off.
+const selectedItemId = signal(
+  nextUnreadId(orderedItems.map((item) => item.id), readItemIds.value) ??
+    orderedItems[0]?.id ?? "",
+)
 const settingsOpen = signal(false)
 const historyStatus = signal("")
 const hideSpoilers = signal(loadHideSpoilers())
@@ -255,7 +259,8 @@ const laneEmblems: Record<string, string[]> = {
   wildhunt: [wildhuntEmblem],
   other: [etcEmblem],
 }
-const scrollTick = signal(0)
+// Starts at 1 so the first render scrolls to the initial selection.
+const scrollTick = signal(1)
 
 const prefersReducedMotion = () =>
   globalThis.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false
@@ -263,7 +268,11 @@ const prefersReducedMotion = () =>
 // Scrolls only the tree panel (not the page) so the node sits in the middle of
 // the part of the panel that is visible below the sticky lane headings; the
 // horizontal position only changes when the node is out of view.
-const centerInPanel = (panel: HTMLElement, node: HTMLElement) => {
+const centerInPanel = (
+  panel: HTMLElement,
+  node: HTMLElement,
+  instant: boolean,
+) => {
   const headings = panel.querySelector<HTMLElement>(".lane-headings")
   const headingHeight = headings?.offsetHeight ?? 0
   const coveredBottom =
@@ -278,7 +287,7 @@ const centerInPanel = (panel: HTMLElement, node: HTMLElement) => {
       (visibleHeight - nodeBox.height) / 2,
     left: fitsHorizontally ? panel.scrollLeft : panel.scrollLeft +
       nodeBox.left - panelBox.left - (panel.clientWidth - nodeBox.width) / 2,
-    behavior: prefersReducedMotion() ? "auto" : "smooth",
+    behavior: instant || prefersReducedMotion() ? "auto" : "smooth",
   })
 }
 
@@ -434,12 +443,11 @@ export const App = () => {
   }, [])
 
   useEffect(() => {
-    if (scrollTick.value === 0) return
     const node = treeRef.current?.querySelector<HTMLElement>(
       `[data-node-id="${selectedItemId.value}"]`,
     )
     if (!node) return
-    centerInPanel(treeRef.current!, node)
+    centerInPanel(treeRef.current!, node, scrollTick.value === 1)
     if (keyboardMoved.current) {
       keyboardMoved.current = false
       node.querySelector<HTMLElement>("button")?.focus({ preventScroll: true })
