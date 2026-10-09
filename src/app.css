@@ -155,7 +155,7 @@
   z-index: 5;
   display: grid;
   gap: 8px;
-  min-width: 220px;
+  min-width: 240px;
   padding: 12px;
   border: 1px solid var(--ba-line);
   border-radius: 6px;
@@ -224,6 +224,37 @@
   height: 18px;
   margin: 0;
   accent-color: var(--ba-bar);
+}
+
+.settings-row {
+  display: flex;
+  white-space: nowrap;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ba-navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.segmented {
+  display: flex;
+  gap: 2px;
+}
+
+.settings-menu .segmented button {
+  width: auto;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 0;
+  background: var(--ba-tab);
+  color: var(--ba-tab-text);
+  text-align: center;
+}
+
+.settings-menu .segmented button[aria-pressed="true"] {
+  background: var(--ba-tab-active);
+  color: var(--ba-tab-active-text);
 }
 
 .search-input {
@@ -347,6 +378,48 @@
   display: block;
 }
 
+/* Both graph layers share one grid cell and the same coordinates. */
+.graph-layers {
+  display: grid;
+}
+
+.graph-layers > svg {
+  grid-area: 1 / 1;
+}
+
+.main-layer {
+  z-index: 1;
+  justify-self: start;
+}
+
+/* Pinned, the main lane stays at the left edge while lanes scroll under it. */
+.main-layer.pinned {
+  position: sticky;
+  left: 0;
+  background: var(--ba-surface);
+  box-shadow: 1px 0 0 var(--ba-line);
+}
+
+.main-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.main-heading .lane-heading {
+  position: static;
+  transform: none;
+}
+
+.main-heading.pinned {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--ba-surface);
+  box-shadow: 1px 0 0 var(--ba-line);
+}
+
 .lane-headings {
   position: sticky;
   top: 0;
@@ -395,6 +468,23 @@
 
 .lane-heading.collapsed:hover {
   opacity: 1;
+}
+
+/* Zoomed out, headings shrink to fit the closer lanes. */
+.lane-headings.compact .lane-heading {
+  gap: 2px;
+  height: 26px;
+  padding: 0 5px;
+  font-size: 0.72rem;
+}
+
+.lane-headings.compact .lane-emblem {
+  width: 18px;
+  height: 16px;
+}
+
+.lane-headings.compact .lane-count {
+  font-size: 0.68rem;
 }
 
 /* Emblems are tinted with the text color. */

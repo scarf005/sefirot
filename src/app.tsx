@@ -25,8 +25,12 @@ import {
 } from "./story-classification.ts"
 import {
   type GraphLink,
+  type GraphNode,
   graphTopOffset,
+  type LaneColumn,
   layoutStoryGraph,
+  narrowLanePitch,
+  normalLanePitch,
   rowGap,
 } from "./story-graph.ts"
 import abydosEmblem from "./assets/school-emblems/abydos.png"
@@ -93,15 +97,17 @@ const loadReadItemIds = () => {
   }
 }
 
-const spoilerSettingKey = "sefirot-hide-spoilers"
-// Summaries of unread stories are hidden unless the viewer turned it off.
-const loadHideSpoilers = () => {
+// View options are per-browser conveniences; storage may be unavailable.
+const loadSetting = (key: string, fallback: string) => {
   try {
-    return getHistoryStorage()?.getItem(spoilerSettingKey) !== "off"
+    return getHistoryStorage()?.getItem(key) ?? fallback
   } catch {
-    return true
+    return fallback
   }
 }
+
+const zoomLevels = [1, 0.75, 0.5]
+const savedZoom = Number(loadSetting("sefirot-graph-zoom", "100")) / 100
 
 const selectedKind = signal("전체")
 const searchText = signal("")
@@ -114,17 +120,44 @@ const selectedItemId = signal(
 )
 const settingsOpen = signal(false)
 const historyStatus = signal("")
-const hideSpoilers = signal(loadHideSpoilers())
+// Summaries of unread stories are hidden unless the viewer turned it off.
+const hideSpoilers = signal(
+  loadSetting("sefirot-hide-spoilers", "on") !== "off",
+)
+const graphZoom = signal(zoomLevels.includes(savedZoom) ? savedZoom : 1)
+const narrowLanes = signal(
+  loadSetting("sefirot-lane-spacing", "normal") === "narrow",
+)
+const pinMain = signal(loadSetting("sefirot-pin-main", "off") === "on")
 const revealedSummaryId = signal("")
 const sheetCollapsed = signal(false)
 
-const setHideSpoilers = (hide: boolean) => {
-  hideSpoilers.value = hide
+const saveSetting = (key: string, value: string) => {
   try {
-    getHistoryStorage()?.setItem(spoilerSettingKey, hide ? "on" : "off")
+    getHistoryStorage()?.setItem(key, value)
   } catch {
     historyStatus.value = "설정을 저장하지 못했습니다."
   }
+}
+
+const setHideSpoilers = (hide: boolean) => {
+  hideSpoilers.value = hide
+  saveSetting("sefirot-hide-spoilers", hide ? "on" : "off")
+}
+
+const setGraphZoom = (zoom: number) => {
+  graphZoom.value = zoom
+  saveSetting("sefirot-graph-zoom", String(zoom * 100))
+}
+
+const setNarrowLanes = (narrow: boolean) => {
+  narrowLanes.value = narrow
+  saveSetting("sefirot-lane-spacing", narrow ? "narrow" : "normal")
+}
+
+const setPinMain = (pin: boolean) => {
+  pinMain.value = pin
+  saveSetting("sefirot-pin-main", pin ? "on" : "off")
 }
 
 const filteredItems = computed(() => {
@@ -227,7 +260,10 @@ const orderedItemIds = orderedItems.map((item) => item.id)
 const progress = computed(() => readProgress(orderedItemIds, readItemIds.value))
 const hiddenLanes = signal<ReadonlySet<string>>(new Set())
 const storyGraph = computed(() =>
-  layoutStoryGraph(filteredItems.value, { collapsedLaneIds: hiddenLanes.value })
+  layoutStoryGraph(filteredItems.value, {
+    collapsedLaneIds: hiddenLanes.value,
+    lanePitch: narrowLanes.value ? narrowLanePitch : normalLanePitch,
+  })
 )
 const visibleItemIds = computed(() =>
   storyGraph.value.nodes.map((node) => node.id)
@@ -281,13 +317,20 @@ const centerInPanel = (
   const panelBox = panel.getBoundingClientRect()
   const nodeBox = node.getBoundingClientRect()
   const visibleHeight = panel.clientHeight - headingHeight - coveredBottom
-  const fitsHorizontally = nodeBox.left >= panelBox.left &&
+  // A pinned main lane covers the left edge for every other card.
+  const coveredLeft = node.closest(".main-layer")
+    ? 0
+    : panel.querySelector(".main-layer.pinned")?.getBoundingClientRect()
+      .width ?? 0
+  const visibleWidth = panel.clientWidth - coveredLeft
+  const fitsHorizontally = nodeBox.left >= panelBox.left + coveredLeft &&
     nodeBox.right <= panelBox.left + panel.clientWidth
   panel.scrollTo({
     top: panel.scrollTop + nodeBox.top - panelBox.top - headingHeight -
       (visibleHeight - nodeBox.height) / 2,
     left: fitsHorizontally ? panel.scrollLeft : panel.scrollLeft +
-      nodeBox.left - panelBox.left - (panel.clientWidth - nodeBox.width) / 2,
+      nodeBox.left - panelBox.left - coveredLeft -
+      (visibleWidth - nodeBox.width) / 2,
     behavior: instant || prefersReducedMotion() ? "auto" : "smooth",
   })
 }
@@ -471,6 +514,146 @@ export const App = () => {
     }
   }, [scrollTick.value])
 
+  const zoom = graphZoom.value
+  const graphHeight = graph.height - graphTopOffset
+  const mainColumn = graph.lanes.find((column) =>
+    column.lane.id === "main" && !column.collapsed
+  )
+  // Main cards are wider than their column; the layer keeps room for them
+  // and for the selection glow.
+  const mainRight = mainColumn
+    ? Math.max(
+      mainColumn.center + mainColumn.width / 2,
+      ...graph.nodes.filter((node) => node.lane.id === "main")
+        .map((node) => node.x + node.width + 8),
+    )
+    : 0
+  // Zoomed out, lanes are too close for names, so headings keep emblem and count.
+  const compactHeadings =
+    (narrowLanes.value ? narrowLanePitch : normalLanePitch) *
+        zoom < 150
+
+  const laneHeading = (column: LaneColumn, left?: number) => {
+    const { lane, collapsed } = column
+    const count = laneProgress.value.get(lane.id)
+    const countLabel = count ? `${count.read}/${count.total}` : ""
+    const emblems = laneEmblems[lane.id] ?? []
+    return (
+      <button
+        key={lane.id}
+        type="button"
+        class={`lane-heading ${collapsed ? "collapsed" : ""}`}
+        style={left === undefined ? undefined : { left: `${left}px` }}
+        aria-label={`${lane.label} ${countLabel}, ${
+          collapsed ? "숨김" : "표시"
+        }`}
+        title={`${lane.label} ${countLabel}`}
+        onClick={() => toggleLane(lane.id)}
+      >
+        {emblems.map((emblem) => (
+          <span
+            key={emblem}
+            class="lane-emblem"
+            style={{ "--emblem": `url("${emblem}")` }}
+            aria-hidden="true"
+          />
+        ))}
+        {(emblems.length === 0 || (!collapsed && !compactHeadings)) && (
+          <span>{lane.label}</span>
+        )}
+        {!collapsed && (emblems.length > 0 || !compactHeadings) && (
+          <small class="lane-count">{countLabel}</small>
+        )}
+      </button>
+    )
+  }
+
+  const arrowMarkers = (kinds: GraphLink<StoryItem>["kind"][]) => (
+    <defs>
+      {kinds.map((kind) => (
+        <marker
+          id={`arrow-${kind}`}
+          key={kind}
+          class={`link-arrow ${kind}`}
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerUnits="userSpaceOnUse"
+          markerWidth="10"
+          markerHeight="10"
+          orient="auto"
+        >
+          <path d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+      ))}
+    </defs>
+  )
+
+  const linkView = (link: GraphLink<StoryItem>) => (
+    <path
+      key={`${link.kind}-${link.source.id}-${link.target.id}`}
+      class={link.kind}
+      d={linkPath(link)}
+      marker-end={`url(#arrow-${link.kind})`}
+    />
+  )
+
+  const nodeView = (node: GraphNode<StoryItem>) => {
+    const selected = node.id === selectedItemId.value
+    const isRead = readItemIds.value.has(node.id)
+    const lines = graphNodeLines(node)
+    return (
+      <g key={node.id} transform={`translate(${node.x} ${node.y})`}>
+        <foreignObject width={node.width} height={node.height}>
+          <div
+            class={`story-node ${kindClass(node.kind)} ${
+              selected ? "selected" : ""
+            } ${isRead ? "read" : "unread"} ${
+              node.thumbnail ? `thumb-${node.thumbnail.fit}` : ""
+            }`}
+            data-node-id={node.id}
+          >
+            <button
+              class="node-select"
+              type="button"
+              aria-current={selected}
+              aria-label={`${node.label}, ${readStateLabel(isRead)}${
+                isUnreleasedInKorea(node) ? ", 미출시" : ""
+              }`}
+              title={node.label}
+              onClick={() => selectItem(node.id)}
+            >
+              {/* Lazy so only cards near the view download art. */}
+              {node.thumbnail && (
+                <img
+                  class="node-art"
+                  src={node.thumbnail.url}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+              {(isRead || isUnreleasedInKorea(node)) && (
+                <span
+                  class={`node-tag ${isRead ? "" : "unreleased"}`}
+                  aria-hidden="true"
+                >
+                  {isRead ? "읽음" : "미출시"}
+                </span>
+              )}
+              <span class="node-title">
+                {lines.series && (
+                  <small class="node-series">{lines.series}</small>
+                )}
+                <span class="node-name">{lines.title}</span>
+              </span>
+            </button>
+          </div>
+        </foreignObject>
+      </g>
+    )
+  }
+
   return (
     <main class="story-visualizer">
       <header class="top-bar">
@@ -584,6 +767,51 @@ export const App = () => {
                 />
                 안 읽은 줄거리 가리기
               </label>
+              <div class="settings-row">
+                <span>확대</span>
+                <div class="segmented" role="group" aria-label="확대">
+                  {zoomLevels.map((level) => (
+                    <button
+                      key={level}
+                      type="button"
+                      aria-pressed={graphZoom.value === level}
+                      onClick={() => setGraphZoom(level)}
+                    >
+                      {level * 100}%
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div class="settings-row">
+                <span>레인 간격</span>
+                <div class="segmented" role="group" aria-label="레인 간격">
+                  <button
+                    type="button"
+                    aria-pressed={!narrowLanes.value}
+                    onClick={() =>
+                      setNarrowLanes(false)}
+                  >
+                    보통
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={narrowLanes.value}
+                    onClick={() =>
+                      setNarrowLanes(true)}
+                  >
+                    좁게
+                  </button>
+                </div>
+              </div>
+              <label class="settings-check">
+                <input
+                  type="checkbox"
+                  checked={pinMain.value}
+                  onChange={(event) =>
+                    setPinMain(event.currentTarget.checked)}
+                />
+                메인 스토리 고정
+              </label>
               <p role="status">
                 {historyStatus.value}
               </p>
@@ -603,142 +831,80 @@ export const App = () => {
           )}
           {/* Headings stay while lanes are hidden so they can be shown again. */}
           <div
-            class="lane-headings"
+            class={`lane-headings ${compactHeadings ? "compact" : ""}`}
             hidden={filteredItems.value.length === 0}
-            style={{ width: `${graph.width}px` }}
+            style={{ width: `${graph.width * zoom}px` }}
           >
-            {graph.lanes.map(({ lane, center, collapsed }) => {
-              const count = laneProgress.value.get(lane.id)
-              const countLabel = count ? `${count.read}/${count.total}` : ""
-              return (
-                <button
-                  key={lane.id}
-                  type="button"
-                  class={`lane-heading ${collapsed ? "collapsed" : ""}`}
-                  style={{ left: `${center}px` }}
-                  aria-label={`${lane.label} ${countLabel}, ${
-                    collapsed ? "숨김" : "표시"
-                  }`}
-                  title={`${lane.label} ${countLabel}`}
-                  onClick={() => toggleLane(lane.id)}
-                >
-                  {(laneEmblems[lane.id] ?? []).map((emblem) => (
-                    <span
-                      key={emblem}
-                      class="lane-emblem"
-                      style={{ "--emblem": `url("${emblem}")` }}
-                      aria-hidden="true"
-                    />
-                  ))}
-                  {(!collapsed || !laneEmblems[lane.id]) && (
-                    <span>{lane.label}</span>
-                  )}
-                  {!collapsed && <small class="lane-count">{countLabel}</small>}
-                </button>
-              )
-            })}
+            {mainColumn && (
+              <div
+                class={`main-heading ${pinMain.value ? "pinned" : ""}`}
+                style={{
+                  width: `${mainRight * zoom}px`,
+                  paddingLeft: `${
+                    (mainColumn.center - mainColumn.width / 2) * zoom
+                  }px`,
+                }}
+              >
+                {laneHeading(mainColumn)}
+              </div>
+            )}
+            {graph.lanes.filter((column) => column !== mainColumn).map((
+              column,
+            ) => laneHeading(column, column.center * zoom))}
           </div>
-          <svg
-            class="story-tree"
+          <div
+            class="graph-layers"
             hidden={graph.nodes.length === 0}
-            role="group"
-            aria-label="스토리 순서도"
-            width={graph.width}
-            height={graph.height - graphTopOffset}
-            viewBox={`0 ${graphTopOffset} ${graph.width} ${
-              graph.height - graphTopOffset
-            }`}
+            style={{
+              width: `${graph.width * zoom}px`,
+              height: `${graphHeight * zoom}px`,
+            }}
           >
-            <defs>
-              {(["main", "lane", "branch"] as const).map((kind) => (
-                <marker
-                  id={`arrow-${kind}`}
-                  key={kind}
-                  class={`link-arrow ${kind}`}
-                  viewBox="0 0 10 10"
-                  refX="9"
-                  refY="5"
-                  markerUnits="userSpaceOnUse"
-                  markerWidth="10"
-                  markerHeight="10"
-                  orient="auto"
-                >
-                  <path d="M 0 0 L 10 5 L 0 10 z" />
-                </marker>
-              ))}
-            </defs>
-            <g class="links">
-              {/* Main links paint last so they cover the branch stems. */}
-              {(["branch", "lane", "main"] as const).flatMap((kind) =>
-                graph.links.filter((link) => link.kind === kind)
-              ).map((link) => (
-                <path
-                  key={`${link.kind}-${link.source.id}-${link.target.id}`}
-                  class={link.kind}
-                  d={linkPath(link)}
-                  marker-end={`url(#arrow-${link.kind})`}
-                />
-              ))}
-            </g>
-            <g class="nodes">
-              {graph.nodes.map((node) => {
-                const selected = node.id === selectedItemId.value
-                const isRead = readItemIds.value.has(node.id)
-                const lines = graphNodeLines(node)
-                return (
-                  <g key={node.id} transform={`translate(${node.x} ${node.y})`}>
-                    <foreignObject width={node.width} height={node.height}>
-                      <div
-                        class={`story-node ${kindClass(node.kind)} ${
-                          selected ? "selected" : ""
-                        } ${isRead ? "read" : "unread"} ${
-                          node.thumbnail ? `thumb-${node.thumbnail.fit}` : ""
-                        }`}
-                        data-node-id={node.id}
-                      >
-                        <button
-                          class="node-select"
-                          type="button"
-                          aria-current={selected}
-                          aria-label={`${node.label}, ${
-                            readStateLabel(isRead)
-                          }${isUnreleasedInKorea(node) ? ", 미출시" : ""}`}
-                          title={node.label}
-                          onClick={() =>
-                            selectItem(node.id)}
-                        >
-                          {/* Lazy so only cards near the view download art. */}
-                          {node.thumbnail && (
-                            <img
-                              class="node-art"
-                              src={node.thumbnail.url}
-                              alt=""
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          )}
-                          {(isRead || isUnreleasedInKorea(node)) && (
-                            <span
-                              class={`node-tag ${isRead ? "" : "unreleased"}`}
-                              aria-hidden="true"
-                            >
-                              {isRead ? "읽음" : "미출시"}
-                            </span>
-                          )}
-                          <span class="node-title">
-                            {lines.series && (
-                              <small class="node-series">{lines.series}</small>
-                            )}
-                            <span class="node-name">{lines.title}</span>
-                          </span>
-                        </button>
-                      </div>
-                    </foreignObject>
-                  </g>
-                )
-              })}
-            </g>
-          </svg>
+            <svg
+              class="story-tree"
+              role="group"
+              aria-label="스토리 순서도"
+              width={graph.width * zoom}
+              height={graphHeight * zoom}
+              viewBox={`0 ${graphTopOffset} ${graph.width} ${graphHeight}`}
+            >
+              {arrowMarkers(["lane", "branch"])}
+              <g class="links">
+                {/* Branches first so lane links cover their stems. */}
+                {(["branch", "lane"] as const).flatMap((kind) =>
+                  graph.links.filter((link) => link.kind === kind)
+                ).map(linkView)}
+              </g>
+              <g class="nodes">
+                {graph.nodes.filter((node) => node.lane.id !== "main").map(
+                  nodeView,
+                )}
+              </g>
+            </svg>
+            {/* The main lane is its own layer so it can stay pinned left. */}
+            {mainColumn && (
+              <svg
+                class={`story-tree main-layer ${pinMain.value ? "pinned" : ""}`}
+                role="group"
+                aria-label="메인 스토리"
+                width={mainRight * zoom}
+                height={graphHeight * zoom}
+                viewBox={`0 ${graphTopOffset} ${mainRight} ${graphHeight}`}
+              >
+                {arrowMarkers(["main"])}
+                <g class="links">
+                  {graph.links.filter((link) => link.kind === "main").map(
+                    linkView,
+                  )}
+                </g>
+                <g class="nodes">
+                  {graph.nodes.filter((node) => node.lane.id === "main").map(
+                    nodeView,
+                  )}
+                </g>
+              </svg>
+            )}
+          </div>
         </section>
 
         <aside
