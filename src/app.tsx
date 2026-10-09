@@ -431,6 +431,10 @@ export const App = () => {
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && settingsOpen.value) {
+        settingsOpen.value = false
+        return
+      }
       const step = keyboardSteps[event.key]
       if (
         !step || event.altKey || event.ctrlKey || event.metaKey ||
@@ -440,8 +444,19 @@ export const App = () => {
       keyboardMoved.current = true
       moveSelection(step)
     }
+    // A press anywhere outside the settings closes its menu.
+    const onPointerDown = (event: PointerEvent) => {
+      if (
+        settingsOpen.value &&
+        !(event.target instanceof Element && event.target.closest(".settings"))
+      ) settingsOpen.value = false
+    }
     globalThis.addEventListener("keydown", onKeyDown)
-    return () => globalThis.removeEventListener("keydown", onKeyDown)
+    globalThis.addEventListener("pointerdown", onPointerDown)
+    return () => {
+      globalThis.removeEventListener("keydown", onKeyDown)
+      globalThis.removeEventListener("pointerdown", onPointerDown)
+    }
   }, [])
 
   useEffect(() => {
