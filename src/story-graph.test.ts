@@ -56,6 +56,31 @@ Deno.test("rows follow story order", () => {
   assertEquals(rows, [0, 1, 1, 2, 2, 3])
 })
 
+Deno.test("collapsed lanes keep a narrow column but no stories", () => {
+  const graph = layoutStoryGraph([main("1"), gehenna("2"), millennium("3")], {
+    collapsedLaneIds: new Set(["gehenna"]),
+  })
+  assertEquals(graph.nodes.map((node) => node.id), ["1", "3"])
+  const columns = new Map(graph.lanes.map((column) => [column.lane.id, column]))
+  assert(columns.get("gehenna")!.collapsed)
+  assert(columns.get("gehenna")!.width < columns.get("millennium")!.width)
+})
+
+Deno.test("lane columns follow the lane order without overlapping", () => {
+  const { lanes } = layoutStoryGraph([main("1"), trinity("2"), gehenna("3")])
+  assertEquals(lanes.map((column) => column.lane.id), [
+    "main",
+    "gehenna",
+    "trinity",
+  ])
+  lanes.slice(1).forEach((column, index) =>
+    assert(
+      column.center - column.width / 2 >=
+        lanes[index].center + lanes[index].width / 2,
+    )
+  )
+})
+
 Deno.test("branches only reach lanes without a story since the last main", () => {
   const { links } = layoutStoryGraph([
     main("1"),

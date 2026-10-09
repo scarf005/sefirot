@@ -325,17 +325,54 @@
   background: var(--ba-surface);
 }
 
+/* Clicking a heading cycles shown -> focused -> hidden. */
 .lane-heading {
   position: absolute;
   top: 50%;
-  padding: 4px 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 30px;
+  border: 0;
   border-radius: 3px;
+  padding: 0 12px 0 8px;
   background: var(--ba-chip);
   color: var(--ba-chip-text);
+  cursor: pointer;
   font-size: 0.85rem;
   font-weight: 700;
   white-space: nowrap;
   transform: translate(-50%, -50%);
+}
+
+.lane-heading:hover {
+  background: var(--ba-bar);
+}
+
+.lane-heading.focused {
+  background: var(--ba-tab-active);
+  color: var(--ba-tab-active-text);
+  box-shadow: 0 0 0 2px var(--ba-tab-active-text);
+}
+
+.lane-heading.collapsed {
+  padding: 0 8px;
+  background: var(--ba-tab);
+  color: var(--ba-tab-text);
+  opacity: 0.7;
+}
+
+.lane-heading.collapsed:hover {
+  opacity: 1;
+}
+
+/* Emblems are tinted with the text color. */
+.lane-emblem {
+  width: 28px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--emblem) center / contain no-repeat;
+  mask: var(--emblem) center / contain no-repeat;
 }
 
 .links path {

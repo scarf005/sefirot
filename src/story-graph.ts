@@ -1,4 +1,3 @@
-import { scalePoint } from "d3"
 import {
   type Lane,
   laneForItem,
@@ -20,9 +19,16 @@ export type GraphLink<T extends StoryItem> = {
   target: GraphNode<T>
   kind: "main" | "lane" | "branch"
 }
+export type LaneColumn = {
+  lane: Lane
+  center: number
+  width: number
+  collapsed: boolean
+}
 export type StoryGraph<T extends StoryItem> = {
   nodes: GraphNode<T>[]
   links: GraphLink<T>[]
+  lanes: LaneColumn[]
   width: number
   height: number
 }
@@ -30,6 +36,8 @@ export type StoryGraph<T extends StoryItem> = {
 // The sticky lane headings cover the top band of the graph.
 export const graphTopOffset = 48
 const lanePitch = 184
+const collapsedLanePitch = 72
+const graphSidePadding = 40
 const rowGap = 28
 const graphTop = graphTopOffset + 24
 
@@ -53,17 +61,41 @@ const assignRows = (items: StoryItem[]) => {
   })
 }
 
+// Collapsed lanes keep a narrow column so their heading stays in place.
+const layoutLanes = (
+  items: StoryItem[],
+  collapsedLaneIds: ReadonlySet<string>,
+) =>
+  lanes
+    .filter((lane) =>
+      lane.id === "main" ||
+      items.some((item) => laneForItem(item).id === lane.id)
+    )
+    .reduce<LaneColumn[]>((columns, lane) => {
+      const collapsed = collapsedLaneIds.has(lane.id)
+      const width = collapsed ? collapsedLanePitch : lanePitch
+      const previous = columns.at(-1)
+      const left = previous
+        ? previous.center + previous.width / 2
+        : graphSidePadding
+      return [...columns, { lane, center: left + width / 2, width, collapsed }]
+    }, [])
+
 export const layoutStoryGraph = <T extends StoryItem>(
-  items: T[],
+  allItems: T[],
+  { collapsedLaneIds = new Set<string>() }: {
+    collapsedLaneIds?: ReadonlySet<string>
+  } = {},
 ): StoryGraph<T> => {
-  const activeLanes = lanes.filter((lane) =>
-    lane.id === "main" || items.some((item) => laneForItem(item).id === lane.id)
+  const columns = layoutLanes(allItems, collapsedLaneIds)
+  const centers = new Map(
+    columns.map((column) => [column.lane.id, column.center]),
   )
-  const width = Math.max(1100, activeLanes.length * lanePitch + 80)
-  const xScale = scalePoint(activeLanes.map((lane) => lane.id), [
-    80,
-    width - 80,
-  ]).padding(0.5)
+  const lastColumn = columns.at(-1)!
+  const width = lastColumn.center + lastColumn.width / 2 + graphSidePadding
+  const items = allItems.filter((item) =>
+    !collapsedLaneIds.has(laneForItem(item).id)
+  )
   const rows = assignRows(items)
   const rowHeights: number[] = []
   items.forEach((item, index) => {
@@ -85,7 +117,7 @@ export const layoutStoryGraph = <T extends StoryItem>(
       lane,
       row,
       ...size,
-      x: (xScale(lane.id) ?? 80) - size.width / 2,
+      x: centers.get(lane.id)! - size.width / 2,
       y: rowTops[row] + (rowHeights[row] - size.height) / 2,
     }
   })
@@ -112,6 +144,7 @@ export const layoutStoryGraph = <T extends StoryItem>(
   return {
     nodes,
     links,
+    lanes: columns,
     width,
     height: rowTops[rowHeights.length] - rowGap + 48,
   }

@@ -27,6 +27,19 @@ import {
   graphTopOffset,
   layoutStoryGraph,
 } from "./story-graph.ts"
+import { collapsedLanes, cycleLane, type LaneFilter } from "./lane-filter.ts"
+import abydosEmblem from "./assets/school-emblems/abydos.png"
+import etcEmblem from "./assets/school-emblems/etc.png"
+import gehennaEmblem from "./assets/school-emblems/gehenna.png"
+import highlanderEmblem from "./assets/school-emblems/highlander.png"
+import hyakkiyakoEmblem from "./assets/school-emblems/hyakkiyako.png"
+import millenniumEmblem from "./assets/school-emblems/millennium.png"
+import redWinterEmblem from "./assets/school-emblems/redwinter.png"
+import shanhaijingEmblem from "./assets/school-emblems/shanhaijing.png"
+import srtEmblem from "./assets/school-emblems/srt.png"
+import trinityEmblem from "./assets/school-emblems/trinity.png"
+import valkyrieEmblem from "./assets/school-emblems/valkyrie.png"
+import wildhuntEmblem from "./assets/school-emblems/wildhunt.png"
 
 type StoryRelease = { japan?: string[]; global?: string[]; krDub?: string[] }
 type StoryLink = { label: string; url: string }
@@ -178,9 +191,39 @@ const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
 
 const orderedItemIds = orderedItems.map((item) => item.id)
 const progress = computed(() => readProgress(orderedItemIds, readItemIds.value))
-const visibleItemIds = computed(() =>
-  filteredItems.value.map((item) => item.id)
+const openLanes: LaneFilter = { focused: null, hidden: new Set() }
+const laneFilter = signal(openLanes)
+const laneIds = lanes.map((lane) => lane.id)
+const storyGraph = computed(() =>
+  layoutStoryGraph(filteredItems.value, {
+    collapsedLaneIds: collapsedLanes(laneFilter.value, laneIds),
+  })
 )
+const visibleItemIds = computed(() =>
+  storyGraph.value.nodes.map((node) => node.id)
+)
+
+// The main story has no school, so its heading stays text only.
+const laneEmblems: Record<string, string[]> = {
+  hyakkiyako: [hyakkiyakoEmblem],
+  abydos: [abydosEmblem],
+  gehenna: [gehennaEmblem],
+  millennium: [millenniumEmblem],
+  trinity: [trinityEmblem],
+  "red-winter": [redWinterEmblem],
+  shanhaijing: [shanhaijingEmblem],
+  valkyrie: [valkyrieEmblem, srtEmblem],
+  highlander: [highlanderEmblem],
+  wildhunt: [wildhuntEmblem],
+  other: [etcEmblem],
+}
+
+const laneModeLabel = (id: string) => {
+  const filter = laneFilter.value
+  if (filter.focused === id) return "이 학원만 보는 중"
+  if (filter.hidden.has(id) || filter.focused) return "숨김"
+  return "표시"
+}
 const scrollTick = signal(0)
 
 const prefersReducedMotion = () =>
@@ -224,8 +267,14 @@ const selectNextUnread = () => {
   if (!visibleItemIds.value.includes(id)) {
     searchText.value = ""
     selectedKind.value = "전체"
+    laneFilter.value = openLanes
   }
   selectItem(id)
+}
+
+const cycleLaneHeading = (id: string) => {
+  laneFilter.value = cycleLane(laneFilter.value, id)
+  ensureSelectionVisible()
 }
 
 const moveSelection = (step: 1 | -1) => {
@@ -245,7 +294,6 @@ const keyboardSteps: Record<string, 1 | -1> = {
   k: -1,
 }
 
-const storyGraph = computed(() => layoutStoryGraph(filteredItems.value))
 const selectedItem = computed(() =>
   itemsById.get(selectedItemId.value) ?? filteredItems.value[0] ??
     orderedItems[0]
@@ -471,28 +519,37 @@ export const App = () => {
           {graph.nodes.length === 0 && (
             <p class="empty-state" role="status">결과 없음</p>
           )}
+          {/* Headings stay while lanes are hidden so they can be shown again. */}
           <div
             class="lane-headings"
-            hidden={graph.nodes.length === 0}
+            hidden={filteredItems.value.length === 0}
             style={{ width: `${graph.width}px` }}
           >
-            {lanes.map((lane) => {
-              const sample = graph.nodes.find((node) =>
-                node.lane.id === lane.id
-              )
-              if (!sample && lane.id !== "main") return null
-              return (
-                <span
-                  key={lane.id}
-                  class={`lane-heading ${lane.id === "main" ? "main" : ""}`}
-                  style={{
-                    left: `${(sample?.x ?? 80) + (sample?.width ?? 240) / 2}px`,
-                  }}
-                >
-                  {lane.label}
-                </span>
-              )
-            })}
+            {graph.lanes.map(({ lane, center, collapsed }) => (
+              <button
+                key={lane.id}
+                type="button"
+                class={`lane-heading ${collapsed ? "collapsed" : ""} ${
+                  laneFilter.value.focused === lane.id ? "focused" : ""
+                }`}
+                style={{ left: `${center}px` }}
+                aria-label={`${lane.label}, ${laneModeLabel(lane.id)}`}
+                title={lane.label}
+                onClick={() => cycleLaneHeading(lane.id)}
+              >
+                {(laneEmblems[lane.id] ?? []).map((emblem) => (
+                  <span
+                    key={emblem}
+                    class="lane-emblem"
+                    style={{ "--emblem": `url("${emblem}")` }}
+                    aria-hidden="true"
+                  />
+                ))}
+                {(!collapsed || !laneEmblems[lane.id]) && (
+                  <span>{lane.label}</span>
+                )}
+              </button>
+            ))}
           </div>
           <svg
             class="story-tree"
