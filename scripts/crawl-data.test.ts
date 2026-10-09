@@ -670,3 +670,34 @@ Deno.test("finds a mini story image by its link anchor, then by name", () => {
     undefined,
   )
 })
+
+Deno.test("falls back to the event story box after the overview", () => {
+  const eventUrl = "https://namu.wiki/w/e"
+  const storyBox = chapterBox(
+    "축제대소동",
+    "벚꽃만발, 축제대소동",
+    "백귀야행의 축제 「백야앵제」!<br>엉망진창 대소동이 시작된다!",
+  )
+  const sources = {
+    urls: [eventUrl],
+    overviewUrl: eventUrl as string | undefined,
+    chapter: undefined,
+  }
+  const withoutQuote = article(
+    section("1. 개요", titleTable, serviceDates),
+    section("4. 스테이지"),
+    section("4.1. 스토리", storyBox),
+  )
+  assertEquals(
+    itemSummary(sources, new Map([[eventUrl, withoutQuote]])),
+    "백귀야행의 축제 「백야앵제」! 엉망진창 대소동이 시작된다!",
+  )
+  const withQuote = article(
+    section("1. 개요", titleTable, quote),
+    section("4.1. 스토리", storyBox),
+  )
+  assertEquals(
+    itemSummary(sources, new Map([[eventUrl, withQuote]])),
+    eventSynopsis,
+  )
+})

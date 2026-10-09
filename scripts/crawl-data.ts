@@ -939,11 +939,13 @@ export const itemSummary = (
     ? chapterIntro(chapterPage, sources.chapter.anchor)
     : undefined
   const overviewPage = sources.overviewUrl && pages.get(sources.overviewUrl)
+  // Pages without a chapter (events, groups) keep the in-game blurb in the
+  // box under their "스토리" heading when the overview has none.
   const summary = fromChapter ??
     (overviewPage
       ? overviewSynopsis(overviewPage, {
         plainCell: sources.chapter !== undefined,
-      })
+      }) ?? (sources.chapter ? undefined : chapterIntro(overviewPage, "스토리"))
       : undefined)
   return summary && isKoreanText(summary) ? summary : undefined
 }
