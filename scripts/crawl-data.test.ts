@@ -15,11 +15,13 @@ import {
   mainBackgrounds,
   mainVolumeKey,
   matchName,
+  miniStoryImageFor,
   normalizeName,
   overviewSynopsis,
   parseEventBanners,
   parseEventPromos,
   parseImageInfo,
+  parseMiniStoryImages,
   pickThumbnail,
   releaseFrom,
   stringifyJsonc,
@@ -622,6 +624,49 @@ Deno.test("finds an event banner by its namu link, then by name", () => {
       { series: "출항! 만마선", links: [link("출항! 만마선")] },
       banners,
     ),
+    undefined,
+  )
+})
+
+const miniStoryHtml = /*html*/ `
+<table><tbody><tr><td><div><a id="만마전의 붉은 겨울 순회록"></a><span><span>
+<img width="100%" src="data:image/svg+xml;base64,PHN2Zz4=">
+<img width="100%" src="//i.namu.wiki/i/mini01.webp" alt="BA 미니스토리01" loading="lazy">
+<noscript><img src='//i.namu.wiki/i/mini01.webp' alt='BA 미니스토리01'></noscript>
+</span></span></div></td></tr>
+<tr><td><div><strong><span>만마전의 붉은 겨울 순회록</span></strong></div></td></tr></tbody></table>
+<table><tbody><tr><td><div><a id="테르마이 아카이"></a>
+<img width="100%" src="//i.namu.wiki/i/mini02.webp" alt="BA 미니스토리02">
+</div></td></tr></tbody></table>
+<table><tbody><tr><td><a id="인연"></a><img src="//i.namu.wiki/i/profile.webp" alt="이부키프로필"></td></tr></tbody></table>
+`
+
+Deno.test("reads mini story card images by their section anchor", () => {
+  assertEquals([...parseMiniStoryImages(parse(miniStoryHtml))], [
+    ["만마전의 붉은 겨울 순회록", "https://i.namu.wiki/i/mini01.webp"],
+    ["테르마이 아카이", "https://i.namu.wiki/i/mini02.webp"],
+  ])
+})
+
+Deno.test("finds a mini story image by its link anchor, then by name", () => {
+  const images = parseMiniStoryImages(parse(miniStoryHtml))
+  const storyPage = "https://namu.wiki/w/블루 아카이브/스토리"
+  assertEquals(
+    miniStoryImageFor({
+      series: "만마전의 붉은 겨울 순회록",
+      links: [{
+        label: "나무위키",
+        url: `${storyPage}#${encodeURIComponent("만마전의 붉은 겨울 순회록")}`,
+      }],
+    }, images),
+    "https://i.namu.wiki/i/mini01.webp",
+  )
+  assertEquals(
+    miniStoryImageFor({ series: "테르마이 아카이", links: [] }, images),
+    "https://i.namu.wiki/i/mini02.webp",
+  )
+  assertEquals(
+    miniStoryImageFor({ series: "용궁으로 가는 길", links: [] }, images),
     undefined,
   )
 })

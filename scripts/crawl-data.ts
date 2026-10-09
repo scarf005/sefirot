@@ -434,6 +434,9 @@ export const eventCandidates = (options: {
 }
 
 const EVENT_PAGE_PREFIX = "/w/블루 아카이브/이벤트/"
+const STORY_PAGE_PATH = "/w/블루 아카이브/스토리"
+
+const namuPath = (link: Link) => decodeURIComponent(new URL(link.url).pathname)
 const LINKED_EVENT_PREFIX = "메인 스토리 연계 이벤트 "
 
 // Event page title -> Korean in-game banner from the event navbox at the
@@ -461,7 +464,7 @@ export const eventBannerFor = (
   banners: ReadonlyMap<string, string>,
 ) => {
   for (const link of item.links) {
-    const path = decodeURIComponent(new URL(link.url).pathname)
+    const path = namuPath(link)
     const banner = path.startsWith(EVENT_PAGE_PREFIX)
       ? banners.get(path.slice(EVENT_PAGE_PREFIX.length))
       : undefined
@@ -470,6 +473,36 @@ export const eventBannerFor = (
   const titles = Object.fromEntries([...banners.keys()].map((t) => [t, t]))
   const title = matchName(item.series.replace(LINKED_EVENT_PREFIX, ""), titles)
   return title === undefined ? undefined : banners.get(title)
+}
+
+// Mini story title -> card image from the mini story section of the namu
+// story page; each card starts with an anchor named after the story.
+export const parseMiniStoryImages = (root: HTMLElement) => {
+  const images = new Map<string, string>()
+  for (const image of root.querySelectorAll("img")) {
+    if (!/^BA 미니스토리\d+$/.test(image.getAttribute("alt") ?? "")) continue
+    const anchor = image.closest("td")?.querySelector("a[id]")?.id
+    const src = image.getAttribute("src")
+    if (!anchor || !src?.startsWith("//") || images.has(anchor)) continue
+    images.set(anchor, `https:${src}`)
+  }
+  return images
+}
+
+// The story's own anchor link first, then the name.
+export const miniStoryImageFor = (
+  item: { series: string; links: Link[] },
+  images: ReadonlyMap<string, string>,
+) => {
+  for (const link of item.links) {
+    const image = images.get(
+      decodeURIComponent(new URL(link.url).hash.slice(1)),
+    )
+    if (image) return image
+  }
+  const titles = Object.fromEntries([...images.keys()].map((t) => [t, t]))
+  const title = matchName(item.series, titles)
+  return title === undefined ? undefined : images.get(title)
 }
 
 // Same key as mainBackgrounds: "<act>:<volume token>".
@@ -957,33 +990,70 @@ export const enrichSummaries = async (
   })
 }
 
-// Every namu event page carries the same navbox, so one page gives all
-// banners; a Korean banner replaces the wiki's Japanese promo art.
-export const enrichEventBanners = async (
-  items: StoryItem[],
-  namu: NamuBrowser,
-) => {
-  const page = items
-    .filter((item) => item.kind === "이벤트")
-    .flatMap((item) => item.links)
-    .find((link) =>
-      decodeURIComponent(new URL(link.url).pathname).startsWith(
-        EVENT_PAGE_PREFIX,
-      )
-    )
-  if (!page) return items
-  const banners = await settle(
-    "event banners",
-    namu.load(page.url).then((loaded) => parseEventBanners(parse(loaded.html))),
+// One namu page lists the images for every story of a kind: it is loaded once
+// and each story of that kind takes its image from it.
+const enrichFromNamuPage = async (options: {
+  items: StoryItem[]
+  namu: NamuBrowser
+  kind: string
+  label: string
+  isSourcePage: (path: string) => boolean
+  parse: (root: HTMLElement) => ReadonlyMap<string, string>
+  imageFor: (
+    item: StoryItem,
+    images: ReadonlyMap<string, string>,
+  ) => string | undefined
+}) => {
+  const ofKind = options.items.filter((item) => item.kind === options.kind)
+  const link = ofKind.flatMap((item) => item.links)
+    .find((link) => options.isSourcePage(namuPath(link)))
+  if (!link) return options.items
+  const url = new URL(link.url)
+  url.hash = ""
+  const images = await settle(
+    options.label,
+    options.namu.load(url.href).then((loaded) =>
+      options.parse(parse(loaded.html))
+    ),
     new Map<string, string>(),
   )
-  return items.map((item) => {
-    const url = item.kind === "이벤트"
-      ? eventBannerFor(item, banners)
+  return options.items.map((item) => {
+    const image = item.kind === options.kind
+      ? options.imageFor(item, images)
       : undefined
-    return url ? { ...item, thumbnail: { url, fit: "cover" as const } } : item
+    return image
+      ? { ...item, thumbnail: { url: image, fit: "cover" as const } }
+      : item
   })
 }
+
+// Every namu event page carries the same navbox; a Korean banner replaces the
+// wiki's Japanese promo art.
+export const enrichEventBanners = (items: StoryItem[], namu: NamuBrowser) =>
+  enrichFromNamuPage({
+    items,
+    namu,
+    kind: "이벤트",
+    label: "event banners",
+    isSourcePage: (path) => path.startsWith(EVENT_PAGE_PREFIX),
+    parse: parseEventBanners,
+    imageFor: eventBannerFor,
+  })
+
+// Mini stories have no wiki pages; their cards live on the namu story page.
+export const enrichMiniStoryImages = (
+  items: StoryItem[],
+  namu: NamuBrowser,
+) =>
+  enrichFromNamuPage({
+    items,
+    namu,
+    kind: "미니",
+    label: "mini story images",
+    isSourcePage: (path) => path === STORY_PAGE_PATH,
+    parse: parseMiniStoryImages,
+    imageFor: miniStoryImageFor,
+  })
 
 const main = async () => {
   const options = parseArgs(Deno.args)
@@ -992,6 +1062,7 @@ const main = async () => {
     const data = buildData(await fetchHtml(options, namu), options.source)
     data.items = await enrichThumbnails(data.items)
     data.items = await enrichEventBanners(data.items, namu)
+    data.items = await enrichMiniStoryImages(data.items, namu)
     data.items = await enrichSummaries(data.items, namu)
     for (
       const { kind, series, matched, unmatched } of thumbnailCoverage(
