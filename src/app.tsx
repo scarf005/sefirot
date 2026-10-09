@@ -2,7 +2,6 @@ import "./app.css"
 import { computed, signal } from "@preact/signals"
 import { useEffect, useRef } from "preact/hooks"
 import { parse } from "@std/jsonc"
-import { scalePoint } from "d3"
 import { isKoreanText } from "./korean-text.ts"
 import storyOrderJsonc from "./data/blue-archive-story-order.jsonc?raw"
 import {
@@ -19,12 +18,15 @@ import {
   selectionAfterFilter,
 } from "./story-navigation.ts"
 import {
-  type Lane,
   laneForItem,
   lanes,
-  nodeSize,
   type StoryItem as ClassifiedStoryItem,
 } from "./story-classification.ts"
+import {
+  type GraphLink,
+  graphTopOffset,
+  layoutStoryGraph,
+} from "./story-graph.ts"
 
 type StoryRelease = { japan?: string[]; global?: string[]; krDub?: string[] }
 type StoryLink = { label: string; url: string }
@@ -43,25 +45,6 @@ type StoryData = {
   tree: StoryTreeNode
   items: StoryItem[]
 }
-type GraphNode = StoryItem & {
-  lane: Lane
-  x: number
-  y: number
-  width: number
-  height: number
-}
-type GraphLink = {
-  source: GraphNode
-  target: GraphNode
-  kind: "main" | "lane" | "branch"
-}
-type StoryGraph = {
-  nodes: GraphNode[]
-  links: GraphLink[]
-  width: number
-  height: number
-}
-
 const storyOrder = parse(storyOrderJsonc) as unknown as StoryData
 const itemsById = new Map(storyOrder.items.map((item) => [item.id, item]))
 const collectTreeItems = (node: StoryTreeNode): StoryItem[] => {
@@ -120,79 +103,18 @@ const filteredItems = computed(() => {
     return matchesKind && matchesQuery
   })
 })
-const layoutStoryGraph = (items: StoryItem[]): StoryGraph => {
-  const activeLanes = lanes.filter((lane) =>
-    lane.id === "main" || items.some((item) => laneForItem(item).id === lane.id)
-  )
-  const width = Math.max(1100, activeLanes.length * 150 + 80)
-  const xScale = scalePoint(activeLanes.map((lane) => lane.id), [
-    80,
-    width - 80,
-  ]).padding(0.5)
-  const nodes = items.map((item, index) => {
-    const lane = laneForItem(item)
-    const size = nodeSize(item)
-    return {
-      ...item,
-      lane,
-      ...size,
-      x: (xScale(lane.id) ?? 80) - size.width / 2,
-      y: 112 + index * 92 - size.height / 2,
-    }
-  })
-  const links: GraphLink[] = []
-
-  for (const lane of activeLanes) {
-    const laneNodes = nodes.filter((node) => node.lane.id === lane.id)
-    for (let index = 1; index < laneNodes.length; index += 1) {
-      links.push({
-        source: laneNodes[index - 1],
-        target: laneNodes[index],
-        kind: lane.id === "main" ? "main" : "lane",
-      })
-    }
-  }
-
-  for (const node of nodes.filter((item) => item.lane.id !== "main")) {
-    const previousMain = nodes
-      .filter((candidate) =>
-        candidate.lane.id === "main" && candidate.order < node.order
-      )
-      .pop()
-    if (previousMain) {
-      links.push({ source: previousMain, target: node, kind: "branch" })
-    }
-  }
-
-  return { nodes, links, width, height: Math.max(480, nodes.length * 92 + 180) }
-}
-
-const curvedPath = (
-  sourceX: number,
-  sourceY: number,
-  targetX: number,
-  targetY: number,
-) => {
-  const deltaY = targetY - sourceY
-  const controlY = Math.max(32, Math.abs(deltaY) * 0.5)
-  return `M ${sourceX} ${sourceY} C ${sourceX} ${
-    sourceY + controlY
-  } ${targetX} ${targetY - controlY} ${targetX} ${targetY}`
-}
-
-const linkPath = ({ source, target, kind }: GraphLink) => {
+// Branches leave the main spine at the target's own row, so they read as
+// "after this main story" without crossing the graph diagonally.
+const linkPath = ({ source, target, kind }: GraphLink<StoryItem>) => {
   const sourceX = source.x + source.width / 2
   const sourceY = source.y + source.height
-  const targetX = target.x + target.width / 2
-  const targetY = target.y
   if (kind === "branch") {
-    return curvedPath(sourceX, sourceY, targetX, targetY)
+    return `M ${sourceX} ${sourceY} V ${target.y + target.height / 2} H ${
+      target.x + 6
+    }`
   }
-  return `M ${sourceX} ${sourceY} V ${targetY}`
+  return `M ${sourceX} ${sourceY} V ${target.y}`
 }
-
-// Lane headings live in the sticky HTML header, so skip their old SVG band.
-const graphTopOffset = 48
 
 // Main-story nodes split into a small series line and a chapter line.
 const graphNodeLines = (item: StoryItem) => {
@@ -572,8 +494,9 @@ export const App = () => {
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
-                  markerWidth="6"
-                  markerHeight="6"
+                  markerUnits="userSpaceOnUse"
+                  markerWidth="10"
+                  markerHeight="10"
                   orient="auto"
                 >
                   <path d="M 0 0 L 10 5 L 0 10 z" />
@@ -581,7 +504,10 @@ export const App = () => {
               ))}
             </defs>
             <g class="links">
-              {graph.links.map((link) => (
+              {/* Main links paint last so they cover the branch stems. */}
+              {(["branch", "lane", "main"] as const).flatMap((kind) =>
+                graph.links.filter((link) => link.kind === kind)
+              ).map((link) => (
                 <path
                   key={`${link.kind}-${link.source.id}-${link.target.id}`}
                   class={link.kind}
