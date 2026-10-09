@@ -116,13 +116,30 @@ const linkPath = ({ source, target, kind }: GraphLink<StoryItem>) => {
   return `M ${sourceX} ${sourceY} V ${target.y}`
 }
 
-// Main-story nodes split into a small series line and a chapter line.
-const graphNodeLines = (item: StoryItem) => {
-  if (item.kind !== "메인") return { title: item.title }
-  const chapter = `${item.chapter} · ${item.episodes}`
+// Splits a story into a small series line and a chapter line, dropping the
+// series when it only repeats the chapter.
+const storyLines = (item: StoryItem) => {
+  const title = `${item.chapter} · ${item.episodes}`
   return item.series === item.chapter
-    ? { title: chapter }
-    : { series: item.series, title: chapter }
+    ? { title }
+    : { series: item.series, title }
+}
+
+// Main-story cards keep the chapter on its own line and move the episode
+// range to the small line; side-story cards are too small for either.
+const linkedEventPrefix = "메인 스토리 연계 이벤트 "
+const graphNodeLines = (item: StoryItem) => {
+  if (item.title.startsWith(linkedEventPrefix)) {
+    return {
+      series: linkedEventPrefix.trim(),
+      title: item.title.slice(linkedEventPrefix.length),
+    }
+  }
+  if (item.kind !== "메인") return { title: item.title }
+  const series = item.series === item.chapter
+    ? item.episodes
+    : `${item.series} · ${item.episodes}`
+  return { series, title: item.chapter }
 }
 
 const kindClass = (kind: string) => {
@@ -314,6 +331,7 @@ export const App = () => {
   const graph = storyGraph.value
   const currentItem = selectedItem.value
   const currentItemRead = readItemIds.value.has(currentItem.id)
+  const currentLines = storyLines(currentItem)
   const { read: readCount, total: totalCount } = progress.value
   const treeRef = useRef<HTMLElement>(null)
   const keyboardMoved = useRef(false)
@@ -348,34 +366,8 @@ export const App = () => {
 
   return (
     <main class="story-visualizer">
-      <section class="toolbar" aria-label="스토리 필터">
-        <label class="search-field">
-          <span class="field-head">
-            검색
-            <small role="status">{filteredItems.value.length}개 표시</small>
-          </span>
-          <input
-            type="search"
-            value={searchText.value}
-            placeholder="스토리, 장, 학원, 종류"
-            onInput={(event) => {
-              searchText.value = event.currentTarget.value
-              ensureSelectionVisible()
-            }}
-          />
-        </label>
-        <label class="kind-field">
-          <span class="field-head">종류</span>
-          <select
-            value={selectedKind.value}
-            onInput={(event) => {
-              selectedKind.value = event.currentTarget.value
-              ensureSelectionVisible()
-            }}
-          >
-            {kindOptions.map((kind) => <option key={kind}>{kind}</option>)}
-          </select>
-        </label>
+      <header class="top-bar">
+        <h1>스토리</h1>
         <div
           class="progress"
           role="progressbar"
@@ -396,15 +388,7 @@ export const App = () => {
             />
           </span>
         </div>
-        <div class="toolbar-actions">
-          <button
-            class="next-unread-button"
-            type="button"
-            disabled={readCount === totalCount}
-            onClick={selectNextUnread}
-          >
-            다음 읽을 스토리
-          </button>
+        <div class="settings">
           <button
             class="settings-button"
             type="button"
@@ -412,7 +396,9 @@ export const App = () => {
             aria-expanded={settingsOpen.value}
             onClick={() => settingsOpen.value = !settingsOpen.value}
           >
-            ⚙
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.3 2h3.4l.5 2.6 1.7.7 2.2-1.5 2.4 2.4-1.5 2.2.7 1.7 2.6.5v3.4l-2.6.5-.7 1.7 1.5 2.2-2.4 2.4-2.2-1.5-1.7.7-.5 2.6h-3.4l-.5-2.6-1.7-.7-2.2 1.5-2.4-2.4 1.5-2.2-.7-1.7L2 13.7v-3.4l2.6-.5.7-1.7-1.5-2.2 2.4-2.4 2.2 1.5 1.7-.7zM12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" />
+            </svg>
           </button>
           {settingsOpen.value && (
             <div class="settings-menu" role="dialog" aria-label="기록 설정">
@@ -440,6 +426,46 @@ export const App = () => {
             </div>
           )}
         </div>
+      </header>
+
+      <section class="toolbar" aria-label="스토리 필터">
+        <input
+          class="search-input"
+          type="search"
+          aria-label="검색"
+          value={searchText.value}
+          placeholder="스토리, 장, 학원, 종류"
+          onInput={(event) => {
+            searchText.value = event.currentTarget.value
+            ensureSelectionVisible()
+          }}
+        />
+        <div class="kind-tabs" role="group" aria-label="종류">
+          {kindOptions.map((kind) => (
+            <button
+              key={kind}
+              type="button"
+              aria-pressed={selectedKind.value === kind}
+              onClick={() => {
+                selectedKind.value = kind
+                ensureSelectionVisible()
+              }}
+            >
+              {kind}
+            </button>
+          ))}
+        </div>
+        <small class="result-count" role="status">
+          {filteredItems.value.length}개
+        </small>
+        <button
+          class="next-unread-button"
+          type="button"
+          disabled={readCount === totalCount}
+          onClick={selectNextUnread}
+        >
+          다음 읽을 스토리
+        </button>
       </section>
 
       <section class="content-grid">
@@ -543,6 +569,11 @@ export const App = () => {
                           title={node.label}
                           onClick={() => selectItem(node.id)}
                         >
+                          {isRead && (
+                            <span class="node-tag" aria-hidden="true">
+                              읽음
+                            </span>
+                          )}
                           <span class="node-title">
                             {lines.series && (
                               <small class="node-series">{lines.series}</small>
@@ -574,7 +605,10 @@ export const App = () => {
               style={thumbnailStyle(currentItem.thumbnail)}
             />
           )}
-          <h2>{currentItem.label}</h2>
+          <h2>
+            {currentLines.series && <small>{currentLines.series}</small>}
+            {currentLines.title}
+          </h2>
           <button
             class={`detail-read-toggle ${currentItemRead ? "read" : "unread"}`}
             type="button"

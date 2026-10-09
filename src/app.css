@@ -1,12 +1,15 @@
 #app {
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .story-visualizer {
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100vh;
+  padding: 0 var(--space-4) var(--space-4);
   background: linear-gradient(180deg, var(--ba-page-from), var(--ba-page-to));
   color: var(--ba-navy);
 }
@@ -48,148 +51,99 @@
   );
 }
 
-.toolbar,
-.content-grid {
-  border: 1px solid rgb(255 255 255 / 70%);
-  border-radius: 10px;
-  background: var(--ba-panel);
-  box-shadow: var(--ba-shadow);
-}
-
-.toolbar {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) 150px 230px auto;
-  gap: 16px;
-  align-items: end;
-  padding: 14px 18px;
-  margin-bottom: 14px;
-}
-
 :focus-visible {
   outline: 3px solid var(--ba-focus);
   outline-offset: 2px;
 }
 
-label {
-  display: grid;
-  gap: 6px;
-  color: var(--ba-muted);
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-input,
-select {
-  width: 100%;
-  border: 1px solid var(--ba-line);
-  border-radius: 4px;
-  padding: 10px 12px;
-  background: var(--ba-input);
-  color: var(--ba-navy);
-  font: inherit;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--ba-navy);
-  outline: 2px solid var(--ba-navy);
-  outline-offset: -1px;
-}
-
-.field-head {
+/* Screen title bar, as on every in-game screen. */
+.top-bar {
+  position: relative;
+  z-index: 4;
   display: flex;
-  gap: 8px;
-  align-items: baseline;
-  justify-content: space-between;
+  gap: var(--space-4);
+  align-items: center;
+  margin: 0 calc(-1 * var(--space-4));
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--ba-line);
+  background: var(--ba-top-bar);
+  box-shadow: 0 2px 6px rgb(45 70 99 / 12%);
 }
 
-.field-head small {
-  font-size: 0.75rem;
-  font-weight: 700;
+.top-bar h1 {
+  flex: 1;
+  margin: 0;
+  color: var(--ba-navy);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 .progress {
   display: grid;
-  gap: 6px;
-  padding: 7px 12px 8px;
+  grid-template-columns: auto 160px;
+  gap: var(--space-3);
+  align-items: center;
+  padding: 6px 14px;
   border-radius: 4px;
   background: var(--ba-chip-bar);
   color: #ffffff;
-  clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 8px 100%);
 }
 
 .progress-text {
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .progress-text strong {
   color: var(--ba-yellow);
   font-size: 1rem;
+  font-weight: 800;
 }
 
 .progress-track {
   display: block;
   height: 6px;
   border-radius: 3px;
-  background: rgb(255 255 255 / 25%);
+  background: rgb(255 255 255 / 22%);
 }
 
 .progress-fill {
   display: block;
   height: 100%;
   border-radius: 3px;
-  background: var(--ba-yellow);
+  background: var(--ba-cta);
 }
 
-.toolbar-actions {
+.settings {
   position: relative;
-  display: flex;
-  gap: 8px;
-}
-
-.next-unread-button {
-  height: 42px;
-  border: 1px solid #c2a600;
-  border-radius: 4px;
-  padding: 0 16px;
-  background: var(--ba-yellow);
-  color: #2d4663;
-  cursor: pointer;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.next-unread-button:hover:not(:disabled) {
-  background: #fef02c;
-}
-
-.next-unread-button:disabled {
-  border-color: var(--ba-line);
-  background: var(--ba-surface-soft);
-  color: var(--ba-muted);
-  cursor: default;
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--ba-line);
 }
 
 .settings-button {
-  width: 44px;
-  height: 42px;
-  border: 1px solid #c2a600;
-  border-radius: 4px;
-  background: var(--ba-yellow);
-  color: #2d4663;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ba-title);
   cursor: pointer;
-  font-size: 1.15rem;
 }
 
-.settings-button:hover {
-  background: #fef02c;
+.settings-button svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  fill-rule: evenodd;
 }
 
-.settings-button:active {
-  background: #e8c500;
+.settings-button:hover,
+.settings-button[aria-expanded="true"] {
+  color: var(--ba-navy);
 }
 
 .settings-menu {
@@ -202,7 +156,7 @@ select:focus {
   min-width: 220px;
   padding: 12px;
   border: 1px solid var(--ba-line);
-  border-radius: 10px;
+  border-radius: 6px;
   background: var(--ba-surface);
   box-shadow: var(--ba-shadow);
 }
@@ -218,7 +172,7 @@ select:focus {
   cursor: pointer;
   font: inherit;
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 700;
   text-align: left;
 }
 
@@ -252,16 +206,127 @@ select:focus {
   font-size: 0.78rem;
 }
 
+.toolbar,
 .content-grid {
+  border: 1px solid var(--ba-panel-border);
+  border-radius: 6px;
+  background: var(--ba-panel);
+  box-shadow: var(--ba-shadow);
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto auto;
+  gap: var(--space-3);
+  align-items: center;
+  padding: 10px 14px;
+}
+
+.search-input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--ba-line);
+  border-radius: 4px;
+  padding: 0 12px;
+  background: var(--ba-input);
+  color: var(--ba-navy);
+}
+
+.search-input:focus {
+  border-color: var(--ba-navy);
+  outline: 2px solid var(--ba-navy);
+  outline-offset: -1px;
+}
+
+/* Tabs as on the event Story/Quest/Challenge switcher. */
+.kind-tabs {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.kind-tabs button {
+  min-width: 64px;
+  height: 40px;
+  border: 0;
+  padding: 0 14px;
+  background: var(--ba-tab);
+  color: var(--ba-tab-text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.kind-tabs button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.kind-tabs button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.kind-tabs button:hover {
+  color: var(--ba-navy);
+}
+
+.kind-tabs button[aria-pressed="true"] {
+  background: var(--ba-tab-active);
+  color: var(--ba-tab-active-text);
+}
+
+.result-count {
+  color: var(--ba-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Primary actions use the in-game sky-blue slanted button. */
+.next-unread-button,
+.detail-read-toggle {
+  --slant: 10px;
+  border: 0;
+  padding: 0 calc(var(--slant) + 14px);
+  background: var(--ba-cta);
+  color: var(--ba-cta-text);
+  cursor: pointer;
+  font-weight: 800;
+  white-space: nowrap;
+  clip-path: polygon(
+    var(--slant) 0,
+    100% 0,
+    calc(100% - var(--slant)) 100%,
+    0 100%
+  );
+}
+
+.next-unread-button {
+  height: 40px;
+}
+
+.next-unread-button:hover:not(:disabled),
+.detail-read-toggle:hover {
+  background: var(--ba-cta-hover);
+}
+
+.next-unread-button:disabled {
+  background: var(--ba-tab);
+  color: var(--ba-muted);
+  cursor: default;
+}
+
+.content-grid {
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
-  align-items: start;
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .tree-panel {
   min-width: 0;
-  max-height: calc(100vh - 120px);
   overflow: auto;
   border-right: 1px solid var(--ba-line);
 }
@@ -282,13 +347,12 @@ select:focus {
 .lane-heading {
   position: absolute;
   top: 50%;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 3px;
   background: var(--ba-chip);
   color: var(--ba-chip-text);
-  font-size: 0.82rem;
-  font-style: italic;
-  font-weight: 900;
+  font-size: 0.85rem;
+  font-weight: 700;
   white-space: nowrap;
   transform: translate(-50%, -50%);
 }
@@ -306,16 +370,18 @@ select:focus {
 }
 
 .links path.lane {
+  stroke: var(--ba-muted);
   stroke-dasharray: 6 5;
+  opacity: 0.6;
 }
 
 .links path.branch {
   stroke: var(--ba-blue);
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
 .link-arrow path {
-  fill: var(--ba-line);
+  fill: var(--ba-muted);
 }
 
 .link-arrow.main path {
@@ -324,128 +390,111 @@ select:focus {
 
 .link-arrow.branch path {
   fill: var(--ba-blue);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
+.nodes foreignObject {
+  overflow: visible;
+}
+
+/* Story cards follow the slanted main-story banners: art in a parallelogram
+   with the title on a white plate at the lower right. */
 .story-node {
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  align-items: stretch;
+  --slant: 12px;
   width: 100%;
   height: 100%;
-  border: 1px solid var(--ba-line);
-  border-left: 6px solid var(--kind-color, #8796ae);
-  border-radius: 6px;
-  background: var(--ba-surface-soft);
-  color: var(--ba-navy);
-  text-align: left;
+  filter: drop-shadow(0 2px 3px rgb(27 47 75 / 30%));
 }
 
-.story-node > * {
-  position: relative;
-  z-index: 1;
-}
-
-.story-node::after {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  content: "";
-  pointer-events: none;
-}
-
-.story-node:hover::after {
-  box-shadow: inset 0 0 0 2px var(--ba-blue);
-}
-
-.story-node.selected::after {
-  box-shadow: inset 0 0 0 3px var(--ba-yellow), inset 0 0 0 4px var(--ba-navy);
-}
-
-/* The art fills the whole card; only the title sits on a small plate. */
-.story-node.thumb-cover::before,
-.story-node.thumb-contain::before {
-  position: absolute;
-  inset: 0;
-  background: var(--thumb) center / cover no-repeat;
-  content: "";
-}
-
-.story-node.thumb-contain::before {
-  background-size: contain;
-  background-color: var(--ba-surface-soft);
-}
-
-.story-node[class*="thumb-"] .node-title {
-  width: fit-content;
-  max-width: 100%;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: var(--ba-plate);
-  color: var(--ba-plate-text);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+.story-node.kind-main {
+  --slant: 18px;
 }
 
 .node-select {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  display: block;
   width: 100%;
   height: 100%;
   border: 0;
-  padding: 4px 6px 4px 9px;
-  background: transparent;
+  padding: 0;
+  background: var(--ba-plate);
   color: inherit;
   text-align: left;
   cursor: pointer;
+  clip-path: polygon(
+    var(--slant) 0,
+    100% 0,
+    calc(100% - var(--slant)) 100%,
+    0 100%
+  );
+}
+
+.thumb-cover .node-select {
+  background: var(--thumb) center / cover no-repeat var(--ba-surface-soft);
+}
+
+.thumb-contain .node-select {
+  background: var(--thumb) center / contain no-repeat var(--ba-surface-soft);
+}
+
+.story-node:hover {
+  filter: drop-shadow(0 0 2px var(--ba-blue))
+    drop-shadow(0 2px 3px rgb(27 47 75 / 30%));
+}
+
+.story-node.selected {
+  filter: drop-shadow(0 0 1.5px var(--ba-yellow))
+    drop-shadow(0 0 1.5px var(--ba-yellow)) drop-shadow(0 0 5px
+    var(--ba-yellow));
 }
 
 .node-select:focus-visible {
-  outline-offset: -4px;
+  outline: 3px solid var(--ba-focus);
+  outline-offset: -3px;
 }
 
-/* Read stories turn gray; the selection ring (::after) is not filtered. */
-.story-node.read {
-  border-color: var(--ba-line);
-  border-left-color: #8d98a6;
-  background: var(--ba-read-bg);
-}
-
-.story-node.read.thumb-cover::before,
-.story-node.read.thumb-contain::before {
-  filter: grayscale(1) brightness(0.8);
-  opacity: 0.55;
-}
-
-.story-node.read .node-title,
-.story-node.read[class*="thumb-"] .node-title {
-  background: var(--ba-read-plate);
-  color: var(--ba-read-text);
-}
-
-.empty-state {
-  margin: 0;
-  padding: 64px 16px;
-  color: var(--ba-muted);
-  font-size: 1rem;
-  font-weight: 800;
-  text-align: center;
-}
-
-.tree-panel [hidden] {
-  display: none;
+.node-tag {
+  position: absolute;
+  top: 0;
+  left: var(--slant);
+  padding: 2px 16px 2px 10px;
+  background: var(--ba-tag);
+  color: var(--ba-tag-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
 }
 
 .node-title {
+  position: absolute;
+  right: calc(var(--slant) - 4px);
+  bottom: 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 1px;
-  min-width: 0;
-  font-size: 0.85rem;
-  font-weight: 800;
+  max-width: calc(100% - var(--slant));
+  padding: 3px 14px 3px 16px;
+  background: var(--ba-plate);
+  color: var(--ba-plate-text);
+  font-size: 0.82rem;
+  font-weight: 700;
   line-height: 1.3;
+  text-align: right;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+/* Without art the whole card is the plate. */
+.story-node:not([class*="thumb-"]) .node-title {
+  top: 0;
+  right: var(--slant);
+  left: var(--slant);
+  justify-content: center;
+  max-width: none;
+  padding: 0 4px;
+  clip-path: none;
 }
 
 .node-name {
@@ -453,55 +502,43 @@ select:focus {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .node-series {
   overflow: hidden;
+  max-width: 100%;
   color: var(--ba-muted);
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.story-node.read .node-series {
-  color: inherit;
-}
-
 .kind-main .node-title {
-  font-size: 1rem;
-  font-weight: 900;
+  font-size: 0.95rem;
+  font-weight: 800;
 }
 
 .kind-mini .node-title {
   font-size: 0.78rem;
 }
 
-.kind-main {
-  --kind-color: var(--ba-title);
+.empty-state {
+  margin: 0;
+  padding: 64px 16px;
+  color: var(--ba-muted);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
 }
 
-.kind-event {
-  --kind-color: #e8a13a;
-}
-
-.kind-group {
-  --kind-color: #4caf7d;
-}
-
-.kind-mini {
-  --kind-color: #8f7bd1;
-}
-
-.kind-other {
-  --kind-color: #8796ae;
+.tree-panel [hidden] {
+  display: none;
 }
 
 .details-panel {
-  position: sticky;
-  top: 0;
-  max-height: calc(100vh - 120px);
-  min-height: calc(100vh - 120px);
   overflow-y: auto;
   padding: 0 var(--space-4) var(--space-4);
 }
@@ -524,66 +561,65 @@ select:focus {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 3px;
-  background: var(--ba-chip);
+  background: var(--ba-chip-bar);
   color: var(--ba-chip-text);
   font-size: 0.8rem;
-  font-style: italic;
-  font-weight: 900;
-}
-
-.detail-heading .kind-pill {
-  background: var(--ba-chip-bar);
+  font-weight: 700;
 }
 
 .detail-state {
   color: #ffffff;
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
+/* Framed like the photo cards on the story screen. */
 .detail-thumbnail {
   aspect-ratio: 16 / 9;
-  margin-top: var(--space-3);
-  border: 1px solid var(--ba-line);
-  border-radius: 6px;
+  margin-top: var(--space-4);
+  border: 6px solid var(--ba-frame);
   background: var(--thumb) center / var(--thumb-size, cover) no-repeat
     var(--ba-surface-soft);
+  box-shadow: 0 2px 6px rgb(27 47 75 / 25%);
+}
+
+.detail-thumbnail.thumb-contain {
+  --thumb-size: contain;
 }
 
 .details-panel h2 {
+  display: grid;
+  gap: 2px;
   margin: var(--space-4) 0 var(--space-3);
   color: var(--ba-navy);
   font-size: 1.3rem;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.4;
   word-break: keep-all;
 }
 
+.details-panel h2 small {
+  color: var(--ba-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .detail-read-toggle {
+  --slant: 12px;
   width: 100%;
+  height: 48px;
   margin: 0 0 var(--space-4);
-  border: 1px solid #c2a600;
-  border-radius: 4px;
-  padding: var(--space-3) var(--space-4);
-  background: var(--ba-yellow);
-  color: #2d4663;
-  cursor: pointer;
   font-size: 1rem;
-  font-weight: 900;
 }
 
-.detail-read-toggle:hover {
-  background: #fef02c;
-}
-
+/* Same gray as the card's read tag. */
 .detail-read-toggle.read {
-  border-color: var(--ba-chip-bar);
-  background: var(--ba-chip-bar);
-  color: #ffffff;
+  background: var(--ba-tag);
+  color: var(--ba-tag-text);
 }
 
 .detail-read-toggle.read:hover {
-  background: var(--ba-bar);
+  background: var(--ba-muted);
 }
 
 .details-panel .detail-summary {
@@ -618,7 +654,7 @@ select:focus {
 .details-panel dt {
   color: var(--ba-title);
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .details-panel dd {
@@ -635,7 +671,7 @@ select:focus {
   margin: 0 0 var(--space-2);
   color: var(--ba-title);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .detail-links ul {
@@ -653,7 +689,7 @@ select:focus {
   border-radius: 4px;
   background: var(--ba-surface-soft);
   color: var(--ba-navy);
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -669,54 +705,86 @@ select:focus {
 }
 
 @media (max-width: 980px) {
-  .toolbar {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3);
+  .story-visualizer {
+    gap: var(--space-2);
+    padding: 0 var(--space-2) var(--space-2);
   }
 
-  .content-grid {
-    grid-template-columns: 1fr;
+  .top-bar {
+    gap: var(--space-2);
+    margin: 0 calc(-1 * var(--space-2));
+    padding: 4px var(--space-2) 4px var(--space-3);
   }
 
-  .search-field,
-  .toolbar-actions {
-    grid-column: 1 / -1;
+  .top-bar h1 {
+    font-size: 1.15rem;
   }
 
-  .toolbar-actions {
+  .progress {
+    grid-template-columns: auto 56px;
+    gap: var(--space-2);
+    padding: 5px 10px;
+  }
+
+  .settings {
     position: static;
-  }
-
-  .toolbar-actions .next-unread-button {
-    flex: 1;
+    padding-left: var(--space-1);
   }
 
   .settings-menu {
-    right: 0;
-    left: 0;
+    right: var(--space-2);
+    left: var(--space-2);
+  }
+
+  .toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2);
+    padding: var(--space-2);
+  }
+
+  .search-input,
+  .kind-tabs button,
+  .next-unread-button {
+    height: 36px;
+  }
+
+  .kind-tabs {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .kind-tabs button {
+    flex: 1;
+    min-width: 0;
+    padding: 0 8px;
+  }
+
+  .result-count {
+    display: none;
   }
 
   /* The bottom sheet covers the lower part of the screen, so the tree keeps
      room below its last node and centers nodes in the visible part. */
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .tree-panel {
-    max-height: 70vh;
-    padding-bottom: 45vh;
-    scroll-padding-bottom: 45vh;
+    padding-bottom: 42vh;
+    scroll-padding-bottom: 42vh;
     border-right: 0;
   }
 
   .details-panel {
     position: fixed;
-    top: auto;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: 10;
-    min-height: 0;
-    max-height: 45vh;
+    max-height: 42vh;
     padding-bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
     border-top: 1px solid var(--ba-line);
-    border-radius: 12px 12px 0 0;
+    border-radius: 8px 8px 0 0;
     background: var(--ba-surface);
     box-shadow: 0 -4px 14px rgb(0 0 0 / 22%);
   }

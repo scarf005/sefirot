@@ -1,31 +1,39 @@
 :root {
   --ba-blue: #2c8fc6;
-  --ba-sky: #6cc6e2;
   --ba-yellow: #ffd701;
   --ba-navy: #2d4663;
   --ba-bar: #2f4e72;
   --ba-title: #3a6592;
   --ba-muted: #66788b;
-  --ba-line: #b5c1c9;
+  --ba-line: #c3ced8;
   --ba-surface: #f8fbff;
-  --ba-surface-soft: #ebedef;
-  --ba-panel: rgb(255 255 255 / 62%);
+  --ba-surface-soft: #edf1f5;
+  --ba-panel: rgb(255 255 255 / 72%);
+  --ba-panel-border: rgb(255 255 255 / 80%);
+  --ba-top-bar: rgb(255 255 255 / 94%);
   --ba-input: #ffffff;
   --ba-chip: #2d4663;
   --ba-chip-text: #ffffff;
   --ba-chip-bar: #1b2f4b;
+  --ba-cta: #73dbff;
+  --ba-cta-hover: #96e5ff;
+  --ba-cta-text: #1b2f4b;
+  --ba-tab: #dbe2ea;
+  --ba-tab-text: #4a5d72;
+  --ba-tab-active: #1b2f4b;
+  --ba-tab-active-text: #ffe86b;
+  --ba-tag: #6b7c90;
+  --ba-tag-text: #ffffff;
   --ba-page-from: #d3e5f3;
   --ba-page-to: #e9e3ed;
   --ba-pattern: rgb(255 255 255 / 45%);
   --ba-scene: url("https://static.wikitide.net/bluearchivewiki/8/8d/BG_SchaleOvernightRoom.jpg");
   --ba-scene-overlay: rgb(222 236 248 / 35%);
-  --ba-plate: rgb(255 255 255 / 85%);
+  --ba-plate: #ffffff;
   --ba-plate-text: #2d4663;
+  --ba-frame: #ffffff;
   --ba-focus: #1b2f4b;
   --ba-danger: #d9484d;
-  --ba-read-bg: #dfe2e6;
-  --ba-read-plate: rgb(226 229 233 / 92%);
-  --ba-read-text: #7b8896;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -33,11 +41,12 @@
   --space-5: 24px;
   --ba-shadow: 0 3px 10px rgb(45 70 99 / 18%);
 
-  font-family: "Pretendard", "Noto Sans KR", Inter, ui-sans-serif, system-ui,
-    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Pretendard Variable", "Pretendard", "Noto Sans KR", Inter,
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   color: var(--ba-navy);
   background: var(--ba-page-from);
-  font-synthesis: style;
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,22 +84,26 @@ button {
     --ba-line: #3a4e67;
     --ba-surface: #1b2f4b;
     --ba-surface-soft: #243b5c;
-    --ba-panel: rgb(33 59 94 / 78%);
+    --ba-panel: rgb(27 47 75 / 82%);
+    --ba-panel-border: rgb(143 181 220 / 22%);
+    --ba-top-bar: rgb(20 36 59 / 94%);
     --ba-input: #162841;
-    --ba-chip: #3a4e67;
+    --ba-chip: #4a6a92;
     --ba-chip-bar: #142840;
+    --ba-tab: #243b5c;
+    --ba-tab-text: #b7c8da;
+    --ba-tab-active: #0f1f35;
+    --ba-tag: #4f6178;
     --ba-page-from: #14243b;
     --ba-page-to: #1e2236;
     --ba-pattern: rgb(255 255 255 / 5%);
     --ba-scene: url("https://static.wikitide.net/bluearchivewiki/4/46/BG_SchaleOvernightRoom_Night.jpg");
     --ba-scene-overlay: rgb(16 30 52 / 50%);
-    --ba-plate: rgb(20 36 59 / 88%);
+    --ba-plate: #14243b;
     --ba-plate-text: #ffffff;
+    --ba-frame: #2a4466;
     --ba-focus: #ffd701;
     --ba-danger: #ff7a7e;
-    --ba-read-bg: #26354a;
-    --ba-read-plate: rgb(38 53 74 / 92%);
-    --ba-read-text: #8394a8;
     --ba-shadow: 0 3px 10px rgb(0 0 0 / 35%);
   }
 }

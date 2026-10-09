@@ -159,7 +159,7 @@ export const laneForItem = (item: StoryItem) => {
 }
 
 export const nodeSize = (item: StoryItem) => {
-  if (item.kind === "메인") return { width: 240, height: 82 }
-  if (item.kind === "이벤트") return { width: 172, height: 58 }
-  return { width: 124, height: 42 }
+  if (item.kind === "메인") return { width: 260, height: 112 }
+  if (item.kind === "이벤트") return { width: 168, height: 84 }
+  return { width: 148, height: 64 }
 }
