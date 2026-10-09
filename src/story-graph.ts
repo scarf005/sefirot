@@ -38,7 +38,7 @@ export const graphTopOffset = 48
 const lanePitch = 184
 const collapsedLanePitch = 72
 const graphSidePadding = 40
-const rowGap = 28
+export const rowGap = 28
 const graphTop = graphTopOffset + 24
 
 // Rows keep story order top to bottom: a side story shares the previous row

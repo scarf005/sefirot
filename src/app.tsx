@@ -27,6 +27,7 @@ import {
   type GraphLink,
   graphTopOffset,
   layoutStoryGraph,
+  rowGap,
 } from "./story-graph.ts"
 import abydosEmblem from "./assets/school-emblems/abydos.png"
 import etcEmblem from "./assets/school-emblems/etc.png"
@@ -139,15 +140,16 @@ const filteredItems = computed(() => {
     return matchesKind && matchesQuery
   })
 })
-// Branches leave the main spine at the target's own row, so they read as
-// "after this main story" without crossing the graph diagonally.
+// Branches leave the main spine in the gap above the target's row and drop
+// into the card from above, so they never pass behind another card.
 const linkPath = ({ source, target, kind }: GraphLink<StoryItem>) => {
   const sourceX = source.x + source.width / 2
   const sourceY = source.y + source.height
+  const targetX = target.x + target.width / 2
   if (kind === "branch") {
-    return `M ${sourceX} ${sourceY} V ${target.y + target.height / 2} H ${
-      target.x + 6
-    }`
+    return `M ${sourceX} ${sourceY} V ${
+      target.y - rowGap / 2
+    } H ${targetX} V ${target.y}`
   }
   return `M ${sourceX} ${sourceY} V ${target.y}`
 }
