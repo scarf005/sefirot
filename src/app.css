@@ -472,6 +472,21 @@
   outline-offset: -3px;
 }
 
+/* Read cards fade back so unread ones stand out at a glance. */
+.story-node.read .node-select {
+  filter: grayscale(0.9) brightness(1.05);
+  opacity: 0.55;
+}
+
+.story-node.read:hover .node-select {
+  opacity: 0.85;
+}
+
+/* Opaque so the selection glow does not tint the gray art. */
+.story-node.read.selected .node-select {
+  opacity: 1;
+}
+
 .node-tag {
   position: absolute;
   top: 0;
