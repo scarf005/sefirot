@@ -256,14 +256,14 @@ const readStateLabel = (isRead: boolean) => isRead ? "읽음" : "안 읽음"
 const persistReadItemIds = (ids: ReadonlySet<string>) => {
   const storage = getHistoryStorage()
   if (!storage) {
-    historyStatus.value = "브라우저 저장소를 사용할 수 없습니다."
+    historyStatus.value = "브라우저에 저장할 수 없습니다."
     return false
   }
   try {
     saveStoryHistory({ storage, readItemIds: ids })
     return true
   } catch {
-    historyStatus.value = "기록 저장에 실패했습니다."
+    historyStatus.value = "저장하지 못했습니다."
     return false
   }
 }
@@ -277,7 +277,7 @@ const toggleReadItem = (id: string) => {
   }
   readItemIds.value = nextIds
   if (persistReadItemIds(nextIds)) {
-    historyStatus.value = `${readStateLabel(nextIds.has(id))}으로 표시했습니다.`
+    historyStatus.value = `${readStateLabel(nextIds.has(id))}으로 바꿨습니다.`
   }
 }
 
@@ -286,14 +286,14 @@ const eraseReadHistory = () => {
   readItemIds.value = new Set()
   const storage = getHistoryStorage()
   if (!storage) {
-    historyStatus.value = "읽음 기록을 지웠습니다."
+    historyStatus.value = "기록을 지웠습니다."
     return
   }
   try {
     eraseStoryHistory({ storage })
-    historyStatus.value = "읽음 기록을 지웠습니다."
+    historyStatus.value = "기록을 지웠습니다."
   } catch {
-    historyStatus.value = "기록 삭제에 실패했습니다."
+    historyStatus.value = "기록을 지우지 못했습니다."
   }
 }
 
@@ -308,9 +308,9 @@ const exportReadHistory = () => {
     link.download = "sefirot-story-history.json"
     link.click()
     setTimeout(() => URL.revokeObjectURL(url), 0)
-    historyStatus.value = "읽음 기록을 내보냈습니다."
+    historyStatus.value = "기록을 내보냈습니다."
   } catch {
-    historyStatus.value = "기록 내보내기에 실패했습니다."
+    historyStatus.value = "기록을 내보내지 못했습니다."
   }
 }
 
@@ -320,10 +320,10 @@ const importReadHistoryFile = async (file?: File) => {
     const importedIds = parseStoryHistory(await file.text(), validItemIds)
     readItemIds.value = importedIds
     if (persistReadItemIds(importedIds)) {
-      historyStatus.value = `${importedIds.size}개 읽음 기록을 가져왔습니다.`
+      historyStatus.value = `기록 ${importedIds.size}개를 가져왔습니다.`
     }
   } catch {
-    historyStatus.value = "기록 파일을 읽을 수 없습니다."
+    historyStatus.value = "파일을 읽지 못했습니다."
   }
 }
 
@@ -373,7 +373,7 @@ export const App = () => {
           type="search"
           aria-label="검색"
           value={searchText.value}
-          placeholder="스토리, 장, 학원, 종류"
+          placeholder="검색"
           onInput={(event) => {
             searchText.value = event.currentTarget.value
             ensureSelectionVisible()
@@ -397,7 +397,7 @@ export const App = () => {
         <div
           class="progress"
           role="progressbar"
-          aria-label="읽음 진행도"
+          aria-label="읽음"
           aria-valuemin={0}
           aria-valuemax={totalCount}
           aria-valuenow={readCount}
@@ -420,13 +420,13 @@ export const App = () => {
           disabled={readCount === totalCount}
           onClick={selectNextUnread}
         >
-          다음 읽을 스토리
+          이어 보기
         </button>
         <div class="settings">
           <button
             class="settings-button"
             type="button"
-            aria-label="기록 설정"
+            aria-label="설정"
             aria-expanded={settingsOpen.value}
             onClick={() => settingsOpen.value = !settingsOpen.value}
           >
@@ -435,7 +435,7 @@ export const App = () => {
             </svg>
           </button>
           {settingsOpen.value && (
-            <div class="settings-menu" role="dialog" aria-label="기록 설정">
+            <div class="settings-menu" role="dialog" aria-label="설정">
               <button type="button" onClick={exportReadHistory}>
                 기록 내보내기
               </button>
@@ -455,7 +455,7 @@ export const App = () => {
                 기록 지우기
               </button>
               <p role="status">
-                {historyStatus.value || `읽음 ${readCount} / ${totalCount}`}
+                {historyStatus.value}
               </p>
             </div>
           )}
@@ -466,10 +466,10 @@ export const App = () => {
         <section
           class="tree-panel"
           ref={treeRef}
-          aria-label="프롤로그부터 최신까지의 스토리 트리"
+          aria-label="스토리 순서"
         >
           {graph.nodes.length === 0 && (
-            <p class="empty-state" role="status">검색 결과가 없습니다</p>
+            <p class="empty-state" role="status">결과 없음</p>
           )}
           <div
             class="lane-headings"
@@ -498,7 +498,7 @@ export const App = () => {
             class="story-tree"
             hidden={graph.nodes.length === 0}
             role="img"
-            aria-label="블루 아카이브 스토리 순서 트리, 프롤로그부터 위에서 아래로"
+            aria-label="스토리 순서도"
             width={graph.width}
             height={graph.height - graphTopOffset}
             viewBox={`0 ${graphTopOffset} ${graph.width} ${
@@ -584,7 +584,7 @@ export const App = () => {
           </svg>
         </section>
 
-        <aside class="details-panel" aria-label="선택한 스토리 상세">
+        <aside class="details-panel" aria-label="스토리 정보">
           <div class="detail-heading">
             <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
               {currentItem.kind}
@@ -608,7 +608,7 @@ export const App = () => {
             type="button"
             onClick={() => toggleReadItem(currentItem.id)}
           >
-            {currentItemRead ? "읽음 취소" : "읽음으로 표시"}
+            {currentItemRead ? "읽음 해제" : "읽음 표시"}
           </button>
           {currentItem.summary && isKoreanText(currentItem.summary) && (
             <p class="detail-summary">{currentItem.summary}</p>

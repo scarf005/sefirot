@@ -14,7 +14,7 @@ export type StoryItem = {
 export type Lane = { id: string; label: string }
 
 export const lanes: Lane[] = [
-  { id: "main", label: "메인스토리" },
+  { id: "main", label: "메인 스토리" },
   { id: "hyakkiyako", label: "백귀야행" },
   { id: "abydos", label: "아비도스" },
   { id: "gehenna", label: "게헨나" },
