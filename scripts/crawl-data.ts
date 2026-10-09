@@ -561,23 +561,23 @@ const fetchJson = async <T>(url: string | URL): Promise<T> => {
   return await response.json() as T
 }
 
-const wikiApi = (params: Record<string, string>) =>
-  fetchJson<any>(
+const wikiApi = <T>(params: Record<string, string>) =>
+  fetchJson<T>(
     `${WIKI_API_URL}?${new URLSearchParams({ format: "json", ...params })}`,
   )
 
 const fetchWikitext = async (page: string) => {
-  const response = await wikiApi({
+  const response = await wikiApi<{ parse?: { wikitext?: string } }>({
     action: "parse",
     page,
     prop: "wikitext",
     formatversion: "2",
   })
-  return response.parse?.wikitext as string | undefined
+  return response.parse?.wikitext
 }
 
 const fetchEventPromos = async () => {
-  const response = await wikiApi({
+  const response = await wikiApi<{ parse: { text: { "*": string } } }>({
     action: "parse",
     contentmodel: "wikitext",
     prop: "text",
@@ -590,7 +590,7 @@ const fetchThumbUrls = async (titles: string[]) => {
   const thumbUrls = new Map<string, string>()
   const unique = [...new Set(titles.map(titleKey))]
   for (let index = 0; index < unique.length; index += IMAGEINFO_BATCH_SIZE) {
-    const response = await wikiApi({
+    const response = await wikiApi<Parameters<typeof parseImageInfo>[0]>({
       action: "query",
       prop: "imageinfo",
       iiprop: "url",
