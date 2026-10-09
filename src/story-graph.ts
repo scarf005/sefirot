@@ -35,7 +35,9 @@ export type StoryGraph<T extends StoryItem> = {
 
 // The sticky lane headings cover the top band of the graph.
 export const graphTopOffset = 48
-const lanePitch = 184
+export const normalLanePitch = 184
+// Side cards are 148 wide, so this leaves a 16px gap between lanes.
+export const narrowLanePitch = 164
 const collapsedLanePitch = 72
 const graphSidePadding = 40
 export const rowGap = 28
@@ -65,6 +67,7 @@ const assignRows = (items: StoryItem[]) => {
 const layoutLanes = (
   items: StoryItem[],
   collapsedLaneIds: ReadonlySet<string>,
+  lanePitch: number,
 ) =>
   lanes
     .filter((lane) =>
@@ -83,11 +86,12 @@ const layoutLanes = (
 
 export const layoutStoryGraph = <T extends StoryItem>(
   allItems: T[],
-  { collapsedLaneIds = new Set<string>() }: {
+  { collapsedLaneIds = new Set<string>(), lanePitch = normalLanePitch }: {
     collapsedLaneIds?: ReadonlySet<string>
+    lanePitch?: number
   } = {},
 ): StoryGraph<T> => {
-  const columns = layoutLanes(allItems, collapsedLaneIds)
+  const columns = layoutLanes(allItems, collapsedLaneIds, lanePitch)
   const centers = new Map(
     columns.map((column) => [column.lane.id, column.center]),
   )

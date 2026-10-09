@@ -1,7 +1,7 @@
 /// <reference lib="deno.ns" />
 
 import { assert, assertEquals } from "@std/assert"
-import { layoutStoryGraph } from "./story-graph.ts"
+import { layoutStoryGraph, narrowLanePitch } from "./story-graph.ts"
 import type { StoryItem } from "./story-classification.ts"
 
 const story = (id: string, kind: string, label: string): StoryItem => ({
@@ -93,4 +93,15 @@ Deno.test("branches only reach lanes without a story since the last main", () =>
     .filter((link) => link.kind === "branch")
     .map((link) => `${link.source.id}>${link.target.id}`)
   assertEquals(branches, ["1>2", "4>5"])
+})
+
+Deno.test("narrow lane spacing shrinks the graph without overlapping cards", () => {
+  const items = [main("1"), gehenna("2"), millennium("3"), trinity("4")]
+  const normal = layoutStoryGraph(items)
+  const narrow = layoutStoryGraph(items, { lanePitch: narrowLanePitch })
+  assert(narrow.width < normal.width)
+  const side = narrow.nodes.filter((node) => node.lane.id !== "main")
+  side.slice(1).forEach((node, index) =>
+    assert(node.x >= side[index].x + side[index].width)
+  )
 })
