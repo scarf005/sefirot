@@ -325,7 +325,7 @@
   background: var(--ba-surface);
 }
 
-/* Clicking a heading cycles shown -> focused -> hidden. */
+/* Clicking a heading hides or shows that lane. */
 .lane-heading {
   position: absolute;
   top: 50%;
@@ -349,10 +349,10 @@
   background: var(--ba-bar);
 }
 
-.lane-heading.focused {
-  background: var(--ba-tab-active);
-  color: var(--ba-tab-active-text);
-  box-shadow: 0 0 0 2px var(--ba-tab-active-text);
+.lane-count {
+  color: var(--ba-yellow);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .lane-heading.collapsed {

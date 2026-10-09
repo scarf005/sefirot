@@ -19,7 +19,6 @@ import {
 } from "./story-navigation.ts"
 import {
   laneForItem,
-  lanes,
   type StoryItem as ClassifiedStoryItem,
 } from "./story-classification.ts"
 import {
@@ -27,7 +26,6 @@ import {
   graphTopOffset,
   layoutStoryGraph,
 } from "./story-graph.ts"
-import { collapsedLanes, cycleLane, type LaneFilter } from "./lane-filter.ts"
 import abydosEmblem from "./assets/school-emblems/abydos.png"
 import etcEmblem from "./assets/school-emblems/etc.png"
 import gehennaEmblem from "./assets/school-emblems/gehenna.png"
@@ -191,17 +189,26 @@ const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
 
 const orderedItemIds = orderedItems.map((item) => item.id)
 const progress = computed(() => readProgress(orderedItemIds, readItemIds.value))
-const openLanes: LaneFilter = { focused: null, hidden: new Set() }
-const laneFilter = signal(openLanes)
-const laneIds = lanes.map((lane) => lane.id)
+const hiddenLanes = signal<ReadonlySet<string>>(new Set())
 const storyGraph = computed(() =>
-  layoutStoryGraph(filteredItems.value, {
-    collapsedLaneIds: collapsedLanes(laneFilter.value, laneIds),
-  })
+  layoutStoryGraph(filteredItems.value, { collapsedLaneIds: hiddenLanes.value })
 )
 const visibleItemIds = computed(() =>
   storyGraph.value.nodes.map((node) => node.id)
 )
+
+// Read counts per school over every story, regardless of filters.
+const laneProgress = computed(() => {
+  const counts = new Map<string, { read: number; total: number }>()
+  for (const item of orderedItems) {
+    const id = laneForItem(item).id
+    const count = counts.get(id) ?? { read: 0, total: 0 }
+    count.total += 1
+    if (readItemIds.value.has(item.id)) count.read += 1
+    counts.set(id, count)
+  }
+  return counts
+})
 
 // The main story has no school, so its heading stays text only.
 const laneEmblems: Record<string, string[]> = {
@@ -216,13 +223,6 @@ const laneEmblems: Record<string, string[]> = {
   highlander: [highlanderEmblem],
   wildhunt: [wildhuntEmblem],
   other: [etcEmblem],
-}
-
-const laneModeLabel = (id: string) => {
-  const filter = laneFilter.value
-  if (filter.focused === id) return "이 학원만 보는 중"
-  if (filter.hidden.has(id) || filter.focused) return "숨김"
-  return "표시"
 }
 const scrollTick = signal(0)
 
@@ -267,13 +267,15 @@ const selectNextUnread = () => {
   if (!visibleItemIds.value.includes(id)) {
     searchText.value = ""
     selectedKind.value = "전체"
-    laneFilter.value = openLanes
+    hiddenLanes.value = new Set()
   }
   selectItem(id)
 }
 
-const cycleLaneHeading = (id: string) => {
-  laneFilter.value = cycleLane(laneFilter.value, id)
+const toggleLane = (id: string) => {
+  const next = new Set(hiddenLanes.value)
+  if (!next.delete(id)) next.add(id)
+  hiddenLanes.value = next
   ensureSelectionVisible()
 }
 
@@ -525,31 +527,36 @@ export const App = () => {
             hidden={filteredItems.value.length === 0}
             style={{ width: `${graph.width}px` }}
           >
-            {graph.lanes.map(({ lane, center, collapsed }) => (
-              <button
-                key={lane.id}
-                type="button"
-                class={`lane-heading ${collapsed ? "collapsed" : ""} ${
-                  laneFilter.value.focused === lane.id ? "focused" : ""
-                }`}
-                style={{ left: `${center}px` }}
-                aria-label={`${lane.label}, ${laneModeLabel(lane.id)}`}
-                title={lane.label}
-                onClick={() => cycleLaneHeading(lane.id)}
-              >
-                {(laneEmblems[lane.id] ?? []).map((emblem) => (
-                  <span
-                    key={emblem}
-                    class="lane-emblem"
-                    style={{ "--emblem": `url("${emblem}")` }}
-                    aria-hidden="true"
-                  />
-                ))}
-                {(!collapsed || !laneEmblems[lane.id]) && (
-                  <span>{lane.label}</span>
-                )}
-              </button>
-            ))}
+            {graph.lanes.map(({ lane, center, collapsed }) => {
+              const count = laneProgress.value.get(lane.id)
+              const countLabel = count ? `${count.read}/${count.total}` : ""
+              return (
+                <button
+                  key={lane.id}
+                  type="button"
+                  class={`lane-heading ${collapsed ? "collapsed" : ""}`}
+                  style={{ left: `${center}px` }}
+                  aria-label={`${lane.label} ${countLabel}, ${
+                    collapsed ? "숨김" : "표시"
+                  }`}
+                  title={`${lane.label} ${countLabel}`}
+                  onClick={() => toggleLane(lane.id)}
+                >
+                  {(laneEmblems[lane.id] ?? []).map((emblem) => (
+                    <span
+                      key={emblem}
+                      class="lane-emblem"
+                      style={{ "--emblem": `url("${emblem}")` }}
+                      aria-hidden="true"
+                    />
+                  ))}
+                  {(!collapsed || !laneEmblems[lane.id]) && (
+                    <span>{lane.label}</span>
+                  )}
+                  {!collapsed && <small class="lane-count">{countLabel}</small>}
+                </button>
+              )
+            })}
           </div>
           <svg
             class="story-tree"
