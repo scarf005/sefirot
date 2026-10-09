@@ -223,13 +223,19 @@
   outline-offset: -1px;
 }
 
+.filters {
+  display: flex;
+  gap: var(--space-2);
+}
+
 /* Tabs as on the event Story/Quest/Challenge switcher. */
 .kind-tabs {
   display: flex;
   gap: 2px;
 }
 
-.kind-tabs button {
+.kind-tabs button,
+.minor-toggle {
   min-width: 56px;
   height: 40px;
   border: 0;
@@ -250,11 +256,17 @@
   border-radius: 0 4px 4px 0;
 }
 
-.kind-tabs button:hover {
+.minor-toggle {
+  border-radius: 4px;
+}
+
+.kind-tabs button:hover,
+.minor-toggle:hover {
   color: var(--ba-navy);
 }
 
-.kind-tabs button[aria-pressed="true"] {
+.kind-tabs button[aria-pressed="true"],
+.minor-toggle[aria-pressed="true"] {
   background: var(--ba-tab-active);
   color: var(--ba-tab-active-text);
 }
@@ -763,8 +775,12 @@
     grid-area: search;
   }
 
-  .kind-tabs {
+  .filters {
     grid-area: tabs;
+  }
+
+  .kind-tabs {
+    flex: 1;
   }
 
   .progress {
@@ -792,6 +808,7 @@
 
   .search-input,
   .kind-tabs button,
+  .minor-toggle,
   .next-unread-button {
     height: 36px;
   }

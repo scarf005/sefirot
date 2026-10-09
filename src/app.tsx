@@ -18,6 +18,8 @@ import {
   selectionAfterFilter,
 } from "./story-navigation.ts"
 import {
+  importanceOf,
+  isMinorStory,
   laneForItem,
   type StoryItem as ClassifiedStoryItem,
 } from "./story-classification.ts"
@@ -92,6 +94,7 @@ const loadReadItemIds = () => {
 
 const selectedKind = signal("전체")
 const searchText = signal("")
+const hideMinor = signal(false)
 const selectedItemId = signal(orderedItems[0]?.id ?? "")
 const readItemIds = signal<ReadonlySet<string>>(loadReadItemIds())
 const settingsOpen = signal(false)
@@ -100,6 +103,7 @@ const historyStatus = signal("")
 const filteredItems = computed(() => {
   const query = searchText.value.trim().toLocaleLowerCase()
   return orderedItems.filter((item) => {
+    if (hideMinor.value && isMinorStory(item)) return false
     const matchesKind = selectedKind.value === "전체" ||
       item.kind === selectedKind.value
     const matchesQuery = query.length === 0 || [
@@ -267,6 +271,7 @@ const selectNextUnread = () => {
   if (!visibleItemIds.value.includes(id)) {
     searchText.value = ""
     selectedKind.value = "전체"
+    hideMinor.value = false
     hiddenLanes.value = new Set()
   }
   selectItem(id)
@@ -429,20 +434,34 @@ export const App = () => {
             ensureSelectionVisible()
           }}
         />
-        <div class="kind-tabs" role="group" aria-label="종류">
-          {kindOptions.map((kind) => (
-            <button
-              key={kind}
-              type="button"
-              aria-pressed={selectedKind.value === kind}
-              onClick={() => {
-                selectedKind.value = kind
-                ensureSelectionVisible()
-              }}
-            >
-              {kind}
-            </button>
-          ))}
+        <div class="filters">
+          <div class="kind-tabs" role="group" aria-label="종류">
+            {kindOptions.map((kind) => (
+              <button
+                key={kind}
+                type="button"
+                aria-pressed={selectedKind.value === kind}
+                onClick={() => {
+                  selectedKind.value = kind
+                  ensureSelectionVisible()
+                }}
+              >
+                {kind}
+              </button>
+            ))}
+          </div>
+          <button
+            class="minor-toggle"
+            type="button"
+            aria-pressed={hideMinor.value}
+            title="중요도 하·중하·없음 숨기기"
+            onClick={() => {
+              hideMinor.value = !hideMinor.value
+              ensureSelectionVisible()
+            }}
+          >
+            중요한 것만
+          </button>
         </div>
         <div
           class="progress"
@@ -682,6 +701,12 @@ export const App = () => {
               <dt>순서</dt>
               <dd>#{currentItem.order}</dd>
             </div>
+            {importanceOf(currentItem) && (
+              <div>
+                <dt>중요도</dt>
+                <dd>{importanceOf(currentItem)}</dd>
+              </div>
+            )}
             <div>
               <dt>분류</dt>
               <dd>{laneForItem(currentItem).label}</dd>

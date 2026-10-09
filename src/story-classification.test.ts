@@ -2,6 +2,8 @@
 
 import { assertEquals } from "@std/assert"
 import {
+  importanceOf,
+  isMinorStory,
   laneForItem,
   nodeSize,
   type StoryItem,
@@ -70,4 +72,22 @@ Deno.test("sizes main stories larger than event stories and event stories larger
       nodeSize(story({ kind: "그룹" })).width,
     true,
   )
+})
+
+Deno.test("reads the importance mark from story notes", () => {
+  const marked = (note: string) => importanceOf(story({ notes: [note] }))
+  assertEquals(marked("중요도: 상 | 메인 스토리와 직결"), "상")
+  assertEquals(marked("중요도: 중하 | 수영복 이벤트."), "중하")
+  assertEquals(marked("중요도: 하 Sheside Outside 이후로 추정"), "하")
+  assertEquals(marked("중요도: 없음 | 단독 이벤트"), "없음")
+  assertEquals(importanceOf(story({ notes: [] })), undefined)
+})
+
+Deno.test("only explicit low marks count as minor", () => {
+  const minor = (notes: string[]) => isMinorStory(story({ notes }))
+  assertEquals(minor(["중요도: 하 | 연관성 적음"]), true)
+  assertEquals(minor(["중요도: 중하 | 연관성 적음"]), true)
+  assertEquals(minor(["중요도: 없음"]), true)
+  assertEquals(minor(["중요도: 중 | 첫 방문"]), false)
+  assertEquals(minor([]), false)
 })

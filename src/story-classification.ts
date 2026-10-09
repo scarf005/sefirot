@@ -163,3 +163,11 @@ export const nodeSize = (item: StoryItem) => {
   if (item.kind === "이벤트") return { width: 168, height: 84 }
   return { width: 148, height: 64 }
 }
+
+// Importance comes from the namu wiki note, e.g. "중요도: 하 | ...".
+export const importanceOf = (item: StoryItem) =>
+  item.notes.join(" ").match(/중요도:\s*(상|중하|중|하|없음)/)?.[1]
+
+// Unmarked stories are not judged, so only explicit low marks are minor.
+export const isMinorStory = (item: StoryItem) =>
+  ["하", "중하", "없음"].includes(importanceOf(item) ?? "")
