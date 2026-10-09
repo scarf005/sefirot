@@ -530,6 +530,12 @@
   clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
 }
 
+/* Not on the Korean server yet: navy like the in-game "New" tab. */
+.node-tag.unreleased {
+  background: var(--ba-chip-bar);
+  color: var(--ba-tab-active-text);
+}
+
 .node-title {
   position: absolute;
   right: calc(var(--slant) - 4px);

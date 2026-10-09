@@ -191,10 +191,14 @@ const kindClass = (kind: string) => {
 const thumbnailStyle = (thumbnail: StoryThumbnail | undefined) =>
   thumbnail ? { "--thumb": `url("${thumbnail.url}")` } : undefined
 
+// The Korean client is the global server, so a story without a global date
+// has not reached Korea yet.
+const isUnreleasedInKorea = (item: StoryItem) => !item.release.global?.length
+
 const releaseRows = (item: StoryItem) => {
   const rows: [string, string[] | undefined][] = [
     ["일본", item.release.japan],
-    ["글로벌", item.release.global],
+    ["글로벌", isUnreleasedInKorea(item) ? ["미출시"] : item.release.global],
     ["한국어 더빙", item.release.krDub],
   ]
   return rows.flatMap(([label, values]) =>
@@ -674,13 +678,17 @@ export const App = () => {
                           aria-current={selected}
                           aria-label={`${node.label}, ${
                             readStateLabel(isRead)
-                          }`}
+                          }${isUnreleasedInKorea(node) ? ", 미출시" : ""}`}
                           title={node.label}
-                          onClick={() => selectItem(node.id)}
+                          onClick={() =>
+                            selectItem(node.id)}
                         >
-                          {isRead && (
-                            <span class="node-tag" aria-hidden="true">
-                              읽음
+                          {(isRead || isUnreleasedInKorea(node)) && (
+                            <span
+                              class={`node-tag ${isRead ? "" : "unreleased"}`}
+                              aria-hidden="true"
+                            >
+                              {isRead ? "읽음" : "미출시"}
                             </span>
                           )}
                           <span class="node-title">
