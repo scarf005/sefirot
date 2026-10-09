@@ -892,6 +892,20 @@ export const overviewSynopsis = (
   return undefined
 }
 
+// The banner image in the info box of a page's 개요 section.
+export const overviewImage = (root: HTMLElement) => {
+  const heading = root.querySelectorAll(HEADINGS)
+    .find((candidate) => headingTitle(candidate) === "개요")
+  if (!heading) return undefined
+  for (const block of sectionBlocks(heading)) {
+    const src = block.querySelectorAll("td img")
+      .map((image) => image.getAttribute("src"))
+      .find((src) => src?.startsWith("//") && !src.endsWith(".svg"))
+    if (src) return `https:${src}`
+  }
+  return undefined
+}
+
 // A chapter heading is followed by a box: chapter number, a rule, then the
 // bold chapter title and the in-game intro lines.
 export const chapterIntro = (root: HTMLElement, anchor: string) => {
@@ -1066,6 +1080,37 @@ export const enrichStoryCards = async (
   })
 }
 
+// Volumes the wiki has no image for yet fall back to the banner in their namu
+// page's info box.
+export const enrichVolumeImages = async (
+  items: StoryItem[],
+  namu: NamuBrowser,
+) => {
+  const urls = [
+    ...new Set(
+      items.filter((item) => item.kind === "메인" && !item.thumbnail)
+        .flatMap((item) => summarySources(item)?.overviewUrl ?? []),
+    ),
+  ]
+  const images = new Map<string, string | undefined>()
+  for (const url of urls) {
+    images.set(
+      url,
+      await settle(
+        `volume image ${url}`,
+        namu.load(url).then((loaded) => overviewImage(parse(loaded.html))),
+        undefined,
+      ),
+    )
+  }
+  return items.map((item) => {
+    const url = item.kind === "메인" && !item.thumbnail
+      ? summarySources(item)?.overviewUrl
+      : undefined
+    return withCover(item, url && images.get(url))
+  })
+}
+
 const main = async () => {
   const options = parseArgs(Deno.args)
   const namu = createNamuBrowser()
@@ -1074,6 +1119,7 @@ const main = async () => {
     data.items = await enrichThumbnails(data.items)
     data.items = await enrichEventBanners(data.items, namu)
     data.items = await enrichStoryCards(data.items, namu)
+    data.items = await enrichVolumeImages(data.items, namu)
     data.items = await enrichSummaries(data.items, namu)
     for (
       const { kind, series, matched, unmatched } of thumbnailCoverage(

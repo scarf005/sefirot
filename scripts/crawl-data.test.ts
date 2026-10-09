@@ -16,6 +16,7 @@ import {
   mainVolumeKey,
   matchName,
   normalizeName,
+  overviewImage,
   overviewSynopsis,
   parseEventBanners,
   parseEventPromos,
@@ -713,5 +714,28 @@ Deno.test("falls back to the event story box after the overview", () => {
   assertEquals(
     itemSummary(sources, new Map([[eventUrl, withQuote]])),
     eventSynopsis,
+  )
+})
+
+Deno.test("reads the banner image of a volume info box", () => {
+  const info = `<table>
+    <tr><td><span><strong>불꽃과 그림자 편</strong> 炎と影編</span></td></tr>
+    <tr><td><span><img src="data:image/svg+xml;base64,PHN2Zz4=">
+      <img src="//i.namu.wiki/i/volume.webp" alt="BA 2부 1편"></span></td></tr>
+    <tr><td>自由と混沌のゲヘナ学園に……</td></tr></table>`
+  assertEquals(
+    overviewImage(
+      article(
+        section("1. 개요", info),
+        section("2. 상세", `<img src="//i.namu.wiki/i/other.webp">`),
+      ),
+    ),
+    "https://i.namu.wiki/i/volume.webp",
+  )
+  assertEquals(
+    overviewImage(
+      article(section("2. 상세", `<img src="//i.namu.wiki/i/x.webp">`)),
+    ),
+    undefined,
   )
 })
