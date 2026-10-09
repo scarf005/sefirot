@@ -741,10 +741,6 @@ export const App = () => {
               : <p class="detail-summary">{currentItem.summary}</p>
           )}
           <dl>
-            <div>
-              <dt>순서</dt>
-              <dd>#{currentItem.order}</dd>
-            </div>
             {importanceOf(currentItem) && (
               <div>
                 <dt>중요도</dt>
@@ -758,18 +754,6 @@ export const App = () => {
             <div>
               <dt>구간</dt>
               <dd>{currentItem.segmentName}</dd>
-            </div>
-            <div>
-              <dt>시리즈</dt>
-              <dd>{currentItem.series}</dd>
-            </div>
-            <div>
-              <dt>장</dt>
-              <dd>{currentItem.chapter}</dd>
-            </div>
-            <div>
-              <dt>에피소드</dt>
-              <dd>{currentItem.episodes}</dd>
             </div>
             {(releaseRows(currentItem).length > 0
               ? releaseRows(currentItem)
