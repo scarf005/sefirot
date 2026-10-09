@@ -626,7 +626,7 @@ export const App = () => {
           <svg
             class="story-tree"
             hidden={graph.nodes.length === 0}
-            role="img"
+            role="group"
             aria-label="스토리 순서도"
             width={graph.width}
             height={graph.height - graphTopOffset}
