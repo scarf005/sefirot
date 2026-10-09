@@ -6,6 +6,7 @@ import {
   backgroundCandidates,
   buildData,
   chapterIntro,
+  eventBannerFor,
   eventCandidates,
   fileCandidates,
   firstBackground,
@@ -16,6 +17,7 @@ import {
   matchName,
   normalizeName,
   overviewSynopsis,
+  parseEventBanners,
   parseEventPromos,
   parseImageInfo,
   pickThumbnail,
@@ -570,5 +572,56 @@ Deno.test("summarizes summary coverage per kind", () => {
       { kind: "이벤트", total: 1, matched: 0 },
       { kind: "그룹", total: 0, matched: 0 },
     ],
+  )
+})
+
+const bannerHtml = /*html*/ `
+<a href="/w/%EB%B8%94%EB%A3%A8%20%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C/%EC%9D%B4%EB%B2%A4%ED%8A%B8/%EB%B2%9A%EA%BD%83%EB%A7%8C%EB%B0%9C%20%EC%B6%95%EC%A0%9C%EB%8C%80%EC%86%8C%EB%8F%99!"><img alt="BA메인이벤트배너01KR" src="data:image/svg+xml;base64," data-src="//i.namu.wiki/i/kr01.webp"></a>
+<a href="/w/블루 아카이브/이벤트/Trip-Trap-Train"><img alt="BA메인이벤트배너30JPKR" src="//i.namu.wiki/i/jpkr30.webp"></a>
+<a href="/w/블루 아카이브/이벤트/출항! 만마선"><img alt="BA메인이벤트배너60JP" src="//i.namu.wiki/i/jp60.webp"></a>
+<a href="/w/블루 아카이브/이벤트/연합 작전: 데카그라마톤 결전"><img alt="BA메인이벤트배너54-3KR" src="//i.namu.wiki/i/kr54.webp"></a>
+<a href="/w/블루 아카이브/이벤트#발렌타인 데이의 약속"><img alt="BA스페셜이벤트배너01KR" src="//i.namu.wiki/i/sp01.webp"></a>
+<a href="/w/블루 아카이브/이벤트/벚꽃만발 축제대소동!"><img alt="벚꽃만발축제대소동 banner" src="//i.namu.wiki/i/promo.webp"></a>
+`
+
+Deno.test("reads Korean event banners from the namu event navbox", () => {
+  assertEquals(
+    [...parseEventBanners(parse(bannerHtml))],
+    [
+      ["벚꽃만발 축제대소동!", "https://i.namu.wiki/i/kr01.webp"],
+      ["Trip-Trap-Train", "https://i.namu.wiki/i/jpkr30.webp"],
+      ["연합 작전: 데카그라마톤 결전", "https://i.namu.wiki/i/kr54.webp"],
+    ],
+  )
+})
+
+Deno.test("finds an event banner by its namu link, then by name", () => {
+  const banners = parseEventBanners(parse(bannerHtml))
+  const link = (title: string) => ({
+    label: "나무위키",
+    url: `https://namu.wiki/w/${
+      encodeURIComponent(`블루 아카이브/이벤트/${title}`)
+    }`,
+  })
+  assertEquals(
+    eventBannerFor({
+      series: "벚꽃만발",
+      links: [link("벚꽃만발 축제대소동!")],
+    }, banners),
+    "https://i.namu.wiki/i/kr01.webp",
+  )
+  assertEquals(
+    eventBannerFor({
+      series: "메인 스토리 연계 이벤트 데카그라마톤 결전",
+      links: [link("데카그라마톤 결전")],
+    }, banners),
+    "https://i.namu.wiki/i/kr54.webp",
+  )
+  assertEquals(
+    eventBannerFor(
+      { series: "출항! 만마선", links: [link("출항! 만마선")] },
+      banners,
+    ),
+    undefined,
   )
 })

@@ -433,6 +433,45 @@ export const eventCandidates = (options: {
   ]
 }
 
+const EVENT_PAGE_PREFIX = "/w/블루 아카이브/이벤트/"
+const LINKED_EVENT_PREFIX = "메인 스토리 연계 이벤트 "
+
+// Event page title -> Korean in-game banner from the event navbox at the
+// bottom of every namu event page; Japanese-only banners are skipped.
+export const parseEventBanners = (root: HTMLElement) => {
+  const banners = new Map<string, string>()
+  for (const image of root.querySelectorAll("img")) {
+    const alt = image.getAttribute("alt") ?? ""
+    if (!/^BA(?:메인|미니|스페셜)이벤트배너[\d-]+(?:JP)?KR$/.test(alt)) continue
+    const href = decodeURIComponent(
+      image.closest("a")?.getAttribute("href") ?? "",
+    )
+    const src = [image.getAttribute("data-src"), image.getAttribute("src")]
+      .find((value) => value?.startsWith("//"))
+    if (!href.startsWith(EVENT_PAGE_PREFIX) || !src) continue
+    const title = href.slice(EVENT_PAGE_PREFIX.length)
+    if (!banners.has(title)) banners.set(title, `https:${src}`)
+  }
+  return banners
+}
+
+// The story's own namu event link first; renamed pages fall back to the name.
+export const eventBannerFor = (
+  item: { series: string; links: Link[] },
+  banners: ReadonlyMap<string, string>,
+) => {
+  for (const link of item.links) {
+    const path = decodeURIComponent(new URL(link.url).pathname)
+    const banner = path.startsWith(EVENT_PAGE_PREFIX)
+      ? banners.get(path.slice(EVENT_PAGE_PREFIX.length))
+      : undefined
+    if (banner) return banner
+  }
+  const titles = Object.fromEntries([...banners.keys()].map((t) => [t, t]))
+  const title = matchName(item.series.replace(LINKED_EVENT_PREFIX, ""), titles)
+  return title === undefined ? undefined : banners.get(title)
+}
+
 // Same key as mainBackgrounds: "<act>:<volume token>".
 export const mainVolumeKey = (series: string, segmentId: string) => {
   const act = segmentId === "part-2" ? 2 : 1
@@ -918,12 +957,41 @@ export const enrichSummaries = async (
   })
 }
 
+// Every namu event page carries the same navbox, so one page gives all
+// banners; a Korean banner replaces the wiki's Japanese promo art.
+export const enrichEventBanners = async (
+  items: StoryItem[],
+  namu: NamuBrowser,
+) => {
+  const page = items
+    .filter((item) => item.kind === "이벤트")
+    .flatMap((item) => item.links)
+    .find((link) =>
+      decodeURIComponent(new URL(link.url).pathname).startsWith(
+        EVENT_PAGE_PREFIX,
+      )
+    )
+  if (!page) return items
+  const banners = await settle(
+    "event banners",
+    namu.load(page.url).then((loaded) => parseEventBanners(parse(loaded.html))),
+    new Map<string, string>(),
+  )
+  return items.map((item) => {
+    const url = item.kind === "이벤트"
+      ? eventBannerFor(item, banners)
+      : undefined
+    return url ? { ...item, thumbnail: { url, fit: "cover" as const } } : item
+  })
+}
+
 const main = async () => {
   const options = parseArgs(Deno.args)
   const namu = createNamuBrowser()
   try {
     const data = buildData(await fetchHtml(options, namu), options.source)
     data.items = await enrichThumbnails(data.items)
+    data.items = await enrichEventBanners(data.items, namu)
     data.items = await enrichSummaries(data.items, namu)
     for (
       const { kind, series, matched, unmatched } of thumbnailCoverage(
