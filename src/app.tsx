@@ -116,6 +116,7 @@ const settingsOpen = signal(false)
 const historyStatus = signal("")
 const hideSpoilers = signal(loadHideSpoilers())
 const revealedSummaryId = signal("")
+const sheetCollapsed = signal(false)
 
 const setHideSpoilers = (hide: boolean) => {
   hideSpoilers.value = hide
@@ -293,6 +294,7 @@ const centerInPanel = (
 
 const selectItem = (id: string) => {
   selectedItemId.value = id
+  sheetCollapsed.value = false
   scrollTick.value += 1
 }
 
@@ -715,7 +717,18 @@ export const App = () => {
           </svg>
         </section>
 
-        <aside class="details-panel" aria-label="스토리 정보">
+        <aside
+          class={`details-panel ${sheetCollapsed.value ? "collapsed" : ""}`}
+          aria-label="스토리 정보"
+        >
+          {/* Bottom-sheet handle, shown on narrow screens only. */}
+          <button
+            class="sheet-handle"
+            type="button"
+            aria-label={sheetCollapsed.value ? "펼치기" : "접기"}
+            aria-expanded={!sheetCollapsed.value}
+            onClick={() => sheetCollapsed.value = !sheetCollapsed.value}
+          />
           <div class="detail-heading">
             <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
               {currentItem.kind}

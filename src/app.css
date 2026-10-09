@@ -607,6 +607,10 @@
   display: none;
 }
 
+.sheet-handle {
+  display: none;
+}
+
 .details-panel {
   overflow-y: auto;
   padding: 0 var(--space-4) var(--space-4);
@@ -898,7 +902,35 @@
   }
 
   .detail-heading {
-    margin-top: var(--space-2);
+    margin-top: var(--space-1);
+  }
+
+  .sheet-handle {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: block;
+    width: calc(100% + 2 * var(--space-4));
+    height: 20px;
+    margin: 0 calc(-1 * var(--space-4));
+    border: 0;
+    padding: 0;
+    background:
+      linear-gradient(var(--ba-line), var(--ba-line)) center / 40px 4px
+      no-repeat,
+      var(--ba-surface);
+    cursor: pointer;
+  }
+
+  /* Collapsed, only the handle and the title bar stay above the graph. */
+  .details-panel.collapsed {
+    overflow: hidden;
+    max-height: calc(64px + env(safe-area-inset-bottom));
+  }
+
+  .content-grid:has(.details-panel.collapsed) .tree-panel {
+    padding-bottom: 80px;
+    scroll-padding-bottom: 80px;
   }
 
   .detail-thumbnail {
