@@ -56,12 +56,13 @@
   outline-offset: 2px;
 }
 
-/* Screen title bar, as on every in-game screen. */
+/* Screen title bar, as on every in-game screen, carrying the filters too. */
 .top-bar {
   position: relative;
   z-index: 4;
-  display: flex;
-  gap: var(--space-4);
+  display: grid;
+  grid-template-columns: auto minmax(140px, 1fr) auto auto auto auto;
+  gap: var(--space-3);
   align-items: center;
   margin: 0 calc(-1 * var(--space-4));
   padding: var(--space-2) var(--space-4);
@@ -71,8 +72,7 @@
 }
 
 .top-bar h1 {
-  flex: 1;
-  margin: 0;
+  margin: 0 var(--space-2) 0 0;
   color: var(--ba-navy);
   font-size: 1.4rem;
   font-weight: 800;
@@ -81,10 +81,11 @@
 
 .progress {
   display: grid;
-  grid-template-columns: auto 160px;
+  grid-template-columns: auto 96px;
   gap: var(--space-3);
   align-items: center;
-  padding: 6px 14px;
+  height: 40px;
+  padding: 0 14px;
   border-radius: 4px;
   background: var(--ba-chip-bar);
   color: #ffffff;
@@ -206,22 +207,6 @@
   font-size: 0.78rem;
 }
 
-.toolbar,
-.content-grid {
-  border: 1px solid var(--ba-panel-border);
-  border-radius: 6px;
-  background: var(--ba-panel);
-  box-shadow: var(--ba-shadow);
-}
-
-.toolbar {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) auto auto auto;
-  gap: var(--space-3);
-  align-items: center;
-  padding: 10px 14px;
-}
-
 .search-input {
   width: 100%;
   height: 40px;
@@ -242,14 +227,13 @@
 .kind-tabs {
   display: flex;
   gap: 2px;
-  overflow-x: auto;
 }
 
 .kind-tabs button {
-  min-width: 64px;
+  min-width: 56px;
   height: 40px;
   border: 0;
-  padding: 0 14px;
+  padding: 0 12px;
   background: var(--ba-tab);
   color: var(--ba-tab-text);
   cursor: pointer;
@@ -273,13 +257,6 @@
 .kind-tabs button[aria-pressed="true"] {
   background: var(--ba-tab-active);
   color: var(--ba-tab-active-text);
-}
-
-.result-count {
-  color: var(--ba-muted);
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 /* Primary actions use the in-game sky-blue slanted button. */
@@ -317,6 +294,10 @@
 }
 
 .content-grid {
+  border: 1px solid var(--ba-panel-border);
+  border-radius: 6px;
+  background: var(--ba-panel);
+  box-shadow: var(--ba-shadow);
   flex: 1;
   min-height: 0;
   overflow: hidden;
@@ -711,22 +692,43 @@
   }
 
   .top-bar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title progress settings"
+      "search search next"
+      "tabs tabs tabs";
     gap: var(--space-2);
     margin: 0 calc(-1 * var(--space-2));
-    padding: 4px var(--space-2) 4px var(--space-3);
+    padding: 4px var(--space-2) var(--space-2) var(--space-3);
   }
 
   .top-bar h1 {
+    grid-area: title;
     font-size: 1.15rem;
   }
 
+  .search-input {
+    grid-area: search;
+  }
+
+  .kind-tabs {
+    grid-area: tabs;
+  }
+
   .progress {
+    grid-area: progress;
     grid-template-columns: auto 56px;
     gap: var(--space-2);
-    padding: 5px 10px;
+    height: 32px;
+    padding: 0 10px;
+  }
+
+  .next-unread-button {
+    grid-area: next;
   }
 
   .settings {
+    grid-area: settings;
     position: static;
     padding-left: var(--space-1);
   }
@@ -736,31 +738,16 @@
     left: var(--space-2);
   }
 
-  .toolbar {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-2);
-    padding: var(--space-2);
-  }
-
   .search-input,
   .kind-tabs button,
   .next-unread-button {
     height: 36px;
   }
 
-  .kind-tabs {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
   .kind-tabs button {
     flex: 1;
     min-width: 0;
     padding: 0 8px;
-  }
-
-  .result-count {
-    display: none;
   }
 
   /* The bottom sheet covers the lower part of the screen, so the tree keeps

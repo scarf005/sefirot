@@ -368,6 +368,32 @@ export const App = () => {
     <main class="story-visualizer">
       <header class="top-bar">
         <h1>스토리</h1>
+        <input
+          class="search-input"
+          type="search"
+          aria-label="검색"
+          value={searchText.value}
+          placeholder="스토리, 장, 학원, 종류"
+          onInput={(event) => {
+            searchText.value = event.currentTarget.value
+            ensureSelectionVisible()
+          }}
+        />
+        <div class="kind-tabs" role="group" aria-label="종류">
+          {kindOptions.map((kind) => (
+            <button
+              key={kind}
+              type="button"
+              aria-pressed={selectedKind.value === kind}
+              onClick={() => {
+                selectedKind.value = kind
+                ensureSelectionVisible()
+              }}
+            >
+              {kind}
+            </button>
+          ))}
+        </div>
         <div
           class="progress"
           role="progressbar"
@@ -388,6 +414,14 @@ export const App = () => {
             />
           </span>
         </div>
+        <button
+          class="next-unread-button"
+          type="button"
+          disabled={readCount === totalCount}
+          onClick={selectNextUnread}
+        >
+          다음 읽을 스토리
+        </button>
         <div class="settings">
           <button
             class="settings-button"
@@ -427,46 +461,6 @@ export const App = () => {
           )}
         </div>
       </header>
-
-      <section class="toolbar" aria-label="스토리 필터">
-        <input
-          class="search-input"
-          type="search"
-          aria-label="검색"
-          value={searchText.value}
-          placeholder="스토리, 장, 학원, 종류"
-          onInput={(event) => {
-            searchText.value = event.currentTarget.value
-            ensureSelectionVisible()
-          }}
-        />
-        <div class="kind-tabs" role="group" aria-label="종류">
-          {kindOptions.map((kind) => (
-            <button
-              key={kind}
-              type="button"
-              aria-pressed={selectedKind.value === kind}
-              onClick={() => {
-                selectedKind.value = kind
-                ensureSelectionVisible()
-              }}
-            >
-              {kind}
-            </button>
-          ))}
-        </div>
-        <small class="result-count" role="status">
-          {filteredItems.value.length}개
-        </small>
-        <button
-          class="next-unread-button"
-          type="button"
-          disabled={readCount === totalCount}
-          onClick={selectNextUnread}
-        >
-          다음 읽을 스토리
-        </button>
-      </section>
 
       <section class="content-grid">
         <section
