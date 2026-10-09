@@ -15,15 +15,15 @@ import {
   mainBackgrounds,
   mainVolumeKey,
   matchName,
-  miniStoryImageFor,
   normalizeName,
   overviewSynopsis,
   parseEventBanners,
   parseEventPromos,
   parseImageInfo,
-  parseMiniStoryImages,
+  parseStoryCards,
   pickThumbnail,
   releaseFrom,
+  storyCardFor,
   stringifyJsonc,
   summaryCoverage,
   summarySources,
@@ -567,12 +567,13 @@ Deno.test("summarizes summary coverage per kind", () => {
       { kind: "메인", summary: "a" },
       { kind: "메인" },
       { kind: "이벤트" },
-      { kind: "미니", summary: "ignored" },
+      { kind: "미니", summary: "b" },
     ]),
     [
       { kind: "메인", total: 2, matched: 1 },
       { kind: "이벤트", total: 1, matched: 0 },
       { kind: "그룹", total: 0, matched: 0 },
+      { kind: "미니", total: 1, matched: 1 },
     ],
   )
 })
@@ -628,47 +629,60 @@ Deno.test("finds an event banner by its namu link, then by name", () => {
   )
 })
 
-const miniStoryHtml = /*html*/ `
+const storyCardsHtml = /*html*/ `
 <table><tbody><tr><td><div><a id="만마전의 붉은 겨울 순회록"></a><span><span>
 <img width="100%" src="data:image/svg+xml;base64,PHN2Zz4=">
 <img width="100%" src="//i.namu.wiki/i/mini01.webp" alt="BA 미니스토리01" loading="lazy">
 <noscript><img src='//i.namu.wiki/i/mini01.webp' alt='BA 미니스토리01'></noscript>
 </span></span></div></td></tr>
-<tr><td><div><strong><span>만마전의 붉은 겨울 순회록</span></strong></div></td></tr></tbody></table>
-<table><tbody><tr><td><div><a id="테르마이 아카이"></a>
-<img width="100%" src="//i.namu.wiki/i/mini02.webp" alt="BA 미니스토리02">
-</div></td></tr></tbody></table>
+<tr><td><div><strong><span>만마전의 붉은 겨울 순회록</span></strong></div><hr>
+<div>세간에 알려지지 않았던 만마전의<br>비밀스러운 순회록.</div></td></tr></tbody></table>
+<table><tbody><tr><td><div><a id="용궁으로 가는 길"></a>
+<img width="100%" src="//i.namu.wiki/i/mini17.webp" alt="BA 미니스토리17">
+</div></td></tr><tr><td><div><strong>용궁으로 가는 길</strong></div><hr>
+<div>集団脱獄事件当日。</div></td></tr></tbody></table>
+<table><tbody><tr><td><div>
+<img width="100%" src="//i.namu.wiki/i/group02.webp" alt="BA 그룹스토리02">
+</div></td></tr><tr><td><div><strong>Cleaning&amp;Clearing</strong></div><hr>
+<div>맡은 임무는 무엇이든 해낸다!<a href="#fn-17">[17]</a></div></td></tr></tbody></table>
 <table><tbody><tr><td><a id="인연"></a><img src="//i.namu.wiki/i/profile.webp" alt="이부키프로필"></td></tr></tbody></table>
 `
 
-Deno.test("reads mini story card images by their section anchor", () => {
-  assertEquals([...parseMiniStoryImages(parse(miniStoryHtml))], [
-    ["만마전의 붉은 겨울 순회록", "https://i.namu.wiki/i/mini01.webp"],
-    ["테르마이 아카이", "https://i.namu.wiki/i/mini02.webp"],
+Deno.test("reads mini and group story cards with their Korean blurbs", () => {
+  assertEquals([...parseStoryCards(parse(storyCardsHtml))], [
+    ["만마전의 붉은 겨울 순회록", {
+      image: "https://i.namu.wiki/i/mini01.webp",
+      summary: "세간에 알려지지 않았던 만마전의 비밀스러운 순회록.",
+    }],
+    ["용궁으로 가는 길", {
+      image: "https://i.namu.wiki/i/mini17.webp",
+      summary: undefined,
+    }],
+    ["Cleaning&Clearing", {
+      image: "https://i.namu.wiki/i/group02.webp",
+      summary: "맡은 임무는 무엇이든 해낸다!",
+    }],
   ])
 })
 
-Deno.test("finds a mini story image by its link anchor, then by name", () => {
-  const images = parseMiniStoryImages(parse(miniStoryHtml))
+Deno.test("finds a story card by its link anchor, then by name", () => {
+  const cards = parseStoryCards(parse(storyCardsHtml))
   const storyPage = "https://namu.wiki/w/블루 아카이브/스토리"
   assertEquals(
-    miniStoryImageFor({
+    storyCardFor({
       series: "만마전의 붉은 겨울 순회록",
       links: [{
         label: "나무위키",
         url: `${storyPage}#${encodeURIComponent("만마전의 붉은 겨울 순회록")}`,
       }],
-    }, images),
+    }, cards)?.image,
     "https://i.namu.wiki/i/mini01.webp",
   )
   assertEquals(
-    miniStoryImageFor({ series: "테르마이 아카이", links: [] }, images),
-    "https://i.namu.wiki/i/mini02.webp",
+    storyCardFor({ series: "Cleaning & Clearing", links: [] }, cards)?.image,
+    "https://i.namu.wiki/i/group02.webp",
   )
-  assertEquals(
-    miniStoryImageFor({ series: "용궁으로 가는 길", links: [] }, images),
-    undefined,
-  )
+  assertEquals(storyCardFor({ series: "수행부", links: [] }, cards), undefined)
 })
 
 Deno.test("falls back to the event story box after the overview", () => {
