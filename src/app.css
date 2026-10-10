@@ -59,7 +59,7 @@
 /* Screen title bar, as on every in-game screen, carrying the filters too. */
 .top-bar {
   position: relative;
-  z-index: 4;
+  z-index: 12;
   display: grid;
   grid-template-columns: auto minmax(140px, 1fr) auto auto auto auto;
   gap: var(--space-3);
