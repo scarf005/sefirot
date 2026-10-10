@@ -1021,6 +1021,17 @@ export const App = () => {
           )}
           <footer>
             <span>데이터 기준 {generatedAtLabel}</span>
+            <p class="disclaimer">
+              블루 아카이브 © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd.
+              게임 이미지와 텍스트의 권리는 각 권리자에게 있습니다. 이 사이트는
+              팬이 만든 비공식 비영리 사이트이며 넥슨, NEXON Games, Yostar와
+              관련이 없습니다. 스토리 순서와 메모는{" "}
+              <a href="https://namu.wiki" target="_blank" rel="noreferrer">
+                나무위키
+              </a>
+              (CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자가 요청하면 해당
+              자료를 내립니다.
+            </p>
           </footer>
         </aside>
       </section>
