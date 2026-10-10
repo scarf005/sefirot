@@ -706,7 +706,8 @@
   display: none;
 }
 
-.sheet-handle {
+.sheet-handle,
+.filter-toggle {
   display: none;
 }
 
@@ -922,20 +923,67 @@
     padding: 0 var(--space-2) var(--space-2);
   }
 
+  /* One row by default: progress, continue, filter toggle, settings. */
   .top-bar {
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
     grid-template-areas:
-      "title progress settings"
-      "search search next"
-      "tabs tabs tabs";
+      "progress next filter settings"
+      "search search search search"
+      "tabs tabs tabs tabs";
     gap: var(--space-2);
     margin: 0 calc(-1 * var(--space-2));
     padding: 4px var(--space-2) var(--space-2) var(--space-3);
   }
 
+  /* The screen title stays for assistive tech only. */
   .top-bar h1 {
-    grid-area: title;
-    font-size: 1.15rem;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .top-bar:not(.filters-open) .search-input,
+  .top-bar:not(.filters-open) .filters {
+    display: none;
+  }
+
+  .filter-toggle {
+    position: relative;
+    display: grid;
+    grid-area: filter;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--ba-title);
+    cursor: pointer;
+  }
+
+  .filter-toggle svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+  }
+
+  .filter-toggle[aria-expanded="true"] {
+    color: var(--ba-navy);
+  }
+
+  /* A filter is narrowing the graph even while the row is folded. */
+  .filter-toggle.active::after {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ba-yellow);
+    box-shadow: 0 0 0 2px var(--ba-top-bar);
+    content: "";
   }
 
   .search-input {
@@ -952,9 +1000,9 @@
 
   .progress {
     grid-area: progress;
-    grid-template-columns: auto 56px;
+    grid-template-columns: auto minmax(24px, 1fr);
     gap: var(--space-2);
-    height: 32px;
+    height: 36px;
     padding: 0 10px;
   }
 
@@ -1016,8 +1064,24 @@
     box-shadow: 0 -4px 14px rgb(0 0 0 / 22%);
   }
 
+  /* Sticks below the handle instead of sliding under it. */
   .detail-heading {
-    margin-top: var(--space-1);
+    top: 32px;
+    margin-top: 0;
+  }
+
+  /* Square on phones: the slanted corners let scrolled text show through. */
+  .detail-heading {
+    clip-path: none;
+  }
+
+  .lane-heading,
+  .lane-headings.compact .lane-heading {
+    height: 36px;
+  }
+
+  .settings-menu .segmented button {
+    min-height: 36px;
   }
 
   .sheet-handle {
@@ -1026,7 +1090,7 @@
     z-index: 2;
     display: block;
     width: calc(100% + 2 * var(--space-4));
-    height: 20px;
+    height: 32px;
     margin: 0 calc(-1 * var(--space-4));
     border: 0;
     padding: 0;
@@ -1040,7 +1104,7 @@
   /* Collapsed, only the handle and the title bar stay above the graph. */
   .details-panel.collapsed {
     overflow: hidden;
-    max-height: calc(64px + env(safe-area-inset-bottom));
+    max-height: calc(76px + env(safe-area-inset-bottom));
   }
 
   .content-grid:has(.details-panel.collapsed) .tree-panel {

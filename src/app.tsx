@@ -107,7 +107,11 @@ const loadSetting = (key: string, fallback: string) => {
 }
 
 const zoomLevels = [1, 0.75, 0.5]
-const savedZoom = Number(loadSetting("sefirot-graph-zoom", "100")) / 100
+const phoneScreen = globalThis.matchMedia?.("(max-width: 980px)").matches ??
+  false
+const savedZoom = Number(
+  loadSetting("sefirot-graph-zoom", phoneScreen ? "75" : "100"),
+) / 100
 
 const selectedKind = signal("전체")
 const searchText = signal("")
@@ -131,6 +135,7 @@ const narrowLanes = signal(
 const pinMain = signal(loadSetting("sefirot-pin-main", "off") === "on")
 const revealedSummaryId = signal("")
 const sheetCollapsed = signal(false)
+const filtersOpen = signal(false)
 
 const saveSetting = (key: string, value: string) => {
   try {
@@ -656,8 +661,25 @@ export const App = () => {
 
   return (
     <main class="story-visualizer">
-      <header class="top-bar">
+      <header class={`top-bar ${filtersOpen.value ? "filters-open" : ""}`}>
         <h1>스토리</h1>
+        {/* Phones fold search and filters behind this toggle. */}
+        <button
+          class={`filter-toggle ${
+            searchText.value || selectedKind.value !== "전체" ||
+              hideMinor.value
+              ? "active"
+              : ""
+          }`}
+          type="button"
+          aria-label="필터"
+          aria-expanded={filtersOpen.value}
+          onClick={() => filtersOpen.value = !filtersOpen.value}
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10.5 3a7.5 7.5 0 0 1 5.96 12.05l4.74 4.74-1.41 1.41-4.74-4.74A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z" />
+          </svg>
+        </button>
         <input
           class="search-input"
           type="search"
