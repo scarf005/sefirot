@@ -1,0 +1,68 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 19 * * 0"
+  workflow_dispatch:
+
+permissions: { contents: read, actions: read }
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  keepalive:
+    if: ${{ github.event_name == 'schedule' }}
+    runs-on: ubuntu-latest
+    permissions: { actions: write }
+    steps:
+      - run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/deploy.yml/enable"
+        env: { GH_TOKEN: "${{ github.token }}" }
+
+  deploy:
+    runs-on: ubuntu-latest
+    env: { STORY_DATA: src/data/blue-archive-story-order.jsonc }
+    steps:
+      - uses: actions/checkout@v7
+      - uses: denoland/setup-deno@v2
+        with: { deno-version: v2.x, cache: true }
+      - uses: dawidd6/action-download-artifact@v27
+        with:
+          workflow: deploy.yml
+          branch: main
+          name: story-data
+          search_artifacts: true
+          path: .cache/story-data
+          if_no_artifact_found: ignore
+      - run: deno run -A npm:playwright@1.63.0 install --with-deps chromium
+      - id: crawl
+        continue-on-error: true
+        run: deno task crawl
+      # namu.wiki answers GitHub-hosted runners with a Cloudflare challenge, so a
+      # failed crawl falls back to the newer of the cached artifact and the tracked file.
+      - if: ${{ steps.crawl.outcome == 'failure' }}
+        run: |
+          deno eval '
+            import { parse } from "@std/jsonc"
+            const [tracked, cached] = Deno.args
+            const generatedAt = async (path) =>
+              (parse(await Deno.readTextFile(path).catch(() => "{}"))).generatedAt ?? ""
+            if (await generatedAt(cached) > await generatedAt(tracked)) await Deno.copyFile(cached, tracked)
+            console.log(`Using story data from ${await generatedAt(tracked)}`)
+          ' "$STORY_DATA" .cache/story-data/blue-archive-story-order.jsonc
+      - run: deno test -A
+      - run: deno task build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: story-data
+          path: ${{ env.STORY_DATA }}
+          if-no-files-found: error
+          retention-days: 90
+      - uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=sefirot --branch=main

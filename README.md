@@ -12,13 +12,22 @@ Start a dev server:
 $ deno task dev
 ```
 
+## Data
+
+`src/data/blue-archive-story-order.jsonc` is generated from namu.wiki. Refresh and commit it locally:
+
+```
+$ deno task crawl
+```
+
 ## Deploy
 
-Build production assets:
+[`deploy.yml`](.github/workflows/deploy.yml) builds and deploys to Cloudflare Pages project `sefirot` on every push to `main`, every Sunday and on manual dispatch. It crawls first and, when namu.wiki blocks the runner, uses the newer of the last `story-data` artifact and the committed file.
 
-```
-$ deno task build
-```
+Setup:
+
+1. Create the Pages project: `deno run -A npm:wrangler pages project create sefirot --production-branch main`
+2. Add repository secrets `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` (Account › Cloudflare Pages › Edit).
 
 ## Disclaimer
 
