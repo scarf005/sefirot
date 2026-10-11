@@ -5,6 +5,7 @@
     "preview": "deno run -A --node-modules-dir npm:vite preview",
     "serve": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
     "crawl": "scripts/crawl-data.ts",
+    "publish-data": "deno run -A scripts/publish-data.ts",
   },
   "fmt": {
     "semiColons": false,

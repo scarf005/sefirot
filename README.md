@@ -14,15 +14,25 @@ $ deno task dev
 
 ## Data
 
-`src/data/blue-archive-story-order.jsonc` is generated from namu.wiki. Refresh and commit it locally:
+`src/data/blue-archive-story-order.jsonc` is crawled from namu.wiki, which blocks GitHub-hosted runners. A systemd user timer on a maintainer machine crawls weekly and publishes the result as a `data-YYYY-MM-DD` GitHub release; publishing triggers the deploy.
 
 ```
-$ deno task crawl
+$ deno task crawl            # crawl into src/data/ by hand
+$ deno task publish-data     # crawl and publish a release if the data changed
 ```
+
+Install the timer (adjust `WorkingDirectory` in the service if the clone is elsewhere; needs `gh auth login` and Playwright's Chromium):
+
+```
+$ systemctl --user link $PWD/systemd/sefirot-data.service $PWD/systemd/sefirot-data.timer
+$ systemctl --user enable --now sefirot-data.timer
+```
+
+`publish-data` refuses to publish when the crawl has under 90% of the previous release's stories, and skips unchanged data, so several machines can run the timer.
 
 ## Deploy
 
-[`deploy.yml`](.github/workflows/deploy.yml) builds and deploys to Cloudflare Pages project `sefirot` on every push to `main`, every Sunday and on manual dispatch. It crawls first and, when namu.wiki blocks the runner, uses the newer of the last `story-data` artifact and the committed file.
+[`deploy.yml`](.github/workflows/deploy.yml) deploys to Cloudflare Pages project `sefirot` on every push to `main`, every published release and on manual dispatch. It uses the newer of the latest data release and the committed data file.
 
 Setup:
 
