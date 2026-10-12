@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=%h/repo/ba/sefirot
-Environment=PATH=%h/.local/share/deno/bin:%h/.local/share/bin:/usr/local/bin:/usr/bin
+Environment=PATH=%h/.local/share/deno/bin:%h/.deno/bin:%h/.local/share/bin:/usr/local/bin:/usr/bin
 ExecStart=/usr/bin/env deno run -A scripts/publish-data.ts
 TimeoutStartSec=3h
 Nice=10
