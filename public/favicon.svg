@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#2d4663" />
+  <g transform="translate(6 6) scale(.88)">
+    <path
+      d="M50 7L80 24M50 7L20 24M50 7L50 54M80 24L20 24M80 24L50 54M80 24L80 42M20 24L50 54M20 24L20 42M80 42L20 42M80 42L50 54M80 42L80 70M20 42L50 54M20 42L20 70M50 54L80 70M50 54L20 70M50 54L50 82M80 70L20 70M80 70L50 82M80 70L50 94M20 70L50 82M20 70L50 94M50 82L50 94"
+      stroke="#73dbff" stroke-width="3" fill="none" />
+    <g fill="#73dbff" stroke="#2d4663" stroke-width="2">
+      <circle cx="50" cy="7" r="7" />
+      <circle cx="80" cy="24" r="7" />
+      <circle cx="20" cy="24" r="7" />
+      <circle cx="80" cy="42" r="7" />
+      <circle cx="20" cy="42" r="7" />
+      <circle cx="50" cy="54" r="7" />
+      <circle cx="80" cy="70" r="7" />
+      <circle cx="20" cy="70" r="7" />
+      <circle cx="50" cy="82" r="7" />
+      <circle cx="50" cy="94" r="7" />
+    </g>
+  </g>
+</svg>
