@@ -712,8 +712,14 @@
 }
 
 .details-panel {
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   padding: 0 var(--space-4) var(--space-4);
+}
+
+.details-panel > * {
+  flex-shrink: 0;
 }
 
 .detail-heading {
@@ -900,7 +906,8 @@
 }
 
 .details-panel footer {
-  margin-top: var(--space-5);
+  margin-top: auto;
+  padding-top: var(--space-5);
   color: var(--ba-muted);
   font-size: 0.78rem;
 }

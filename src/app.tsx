@@ -1029,8 +1029,8 @@ export const App = () => {
               <a href="https://namu.wiki" target="_blank" rel="noreferrer">
                 나무위키
               </a>
-              (CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자가 요청하면 해당
-              자료를 내립니다.
+              (CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자 요청시 해당 자료를
+              내리겠습니다.
             </p>
           </footer>
         </aside>
