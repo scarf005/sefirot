@@ -1030,7 +1030,14 @@ export const App = () => {
                 나무위키
               </a>
               (CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자 요청시 해당 자료를
-              내리겠습니다.
+              내리겠습니다.{" "}
+              <a
+                href="https://github.com/scarf005/sefirot/issues"
+                target="_blank"
+                rel="noreferrer"
+              >
+                문의
+              </a>
             </p>
           </footer>
         </aside>
