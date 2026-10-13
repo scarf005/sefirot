@@ -4,6 +4,7 @@ import { assertEquals } from "@std/assert"
 import {
   importanceOf,
   isMinorStory,
+  isUnreleasedInKorea,
   laneForItem,
   nodeSize,
   type StoryItem,
@@ -90,4 +91,27 @@ Deno.test("only explicit low marks count as minor", () => {
   assertEquals(minor(["중요도: 없음"]), true)
   assertEquals(minor(["중요도: 중 | 첫 방문"]), false)
   assertEquals(minor([]), false)
+})
+
+Deno.test("isUnreleasedInKorea is true without a global date or before it", () => {
+  assertEquals(
+    isUnreleasedInKorea({ release: { global: [] } }, "2026-10-13"),
+    true,
+  )
+  assertEquals(isUnreleasedInKorea({ release: {} }, "2026-10-13"), true)
+  assertEquals(
+    isUnreleasedInKorea({ release: { global: ["2026-10-14"] } }, "2026-10-13"),
+    true,
+  )
+})
+
+Deno.test("isUnreleasedInKorea is false from the global release day on", () => {
+  assertEquals(
+    isUnreleasedInKorea({ release: { global: ["2026-10-13"] } }, "2026-10-13"),
+    false,
+  )
+  assertEquals(
+    isUnreleasedInKorea({ release: { global: ["2021-11-09"] } }, "2026-10-13"),
+    false,
+  )
 })

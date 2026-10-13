@@ -20,6 +20,7 @@ import {
 import {
   importanceOf,
   isMinorStory,
+  isUnreleasedInKorea,
   laneForItem,
   type StoryItem as ClassifiedStoryItem,
 } from "./story-classification.ts"
@@ -234,14 +235,13 @@ const kindClass = (kind: string) => {
 const thumbnailStyle = (thumbnail: StoryThumbnail | undefined) =>
   thumbnail ? { "--thumb": `url("${thumbnail.url}")` } : undefined
 
-// The Korean client is the global server, so a story without a global date
-// has not reached Korea yet.
-const isUnreleasedInKorea = (item: StoryItem) => !item.release.global?.length
+const today = new Date().toLocaleDateString("sv-SE")
+const isUnreleased = (item: StoryItem) => isUnreleasedInKorea(item, today)
 
 const releaseRows = (item: StoryItem) => {
   const rows: [string, string[] | undefined][] = [
     ["일본", item.release.japan],
-    ["글로벌", isUnreleasedInKorea(item) ? ["미출시"] : item.release.global],
+    ["글로벌", isUnreleased(item) ? ["미출시"] : item.release.global],
     ["한국어 더빙", item.release.krDub],
   ]
   return rows.flatMap(([label, values]) =>
@@ -623,7 +623,7 @@ export const App = () => {
               type="button"
               aria-current={selected}
               aria-label={`${node.label}, ${readStateLabel(isRead)}${
-                isUnreleasedInKorea(node) ? ", 미출시" : ""
+                isUnreleased(node) ? ", 미출시" : ""
               }`}
               title={node.label}
               onClick={() => selectItem(node.id)}
@@ -638,7 +638,7 @@ export const App = () => {
                   decoding="async"
                 />
               )}
-              {(isRead || isUnreleasedInKorea(node)) && (
+              {(isRead || isUnreleased(node)) && (
                 <span
                   class={`node-tag ${isRead ? "" : "unreleased"}`}
                   aria-hidden="true"

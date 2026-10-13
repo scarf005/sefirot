@@ -164,6 +164,16 @@ export const nodeSize = (item: StoryItem) => {
   return { width: 148, height: 64 }
 }
 
+// The Korean client is the global server, so a story without a global date, or
+// with one still ahead, has not reached Korea yet. Dates are YYYY-MM-DD.
+export const isUnreleasedInKorea = (
+  item: { release: { global?: string[] } },
+  today: string,
+) => {
+  const date = item.release.global?.[0]
+  return !date || date > today
+}
+
 // Importance comes from the namu wiki note, e.g. "중요도: 하 | ...".
 export const importanceOf = (item: StoryItem) =>
   item.notes.join(" ").match(/중요도:\s*(상|중하|중|하|없음)/)?.[1]
