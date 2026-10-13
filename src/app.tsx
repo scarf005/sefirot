@@ -1020,7 +1020,16 @@ export const App = () => {
             </div>
           )}
           <footer>
-            <span>데이터 기준 {generatedAtLabel}</span>
+            <span>
+              데이터 기준 {generatedAtLabel} ·{" "}
+              <a
+                href="https://github.com/scarf005/sefirot"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </span>
             <p class="disclaimer">
               블루 아카이브 © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd.
               게임 이미지와 텍스트의 권리는 각 권리자에게 있습니다. 이 사이트는
