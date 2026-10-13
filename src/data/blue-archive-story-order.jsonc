@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T23:20:42.091Z",
+  "generatedAt": "2026-10-13T14:11:20.501Z",
   "tree": {
     "id": "blue-archive-story-order-tree",
     "name": "Blue Archive story order",
@@ -718,6 +718,10 @@
           {
             "id": "story-174-node",
             "itemId": "story-174",
+          },
+          {
+            "id": "story-175-node",
+            "itemId": "story-175",
           },
         ],
       },
@@ -6383,7 +6387,9 @@
         "japan": [
           "2026-06-24",
         ],
-        "global": [],
+        "global": [
+          "2026-10-13",
+        ],
         "krDub": [],
       },
       "notes": [
@@ -6399,6 +6405,7 @@
         "url": "https://i.namu.wiki/i/iHMAvAxzNDICmrjpzOMpl6qdhmXeK27UMD551iLN4wEYujBBrabAIg80o7L53Ez0DMEdPgMMMocePyAkUxr8rMw7EruGGEy8qrNzacNVQTlNQUsfDCtsQwoofZNvTbJWjhwcVAUfFdBOo-pKOR1DfQ.webp",
         "fit": "cover",
       },
+      "summary": "여름. 현무상회의 자금이 산해경 외부의 어느 계곡에 출자되었다는 소식을 듣고, 현룡문이 자금의 사용처에 대해 간섭하려 한다. 이에 선생님은 출자 자금의 감사를 겸한 계곡 피서를 떠나자고, 모두에게 제안한다.",
     },
     {
       "id": "story-165",
@@ -6447,7 +6454,9 @@
         "japan": [
           "2026-07-29",
         ],
-        "global": [],
+        "global": [
+          "2026-11-10",
+        ],
         "krDub": [],
       },
       "notes": [
@@ -6727,6 +6736,27 @@
         "url": "https://static.wikitide.net/bluearchivewiki/thumb/5/5b/Event_It%27s_our_Engine%21_%EF%BD%9EEscape_from_No._183%21%EF%BD%9E.png/480px-Event_It%27s_our_Engine%21_%EF%BD%9EEscape_from_No._183%21%EF%BD%9E.png",
         "fit": "cover",
       },
+    },
+    {
+      "id": "story-175",
+      "order": 175,
+      "segmentId": "part-2",
+      "segmentName": "2부",
+      "kind": "그룹",
+      "series": "오컬트 연구회",
+      "chapter": "오컬트 연구회",
+      "episodes": "1~3",
+      "title": "오컬트 연구회",
+      "label": "오컬트 연구회 · 1~3",
+      "release": {
+        "japan": [
+          "2026-10-07",
+        ],
+        "global": [],
+        "krDub": [],
+      },
+      "notes": [],
+      "links": [],
     },
   ],
 }
