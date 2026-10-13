@@ -1059,6 +1059,45 @@ export const enrichEventBanners = async (
   )
 }
 
+// The info box on an event page announces the global service period, which the
+// story-order table lags behind on.
+export const parseGlobalServiceDate = (root: HTMLElement) => {
+  const match = root.textContent.match(
+    /글로벌 서비스:\s*(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/,
+  )
+  return match
+    ? `${match[1]}-${match[2].padStart(2, "0")}-${match[3].padStart(2, "0")}`
+    : undefined
+}
+
+export const enrichGlobalReleases = async (
+  items: StoryItem[],
+  namu: NamuBrowser,
+) => {
+  const dated = new Map<string, string>()
+  for (const item of items) {
+    if (item.kind !== "이벤트" || item.release.global.length > 0) continue
+    const link = item.links.find((link) =>
+      namuPath(link).startsWith(EVENT_PAGE_PREFIX)
+    )
+    if (!link) continue
+    const date = await settle(
+      `global release ${item.title}`,
+      namu.load(pageUrl(link.url)).then((loaded) =>
+        parseGlobalServiceDate(parse(loaded.html))
+      ),
+      undefined,
+    )
+    if (date) dated.set(item.id, date)
+  }
+  return items.map((item) => {
+    const date = dated.get(item.id)
+    return date
+      ? { ...item, release: { ...item.release, global: [date] } }
+      : item
+  })
+}
+
 // Mini and group stories have no pages of their own; their official cards
 // (image and blurb) live on the namu story page.
 export const enrichStoryCards = async (
@@ -1118,6 +1157,7 @@ const main = async () => {
     const data = buildData(await fetchHtml(options, namu), options.source)
     data.items = await enrichThumbnails(data.items)
     data.items = await enrichEventBanners(data.items, namu)
+    data.items = await enrichGlobalReleases(data.items, namu)
     data.items = await enrichStoryCards(data.items, namu)
     data.items = await enrichVolumeImages(data.items, namu)
     data.items = await enrichSummaries(data.items, namu)

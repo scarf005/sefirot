@@ -20,6 +20,7 @@ import {
   overviewSynopsis,
   parseEventBanners,
   parseEventPromos,
+  parseGlobalServiceDate,
   parseImageInfo,
   parseStoryCards,
   pickThumbnail,
@@ -736,6 +737,20 @@ Deno.test("reads the banner image of a volume info box", () => {
     overviewImage(
       article(section("2. 상세", `<img src="//i.namu.wiki/i/x.webp">`)),
     ),
+    undefined,
+  )
+})
+
+Deno.test("parseGlobalServiceDate reads the info box announcement of an event page", () => {
+  const page = parse(
+    "<div>일본 서비스: 2026년 6월 24일 ~ 7월 8일 공지 글로벌 서비스: 2026년 10월 13일 ~ 2026년 10월 27일</div>",
+  )
+  assertEquals(parseGlobalServiceDate(page), "2026-10-13")
+})
+
+Deno.test("parseGlobalServiceDate returns nothing without a global announcement", () => {
+  assertEquals(
+    parseGlobalServiceDate(parse("<div>일본 서비스: 2026년 6월 24일</div>")),
     undefined,
   )
 })
