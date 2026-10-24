@@ -1,8 +1,12 @@
 import "./app.css"
+import { i18n, type MessageDescriptor } from "@lingui/core"
+import { msg, t } from "@lingui/core/macro"
 import { computed, signal } from "@preact/signals"
 import { useEffect, useRef } from "preact/hooks"
 import { parse } from "@std/jsonc"
 import { isKoreanText } from "./korean-text.ts"
+import { locale, localeNames, setLocale } from "./i18n.ts"
+import { locales, localizeStory } from "./story-l10n.ts"
 import storyOrderJsonc from "./data/blue-archive-story-order.jsonc?raw"
 import {
   eraseStoryHistory,
@@ -55,6 +59,12 @@ type StoryItem = ClassifiedStoryItem & {
   links: StoryLink[]
   thumbnail?: StoryThumbnail
   summary?: string
+  l10n?: Partial<
+    Record<
+      "en" | "ja",
+      { series?: string; summary?: string; thumbnail?: StoryThumbnail }
+    >
+  >
 }
 type StoryTreeNode = { id: string; itemId?: string; children?: StoryTreeNode[] }
 type StoryData = {
@@ -78,6 +88,50 @@ const orderedItems = treeOrderedItems.length > 0
   ? treeOrderedItems
   : storyOrder.items.slice().sort((a, b) => a.order - b.order)
 const kindOptions = ["전체", ...new Set(orderedItems.map((item) => item.kind))]
+
+// Data values stay Korean; these map them to the viewer's language.
+const kindMessages: Record<string, MessageDescriptor> = {
+  전체: msg`전체`,
+  메인: msg`메인`,
+  이벤트: msg`이벤트`,
+  그룹: msg`그룹`,
+  미니: msg`미니`,
+}
+const laneMessages: Record<string, MessageDescriptor> = {
+  main: msg`메인 스토리`,
+  hyakkiyako: msg`백귀야행`,
+  abydos: msg`아비도스`,
+  gehenna: msg`게헨나`,
+  millennium: msg`밀레니엄`,
+  trinity: msg`트리니티`,
+  "red-winter": msg`붉은겨울`,
+  shanhaijing: msg`산해경`,
+  valkyrie: msg`발키리/SRT`,
+  highlander: msg`하이랜더`,
+  wildhunt: msg`와일드헌트`,
+  other: msg`기타/콜라보`,
+}
+const importanceMessages: Record<string, MessageDescriptor> = {
+  상: msg`상`,
+  중: msg`중`,
+  중하: msg`중하`,
+  하: msg`하`,
+  없음: msg`없음`,
+}
+const segmentMessages: Record<string, MessageDescriptor> = {
+  "1부 시작~최종편": msg`1부 시작~최종편`,
+  "최종편 이후~데카그라마톤": msg`최종편 이후~데카그라마톤`,
+  "2부": msg`2부`,
+}
+const translated = (
+  messages: Record<string, MessageDescriptor>,
+  key: string,
+) => messages[key] ? i18n._(messages[key]) : key
+const laneLabel = (item: StoryItem) =>
+  translated(laneMessages, laneForItem(item).id)
+// Stands in for the link inside a sentence, so translators keep word order.
+const linkMarker = "\u0000"
+const view = (item: StoryItem) => localizeStory(item, locale.value)
 const validItemIds = new Set(orderedItems.map((item) => item.id))
 
 const getHistoryStorage = () => {
@@ -142,7 +196,7 @@ const saveSetting = (key: string, value: string) => {
   try {
     getHistoryStorage()?.setItem(key, value)
   } catch {
-    historyStatus.value = "설정을 저장하지 못했습니다."
+    historyStatus.value = t`설정을 저장하지 못했습니다.`
   }
 }
 
@@ -172,14 +226,21 @@ const filteredItems = computed(() => {
     if (hideMinor.value && isMinorStory(item)) return false
     const matchesKind = selectedKind.value === "전체" ||
       item.kind === selectedKind.value
+    const shown = view(item)
     const matchesQuery = query.length === 0 || [
+      shown.label,
       item.label,
       item.segmentName,
+      translated(segmentMessages, item.segmentName),
       item.kind,
+      translated(kindMessages, item.kind),
+      shown.series,
       item.series,
+      shown.chapter,
       item.chapter,
       item.episodes,
       laneForItem(item).label,
+      laneLabel(item),
     ].some((value) => value.toLocaleLowerCase().includes(query))
     return matchesKind && matchesQuery
   })
@@ -213,7 +274,7 @@ const linkedEventPrefix = "메인 스토리 연계 이벤트 "
 const graphNodeLines = (item: StoryItem) => {
   if (item.title.startsWith(linkedEventPrefix)) {
     return {
-      series: linkedEventPrefix.trim(),
+      series: t`메인 스토리 연계 이벤트`,
       title: item.title.slice(linkedEventPrefix.length),
     }
   }
@@ -240,9 +301,9 @@ const isUnreleased = (item: StoryItem) => isUnreleasedInKorea(item, today)
 
 const releaseRows = (item: StoryItem) => {
   const rows: [string, string[] | undefined][] = [
-    ["일본", item.release.japan],
-    ["글로벌", isUnreleased(item) ? ["미출시"] : item.release.global],
-    ["한국어 더빙", item.release.krDub],
+    [t`일본`, item.release.japan],
+    [t`글로벌`, isUnreleased(item) ? [t`미출시`] : item.release.global],
+    [t`한국어 더빙`, item.release.krDub],
   ]
   return rows.flatMap(([label, values]) =>
     values && values.length > 0 ? [[label, values.join(", ")]] : []
@@ -250,7 +311,7 @@ const releaseRows = (item: StoryItem) => {
 }
 
 const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
-  "ko-KR",
+  "sv-SE",
   {
     year: "numeric",
     month: "2-digit",
@@ -259,7 +320,7 @@ const generatedAtLabel = new Date(storyOrder.generatedAt).toLocaleString(
     minute: "2-digit",
     hourCycle: "h23",
   },
-).replace(/\.\s*/g, "-").replace(/-(\d\d:)/, " $1")
+)
 
 const orderedItemIds = orderedItems.map((item) => item.id)
 const progress = computed(() => readProgress(orderedItemIds, readItemIds.value))
@@ -392,19 +453,19 @@ const selectedItem = computed(() =>
     orderedItems[0]
 )
 
-const readStateLabel = (isRead: boolean) => isRead ? "읽음" : "안 읽음"
+const readStateLabel = (isRead: boolean) => isRead ? t`읽음` : t`안 읽음`
 
 const persistReadItemIds = (ids: ReadonlySet<string>) => {
   const storage = getHistoryStorage()
   if (!storage) {
-    historyStatus.value = "브라우저에 저장할 수 없습니다."
+    historyStatus.value = t`브라우저에 저장할 수 없습니다.`
     return false
   }
   try {
     saveStoryHistory({ storage, readItemIds: ids })
     return true
   } catch {
-    historyStatus.value = "저장하지 못했습니다."
+    historyStatus.value = t`저장하지 못했습니다.`
     return false
   }
 }
@@ -418,23 +479,25 @@ const toggleReadItem = (id: string) => {
   }
   readItemIds.value = nextIds
   if (persistReadItemIds(nextIds)) {
-    historyStatus.value = `${readStateLabel(nextIds.has(id))}으로 바꿨습니다.`
+    historyStatus.value = nextIds.has(id)
+      ? t`읽음으로 바꿨습니다.`
+      : t`안 읽음으로 바꿨습니다.`
   }
 }
 
 const eraseReadHistory = () => {
-  if (!globalThis.confirm("읽음 기록을 모두 지울까요?")) return
+  if (!globalThis.confirm(t`읽음 기록을 모두 지울까요?`)) return
   readItemIds.value = new Set()
   const storage = getHistoryStorage()
   if (!storage) {
-    historyStatus.value = "기록을 지웠습니다."
+    historyStatus.value = t`기록을 지웠습니다.`
     return
   }
   try {
     eraseStoryHistory({ storage })
-    historyStatus.value = "기록을 지웠습니다."
+    historyStatus.value = t`기록을 지웠습니다.`
   } catch {
-    historyStatus.value = "기록을 지우지 못했습니다."
+    historyStatus.value = t`기록을 지우지 못했습니다.`
   }
 }
 
@@ -449,9 +512,9 @@ const exportReadHistory = () => {
     link.download = "sefirot-story-history.json"
     link.click()
     setTimeout(() => URL.revokeObjectURL(url), 0)
-    historyStatus.value = "기록을 내보냈습니다."
+    historyStatus.value = t`기록을 내보냈습니다.`
   } catch {
-    historyStatus.value = "기록을 내보내지 못했습니다."
+    historyStatus.value = t`기록을 내보내지 못했습니다.`
   }
 }
 
@@ -461,18 +524,23 @@ const importReadHistoryFile = async (file?: File) => {
     const importedIds = parseStoryHistory(await file.text(), validItemIds)
     readItemIds.value = importedIds
     if (persistReadItemIds(importedIds)) {
-      historyStatus.value = `기록 ${importedIds.size}개를 가져왔습니다.`
+      historyStatus.value = t`기록 ${importedIds.size}개를 가져왔습니다.`
     }
   } catch {
-    historyStatus.value = "파일을 읽지 못했습니다."
+    historyStatus.value = t`파일을 읽지 못했습니다.`
   }
 }
 
 export const App = () => {
   const graph = storyGraph.value
   const currentItem = selectedItem.value
+  const shownItem = view(currentItem)
   const currentItemRead = readItemIds.value.has(currentItem.id)
-  const currentLines = storyLines(currentItem)
+  const currentLines = storyLines(shownItem)
+  const summary = shownItem.summary &&
+      (locale.value !== "ko" || isKoreanText(shownItem.summary))
+    ? shownItem.summary
+    : undefined
   const { read: readCount, total: totalCount } = progress.value
   const treeRef = useRef<HTMLElement>(null)
   const keyboardMoved = useRef(false)
@@ -519,6 +587,9 @@ export const App = () => {
     }
   }, [scrollTick.value])
 
+  const sourceNotice =
+    t`스토리 순서와 메모는 ${linkMarker}(CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자 요청시 해당 자료를 내리겠습니다.`
+      .split(linkMarker)
   const zoom = graphZoom.value
   const graphHeight = graph.height - graphTopOffset
   const mainColumn = graph.lanes.find((column) =>
@@ -542,6 +613,7 @@ export const App = () => {
     const { lane, collapsed } = column
     const count = laneProgress.value.get(lane.id)
     const countLabel = count ? `${count.read}/${count.total}` : ""
+    const label = translated(laneMessages, lane.id)
     const emblems = laneEmblems[lane.id] ?? []
     return (
       <button
@@ -549,10 +621,8 @@ export const App = () => {
         type="button"
         class={`lane-heading ${collapsed ? "collapsed" : ""}`}
         style={left === undefined ? undefined : { left: `${left}px` }}
-        aria-label={`${lane.label} ${countLabel}, ${
-          collapsed ? "숨김" : "표시"
-        }`}
-        title={`${lane.label} ${countLabel}`}
+        aria-label={`${label} ${countLabel}, ${collapsed ? t`숨김` : t`표시`}`}
+        title={`${label} ${countLabel}`}
         onClick={() => toggleLane(lane.id)}
       >
         {emblems.map((emblem) => (
@@ -564,7 +634,7 @@ export const App = () => {
           />
         ))}
         {(emblems.length === 0 || (!collapsed && !compactHeadings)) && (
-          <span>{lane.label}</span>
+          <span>{label}</span>
         )}
         {!collapsed && (emblems.length > 0 || !compactHeadings) && (
           <small class="lane-count">{countLabel}</small>
@@ -606,7 +676,8 @@ export const App = () => {
   const nodeView = (node: GraphNode<StoryItem>) => {
     const selected = node.id === selectedItemId.value
     const isRead = readItemIds.value.has(node.id)
-    const lines = graphNodeLines(node)
+    const shown = view(node)
+    const lines = graphNodeLines(shown)
     return (
       <g key={node.id} transform={`translate(${node.x} ${node.y})`}>
         <foreignObject width={node.width} height={node.height}>
@@ -614,7 +685,7 @@ export const App = () => {
             class={`story-node ${kindClass(node.kind)} ${
               selected ? "selected" : ""
             } ${isRead ? "read" : "unread"} ${
-              node.thumbnail ? `thumb-${node.thumbnail.fit}` : ""
+              shown.thumbnail ? `thumb-${shown.thumbnail.fit}` : ""
             }`}
             data-node-id={node.id}
           >
@@ -622,17 +693,17 @@ export const App = () => {
               class="node-select"
               type="button"
               aria-current={selected}
-              aria-label={`${node.label}, ${readStateLabel(isRead)}${
-                isUnreleased(node) ? ", 미출시" : ""
+              aria-label={`${shown.label}, ${readStateLabel(isRead)}${
+                isUnreleased(node) ? `, ${t`미출시`}` : ""
               }`}
-              title={node.label}
+              title={shown.label}
               onClick={() => selectItem(node.id)}
             >
               {/* Lazy so only cards near the view download art. */}
-              {node.thumbnail && (
+              {shown.thumbnail && (
                 <img
                   class="node-art"
-                  src={node.thumbnail.url}
+                  src={shown.thumbnail.url}
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -643,7 +714,7 @@ export const App = () => {
                   class={`node-tag ${isRead ? "" : "unreleased"}`}
                   aria-hidden="true"
                 >
-                  {isRead ? "읽음" : "미출시"}
+                  {isRead ? t`읽음` : t`미출시`}
                 </span>
               )}
               <span class="node-title">
@@ -662,7 +733,7 @@ export const App = () => {
   return (
     <main class="story-visualizer">
       <header class={`top-bar ${filtersOpen.value ? "filters-open" : ""}`}>
-        <h1>스토리</h1>
+        <h1>{t`스토리`}</h1>
         {/* Phones fold search and filters behind this toggle. */}
         <button
           class={`filter-toggle ${
@@ -672,7 +743,7 @@ export const App = () => {
               : ""
           }`}
           type="button"
-          aria-label="필터"
+          aria-label={t`필터`}
           aria-expanded={filtersOpen.value}
           onClick={() => filtersOpen.value = !filtersOpen.value}
         >
@@ -683,16 +754,16 @@ export const App = () => {
         <input
           class="search-input"
           type="search"
-          aria-label="검색"
+          aria-label={t`검색`}
           value={searchText.value}
-          placeholder="검색"
+          placeholder={t`검색`}
           onInput={(event) => {
             searchText.value = event.currentTarget.value
             ensureSelectionVisible()
           }}
         />
         <div class="filters">
-          <div class="kind-tabs" role="group" aria-label="종류">
+          <div class="kind-tabs" role="group" aria-label={t`종류`}>
             {kindOptions.map((kind) => (
               <button
                 key={kind}
@@ -703,7 +774,7 @@ export const App = () => {
                   ensureSelectionVisible()
                 }}
               >
-                {kind}
+                {translated(kindMessages, kind)}
               </button>
             ))}
           </div>
@@ -711,25 +782,25 @@ export const App = () => {
             class="minor-toggle"
             type="button"
             aria-pressed={hideMinor.value}
-            title="중요도 하·중하·없음 숨기기"
+            title={t`중요도 하·중하·없음 숨기기`}
             onClick={() => {
               hideMinor.value = !hideMinor.value
               ensureSelectionVisible()
             }}
           >
-            중요한 것만
+            {t`중요한 것만`}
           </button>
         </div>
         <div
           class="progress"
           role="progressbar"
-          aria-label="읽음"
+          aria-label={t`읽음`}
           aria-valuemin={0}
           aria-valuemax={totalCount}
           aria-valuenow={readCount}
         >
           <span class="progress-text">
-            읽음 <strong>{readCount}</strong> / {totalCount}
+            {t`읽음`} <strong>{readCount}</strong> / {totalCount}
           </span>
           <span class="progress-track">
             <span
@@ -746,13 +817,13 @@ export const App = () => {
           disabled={readCount === totalCount}
           onClick={selectNextUnread}
         >
-          이어 보기
+          {t`이어 보기`}
         </button>
         <div class="settings">
           <button
             class="settings-button"
             type="button"
-            aria-label="설정"
+            aria-label={t`설정`}
             aria-expanded={settingsOpen.value}
             onClick={() => settingsOpen.value = !settingsOpen.value}
           >
@@ -761,12 +832,28 @@ export const App = () => {
             </svg>
           </button>
           {settingsOpen.value && (
-            <div class="settings-menu" role="dialog" aria-label="설정">
+            <div class="settings-menu" role="dialog" aria-label={t`설정`}>
+              <div class="settings-row">
+                <span>{t`언어`}</span>
+                <div class="segmented" role="group" aria-label={t`언어`}>
+                  {locales.map((code) => (
+                    <button
+                      key={code}
+                      type="button"
+                      lang={code}
+                      aria-pressed={locale.value === code}
+                      onClick={() => setLocale(code)}
+                    >
+                      {localeNames[code]}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <button type="button" onClick={exportReadHistory}>
-                기록 내보내기
+                {t`기록 내보내기`}
               </button>
               <label class="settings-file-button">
-                기록 가져오기
+                {t`기록 가져오기`}
                 <input
                   type="file"
                   accept="application/json,.json"
@@ -778,7 +865,7 @@ export const App = () => {
                 />
               </label>
               <button class="danger" type="button" onClick={eraseReadHistory}>
-                기록 지우기
+                {t`기록 지우기`}
               </button>
               <label class="settings-check">
                 <input
@@ -787,11 +874,11 @@ export const App = () => {
                   onChange={(event) =>
                     setHideSpoilers(event.currentTarget.checked)}
                 />
-                안 읽은 줄거리 가리기
+                {t`안 읽은 줄거리 가리기`}
               </label>
               <div class="settings-row">
-                <span>확대</span>
-                <div class="segmented" role="group" aria-label="확대">
+                <span>{t`확대`}</span>
+                <div class="segmented" role="group" aria-label={t`확대`}>
                   {zoomLevels.map((level) => (
                     <button
                       key={level}
@@ -805,15 +892,15 @@ export const App = () => {
                 </div>
               </div>
               <div class="settings-row">
-                <span>레인 간격</span>
-                <div class="segmented" role="group" aria-label="레인 간격">
+                <span>{t`레인 간격`}</span>
+                <div class="segmented" role="group" aria-label={t`레인 간격`}>
                   <button
                     type="button"
                     aria-pressed={!narrowLanes.value}
                     onClick={() =>
                       setNarrowLanes(false)}
                   >
-                    보통
+                    {t`보통`}
                   </button>
                   <button
                     type="button"
@@ -821,7 +908,7 @@ export const App = () => {
                     onClick={() =>
                       setNarrowLanes(true)}
                   >
-                    좁게
+                    {t`좁게`}
                   </button>
                 </div>
               </div>
@@ -832,7 +919,7 @@ export const App = () => {
                   onChange={(event) =>
                     setPinMain(event.currentTarget.checked)}
                 />
-                메인 스토리 고정
+                {t`메인 스토리 고정`}
               </label>
               <p role="status">
                 {historyStatus.value}
@@ -846,10 +933,10 @@ export const App = () => {
         <section
           class="tree-panel"
           ref={treeRef}
-          aria-label="스토리 순서"
+          aria-label={t`스토리 순서`}
         >
           {graph.nodes.length === 0 && (
-            <p class="empty-state" role="status">결과 없음</p>
+            <p class="empty-state" role="status">{t`결과 없음`}</p>
           )}
           {/* Headings stay while lanes are hidden so they can be shown again. */}
           <div
@@ -885,7 +972,7 @@ export const App = () => {
             <svg
               class="story-tree"
               role="group"
-              aria-label="스토리 순서도"
+              aria-label={t`스토리 순서도`}
               width={graph.width * zoom}
               height={graphHeight * zoom}
               viewBox={`0 ${graphTopOffset} ${graph.width} ${graphHeight}`}
@@ -908,7 +995,7 @@ export const App = () => {
               <svg
                 class={`story-tree main-layer ${pinMain.value ? "pinned" : ""}`}
                 role="group"
-                aria-label="메인 스토리"
+                aria-label={t`메인 스토리`}
                 width={mainRight * zoom}
                 height={graphHeight * zoom}
                 viewBox={`0 ${graphTopOffset} ${mainRight} ${graphHeight}`}
@@ -931,28 +1018,28 @@ export const App = () => {
 
         <aside
           class={`details-panel ${sheetCollapsed.value ? "collapsed" : ""}`}
-          aria-label="스토리 정보"
+          aria-label={t`스토리 정보`}
         >
           {/* Bottom-sheet handle, shown on narrow screens only. */}
           <button
             class="sheet-handle"
             type="button"
-            aria-label={sheetCollapsed.value ? "펼치기" : "접기"}
+            aria-label={sheetCollapsed.value ? t`펼치기` : t`접기`}
             aria-expanded={!sheetCollapsed.value}
             onClick={() => sheetCollapsed.value = !sheetCollapsed.value}
           />
           <div class="detail-heading">
             <span class={`kind-pill ${kindClass(currentItem.kind)}`}>
-              {currentItem.kind}
+              {translated(kindMessages, currentItem.kind)}
             </span>
             <span class="detail-state">
               #{currentItem.order} · {readStateLabel(currentItemRead)}
             </span>
           </div>
-          {currentItem.thumbnail && (
+          {shownItem.thumbnail && (
             <div
-              class={`detail-thumbnail thumb-${currentItem.thumbnail.fit}`}
-              style={thumbnailStyle(currentItem.thumbnail)}
+              class={`detail-thumbnail thumb-${shownItem.thumbnail.fit}`}
+              style={thumbnailStyle(shownItem.thumbnail)}
             />
           )}
           <h2>
@@ -964,9 +1051,9 @@ export const App = () => {
             type="button"
             onClick={() => toggleReadItem(currentItem.id)}
           >
-            {currentItemRead ? "읽음 해제" : "읽음 표시"}
+            {currentItemRead ? t`읽음 해제` : t`읽음 표시`}
           </button>
-          {currentItem.summary && isKoreanText(currentItem.summary) && (
+          {summary && (
             hideSpoilers.value && !currentItemRead &&
               revealedSummaryId.value !== currentItem.id
               ? (
@@ -975,30 +1062,32 @@ export const App = () => {
                   type="button"
                   onClick={() => revealedSummaryId.value = currentItem.id}
                 >
-                  <span aria-hidden="true">{currentItem.summary}</span>
-                  <strong>줄거리 보기</strong>
+                  <span aria-hidden="true">{summary}</span>
+                  <strong>{t`줄거리 보기`}</strong>
                 </button>
               )
-              : <p class="detail-summary">{currentItem.summary}</p>
+              : <p class="detail-summary">{summary}</p>
           )}
           <dl>
             {importanceOf(currentItem) && (
               <div>
-                <dt>중요도</dt>
-                <dd>{importanceOf(currentItem)}</dd>
+                <dt>{t`중요도`}</dt>
+                <dd>
+                  {translated(importanceMessages, importanceOf(currentItem)!)}
+                </dd>
               </div>
             )}
             <div>
-              <dt>분류</dt>
-              <dd>{laneForItem(currentItem).label}</dd>
+              <dt>{t`분류`}</dt>
+              <dd>{laneLabel(currentItem)}</dd>
             </div>
             <div>
-              <dt>구간</dt>
-              <dd>{currentItem.segmentName}</dd>
+              <dt>{t`구간`}</dt>
+              <dd>{translated(segmentMessages, currentItem.segmentName)}</dd>
             </div>
             {(releaseRows(currentItem).length > 0
               ? releaseRows(currentItem)
-              : [["공개일", "-"]]).map(([label, value]) => (
+              : [[t`공개일`, "-"]]).map(([label, value]) => (
                 <div key={label}>
                   <dt>{label}</dt>
                   <dd>{value}</dd>
@@ -1007,7 +1096,7 @@ export const App = () => {
           </dl>
           {currentItem.links.length > 0 && (
             <div class="detail-links">
-              <h3>관련 문서</h3>
+              <h3>{t`관련 문서`}</h3>
               <ul>
                 {currentItem.links.map((link) => (
                   <li key={link.url}>
@@ -1021,7 +1110,7 @@ export const App = () => {
           )}
           <footer>
             <span>
-              데이터 기준 {generatedAtLabel} ·{" "}
+              {t`데이터 기준 ${generatedAtLabel}`} ·{" "}
               <a
                 href="https://github.com/scarf005/sefirot"
                 target="_blank"
@@ -1031,21 +1120,19 @@ export const App = () => {
               </a>
             </span>
             <p class="disclaimer">
-              블루 아카이브 © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd.
-              게임 이미지와 텍스트의 권리는 각 권리자에게 있습니다. 이 사이트는
-              팬이 만든 비공식 비영리 사이트이며 넥슨, NEXON Games, Yostar와
-              관련이 없습니다. 스토리 순서와 메모는{" "}
+              {t`블루 아카이브 © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. 게임 이미지와 텍스트의 권리는 각 권리자에게 있습니다. 이 사이트는 팬이 만든 비공식 비영리 사이트이며 넥슨, NEXON Games, Yostar와 관련이 없습니다.`}
+              {" "}
+              {sourceNotice[0]}
               <a href="https://namu.wiki" target="_blank" rel="noreferrer">
-                나무위키
+                {t`나무위키`}
               </a>
-              (CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자 요청시 해당 자료를
-              내리겠습니다.{" "}
+              {sourceNotice[1]}{" "}
               <a
                 href="https://github.com/scarf005/sefirot/issues"
                 target="_blank"
                 rel="noreferrer"
               >
-                문의
+                {t`문의`}
               </a>
             </p>
           </footer>

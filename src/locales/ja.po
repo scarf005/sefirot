@@ -1,0 +1,345 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-10-24 12:51+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ja\n"
+
+#: src/app.tsx
+msgid "1부 시작~최종편"
+msgstr "第1部 はじまり〜最終編"
+
+#: src/app.tsx
+msgid "2부"
+msgstr "第2部"
+
+#: src/app.tsx
+msgid "검색"
+msgstr "検索"
+
+#: src/app.tsx
+msgid "게헨나"
+msgstr "ゲヘナ"
+
+#: src/app.tsx
+msgid "결과 없음"
+msgstr "結果なし"
+
+#: src/app.tsx
+msgid "공개일"
+msgstr "公開日"
+
+#: src/app.tsx
+msgid "관련 문서"
+msgstr "関連ページ"
+
+#: src/app.tsx
+msgid "구간"
+msgstr "区間"
+
+#: src/app.tsx
+msgid "그룹"
+msgstr "グループ"
+
+#: src/app.tsx
+msgid "글로벌"
+msgstr "グローバル"
+
+#. placeholder {0}: importedIds.size
+#: src/app.tsx
+msgid "기록 {0}개를 가져왔습니다."
+msgstr "記録を{0}件読み込みました。"
+
+#: src/app.tsx
+msgid "기록 가져오기"
+msgstr "記録を読み込む"
+
+#: src/app.tsx
+msgid "기록 내보내기"
+msgstr "記録を書き出す"
+
+#: src/app.tsx
+msgid "기록 지우기"
+msgstr "記録を消去"
+
+#: src/app.tsx
+msgid "기록을 내보내지 못했습니다."
+msgstr "記録を書き出せませんでした。"
+
+#: src/app.tsx
+msgid "기록을 내보냈습니다."
+msgstr "記録を書き出しました。"
+
+#: src/app.tsx
+msgid "기록을 지우지 못했습니다."
+msgstr "記録を消去できませんでした。"
+
+#: src/app.tsx
+msgid "기록을 지웠습니다."
+msgstr "記録を消去しました。"
+
+#: src/app.tsx
+msgid "기타/콜라보"
+msgstr "その他/コラボ"
+
+#: src/app.tsx
+msgid "나무위키"
+msgstr "namu.wiki"
+
+#: src/app.tsx
+msgid "데이터 기준 {generatedAtLabel}"
+msgstr "データ基準 {generatedAtLabel}"
+
+#: src/app.tsx
+msgid "레인 간격"
+msgstr "レーン間隔"
+
+#: src/app.tsx
+msgid "메인"
+msgstr "メイン"
+
+#: src/app.tsx
+msgid "메인 스토리"
+msgstr "メインストーリー"
+
+#: src/app.tsx
+msgid "메인 스토리 고정"
+msgstr "メインストーリーを固定"
+
+#: src/app.tsx
+msgid "메인 스토리 연계 이벤트"
+msgstr "メインストーリー連動イベント"
+
+#: src/app.tsx
+msgid "문의"
+msgstr "お問い合わせ"
+
+#: src/app.tsx
+msgid "미니"
+msgstr "ミニ"
+
+#: src/app.tsx
+msgid "미출시"
+msgstr "未リリース"
+
+#: src/app.tsx
+msgid "밀레니엄"
+msgstr "ミレニアム"
+
+#: src/app.tsx
+msgid "발키리/SRT"
+msgstr "ヴァルキューレ/SRT"
+
+#: src/app.tsx
+msgid "백귀야행"
+msgstr "百鬼夜行"
+
+#: src/app.tsx
+msgid "보통"
+msgstr "標準"
+
+#: src/app.tsx
+msgid "분류"
+msgstr "分類"
+
+#: src/app.tsx
+msgid "붉은겨울"
+msgstr "レッドウィンター"
+
+#: src/app.tsx
+msgid "브라우저에 저장할 수 없습니다."
+msgstr "ブラウザーに保存できません。"
+
+#: src/app.tsx
+msgid "블루 아카이브 © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. 게임 이미지와 텍스트의 권리는 각 권리자에게 있습니다. 이 사이트는 팬이 만든 비공식 비영리 사이트이며 넥슨, NEXON Games, Yostar와 관련이 없습니다."
+msgstr "ブルーアーカイブ © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. ゲームの画像およびテキストの権利は各権利者に帰属します。このサイトはファンによる非公式の非営利サイトで、NEXON Korea、NEXON Games、Yostarとは関係ありません。"
+
+#: src/i18n.ts
+msgid "블루 아카이브 시간순 스토리"
+msgstr "ブルーアーカイブ 時系列ストーリー"
+
+#: src/app.tsx
+msgid "산해경"
+msgstr "山海経"
+
+#: src/app.tsx
+msgid "상"
+msgstr "上"
+
+#: src/app.tsx
+msgid "설정"
+msgstr "設定"
+
+#: src/app.tsx
+msgid "설정을 저장하지 못했습니다."
+msgstr "設定を保存できませんでした。"
+
+#: src/app.tsx
+msgid "숨김"
+msgstr "非表示"
+
+#: src/app.tsx
+msgid "스토리"
+msgstr "ストーリー"
+
+#: src/app.tsx
+msgid "스토리 순서"
+msgstr "ストーリー順"
+
+#: src/app.tsx
+msgid "스토리 순서도"
+msgstr "ストーリー順フローチャート"
+
+#: src/app.tsx
+msgid "스토리 순서와 메모는 {linkMarker}(CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자 요청시 해당 자료를 내리겠습니다."
+msgstr "ストーリー順とメモは{linkMarker}(CC BY-NC-SA 2.0 KR)から取得しました。権利者の要請があれば該当資料を削除します。"
+
+#: src/app.tsx
+msgid "스토리 정보"
+msgstr "ストーリー情報"
+
+#: src/app.tsx
+msgid "아비도스"
+msgstr "アビドス"
+
+#: src/app.tsx
+msgid "안 읽은 줄거리 가리기"
+msgstr "未読のあらすじを隠す"
+
+#: src/app.tsx
+msgid "안 읽음"
+msgstr "未読"
+
+#: src/app.tsx
+msgid "안 읽음으로 바꿨습니다."
+msgstr "未読に変更しました。"
+
+#: src/app.tsx
+msgid "언어"
+msgstr "言語"
+
+#: src/app.tsx
+msgid "없음"
+msgstr "なし"
+
+#: src/app.tsx
+msgid "와일드헌트"
+msgstr "ワイルドハント"
+
+#: src/app.tsx
+msgid "이벤트"
+msgstr "イベント"
+
+#: src/app.tsx
+msgid "이어 보기"
+msgstr "続きから"
+
+#: src/app.tsx
+msgid "일본"
+msgstr "日本"
+
+#: src/app.tsx
+msgid "읽음"
+msgstr "既読"
+
+#: src/app.tsx
+msgid "읽음 기록을 모두 지울까요?"
+msgstr "既読の記録をすべて消去しますか?"
+
+#: src/app.tsx
+msgid "읽음 표시"
+msgstr "既読にする"
+
+#: src/app.tsx
+msgid "읽음 해제"
+msgstr "既読を解除"
+
+#: src/app.tsx
+msgid "읽음으로 바꿨습니다."
+msgstr "既読に変更しました。"
+
+#: src/app.tsx
+msgid "저장하지 못했습니다."
+msgstr "保存できませんでした。"
+
+#: src/app.tsx
+msgid "전체"
+msgstr "すべて"
+
+#: src/app.tsx
+msgid "접기"
+msgstr "閉じる"
+
+#: src/app.tsx
+msgid "좁게"
+msgstr "狭く"
+
+#: src/app.tsx
+msgid "종류"
+msgstr "種類"
+
+#: src/app.tsx
+msgid "줄거리 보기"
+msgstr "あらすじを見る"
+
+#: src/app.tsx
+msgid "중"
+msgstr "中"
+
+#: src/app.tsx
+msgid "중요도"
+msgstr "重要度"
+
+#: src/app.tsx
+msgid "중요도 하·중하·없음 숨기기"
+msgstr "重要度 下・中下・なし を隠す"
+
+#: src/app.tsx
+msgid "중요한 것만"
+msgstr "重要なものだけ"
+
+#: src/app.tsx
+msgid "중하"
+msgstr "中下"
+
+#: src/app.tsx
+msgid "최종편 이후~데카그라마톤"
+msgstr "最終編以降〜デカグラマトン"
+
+#: src/app.tsx
+msgid "트리니티"
+msgstr "トリニティ"
+
+#: src/app.tsx
+msgid "파일을 읽지 못했습니다."
+msgstr "ファイルを読み込めませんでした。"
+
+#: src/app.tsx
+msgid "펼치기"
+msgstr "開く"
+
+#: src/app.tsx
+msgid "표시"
+msgstr "表示"
+
+#: src/app.tsx
+msgid "필터"
+msgstr "フィルター"
+
+#: src/app.tsx
+msgid "하"
+msgstr "下"
+
+#: src/app.tsx
+msgid "하이랜더"
+msgstr "ハイランダー"
+
+#: src/app.tsx
+msgid "한국어 더빙"
+msgstr "韓国語吹き替え"
+
+#: src/app.tsx
+msgid "확대"
+msgstr "拡大"

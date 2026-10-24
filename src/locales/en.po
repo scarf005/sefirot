@@ -1,0 +1,345 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-10-24 12:51+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+
+#: src/app.tsx
+msgid "1부 시작~최종편"
+msgstr "Part 1: Start to Final"
+
+#: src/app.tsx
+msgid "2부"
+msgstr "Part 2"
+
+#: src/app.tsx
+msgid "검색"
+msgstr "Search"
+
+#: src/app.tsx
+msgid "게헨나"
+msgstr "Gehenna"
+
+#: src/app.tsx
+msgid "결과 없음"
+msgstr "No results"
+
+#: src/app.tsx
+msgid "공개일"
+msgstr "Release date"
+
+#: src/app.tsx
+msgid "관련 문서"
+msgstr "Related pages"
+
+#: src/app.tsx
+msgid "구간"
+msgstr "Section"
+
+#: src/app.tsx
+msgid "그룹"
+msgstr "Group"
+
+#: src/app.tsx
+msgid "글로벌"
+msgstr "Global"
+
+#. placeholder {0}: importedIds.size
+#: src/app.tsx
+msgid "기록 {0}개를 가져왔습니다."
+msgstr "Imported {0} records."
+
+#: src/app.tsx
+msgid "기록 가져오기"
+msgstr "Import history"
+
+#: src/app.tsx
+msgid "기록 내보내기"
+msgstr "Export history"
+
+#: src/app.tsx
+msgid "기록 지우기"
+msgstr "Clear history"
+
+#: src/app.tsx
+msgid "기록을 내보내지 못했습니다."
+msgstr "Could not export the history."
+
+#: src/app.tsx
+msgid "기록을 내보냈습니다."
+msgstr "Exported the history."
+
+#: src/app.tsx
+msgid "기록을 지우지 못했습니다."
+msgstr "Could not clear the history."
+
+#: src/app.tsx
+msgid "기록을 지웠습니다."
+msgstr "Cleared the history."
+
+#: src/app.tsx
+msgid "기타/콜라보"
+msgstr "Other/Collab"
+
+#: src/app.tsx
+msgid "나무위키"
+msgstr "namu.wiki"
+
+#: src/app.tsx
+msgid "데이터 기준 {generatedAtLabel}"
+msgstr "Data as of {generatedAtLabel}"
+
+#: src/app.tsx
+msgid "레인 간격"
+msgstr "Lane spacing"
+
+#: src/app.tsx
+msgid "메인"
+msgstr "Main"
+
+#: src/app.tsx
+msgid "메인 스토리"
+msgstr "Main story"
+
+#: src/app.tsx
+msgid "메인 스토리 고정"
+msgstr "Pin main story"
+
+#: src/app.tsx
+msgid "메인 스토리 연계 이벤트"
+msgstr "Main story tie-in event"
+
+#: src/app.tsx
+msgid "문의"
+msgstr "Contact"
+
+#: src/app.tsx
+msgid "미니"
+msgstr "Mini"
+
+#: src/app.tsx
+msgid "미출시"
+msgstr "Unreleased"
+
+#: src/app.tsx
+msgid "밀레니엄"
+msgstr "Millennium"
+
+#: src/app.tsx
+msgid "발키리/SRT"
+msgstr "Valkyrie/SRT"
+
+#: src/app.tsx
+msgid "백귀야행"
+msgstr "Hyakkiyako"
+
+#: src/app.tsx
+msgid "보통"
+msgstr "Normal"
+
+#: src/app.tsx
+msgid "분류"
+msgstr "Category"
+
+#: src/app.tsx
+msgid "붉은겨울"
+msgstr "Red Winter"
+
+#: src/app.tsx
+msgid "브라우저에 저장할 수 없습니다."
+msgstr "Cannot save in this browser."
+
+#: src/app.tsx
+msgid "블루 아카이브 © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. 게임 이미지와 텍스트의 권리는 각 권리자에게 있습니다. 이 사이트는 팬이 만든 비공식 비영리 사이트이며 넥슨, NEXON Games, Yostar와 관련이 없습니다."
+msgstr "Blue Archive © 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. Game images and text belong to their respective owners. This is an unofficial, non-commercial fan site, not affiliated with NEXON Korea, NEXON Games or Yostar."
+
+#: src/i18n.ts
+msgid "블루 아카이브 시간순 스토리"
+msgstr "Blue Archive story timeline"
+
+#: src/app.tsx
+msgid "산해경"
+msgstr "Shanhaijing"
+
+#: src/app.tsx
+msgid "상"
+msgstr "High"
+
+#: src/app.tsx
+msgid "설정"
+msgstr "Settings"
+
+#: src/app.tsx
+msgid "설정을 저장하지 못했습니다."
+msgstr "Could not save the setting."
+
+#: src/app.tsx
+msgid "숨김"
+msgstr "hidden"
+
+#: src/app.tsx
+msgid "스토리"
+msgstr "Story"
+
+#: src/app.tsx
+msgid "스토리 순서"
+msgstr "Story order"
+
+#: src/app.tsx
+msgid "스토리 순서도"
+msgstr "Story order chart"
+
+#: src/app.tsx
+msgid "스토리 순서와 메모는 {linkMarker}(CC BY-NC-SA 2.0 KR)에서 가져왔습니다. 권리자 요청시 해당 자료를 내리겠습니다."
+msgstr "Story order and notes are taken from {linkMarker} (CC BY-NC-SA 2.0 KR). The material will be removed at the rights holder's request."
+
+#: src/app.tsx
+msgid "스토리 정보"
+msgstr "Story details"
+
+#: src/app.tsx
+msgid "아비도스"
+msgstr "Abydos"
+
+#: src/app.tsx
+msgid "안 읽은 줄거리 가리기"
+msgstr "Hide summaries of unread stories"
+
+#: src/app.tsx
+msgid "안 읽음"
+msgstr "Unread"
+
+#: src/app.tsx
+msgid "안 읽음으로 바꿨습니다."
+msgstr "Marked as unread."
+
+#: src/app.tsx
+msgid "언어"
+msgstr "Language"
+
+#: src/app.tsx
+msgid "없음"
+msgstr "None"
+
+#: src/app.tsx
+msgid "와일드헌트"
+msgstr "Wild Hunt"
+
+#: src/app.tsx
+msgid "이벤트"
+msgstr "Event"
+
+#: src/app.tsx
+msgid "이어 보기"
+msgstr "Continue"
+
+#: src/app.tsx
+msgid "일본"
+msgstr "Japan"
+
+#: src/app.tsx
+msgid "읽음"
+msgstr "Read"
+
+#: src/app.tsx
+msgid "읽음 기록을 모두 지울까요?"
+msgstr "Clear all read history?"
+
+#: src/app.tsx
+msgid "읽음 표시"
+msgstr "Mark as read"
+
+#: src/app.tsx
+msgid "읽음 해제"
+msgstr "Mark as unread"
+
+#: src/app.tsx
+msgid "읽음으로 바꿨습니다."
+msgstr "Marked as read."
+
+#: src/app.tsx
+msgid "저장하지 못했습니다."
+msgstr "Could not save."
+
+#: src/app.tsx
+msgid "전체"
+msgstr "All"
+
+#: src/app.tsx
+msgid "접기"
+msgstr "Collapse"
+
+#: src/app.tsx
+msgid "좁게"
+msgstr "Narrow"
+
+#: src/app.tsx
+msgid "종류"
+msgstr "Kind"
+
+#: src/app.tsx
+msgid "줄거리 보기"
+msgstr "Show summary"
+
+#: src/app.tsx
+msgid "중"
+msgstr "Medium"
+
+#: src/app.tsx
+msgid "중요도"
+msgstr "Importance"
+
+#: src/app.tsx
+msgid "중요도 하·중하·없음 숨기기"
+msgstr "Hide low, medium-low and no importance"
+
+#: src/app.tsx
+msgid "중요한 것만"
+msgstr "Important only"
+
+#: src/app.tsx
+msgid "중하"
+msgstr "Medium-low"
+
+#: src/app.tsx
+msgid "최종편 이후~데카그라마톤"
+msgstr "After Final to Decagrammaton"
+
+#: src/app.tsx
+msgid "트리니티"
+msgstr "Trinity"
+
+#: src/app.tsx
+msgid "파일을 읽지 못했습니다."
+msgstr "Could not read the file."
+
+#: src/app.tsx
+msgid "펼치기"
+msgstr "Expand"
+
+#: src/app.tsx
+msgid "표시"
+msgstr "shown"
+
+#: src/app.tsx
+msgid "필터"
+msgstr "Filter"
+
+#: src/app.tsx
+msgid "하"
+msgstr "Low"
+
+#: src/app.tsx
+msgid "하이랜더"
+msgstr "Highlander"
+
+#: src/app.tsx
+msgid "한국어 더빙"
+msgstr "Korean dub"
+
+#: src/app.tsx
+msgid "확대"
+msgstr "Zoom"
