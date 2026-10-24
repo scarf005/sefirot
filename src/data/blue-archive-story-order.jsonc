@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T14:11:20.501Z",
+  "generatedAt": "2026-10-24T03:46:52.012Z",
   "tree": {
     "id": "blue-archive-story-order-tree",
     "name": "Blue Archive story order",
@@ -756,6 +756,11 @@
         "url": "https://static.wikitide.net/bluearchivewiki/thumb/1/1c/BG_CS_PR_02.jpg/480px-BG_CS_PR_02.jpg",
         "fit": "cover",
       },
+      "l10n": {
+        "en": {
+          "summary": "In Prologue, you, Sensei, arrive at Kivotos.",
+        },
+      },
     },
     {
       "id": "story-002",
@@ -795,6 +800,11 @@
         "fit": "cover",
       },
       "summary": "폐교를 막기 위해 세워진 대책위원회. 매일매일 힘겹게 버티고는 있지만, 학교의 빚은 줄어들 생각을 하지 않습니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-003",
@@ -834,6 +844,11 @@
         "fit": "cover",
       },
       "summary": "위기에 빠진 대책위원회는 학교의 존립을 위협하는 음모에 맞서 싸울 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-004",
@@ -873,6 +888,11 @@
         "fit": "cover",
       },
       "summary": "위기에 빠진 대책위원회는 학교의 존립을 위협하는 음모에 맞서 싸울 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-005",
@@ -897,10 +917,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/WkjN1TSB2wpsORxx5PIQZpD1Sf_qwSIf9fOzBRICou-0WgDyht6XLvofZr5E_O7bsozjeY_7wZSc50ztmFntFRAKiq7TwMWppb88sJry_5k7zHx0R9ePU-yrS2VuuLL39GAINCKaiR_g_Zy-3OxluQ.webp",
+        "url": "https://i.namu.wiki/i/JqXMJcqQIbZ19eWp_dvIeKkuH9xRBo6c1vwd1F39C9b8GzPEMqG68YE3ceOitVssXDTiUKj5gusBclcNKZYZVEBp0tZTmtI2BBOh7VYJI0U19iZD-Ezx9pvGWqnatUaKYGdnYATx6ObgRE2Up-dF0g.webp",
         "fit": "cover",
       },
       "summary": "식도락을 위해선 물불을 가리지 않는다! 미식연구회가 추구하는 진정한 맛이란 무엇인가?",
+      "l10n": {
+        "en": {
+          "series": "Gourmet Research Society",
+        },
+        "ja": {
+          "series": "美食研究会",
+        },
+      },
     },
     {
       "id": "story-006",
@@ -925,10 +953,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/g6xPQIDe6hZXWJRUiW6o7oaEi1HAek_meYnkJQJiM-lScDsCwqlsTRcBfI7-ahFqOvbsI9VdkRqf1gIDyDeGdJffRmQl_Q-94Xr4sQehE811RZjTx2V6hz2_wI1o0NVV8ZHO4iFRFMfVwHORSgOjgQ.webp",
+        "url": "https://i.namu.wiki/i/95H2JChbSKn9tj1yctHcwErDGQVeMasGOkTxisDjMfdbrZmrjcEByT93YIG0FKj_QMZ9rhyQcwNftL1gGWKJDU_j25s5El1Ve5kMyyhCygZU-Lczi9ND5hKcTtCmgygm7I_nBEbdsAf1LsTvqILUyQ.webp",
         "fit": "cover",
       },
       "summary": "돈만 주면 무엇이든 해결해드립니다. 오늘도 성공을 위해 뛰어다니는 흥신소의 나날.",
+      "l10n": {
+        "en": {
+          "series": "Problem Solver 68",
+        },
+        "ja": {
+          "series": "便利屋68",
+        },
+      },
     },
     {
       "id": "story-007",
@@ -953,10 +989,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/NS6LYWQjQZ9QznsdhSodRozxAZq5MBqtGV9zSmDJFg5_ZKGZUbtNI4ObMbiMkP23RBevYt1hc0H-sK_hHJLny6P7uonNjpvo-cId9dSHbn5XXSsx6oUhFPja6zxhz_6rXFDS0eS5AmpezlAWbJqilw.webp",
+        "url": "https://i.namu.wiki/i/ZMUnOiS0P_5CdnvKAtK81wpabn-zV7LT8Iv8bYVZxg3r658IitO7IUUz0dizdHgT8FoCM1xODq1xqk7iUjET6iGcOZJ1LNzo6sdreaBHMq2bxToIV1guPP9kX9KNLlvKPk30lKjKlAMSAZeiEaOqQw.webp",
         "fit": "cover",
       },
       "summary": "게헨나의 식탁을 책임진다. 급양부의 소녀들이 기록하는 오늘의 레시피.",
+      "l10n": {
+        "en": {
+          "series": "School Lunch Club",
+        },
+        "ja": {
+          "series": "給食部",
+        },
+      },
     },
     {
       "id": "story-008",
@@ -981,10 +1025,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/SQNkO8yQFgyoTGjEg6UkbCKpBFYzbCY5ynINm9_EGONQQF_h9JTtz4M_C5arZXeNsHcnJji7pNmX0wVQdKpgCNSGf3J9-9tcwiOX-v7V8sgR884ex2qcHztHO6R_xvveeb8lO-7nnda9ciwW-drXeg.webp",
+        "url": "https://i.namu.wiki/i/T9cP7dniFsbxC6ybSbuBKkBQE-AIE7kHrKzVo_gG_t4YJOXYbiRkeyulAytPy8rRyxuAB0VmDvYawFPoFhL4KYsDMMSmPuYLDigRD2TCGqAVD4Z_28XcosHFYYdNqY38kksz71c10BB8zs-scFFirg.webp",
         "fit": "cover",
       },
       "summary": "백의의 천사들과 함께하는 포근하고 행복한 나날들.",
+      "l10n": {
+        "en": {
+          "series": "Remedial Knights",
+        },
+        "ja": {
+          "series": "救護騎士団",
+        },
+      },
     },
     {
       "id": "story-009",
@@ -1009,10 +1061,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/djMMYKkHGt3fZwNYrW91xW8J_Hgm1YQgrnFnPpRw8tHhusxcWGYdduYSOUO-wGyPzw3cMbCWTkFahGH_iAlqa8oRSqMSKzt_0SnqiJSlpCInOKxRgBVGAf80rluKP609A2mdwNl-qXq4YfvbznDEDg.webp",
+        "url": "https://i.namu.wiki/i/ZRrQefWJ8S3QBwiy-HbPUyMOIxXcXrbVJ1UMAO25CrocU7sMAU_BocqKAExXGxF7xNwxubSoELYQ7MyCTNp4HzMIaMrABBkMHJwGv1t4cJOsHDVdT3JPiT-DXJnHhw_dImjRs3j2ZhQbyTBLW7Jlhw.webp",
         "fit": "cover",
       },
       "summary": "우리가 곧, 정의다! 항상 정의감에 불타는 정의실현부의 분투기!",
+      "l10n": {
+        "en": {
+          "series": "Justice Task Force",
+        },
+        "ja": {
+          "series": "正義実現委員会",
+        },
+      },
     },
     {
       "id": "story-010",
@@ -1037,10 +1097,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/xSWO16pxQyEeBETVn5xBk7vmdT3YuixjLIuOwjRwLv7ou6plvpvw8ptWS5tFqqQfqb96h9mCUXWkfLeZ2dpv2HgViynMjrOBOshNVBLQ2OVjj7SpaQQKU0WRDo_akkvzYxXYGRFJcrjxlLdA5tzcSg.webp",
+        "url": "https://i.namu.wiki/i/-CC1ZSSgYZCMmWkOfmYPAX_azddkoaEgJsTX2fIOS155KJqPqRHxauHnhmRhMDR6a70ILoGQBfTwJNFwjvueOlFB0QViVJOX8ysS-Q1f2kqplgk-X9dWzUGuI3RJimM472rLKKxyt80v5K0kkJY3vQ.webp",
         "fit": "cover",
       },
       "summary": "게헨나 학원의 풍기를 유지하기 위한 게헨나 선도부의 올바른 선도 기록.",
+      "l10n": {
+        "en": {
+          "series": "Prefect Team",
+        },
+        "ja": {
+          "series": "風紀委員会",
+        },
+      },
     },
     {
       "id": "story-011",
@@ -1065,10 +1133,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/xSWO16pxQyEeBETVn5xBk7vmdT3YuixjLIuOwjRwLv7ou6plvpvw8ptWS5tFqqQfqb96h9mCUXWkfLeZ2dpv2HgViynMjrOBOshNVBLQ2OVjj7SpaQQKU0WRDo_akkvzYxXYGRFJcrjxlLdA5tzcSg.webp",
+        "url": "https://i.namu.wiki/i/-CC1ZSSgYZCMmWkOfmYPAX_azddkoaEgJsTX2fIOS155KJqPqRHxauHnhmRhMDR6a70ILoGQBfTwJNFwjvueOlFB0QViVJOX8ysS-Q1f2kqplgk-X9dWzUGuI3RJimM472rLKKxyt80v5K0kkJY3vQ.webp",
         "fit": "cover",
       },
       "summary": "게헨나 학원의 풍기를 유지하기 위한 게헨나 선도부의 올바른 선도 기록.",
+      "l10n": {
+        "en": {
+          "series": "Prefect Team",
+        },
+        "ja": {
+          "series": "風紀委員会",
+        },
+      },
     },
     {
       "id": "story-012",
@@ -1093,10 +1169,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/ZMVwCoiBD_9HJW0u20gn-NyDFxFSVg669OzDoFIoU4768qHE9FNzlqMx6XCpXS5Q0-6SpBVc6_OVe6ocwA__Ir0JOgFgjRC6PLnaKGjWwaR96MXCfcHDhL3kYv01WPo7GHkS7M5t07G1inosEO_voA.webp",
+        "url": "https://i.namu.wiki/i/gOJViw_9x1ZrkNie2DRI5nkLqdCkCXO7erY9YI_9mJTUVcnPGRSsLmfcOcdYKCEz2WrsGSGUMHLx2GoOTON1slFNh2VPX7fBqXjYzQKptNmmhxvuPYnUtEU2IDJkOi0L4hsQ5Q9P1tqyg7qT4htxkA.webp",
         "fit": "cover",
       },
       "summary": "평범한 여고생의 평범한 일상. 하지만 키보토스의 \"평범함\"은 어딘가 다를지도?",
+      "l10n": {
+        "en": {
+          "series": "After-School Sweets Club",
+        },
+        "ja": {
+          "series": "放課後スイーツ部",
+        },
+      },
     },
     {
       "id": "story-013",
@@ -1121,10 +1205,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/ZMVwCoiBD_9HJW0u20gn-NyDFxFSVg669OzDoFIoU4768qHE9FNzlqMx6XCpXS5Q0-6SpBVc6_OVe6ocwA__Ir0JOgFgjRC6PLnaKGjWwaR96MXCfcHDhL3kYv01WPo7GHkS7M5t07G1inosEO_voA.webp",
+        "url": "https://i.namu.wiki/i/gOJViw_9x1ZrkNie2DRI5nkLqdCkCXO7erY9YI_9mJTUVcnPGRSsLmfcOcdYKCEz2WrsGSGUMHLx2GoOTON1slFNh2VPX7fBqXjYzQKptNmmhxvuPYnUtEU2IDJkOi0L4hsQ5Q9P1tqyg7qT4htxkA.webp",
         "fit": "cover",
       },
       "summary": "평범한 여고생의 평범한 일상. 하지만 키보토스의 \"평범함\"은 어딘가 다를지도?",
+      "l10n": {
+        "en": {
+          "series": "After-School Sweets Club",
+        },
+        "ja": {
+          "series": "放課後スイーツ部",
+        },
+      },
     },
     {
       "id": "story-014",
@@ -1149,10 +1241,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/HFHYui5YvxTff9UMDTkbl4qPPxgfZeHMPSbw5VGHr3RGCJnurGDIObWQCe2d_5m5jPec9nRaQP3BVDEEe11_kcLAUAWyh9m5AksQomKL6LUi4szc9zFn7Ya2eFFE4wg4mFe7SrrhU95pVn48lxg8ag.webp",
+        "url": "https://i.namu.wiki/i/IBXJm5iJBQPfi3TKggmG3EQchgrmh6PDgBPe3G8vtFqMVds3J5Kn-nJtXHC78nlT-vGysV4iBsz12qRB0s_sPAkYO7qp0w6JpG32u4L-i7WnYG6pzQ9ZAxnlQnzEfS-VqbWR7uhAF5a_B4oIoUzhVw.webp",
         "fit": "cover",
       },
       "summary": "학교를 살리기 위해선 뭐든지 한다! ⋯⋯그렇지만 좀 더 멀쩡한 방법은 없어?",
+      "l10n": {
+        "en": {
+          "series": "Foreclosure Task Force",
+        },
+        "ja": {
+          "series": "対策委員会",
+        },
+      },
     },
     {
       "id": "story-015",
@@ -1184,10 +1284,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/QTK3zDwJXcTpeMRhObT4pisSug5P_oKzCx-YitgQuFdCfbYPbgk_SnG3AS7ikLTpuCxwUjznYJPhc5mwppWnrhsEZWw0uYIyoLPnKVokw1TgQpq3Cvka6zZO9cJF4eiyfiRKN1H33gTudeySL6XlQg.webp",
+        "url": "https://i.namu.wiki/i/1VBmz9U-aLKCoGS_nVPBQfRzYE347iuDw9BqzK_Al8ZmB3Mml2pJTvB61qGD1MsUUGlZj9YOI5FKTrP9e_n6l93lL06j2uUIdfY5QPfpHkDz5n7j9cz3ILrkSeW3a80RBkDHUfExKwWiZ6QjWlIgKA.webp",
         "fit": "cover",
       },
       "summary": "백야당의 아이돌에게서 걸려 온 전화를 받고 찾은 백귀야행의 축제 「백야앵제」! 하지만 거리를 점거한 게 문제아들과 닌자라고?! 지금부터 엉망진창 대소동이 시작된다!",
+      "l10n": {
+        "en": {
+          "series": "Cherry Blossom Festival Commotion!",
+          "summary": "After receiving a sudden phone call from the poster girl of the Momoyo Hall, a traditional tea house, Sensei decides to head to Spring Cherry Blossom Festival held by the Hyakkiyako Alliance Academy. But what's going on, there are mysterious delinquents and ninja girls!? Brace yourself as the uproarious fun begins!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/801_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "桜花爛漫お祭り騒ぎ！",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8f/Event_Banner_801_Jp.png/480px-Event_Banner_801_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-016",
@@ -1212,10 +1329,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/y85ZmlMZaULGRgXRYtqJ2d4hmcQHt5JHvXelynpn7nL4qy_cT1dAQqu_XcazV_DO-R0PaKWsnr2uW_SvuoOHup8pGzRCG4o401Jsoj96WtllRh0KZBHs2E-Ini50kNaGSuavsGuqLzhqZIkrBokcbQ.webp",
+        "url": "https://i.namu.wiki/i/JM7aunuYooeygMzvtYUT8ITeKuOxE7pRuRBftTxCdzw0Km3jBkMmQ8v8uWsODzNYxvgAsRSrKiWt8NJukPVgtdS_qwezd6VhVWSm9ErZH-1jCJiTdSwE8U0oSGEfeMCJLh8KJO2tipahyEtxWvTMaQ.webp",
         "fit": "cover",
       },
       "summary": "축제 준비는 맡겨만 주세요! 의욕 충만 마츠리운영관리부 등장!",
+      "l10n": {
+        "en": {
+          "series": "Festival Operations Department",
+        },
+        "ja": {
+          "series": "お祭り運営委員会",
+        },
+      },
     },
     {
       "id": "story-017",
@@ -1240,10 +1365,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/pErgv-6GJnDQNWk909yRiy_HQ5OS7_8DsxYdWJ4sdvhsTRstpRCGwMopih-f-7yffWtkSP9ZcbPITok9HC3z5BAKRyEXRo8x1CLyxlHemrsDK_JJxrRkdgtuJY7vg1UeNG04ZoMea9Dib1exj5KA_g.webp",
+        "url": "https://i.namu.wiki/i/7oLvrWo394BJxhnbUXTCNLji-wZLKHdAUULQgjYaAsS3vormrKVPr4rXVWkSDOpG5X6WREQYe1AofbDu_J_BBbPPALEDC1cMxah7mjIJOzjw-3U4j78KLHAI1pfzkNC3GHVifk-EVhuL-RRfOcBmLg.webp",
         "fit": "cover",
       },
       "summary": "오늘도 각양각색의 수행을 쌓는 소녀들의 이야기!",
+      "l10n": {
+        "en": {
+          "series": "Inner Discipline Club",
+        },
+        "ja": {
+          "series": "修行部",
+        },
+      },
     },
     {
       "id": "story-018",
@@ -1268,10 +1401,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/pErgv-6GJnDQNWk909yRiy_HQ5OS7_8DsxYdWJ4sdvhsTRstpRCGwMopih-f-7yffWtkSP9ZcbPITok9HC3z5BAKRyEXRo8x1CLyxlHemrsDK_JJxrRkdgtuJY7vg1UeNG04ZoMea9Dib1exj5KA_g.webp",
+        "url": "https://i.namu.wiki/i/7oLvrWo394BJxhnbUXTCNLji-wZLKHdAUULQgjYaAsS3vormrKVPr4rXVWkSDOpG5X6WREQYe1AofbDu_J_BBbPPALEDC1cMxah7mjIJOzjw-3U4j78KLHAI1pfzkNC3GHVifk-EVhuL-RRfOcBmLg.webp",
         "fit": "cover",
       },
       "summary": "오늘도 각양각색의 수행을 쌓는 소녀들의 이야기!",
+      "l10n": {
+        "en": {
+          "series": "Inner Discipline Club",
+        },
+        "ja": {
+          "series": "修行部",
+        },
+      },
     },
     {
       "id": "story-019",
@@ -1311,6 +1452,11 @@
         "fit": "cover",
       },
       "summary": "부원도, 실적도 부족하여 폐부 위기에 놓인 게임개발부. 게임을 너무나도 사랑하는 개발부 멤버들은 무사히 부원을 모아 '갓겜'을 만들 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 2, the Game Development Department makes a surprising discovery in Millennium's ruins.",
+        },
+      },
     },
     {
       "id": "story-020",
@@ -1335,10 +1481,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/Apvb8OVjvoclynE51wV01f715TWr_edphs2QQHIpL6vO1wrjCm3MZdialC7kFtlrx6KGSrDM2LGyRxzLwIOnaR7jgVU1-sQqaaBJEeWFnMepjTNKidQVyU2Mr7EFE7qJWWjmK_0b-QtkisWn5Y0XdQ.webp",
+        "url": "https://i.namu.wiki/i/HcHln29aj3MHlVq9pvkDq7i8c1tTi09G0NH6CIS6oQshZcvoTwXZzZ5oG9uKcLJoqBzQymY7mDZ2hA74RV5hyBlVTymVtBFHziAWdT2FzptSWTa9_aXYAr3JWTHZHzZtcbQ6SKFzZismLluPKG3HaQ.webp",
         "fit": "cover",
       },
       "summary": "뭐든지 만들고, 뭐든지 개조한다! 밀레니엄의 마이스터들이 보여주는 최첨단 테크놀러지!",
+      "l10n": {
+        "en": {
+          "series": "Engineering Department",
+        },
+        "ja": {
+          "series": "エンジニア部",
+        },
+      },
     },
     {
       "id": "story-021",
@@ -1363,10 +1517,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/dcmEBze4z1odDlPR_9dsraWJ0IUhFSxdxZNkbTP9krF7iba8Txi7OU3xRsnjq7HZtvHixKv0nn-OFIRs35gfYc3WzBA8BPbIDDMi69KKfewKlgsWZQ8vRpS1p0g7rC7vciFxX6wNKlHQZ_9l6xhvAg.webp",
+        "url": "https://i.namu.wiki/i/D4emhCkGqR-61Or-utcpzWxdAhy3KUp8guhCrQvv6b5Ij0FTrkCN3IOIMpnhADUTOA4uNBteoHYnIcOLgPyZQr7NRzDoMeuEcWUCkepSI_pq3DLp257UflV8E_Odicrfz0AbLNihPVFsJB6qFnsJXw.webp",
         "fit": "cover",
       },
       "summary": "올해의 GOTY는 우리 차지야! 의욕 넘치는 너드 소녀들의 게임 일지.",
+      "l10n": {
+        "en": {
+          "series": "Game Development Department",
+        },
+        "ja": {
+          "series": "ゲーム開発部",
+        },
+      },
     },
     {
       "id": "story-022",
@@ -1398,10 +1560,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/75BgeveB4tAvjuznit2IZNT1F5Dn7YgCvnhI6mjwJ9H1NTFmjDPzkr0Lz86Dqt60cDw7nWctazIxMJxUMyj_WfHru23LSzXoFRpIfY_gr-86UgBnXa2-lg70ir0KGE10dr2uTkLxrWalSJdHflrOgw.webp",
+        "url": "https://i.namu.wiki/i/ACSaSL9W3HXWC0KOB42YBLuZnSEfbEaojBVD50iUKPsy_xLFl-RBtWPTKZP0FXCJSh3pew6qOTh78Rr848OgNaEyyDkFt6h81nmNZsm7oMN57PvvuEKMxhe-1jN7cziv1e2H7-CmYV6HfVlMnUWfsA.webp",
         "fit": "cover",
       },
       "summary": "체리노는 <이반 쿠팔라>를 맞아 선생님을 붉은겨울 학원에 초대한다. 하지만 갑작스럽게 발발한 쿠데타로 인해 체리노는 실각하고 마는데……. 회장 자리를 되찾기 위한 체리노의 혁명이 시작된다!",
+      "l10n": {
+        "en": {
+          "series": "A Revolutionary Ivan Kupala",
+          "summary": "「Red Winter Federal Academy」 A seldom-known academy on the Kivotos' outskirts with a large enrollment and district. The Federal Student Council's hold less influence here, so Red Winter is self-governing with Secretariat holding power. However, coups to overthrow the president occur weekly for some reason...",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/4/4d/Event_Banner_802_En.png/480px-Event_Banner_802_En.png",
+            "fit": "cover",
+          },
+        },
+        "ja": {
+          "series": "革命のイワン・クパーラ",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/2/2a/Event_Banner_802_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-023",
@@ -1426,10 +1605,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/CnTK5azlx4xHpZUujTQf7FIgrhjdigGfpNQlVw8gmC1mPxyWkjkH_BMBWAtrtFdxBLyJpgZUzV1hycJYxbVHYlM17o40QW_ZRxR-S-uapEMmZJn20C3cXpGmpnGzYgAb-3aVGop9icUQxRYDotIHbw.webp",
+        "url": "https://i.namu.wiki/i/z4V5yjlOh_Mo54FLZmWxynRLwOX-EO3wzvDtDBfWG2grRJ93AeH14QV5oL8uR-xUwzgDiPgrnHwaeb3O1sKsu-G7bilUBVBRcClLVaQ7V_l-oH8nW8dTaq-uaSmoQpSZOny-3CY0nn7Se_xJbcB2kg.webp",
         "fit": "cover",
       },
       "summary": "모든 것은 체리노 회장님을 위하여! 체리노 회장과 그 측근들의 소란스러운 일상.",
+      "l10n": {
+        "en": {
+          "series": "Red Winter Office",
+        },
+        "ja": {
+          "series": "レッドウィンター事務局",
+        },
+      },
     },
     {
       "id": "story-024",
@@ -1454,10 +1641,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/C-IaApw3YbvGAccuJvwxRZP8qHYSpPYiltOK-B95m76HpZJBLr8sRGXVwTyQYI7myO5VHvwInEFiHzCB55JGE_ZbibeDiB8V10mrl9O4oCe-ENOQGyf1wti2W33VTixJcsOjcwM7mOTY35r4iOiNRQ.webp",
+        "url": "https://i.namu.wiki/i/M65D1r0cE1I2aum_dzk4KYsGsoPhc2yUYV-GQ5ZlIXiCr5L5FHI2FU4RQIXgDWaRTIXGUIuTDyxKb6uRF-dYQT6lL5-kVXtcQ4xfvSLuVKZa_-KP2X2nzioGQ_lO-6-17gtSPwa1PLhJaVKgsuXLjA.webp",
         "fit": "cover",
       },
       "summary": "우리는 기필코 돌아간다! 227호 특별반 학생들의 애환이 담긴 생존일지",
+      "l10n": {
+        "en": {
+          "series": "Spec Ops No. 227",
+        },
+        "ja": {
+          "series": "227号特別クラス",
+        },
+      },
     },
     {
       "id": "story-025",
@@ -1489,10 +1684,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/4QDHDYVfteEyTIss4jYHLfG2eB7IUcFqKMa-nzCdko-q3Vo-boNLWiFUx6rdoVYRVaeR_2yaBlYXN-x4W8Kqfwv_BlRG7fayros1gAyKimRrW3rZTGZjA1LwUUuh7ci3CZUQ9DtY3UPRz4CGFoDgoQ.webp",
+        "url": "https://i.namu.wiki/i/hV86wvsEiIXkq2yYBIOiNai5fx3K2J3SdTW6W-r04MsdCvaBZexCZVTbWLFH-DnlASRad0ra0UAxxLYZZcPmAECVoTPZ7T90UNdcR3-98-HS8uRPPAeVVbl1pNq3jmKuE_JG9sQKahoVryvFWrnHew.webp",
         "fit": "cover",
       },
       "summary": "매화원의 교관, 슌은 사야가 준 회춘의 비약을 마시고 우연히 어릴 적의 모습으로 되돌아가게 된다. 하지만 몸뿐만 아니라 정신까지 어려진 슌은 학원을 돌아다니며 온갖 말썽을 부리게 되는데⋯⋯.",
+      "l10n": {
+        "en": {
+          "series": "Playing Tag at Neverland",
+          "summary": "Shun, the instructor at Plum Blossom Garden who was exhausted and overworked, drinks an elixir made by Saya and becomes a small 9 year old child. At first, she only planned on having a bit of fun, but child Shun's troublemaking quickly grows out of hand. Sensei and the students work together to stop Shun and bring her back to her old self...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/805_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "ネバーランドでつかまえて",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/7/77/Event_Banner_805_Jp.png/480px-Event_Banner_805_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-026",
@@ -1517,10 +1729,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/h3FGqaaVNwrZTiAb8XAsDWCQR_Rhl4VxnWqRXnop65d2Av-tClPkO9-qV_hNf45-28VK6mlNRmobAd3BkVZ88FY3M2CSwdHgGavCBOCyb8l2jGfZWtpiaG5ATTZeW1ODdwaIbpgmLNaQdBnYITESuQ.webp",
+        "url": "https://i.namu.wiki/i/sJ-1aG2qT76rOk_mlgrKv1IY7FLA3DDjZy-IXt_VH7ZKcUiYHKPJA-ADNyRmzJt4FK16DvyJTj1uFG6YMPLj9Rca_LrMC5erN2iG72TcZrCCuPC9prP1PL-vleK9-1LmBFgRz9p_KbpvCIyUoMFQqg.webp",
         "fit": "cover",
       },
       "summary": "모두 착한 아이뿐이네요~ 천사들과 함께하는 매화원의 행복한 일상.",
+      "l10n": {
+        "en": {
+          "series": "Plum Blossom Garden",
+        },
+        "ja": {
+          "series": "梅花園",
+        },
+      },
     },
     {
       "id": "story-027",
@@ -1545,10 +1765,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/w6SD2aYEmvmkFTluK1vhXzVDJdH-98VtvmBYz129KYh5CdZKDgY5bAikiYDBzTRiHxmM3RjtRRnIxpXKFlFUT0C3_I7XmWUwej_2vWPYah6kUGMEBkKk9Yj4JYmqet2Hdz6yE050eatPIl5N6EqUFA.webp",
+        "url": "https://i.namu.wiki/i/3m7FshNZsBzqlXGrpGCLwPuimoFiBQxr65t96lg6gpodq8OZO75vVkJj_6yCpKwK2yXyjeV0JqG9Fe69DQQGeM7DoeyIupvKBHa6ojGUh1Bl9KYnkXN1PpygMJSIZHNgWy515HNzNKF68t65bUsXkA.webp",
         "fit": "cover",
       },
       "summary": "시민 여러분의 발이 되어드리겠습니다! 생활안전국은 오늘도 근무 이상 무!",
+      "l10n": {
+        "en": {
+          "series": "Public Safety Bureau",
+        },
+        "ja": {
+          "series": "生活安全局",
+        },
+      },
     },
     {
       "id": "story-028",
@@ -1580,10 +1808,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/owRXF8oXRkAGotgtV0dL3HZOD51TAkZvXB-AIHU_gEhkEZBWA4lvfo-xLbxfpCTncZ1ZKgL-v0oJNwEhN-7BGlJwoSq6TojmsWFXyOcrOtfq3_Xt1nK5xAXS3bKN1sU4O8Vjehje4CBLxsoDEMmezQ.webp",
+        "url": "https://i.namu.wiki/i/mPXmI1F4Idv3Q4IeHQRwg8N__mXqKJcFb7xqyzlgkVHDwC6lUFHoIRJKDIgfZWLP8pVzrwsyAS2JztWq-xr4XokigkcgarrCkSoAceg86TY_ZQdHqb2IFQsiNq7209_-k4pVznQdyUh_Pc280TTccQ.webp",
         "fit": "cover",
       },
       "summary": "밀레니엄의 문제아 백토를 체포하기 위해 C&C가 나선다. 하지만 백토가 도망친 곳은 다른 학원의 호화 크루즈선!정체를 숨기기 위해 C&C 부원들은 바니걸로 위장해 잠입을 시도하는데⋯⋯.",
+      "l10n": {
+        "en": {
+          "series": "Bunny Chasers on Board",
+          "summary": "C&C is on the case to arrest White Rabbit, Millennium's resident troublemaker. They chase White Rabbit all the way to another academy's luxury cruise ship that only allow bunny girls. Left with no choice, the C&C members disguise themselves as bunny girls and infiltrate the ship!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/806_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "船上のバニーチェイサー",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/5/52/Event_Banner_806_Jp.png/480px-Event_Banner_806_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-029",
@@ -1608,10 +1853,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/0enHL34lh7wOcDp4JnpipeJjcwu650owlbohwul_VEMtl0K5lwj3c_J1Ll5D3_a9WA20xGEOcsgH-WjHrE2XYvS7jPU6CaHLDX9860OZnYbtsBXXDLZdzjPtYfpH1_r-NuTM-ja9Fs4bLVlqhERncw.webp",
+        "url": "https://i.namu.wiki/i/7ie-IKe6DkFlXSU3OlvgzKmmXDzDL7Vxm6v5DyPSMNoPdLnuzpwxd7ug4msFHGR8mDBFPqb8bl20ilEBsnpDMbujj8Bp5hmAsWshbK65XkWiWt2DV3xpIS1EOBqsohVpbJM_ux6V7am5fxDmhx-QoA.webp",
         "fit": "cover",
       },
       "summary": "맡은 임무는 무엇이든 해낸다! 소문의 C&C의 일상에는 과연 어떤 일들이?",
+      "l10n": {
+        "en": {
+          "series": "Cleaning & Clearing",
+        },
+        "ja": {
+          "series": "Cleaning&Clearing",
+        },
+      },
     },
     {
       "id": "story-030",
@@ -1636,10 +1889,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/0enHL34lh7wOcDp4JnpipeJjcwu650owlbohwul_VEMtl0K5lwj3c_J1Ll5D3_a9WA20xGEOcsgH-WjHrE2XYvS7jPU6CaHLDX9860OZnYbtsBXXDLZdzjPtYfpH1_r-NuTM-ja9Fs4bLVlqhERncw.webp",
+        "url": "https://i.namu.wiki/i/7ie-IKe6DkFlXSU3OlvgzKmmXDzDL7Vxm6v5DyPSMNoPdLnuzpwxd7ug4msFHGR8mDBFPqb8bl20ilEBsnpDMbujj8Bp5hmAsWshbK65XkWiWt2DV3xpIS1EOBqsohVpbJM_ux6V7am5fxDmhx-QoA.webp",
         "fit": "cover",
       },
       "summary": "맡은 임무는 무엇이든 해낸다! 소문의 C&C의 일상에는 과연 어떤 일들이?",
+      "l10n": {
+        "en": {
+          "series": "Cleaning & Clearing",
+        },
+        "ja": {
+          "series": "Cleaning&Clearing",
+        },
+      },
     },
     {
       "id": "story-031",
@@ -1671,8 +1932,25 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/fFP390ko-aZPlLKXKrYSh46uwZLhPOnSUOyhvoN4RhEtAavdkHy7rsaBKVmNo0lTRI8ryDv2nRr5_EjG_hpsS-C9hhkjwjMigW4XdNxufDyhV_PhMBWhzEyLAMaPFSApjOp-5nR7T5YlXUNEy8vZKQ.webp",
+        "url": "https://i.namu.wiki/i/dofu8cZXs2ENyANmGVVtGOM_NcW5NNq6O5k-PCnc-350UDGUOB4GMXcHL1CXlZ9pETQhuxht_wlLQUSKrb3K8V8kmofAzu2VV-F1YEksetu3x47fPmFmRucI8ax9ASWg7auHFCpVZyA7NItXReVb2w.webp",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "series": "Hatsune Miku Live",
+          "summary": "The virtual idol Hatsune Miku has arrived in Kivotos! See her like never before with a special new song! Come and show your support!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/807_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "初音ミクのスペシャルライブ",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/2/25/Event_Banner_807_jp.png/480px-Event_Banner_807_jp.png",
+            "fit": "cover",
+          },
+        },
       },
     },
     {
@@ -1705,10 +1983,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/pT_C-htbpwphHtDBbp06CY5KPlN_pGmZi2o-7xS0HQSd1feRNEqMACWd6uKgZ0Yl4_bfHHxrYMlDciKRISeiy70T0kaQ8RqWfmrmSH4CjGbDODcEG_KnlxoVtUXpOcsPKFbadF4asWooLGgGmgWuTA.webp",
+        "url": "https://i.namu.wiki/i/_axVVSTkVsrzciRgTJJpnmcVKy_zRA9CHpRRCTgnI0-oJkqoiuzSmGd89yFoA8RqFPRnOPYaFSu4e6bqD1c7WSeY-sO62qLu_mtlBbN090TRKNWvcxPVXRI1mmunoVhllBST0NTFm4uTPaUijXcv2A.webp",
         "fit": "cover",
       },
       "summary": "갑작스럽게 구교사에서 온천수가 터져 나오며 거대한 규모의 온천장을 운영하게 된 227호 특별반 학생들. 과연 노도카와 그 친구들은 쏟아지는 방해에도 불구하고 온천장 운영을 무사히 이어 나갈 수 있을까?",
+      "l10n": {
+        "en": {
+          "series": "Hot Springs Resort No. 227 Daily Logs!",
+          "summary": "A steamy hot spring suddenly appears at the former institute and Class No. 227 become managers of a profitable resort. Will Nodoka and friends overcome their many adversaries and keep their hot spring resort?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/808_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "227号温泉郷の運営記録！",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/2/2e/Event_Banner_808_Jp.png/480px-Event_Banner_808_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-033",
@@ -1740,10 +2035,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/8Ox0Q9n_cr3Kiahev5EDiRRnXCIKRX9j8Tge4W0qinwWX5tBO-2uqc1_Y6Nj6IyrKJk3xzSE6IhEFebZXcGwi7vEndshy5uruqg4Um9MbFhM81lumjbxS7zb69VLVxd84oB2lURsrp_vYVQbrS85tQ.webp",
+        "url": "https://i.namu.wiki/i/4AJi69pFrB7gWpssCRsHJu45467f8mne6_HZuoJcmbJxybi4Qer7ufn1Mz2oOPwLQIGHLaQPy_i9nh1FYtmnNEwCGeLTWjBZivH2Q6rT0lSsynRAUgMwOmlj5scB0Eq8Joki0hvnZl1ypM121kb0mQ.webp",
         "fit": "cover",
       },
       "summary": "키보토스의 새해가 밝았습니다. 수많은 인파로 붐비는 새해맞이 행사장에서, 흥신소 68 멤버들은 어떤 소원을 빌게 될까요?",
+      "l10n": {
+        "en": {
+          "series": "New Year's Rhapsody No. 68",
+          "summary": "All the members of the Problem Solver 68 gathered to celebrate the coming of the New Year. At the suggestion of the leader, Aru, the girls head to a power spot rumored to make wishes come true... To pray for business prosperity and a safe year ahead...Or it should have been, but for some reason, the visit turns into a huge commotion with robberies, riots, and gunfights! The first Problem Solver 68 mission of the year begins!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/809_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "新春狂想曲第68番",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/6/6b/Event_Banner_809_jp.png/480px-Event_Banner_809_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-034",
@@ -1783,6 +2095,11 @@
         "fit": "cover",
       },
       "summary": "낙제 위기에 처한 트리니티의 문제아들을 구제해야 합니다. 보충수업부의 담당이 되어 학생들을 이끌어주세요!",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-035",
@@ -1822,6 +2139,11 @@
         "fit": "cover",
       },
       "summary": "낙제 위기에 처한 트리니티의 문제아들을 구제해야 합니다. 보충수업부의 담당이 되어 학생들을 이끌어주세요!",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-036",
@@ -1861,6 +2183,11 @@
         "fit": "cover",
       },
       "summary": "음모와 배신, 의심과 의혹, 협잡과 암투가 난무하는 이곳에서 과연 보충수업부 학생들과 함께 무사히 위기를 극복할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-037",
@@ -1900,6 +2227,11 @@
         "fit": "cover",
       },
       "summary": "음모와 배신, 의심과 의혹, 협잡과 암투가 난무하는 이곳에서 과연 보충수업부 학생들과 함께 무사히 위기를 극복할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-038",
@@ -1939,6 +2271,11 @@
         "fit": "cover",
       },
       "summary": "마침내 개최되는 에덴조약. 익숙했던 일상의 평화에 조금씩 균열이 가게 되고, 예정된 파국 속에서 각자의 이야기는 한 곳으로 교차하게 되는데……",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-039",
@@ -1970,10 +2307,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/l3Rl4I1x8FsSn4tKa7_6VGxOhly1PvRBUVKPJDvTmSKyva1GBWPplE1ItSYdAbAllP4RUgI3N7pK5jBrH4i-mC5yLSsUmfoZ1KbRC_UnwDIwbirR1jfpju0PU9W981ta0X_pN7pleUJ5RJZfsP8ZOw.webp",
+        "url": "https://i.namu.wiki/i/wcPcvEHsvUUANBgNLw4YOuwD69WIqWyGRHRcFlQDmNiWEmHHWhELjiEDfUOyffQhCHBypusifcH-LUFFM1QOC6c9TfuRKrRl0AeTkbw7vKymg1dzj6u5E7cQ42-TNCc0F368LJwFaz4RElA0c7OoGg.webp",
         "fit": "cover",
       },
       "summary": "각자의 목적을 달성하기 위해 바다로 향한 학생들. 위시리스트를 달성하기 위한 소녀들의 고군분투가 시작된다!",
+      "l10n": {
+        "en": {
+          "series": "Summer Sky's Wishlist",
+          "summary": "Sensei! The hot summer season is upon us! Speaking of summer, the sea! And when it comes to the sea, it's swimsuits! This time, the story is set at the seaside, and the theme is \"youth\" with the students of Trinity! I understand the shining sea and the glittering sandy beach, but why is there a tank here...? What lies in wait for Sensei on the beach trip with the Trinity students?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/803_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "夏空のウィッシュリスト",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/a/a5/Event_Banner_803_jp.png/480px-Event_Banner_803_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-040",
@@ -2005,10 +2359,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/anSFZeLgGa2R04fqNLkm7DqTUJg3pqcbEf99vyfnGPcNyOg4cGTinXTQW7B1zEjs3SDs9PXvOCSM2c8E6TZiMgAZcza_2UiXXtajjKKd9lTvh0yYrBa1lhIQ2cfSXSCws1mhpBtc-XvyiYxY_Be_-w.webp",
+        "url": "https://i.namu.wiki/i/gal_61zJfQsnNPhQBz94Mf3aS99wMuknmrZTmfDyM15cspVISxWhLaWTeGeJyiPKEWEoDF-AnE52wJWkhreKiQHEnM18hNcRMJtVxcLMqAqLBPY_I0O5pkmEgdcoVBavUdcao-892t0KEfOpLYvZqw.webp",
         "fit": "cover",
       },
       "summary": "히나에게 휴가를 주고자 바다를 찾은 선생님과 선도부! 하지만 계속해서 트러블이 덮쳐오는데! 과연 선생님과 선도부는 히나에게 제대로 된 여름 휴가를 선물할 수 있을까?",
+      "l10n": {
+        "en": {
+          "series": "Head Prefect Hina's Summer Break!",
+          "summary": "「As the executive officer of the Disciplinary Committee, I hereby issue an emergency special order! We must at any cost give our overworked president a break!!」 Ako, after deciding that Hina needed a break from being overworked, brings Sensei and the Disciplinary Committee to the beach, supposedly in the most peaceful area in Gehenna. However for some reason, trouble keep occurring one after another, and the Disciplinary Committee members are in panic... What will happen to President Hina's summer vacation now!?",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/f/f1/Event_Banner_804_En.png/480px-Event_Banner_804_En.png",
+            "fit": "cover",
+          },
+        },
+        "ja": {
+          "series": "ヒナ委員長のなつやすみっ！",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/5/59/Event_Banner_804_Jp.png/480px-Event_Banner_804_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-041",
@@ -2048,6 +2419,11 @@
         "fit": "cover",
       },
       "summary": "마침내 개최되는 에덴조약. 익숙했던 일상의 평화에 조금씩 균열이 가게 되고, 예정된 파국 속에서 각자의 이야기는 한 곳으로 교차하게 되는데……",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-042",
@@ -2087,6 +2463,11 @@
         "fit": "cover",
       },
       "summary": "마침내 개최되는 에덴조약. 익숙했던 일상의 평화에 조금씩 균열이 가게 되고, 예정된 파국 속에서 각자의 이야기는 한 곳으로 교차하게 되는데……",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-043",
@@ -2118,10 +2499,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/X_Qav0mRo5f3by_VrONrDin-QqT3aGP7VdEDeiheJxJ38wfEpfzlwThtGE2VYcw7SCrLqTDBjwWYBcyrxh4-hTavN7ea9ymohQs13sOckJrv_HbHdhYIwVA757AiaOie4p2oEkB-HvnhS-A97ipV7Q.webp",
+        "url": "https://i.namu.wiki/i/-uJgqlXoPd0y6Saud9kui0D_1fCCTGg7v08l4GJvG-JGvZ1lLO5t0YSUPvqijas4x9SxMkgmeWXBYt_vJqDCEzFSdm8RgS5JvUgh6-QXiefkkFQ6qdJ4e4iE_PI_9i_YwS1ZTkKACKOKk4g6nN3g0g.webp",
         "fit": "cover",
       },
       "summary": "트리니티 종합학원의 발굴구역, 어느 날 거기서 하나의 경전이 발굴된다. 기념식전의 공표를 위해 그 운반을 담당하게 된 히나타였으나 사고에 의해 경전이 조각조각 나버렸다! 고서의 전문가이자 도서위원장인 우이의 힘을 빌려가며 히나타와 선생은 복원을 위해 트리니티 각지를 돌게 된다. 추격해오는 온갖 고난과 타임리미트, 과연 경전의 복원은 제때 해낼 수 있을 것인가?",
+      "l10n": {
+        "en": {
+          "series": "The Clumsy Sister and the Magician of the Old Library",
+          "summary": "One day, a \"scripture\" were discovered in the excavation area of Trinity General Academy. Hinata was in charge of transporting the scripture in order to unveil it at the commemorative ceremony, but a certain accident cause the \"scripture\" to break into pieces! With the help of Ui, an expert in old books and a member of the library committee, Sensei and Hinata travel around Trinity to try and restore the scripture. With numerous difficulties and time limits approaching, will the scripture be restored in time...!?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/812_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "どたばたシスターと古書館の魔術師",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/0f/Event_Banner_812_Jp.png/480px-Event_Banner_812_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-044",
@@ -2161,6 +2559,11 @@
         "fit": "cover",
       },
       "summary": "버림받은 아리우스 스쿼드. 그리고 증오와 분노 사이에서 길을 잃은 아이들에게 과연 자비는 존재할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-045",
@@ -2200,6 +2603,11 @@
         "fit": "cover",
       },
       "summary": "버림받은 아리우스 스쿼드. 그리고 증오와 분노 사이에서 길을 잃은 아이들에게 과연 자비는 존재할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-046",
@@ -2239,6 +2647,11 @@
         "fit": "cover",
       },
       "summary": "버림받은 아리우스 스쿼드. 그리고 증오와 분노 사이에서 길을 잃은 아이들에게 과연 자비는 존재할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 3, Trinity and Gehenna are planning to sign the Eden Treaty. The story focuses on the Make-Up Work Club and Arius Squad.",
+        },
+      },
     },
     {
       "id": "story-047",
@@ -2268,10 +2681,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/ew3kaLzA3RauMM0l8bdC-wK_m0_kFIW53-Ca3g4mAF6-6uxxXyzNByJ2QGnHy32fbqyC-W-9FEoPzeuK702SsZXiYS6nhTBaH1IHOrXpjerslyQnrJaTP2lgdIRm9NbDrm9cleH10Z6wmyTOc6o3_w.webp",
+        "url": "https://i.namu.wiki/i/UeAH1KEYhBKymJaRyXmzTLFzG7CBoVcbeQUc6OWRH7hJRolVCoIdlEuPMd2o85QzCDI9yGj-kt-XobUz4mB1_88T7dCA8fWk3oiZolMhApEGpfhNowFXAz5EllqN20Ax-pnV13g_jW2U7AUEMtw0gw.webp",
         "fit": "cover",
       },
       "summary": "키보토스에도 발렌타인 데이가 찾아왔다. 발렌타인 데이 축제 현장의 치안을 지키기 위해, 선생님은 발키리 경찰학교의 학생들과 함께 순찰을 돌기 시작하는데⋯⋯. 과연 아무 일 없이 무사히 넘어갈 수 있을까?",
+      "l10n": {
+        "en": {
+          "series": "Schale's Happy ♥ Valentine Patrol",
+          "summary": "Valentine's Day season has arrived in Kivotos! At the event site, which is more crowded than usual, Sensei is taken out on a patrol by Kirino and Fubuki. At the same time, Sena from the Emergency Medical Department and Chihiro from Veritas are also on guard duty. Still, the day is not going to end easily...! The girls' feelings, and their day of competition, begins!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/810_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "シャーレのハッピー♡バレンタインパトロール",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/9/9a/Event_Banner_810_Jp.png/480px-Event_Banner_810_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-048",
@@ -2304,6 +2734,22 @@
         "url": "https://schaledb.com/images/eventlogo/811_Kr.webp",
         "fit": "contain",
       },
+      "l10n": {
+        "en": {
+          "series": "Kosaka Wakamo's Silence and Feast",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/811_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "狐坂ワカモの沈黙と祝宴",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/811_Jp.webp",
+            "fit": "contain",
+          },
+        },
+      },
     },
     {
       "id": "story-049",
@@ -2335,10 +2781,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/ew3kaLzA3RauMM0l8bdC-wK_m0_kFIW53-Ca3g4mAF6-6uxxXyzNByJ2QGnHy32fbqyC-W-9FEoPzeuK702SsZXiYS6nhTBaH1IHOrXpjerslyQnrJaTP2lgdIRm9NbDrm9cleH10Z6wmyTOc6o3_w.webp",
+        "url": "https://i.namu.wiki/i/UeAH1KEYhBKymJaRyXmzTLFzG7CBoVcbeQUc6OWRH7hJRolVCoIdlEuPMd2o85QzCDI9yGj-kt-XobUz4mB1_88T7dCA8fWk3oiZolMhApEGpfhNowFXAz5EllqN20Ax-pnV13g_jW2U7AUEMtw0gw.webp",
         "fit": "cover",
       },
       "summary": "키보토스에도 발렌타인 데이가 찾아왔다. 발렌타인 데이 축제 현장의 치안을 지키기 위해, 선생님은 발키리 경찰학교의 학생들과 함께 순찰을 돌기 시작하는데⋯⋯. 과연 아무 일 없이 무사히 넘어갈 수 있을까?",
+      "l10n": {
+        "en": {
+          "series": "Schale's Happy ♥ Valentine Patrol",
+          "summary": "Valentine's Day season has arrived in Kivotos! At the event site, which is more crowded than usual, Sensei is taken out on a patrol by Kirino and Fubuki. At the same time, Sena from the Emergency Medical Department and Chihiro from Veritas are also on guard duty. Still, the day is not going to end easily...! The girls' feelings, and their day of competition, begins!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/810_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "シャーレのハッピー♡バレンタインパトロール",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/9/9a/Event_Banner_810_Jp.png/480px-Event_Banner_810_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-050",
@@ -2363,10 +2826,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/OnjRs-NjICyzC8Rsg8z_sD3T0MbI7aiBUrGccN5ZvHU9q_YLJz1Fj2SEVs6L2K5iDIOavRKYhVL2SxL-l5JK6sc_KxgmjlEDgdqdQgHJk1jj7T6-znMrEaPvDXgyfOtF4UIjQmqumODKUT4B1v-tkQ.webp",
+        "url": "https://i.namu.wiki/i/9GTAkHrqywf3hxcDYcYRpBwBUSFJa9D4e6Ehl427E_MkzMmd9nJwq_QcvwABBCUYIRoFPaJN8Y-w8M-N_YQdjx5bxxWCKzpX61j-9HfLk-AMxyEqATYAfFQ2vwD8RMPnaqEK-wZrH9HF2LnMz9IMSw.webp",
         "fit": "cover",
       },
       "summary": "학문을 탐구하고 진리를 추구하는 해커 소녀들이 정말로 알고 싶어하는 진실은?",
+      "l10n": {
+        "en": {
+          "series": "Veritas",
+        },
+        "ja": {
+          "series": "ヴェリタス",
+        },
+      },
     },
     {
       "id": "story-051",
@@ -2406,6 +2877,11 @@
         "fit": "cover",
       },
       "summary": "SRT 학원의 폐쇄 통보에 반발하며 공원을 점거한 RABBIT 소대의 학생들. 과연 소대원들은 공원에서의 거친 노숙 생활을 잘 헤쳐나갈 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 4, SRT Special Academy gets disbanded. Their former students, members of the RABBIT Squad and FOX Squad, attempt to survive without a school and revive their academy.",
+        },
+      },
     },
     {
       "id": "story-052",
@@ -2445,6 +2921,11 @@
         "fit": "cover",
       },
       "summary": "SRT 학원의 폐쇄 통보에 반발하며 공원을 점거한 RABBIT 소대의 학생들. 과연 소대원들은 공원에서의 거친 노숙 생활을 잘 헤쳐나갈 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 4, SRT Special Academy gets disbanded. Their former students, members of the RABBIT Squad and FOX Squad, attempt to survive without a school and revive their academy.",
+        },
+      },
     },
     {
       "id": "story-053",
@@ -2469,10 +2950,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/jW15ll2Gv6WBOVy3EBWCWvjpZV9cPNgoMumV2QsN2crx90xvh9wpTk2IqA0jTzTyoKp3CERl8A1fQwB6cbB3LzWk6-uAzsbo7_WrALMPSNO7JxcOh2gegwXcKZ5Ux8rVBT8FPKUmvb3-z1qO4dV1EQ.webp",
+        "url": "https://i.namu.wiki/i/UHoCiAjM2_BpopuiegbvCTojH4DDNN7qRkHU011FqUSu5UcGBHN2VonmOnAkZQ-urDSiwibeJV2d1FicGUMcpZ6uTr3Pwqkcn3sAmIUSoO9WW-9KHQmJYfzdTD12VhMhpPgo301ZU4EYAUEzoK2QZg.webp",
         "fit": "cover",
       },
       "summary": "인법연구부! 여기에 등장! 좌충우돌 닌자 소녀들이 활약하는 인법첩을 보시라!",
+      "l10n": {
+        "en": {
+          "series": "Ninjutsu Research Club",
+        },
+        "ja": {
+          "series": "忍術研究部",
+        },
+      },
     },
     {
       "id": "story-054",
@@ -2504,10 +2993,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/fu3E784czo6toUwxEdNy2HHCmzjKb0jwtQWmmpS0K8jN7wzvzyTHiZLBeE--KnzVtap7sYGVXkdK8glT650wG3b9tOmE0JRkx0ZKXyhKThhQBfuPqtIE4gcEP0C-hntv6f_QVrcdxFa0QQdM_DeAog.webp",
+        "url": "https://i.namu.wiki/i/NS0ObTb_7q1yMVPJ8J3cZSbifGM4WX7GQojGj2zxlahDawcCfNWC1LBv8cDAKIQpOQlvOJbfs8xy0ge551X49jrOXodKalV-hOT-_dVOcU-HXgyYjFXqZVQ_1jh47zwCj3WNxQTrb4RGA-awYIvNcg.webp",
         "fit": "cover",
       },
       "summary": "정식 동아리 인정을 받기 위해 백귀야행과 게헨나 학원 간 교류회를 돕게 된 선생님과 인법연구부. 과연 주어진 과제를 해결하고, 인법연구부는 정식 동아리가 될 수 있을까?",
+      "l10n": {
+        "en": {
+          "series": "An Unconcealed Heart",
+          "summary": "The Ninjutsu Research Club suddenly infiltrated SCHALE! Then, Kaho from the Yin-Yang Club also shows up! Although the situation got confusing, they later learned about the exchange meetings between Hyakkiyako and Gehenna. They were then tasked with assisting with the event so that their club could be officially recognized. However, with these two schools together, there is no way it will end peacefully... With the various events that are about to happen, will the ninja girls be able to complete their tasks and get their club approved?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/813_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "不忍ノ心",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/3/38/Event_Banner_813_Jp.png/480px-Event_Banner_813_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-055",
@@ -2537,10 +3043,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/j9-tKbeN6XgqV3aucIyVKAhV-WWS_YDL7oV-KxwlbziN9x5v_vgedXH0_Fde-wsxQlZRXrB7PW4pi6Wps6wyRZb_g9MgrUSjvDRpFqVipdCB91nzjq5HwqcJkTEiwigs8N6eA-nb1MChcgnpfqtZCA.webp",
+        "url": "https://i.namu.wiki/i/K_uto9yGEuFhEPfjs1E_yr_McyKqCKGG9armk_NIr8ZgzpYuD8ZDXZtWdwNQAu9gXV7_Yc3IfKGHGUOIluoMaWzist1Sk_7U-PKuNJJ-QfICEwPYbostsiM8Zhpah8OOUxvIysNxuJ8nU6YkQ336hg.webp",
         "fit": "cover",
       },
       "summary": "생각지도 않게 무인도 리조트로 휴가를 떠나게 된 대책위원회. 그렇지만 그들을 기다리고 있던 건 폐허가 된 리조트와 헬멧단의 습격, 그리고 와카모였다! 과연 대책위원회는 제대로 된 여름휴가를 보낼 수 있을 것인가!",
+      "l10n": {
+        "en": {
+          "series": "Abydos Resort Restoration Task Force",
+          "summary": "By chance, the Countermeasure Council obtained a ticket to use a resort. They then visited the island to enjoy their vacation, but what awaited them was a vast deserted island and an abandoned resort! Just what had happened!? The countermeasure council will now start the plan to restore the resort! However, it was not going to be a simple task and proceed smoothly... For some reason, the Helmet gang attacked, and even one of the seven prisoners, Wakamo!? What will the countermeasure council do now, and will they be able to restore the resort and enjoy their vacation in peace!?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/814_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "アビドスリゾート復旧対策委員会",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/4/4c/Event_Banner_814_Jp.png/480px-Event_Banner_814_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-056",
@@ -2572,10 +3095,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/EDk-I1iP-4jqZknS7JkFqlYRlGM5Ji59mz727QKwIQxQ5ZkoMxHNK2FP3ArvCqeayML-Tu_sQ4oj78Jf9W4qTCVGj6f8SX05Z7ajUNgLcX3qUyf4caedFPXYIqGLKIfAxKVcPMYzyPLAO7U0a64VMg.webp",
+        "url": "https://i.namu.wiki/i/KFkGStErn0bpBwDNnVgBfDNzhQJTZ5brP_JkMiS_RxRuahUyFvr2k8oonNBTuer31T-nhMA_PxeQkoeXvpfGYm3zSIpAySIw9AaBpA_ph5vlgE1-o4wSjn7L4rqgQKH699xmS0HsoZVFKtQs7YuFGA.webp",
         "fit": "cover",
       },
       "summary": "새로운 사업을 위해 여름 바다를 찾은 백야당 멤버들. 그러나 이는 음흉한 흉계가 담긴 대사기극이었다! 이대로 당하진 않겠다는 시즈코의 선언과 함께, 백야당의 새로운 싸움이 막을 올린다!",
+      "l10n": {
+        "en": {
+          "series": "Business Trip! Momoyodou Beach Shack Franchise Plan",
+          "summary": "The Momoyodou group visits a resort to open a new business, Beach House. However, what awaited them was a resort battle royale, with resorts fighting each other for their interests! Will Shizuko be able to protect the Beach House? A new battle for Momoyodou begins now!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/815_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "出張！百夜堂海の家FC計画",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/b/b6/Event_Banner_815_Jp.png/480px-Event_Banner_815_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-057",
@@ -2607,10 +3147,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/5KscolAzHo7dVooWxT1KbAYgBU-aYPH7G0BhxZteUXt65XA0qHkDWrmHjazlGXYzX6g3PbomXw_NX0N8K7iBqM3M2PLsLlHMq6fLAoB45qnMj-e7IrzAhoyemkaPPkgDx466oSVY4vqMAlE9eh8fIA.webp",
+        "url": "https://i.namu.wiki/i/2hvQJFaMxgW-jqiAh-XrhbSHE1R_c0P-lJWLsXOVFf7a4r-tJDQJ29SnQewfy2FQyZS7QfgA6eBXQAJ0fpInUMlJS1h6s6Nde1XKOm9EbRiE5JDws6Cjwv1__LpNeLn07QqKW4M94XQiGBwiYe6MNg.webp",
         "fit": "cover",
       },
       "summary": "선생님에게 상담을 요청한 카즈사. 복잡미묘한 카즈사의 고민은 그녀의 과거와 연관이 있는 듯한데……. 카즈사와 방과후 디저트부의 일상에 등장한 예측 불허의 강렬한 맛! 좌충우돌 고민 상담의 결말은?!",
+      "l10n": {
+        "en": {
+          "series": "After-School Sweets Story: Sweet Secrets and Shootouts",
+          "summary": "Kazusa, a member of the after-school sweets club, asks for advice about being stalked. However, Kazusa doesn't seem to want to report it to the Justice Actualization Committee or the Valkyrie. It seem to have something to do with her past...? What will be the outcome of the unpredictable events that suddenly arrived in her ordinary daily life...!?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/816_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "放課後スイーツ物語　～甘い秘密と銃撃戦～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8a/Event_Banner_816_Jp.png/480px-Event_Banner_816_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-058",
@@ -2635,10 +3192,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/GTV6nxFw-CUeaYYmw1FUW4Ws6QmHQ6SzJdgG_SVjqtCLYHxm8Zi4EG30dPye7QWikt2ml_vVNoiZCVzV6XBZN2jDLuS9rTGdIqf7LjN_0BoDhQQx5TuqelN3unPi2XfOhnQTEVO5qO3--ezmWoH5sg.webp",
+        "url": "https://i.namu.wiki/i/Mz2dd4VRmiDRR7_e9hRYt_FLWmD_fMQ3Pb4RySlQXX0vBHRhPPOMpRGA48m2jE-Ix2GxayydxVlGCluxC5LtuPD3cZoEi__LkJ9qwHIY67OsjXWDcXMiHi1nG4kLRkBkRTK3_dc5d7fJzAVPURLY4A.webp",
         "fit": "cover",
       },
       "summary": "그 누구보다 전문적이지만 아직은 조금 미숙하고 불안한 SRT 신입생들의 일상.",
+      "l10n": {
+        "en": {
+          "series": "RABBIT Squad",
+        },
+        "ja": {
+          "series": "RABBIT小隊",
+        },
+      },
     },
     {
       "id": "story-059",
@@ -2668,10 +3233,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/AB0b1viglYQfPORrObpQ7MeK9Qw8H2BN0Cu-AHg46eJioPNUBpw7UeHZtev7gOLIFojK281aQaQF9QoCZSO9FmUdmbq1THJsUfKi-aULMK-zN6Dr3BIIr0G5cukW5L_imJEGTN5sZFzzhSNfJfIj5w.webp",
+        "url": "https://i.namu.wiki/i/s05FVw0Whm5-Gma9NNST0QWof1jF2JCKYj7uXtS75KS8IcSzUyuWH41dsrKNpwbYOKpRPC2_wQLz7nKGXSy642VpDIZ-ZXaHbNSI-Je62iRLy7Sk40lsV6pR7wSITzIYCmfhT8OCRBQNo_lBASt-Cw.webp",
         "fit": "cover",
       },
       "summary": "키보토스 대운동회, <황륜대제>의 개막식이 하루 앞으로 다가왔습니다. 밀레니엄의 학생들은 예기치 못한 사고를 극복하고 무사히 대운동회 준비를 마칠 수 있을까요?",
+      "l10n": {
+        "en": {
+          "series": "On Your Mark @ Millennium",
+          "summary": "It has been decided that Kivotos's major event, the Grand Sports Festival named Kourin Taisai, will be held at Millennium! However, an unexpected accident occurred...? Will Sensei and the students be able to overcome the unexpected accident and complete the preparation for the festival!?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/817_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "ON YOUR MARK ＠ MILLENNIUM",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/e/e3/Event_Banner_817_jp.png/480px-Event_Banner_817_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-060",
@@ -2703,10 +3285,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/I5rAh1JuLvp1n5Pa7K37gWoVpTkPZl5NzkERGCyLpi5V21qTr3yT8MwOA5V5KQHCGyQJySjCwA7eNP-_pSbnHPQ0DHzUmQRMCsQuZNO1kfWcZ0p-fFJi_Rpe18kveW3UKL9qXleuGSD5BYlaEtfzBA.webp",
+        "url": "https://i.namu.wiki/i/5S9qjPc48ywNxMkKs0G3jyr1stcUHCW5IMyC62NKXT8ojL1TTgu7dWIrTJW-zBKiiUmwez8OW_QZ3J-MeJihtm0EbPnxDyYQrkF0PsnMDzI5cMkKLUzqmDxBPCfUaHU525KFceuZDG_4lZZvV9MGIw.webp",
         "fit": "cover",
       },
       "summary": "드디어 시작된 키보토스 대운동회, 황륜대제. 모두가 각자의 목표를 위해 열심히 달려 나간다. 어김없이 트러블이 난무하는 가운데, 최종 우승의 향방은?!",
+      "l10n": {
+        "en": {
+          "series": "Get Set, Go! Kivotos Halo Festival!",
+          "summary": "The Kivotos Halo Festival has finally begun! Every participant is giving their all to make their school proud. But with trouble brewing as usual, who will be the one to claim victory?",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/3/31/Event_Banner_818_en.png/480px-Event_Banner_818_en.png",
+            "fit": "cover",
+          },
+        },
+        "ja": {
+          "series": "Get Set, Go！～キヴォトス晄輪大祭～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/1/16/Event_Banner_818_jp.png/480px-Event_Banner_818_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-061",
@@ -2731,10 +3330,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/7YLNjXBTrcGKNsnn1B8dHCDEEs1oMj2cxCt9NHUh5f7iVFVJQVPKyAWdEtoiiuhVuhJXwnfZdJnWxd_B12_tEA9BYqIPzq0iLPw-BSq78MNEJ5r5zvpijjAkX1OGYYOsXADcQub0b2DFSt9eSM67jw.webp",
+        "url": "https://i.namu.wiki/i/sBjB-puh1ZddrZz453O05FRfGyz7YtPqvhY3j5nyymp20iUj4x1XAdd2UaZehcaog-WgMJ4UboaNCZnY-NRu36zY5o2wcUic-VswM2vIwPXdCJAiCizrRtWh43mvlUiMGHOwq_906VflH9E5x6Wwyw.webp",
         "fit": "cover",
       },
       "summary": "그 누구보다 과학을 사랑하는 밀레니엄 사이언스 스쿨의 학생회, 세미나 임원들의 엉뚱한 회의록.",
+      "l10n": {
+        "en": {
+          "series": "Seminar",
+        },
+        "ja": {
+          "series": "セミナー",
+        },
+      },
     },
     {
       "id": "story-062",
@@ -2774,6 +3381,11 @@
         "fit": "cover",
       },
       "summary": "선생님은 에이미의 안내로 초현상특무부의 부장, 히마리를 만나게 됩니다. 선생님은 초현상특무부와 함께 키보토스 곳곳을 돌아다니며, 미증유의 AI, 데카그라마톤의 실체를 파헤칩니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-063",
@@ -2813,6 +3425,11 @@
         "fit": "cover",
       },
       "summary": "선생님은 에이미의 안내로 초현상특무부의 부장, 히마리를 만나게 됩니다. 선생님은 초현상특무부와 함께 키보토스 곳곳을 돌아다니며, 미증유의 AI, 데카그라마톤의 실체를 파헤칩니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-064",
@@ -2852,6 +3469,11 @@
         "fit": "cover",
       },
       "summary": "선생님은 에이미의 안내로 초현상특무부의 부장, 히마리를 만나게 됩니다. 선생님은 초현상특무부와 함께 키보토스 곳곳을 돌아다니며, 미증유의 AI, 데카그라마톤의 실체를 파헤칩니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-065",
@@ -2893,6 +3515,11 @@
         "fit": "cover",
       },
       "summary": "선생님은 에이미의 안내로 초현상특무부의 부장, 히마리를 만나게 됩니다. 선생님은 초현상특무부와 함께 키보토스 곳곳을 돌아다니며, 미증유의 AI, 데카그라마톤의 실체를 파헤칩니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-066",
@@ -2932,6 +3559,11 @@
         "fit": "cover",
       },
       "summary": "다음 밀레니엄 프라이스를 위해 신작 게임을 만들기 시작한 게임개발부. 그런 그녀들 앞에 갑자기 닥친 위기와 함께 알려지는 잔혹한 진실. 과연 그녀들은 해피엔딩을 맞이할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 2, the Game Development Department makes a surprising discovery in Millennium's ruins.",
+        },
+      },
     },
     {
       "id": "story-067",
@@ -2971,6 +3603,11 @@
         "fit": "cover",
       },
       "summary": "다음 밀레니엄 프라이스를 위해 신작 게임을 만들기 시작한 게임개발부. 그런 그녀들 앞에 갑자기 닥친 위기와 함께 알려지는 잔혹한 진실. 과연 그녀들은 해피엔딩을 맞이할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 2, the Game Development Department makes a surprising discovery in Millennium's ruins.",
+        },
+      },
     },
     {
       "id": "story-068",
@@ -3002,7 +3639,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/2TTtVkoF2HyjW4FIeA8MEC_ev4f8fGwe9ynZA2CxvuqP7SmbBTuOflfaHrLfEMrVcYY5rPbwNok618_p0ibo7XT1z-7IIVulItI4aM7dx0gN07xNbGiQNcs6KAD7NV-fQaRIFDgp0kiR5XDNkQMEkA.webp",
+        "url": "https://i.namu.wiki/i/oGSYQIMFY7y2qpCaGEC4c4gNKqwUJGuZ8cardZAdxRtb2wo3-aOMB2RiQcjqdggmVrlw6edBBHH4Q-LvZh5nHIKYu3y6k4Kfws-r71OlS6DcQYuGALX0JZTnAJYz093ZQIvGe5wkZnCwfk1fntOcdg.webp",
         "fit": "cover",
       },
       "summary": "세간에 알려지지 않았던 만마전의 비밀스러운 붉은겨울 순회록. 그 기록의 전말이 지금 밝혀집니다.",
@@ -3037,10 +3674,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/hZrvGY9cVFlZOJAmFzPhoX42FJ4eo5KFb9zDClnAySmFUny1Ke9OEfUea8J9_T1Gd2QqRxYQA1BPsQ8_tQym4H6-rGqgKWe0ME5zR8184hBCKTwjZX22_97UkSeXtMEiRls_KIjG32Gz5zyfOZLxKQ.webp",
+        "url": "https://i.namu.wiki/i/x5ftpwF1vvga98SlIUlZhJxesPGBWfwZkjAOxllFoXC0BM13WOsTI6m9mBiC9XLoFFCDGvF4ElE0vh_vdk6muTZV6d793jeJdOMFcvl28-Cb7vPeYC1BPLilRmrbQhIf5D1WwKnyTyG2aTS2NCEKAg.webp",
         "fit": "cover",
       },
       "summary": "하얀 눈이 만개한 키보토스에 크리스마스가 찾아왔습니다. 모두가 기쁨을 만끽하는 성스러운 날에도 '구호'를 위해서라면 동분서주를 마다하지 않는 구호기사단의 특별한 하루를 한번 살펴볼까요?",
+      "l10n": {
+        "en": {
+          "series": "The Cathedral's Merry Christmas: Remedial Knights' Gift",
+          "summary": "Christmas is here in the snow-covered winter wonderland of Kivotos. The Remedial Knights have no qualms about having to work even on the most joyous and hallowed of days for the sake of \"salvation.\" Let's follow them on this special day!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/819_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "聖堂のメリークリスマス〜救護騎士団の贈り物〜",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/3/3e/Event_Banner_819_jp.png/480px-Event_Banner_819_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-070",
@@ -3072,10 +3726,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/Z4kJ9q6sl9UID6KEgrvK4jToIuP_C65-8Uasq8AF0-12yPtQgb2YabZ_Hh0oryG2UNQRVHEB88WsTg5ikIFzwN7y2buBLCXIJ-wv9_tcqgSfzkrxIxIzgWZEmcV_JCjWftub24xQzMr6oHgetb1pEA.webp",
+        "url": "https://i.namu.wiki/i/MJlPwp7hdsFcIYJBiTqotsJ3P4MiU8LBHvAim_R0WA1YcpBO39o8G3aAk0wsb0ILqOSExwxjyyqftiIb_p1O28VSR_bsbQuxEAIKfTh001UwYCY9Y1oow10D7jL2HFUdmOUExId0Ly1Q01TB_lk7rg.webp",
         "fit": "cover",
       },
       "summary": "<참새정>이 모종의 이유로 곧 문을 닫을 것이라는 사실을 알게 된 미식연구회는, 급양부까지 회유하여 <참새정>을 되살리려 한다. 그러나 그렇게 하기 위해서는 거대 유통 기업 <냐오푸드>와의 문제를 먼저 해결해야 하는데⋯",
+      "l10n": {
+        "en": {
+          "series": "New Year's Aperitif ~One-and-Done Match~",
+          "summary": "As the end of the year approaches, the Gourmet Research Society were enjoying a meal at the Suzume Pavilion, a private restaurant with a pleasant atmosphere. While the Gourmet Research Society was happy to have found a famous restaurant that they were satisfied with, Suzume Pavilion was said to close its doors at the end of the year... The members of the Gourmet Research Society, who were sad to hear about the closure of Suzume Pavilion, embark on a rebuilding plan and drag Fuuka of the School Lunch Club along in order to keep the restaurant open. The curtain rises, and so begins the slapstick restaurant rebuilding drama involving the unpredictable Gourmet Research Society and Fuuka!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/820_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "喰積の 前にいささか～一番勝負～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/3/32/Event_Banner_820_jp.png/480px-Event_Banner_820_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-071",
@@ -3113,6 +3784,11 @@
         "fit": "cover",
       },
       "summary": "키보토스의 이변을 발견한 총학생회. 비상대책위원회를 소집하는 린과 이 혼란을 이용하려는 자들의 음모 속에서 샬레는 이 위기를 극복할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-072",
@@ -3150,6 +3826,11 @@
         "fit": "cover",
       },
       "summary": "키보토스에 여섯 개의 불길한 탑이 세워졌습니다. 선생님과 학생들은 색채의 위협으로부터 학원 도시를 수호하고, 거짓된 성소를 성공적으로 공략할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-073",
@@ -3181,10 +3862,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/__C3AlbwrqUN1JjvGodlA_b-3VK7xiA66xts5-gbDJgCSoMMW3h5UXH29Md-OoOrrrMvPdSxMVmSDVCjaRyFP61hkkgLDZbZnJ0m9zkpbxF9XJqfieO7RnzYvBLvjT5_N5_sJN62KPqM2ao41rfwxg.webp",
+        "url": "https://i.namu.wiki/i/F9AiQvO2SnbBFx5WcH7BRZ-Jsg3zG-xn0c14YYKjXOdNIIZa6QP-FYJBdo_mTHpFVFMTOTsBjPRA1aYGP82q2WT1cddE9VPgWWASYJ3Cky49-Q5v-FBMu-nARYSLXnnBD1CltP4DnYkDUPBTR7SIvQ.webp",
         "fit": "cover",
       },
       "summary": "여섯 개의 성소를 향한 총공격 준비는 끝났다. 카운트다운이 시작되고, 키보토스의 명운을 건 연합 작전이 이제 막을 올리게 되는데…",
+      "l10n": {
+        "en": {
+          "series": "Operational Plan: Nisir's Summit",
+          "summary": "Six towers suddenly appear in Kivotos... The skies are dyed in ominous red, as if an unprecedented threat is about to descend upon Kivotos... Will Sensei be able to resolve this situation safely...?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/821_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "虚妄のサンクトゥム攻略戦",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/9/9f/Event_Banner_821_jp.png/480px-Event_Banner_821_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-074",
@@ -3222,6 +3920,11 @@
         "fit": "cover",
       },
       "summary": "키보토스에 여섯 개의 불길한 탑이 세워졌습니다. 선생님과 학생들은 색채의 위협으로부터 학원 도시를 수호하고, 거짓된 성소를 성공적으로 공략할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-075",
@@ -3259,6 +3962,11 @@
         "fit": "cover",
       },
       "summary": "색채에 대항하기 위해 모든 학원이 손을 잡았습니다. 아득히 먼 상공에 떠있는 아트라하시스의 방주를 공략하기 위해, 학생들과 선생님은 어떤 선택을 하게 될까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-076",
@@ -3288,10 +3996,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/Oi9f_EA309RkWw6NZwuIiTCk-_2PQ747qnLM58txpNq777eanG1Ow3g4f_fEJXQikIeQWUnmrb_JfVGrBJgaXvnUNg_qh3FBKNU3njlHraUagjV3ahVyuLgZL161AyLSahHQYGpK3Y3WDLIUuouUCQ.webp",
+        "url": "https://i.namu.wiki/i/USMVF9XIKzTFt9L9eWovQSrW9Zlv6llo8a6HA5W0maTUd5Lbcpgp6hs_I_7jzDKLJHZzz-JlJKd55z0evoH2wXUseDuI6oJC2w8PMBEuvHRaWNy7hZT9MUZHq90tWhbyxtCXr8-6C97kVw7PW6ZpgA.webp",
         "fit": "cover",
       },
       "summary": "드디어 아트라하시스의 방주 점령전이 본격적으로 개시된다. 차원엔진과 그 수호자들을 상대로 한 격전의 연속! 과연 이 싸움의 끝에 기다리고 있는 것은 무엇일까?",
+      "l10n": {
+        "en": {
+          "series": "The Ark of Atrahasis Conquest",
+          "summary": "After successfully completing the \"F.SCT Battle Operation,\" the skies were supposed to be back to normal. However, the mysterious energy that is an indication of the \"False Sanctum\" was observed again. Will Sensei be able to stop this situation...?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/822_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "アトラ・ハシースの箱舟占領戦",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/0f/Event_Banner_822_Jp.png/480px-Event_Banner_822_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-077",
@@ -3329,6 +4054,11 @@
         "fit": "cover",
       },
       "summary": "색채에 대항하기 위해 모든 학원이 손을 잡았습니다. 아득히 먼 상공에 떠있는 아트라하시스의 방주를 공략하기 위해, 학생들과 선생님은 어떤 선택을 하게 될까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-078",
@@ -3366,6 +4096,11 @@
         "fit": "cover",
       },
       "summary": "긴 여정 끝에 돌입한 최종 국면. 모두가 기다리는 곳으로 돌아가기 위해 선생님은 최선을 다합니다. 이야기의 끝에서 만나는 기적은 어떤 모습일까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-079",
@@ -3397,10 +4132,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/JFZ8DyfQeevK29Mz0Hnzjd2wBswa5gjoEvmegVG3nCjQKyhnXWU26C0xEweiFmF0H3To-pF3pQX_zC1zZ9TaqOYNddmyJCvoPa51HFmsmCPkE0BE5rMbn30g9jCyqyhvQBgdkCPSIXeZDQPZLqchcg.webp",
+        "url": "https://i.namu.wiki/i/AKIbn7YbSfJLrNTBc3ZvewztN8H0WxJ4NdAC0gqxLfKj4E4SmqdV_FzRwHM-aZlmEu84lCqlnUyw15Ll3UFi5dp8rhptH8KdF2WmsrsWnfTabIxZTCquqpSVu1nOYYjIbGayNDEJD9xIMrxyPVtkeQ.webp",
         "fit": "cover",
       },
       "summary": "프레나파테스와의 최종 결전을 앞둔 상황. 모두와 힘을 합쳐 적을 쓰러뜨리고 방주에서 탈출해야 한다. 그리고 그 끝에 전해지는 진심은…",
+      "l10n": {
+        "en": {
+          "series": "Phrenapates Showdown",
+          "summary": "After successfully completing the \"A-H.A Conquest\" operation, Sensei was able to safely reunite with Shiroko. All that remained was to return to the surface... But then, the leader of color and Shiroko, with a different form, appeared and stood in their way. Will Sensei and Shiroko be able to return to the surface safely...?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/823_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "プレナパテス決戦",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/05/Event_Banner_823_Jp.png/480px-Event_Banner_823_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-080",
@@ -3438,6 +4190,11 @@
         "fit": "cover",
       },
       "summary": "긴 여정 끝에 돌입한 최종 국면. 모두가 기다리는 곳으로 돌아가기 위해 선생님은 최선을 다합니다. 이야기의 끝에서 만나는 기적은 어떤 모습일까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-081",
@@ -3467,10 +4224,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/D5-8bqwGomEAQfNpMv2JDz_FYQH4y4M65Tr5wEo45-bPEUR-tyV2Ik-QsmUyXJBdt_Jhubl4KRtCEsHOjS6l_CSAsn01CI3CsgfedVUNpd75WVSQCn6ecDwRL2DOVRtYqHOUR3e3LxfJozM7R7Zt3g.webp",
+        "url": "https://i.namu.wiki/i/JH8RmO7ewffsYwY_hfdbTU5uPWG5lJu0rcTlahcCmIpVRCmFFoMQwBhnbPUkI6Ki8O-Bg8q03TweGBCw4XJzHPl38uUhDEbRggrIRZ4UcojI9vlxbne3DJYV_Cvg5DOOKl5Olyzcx9H5gbkBN4qTtQ.webp",
         "fit": "cover",
       },
       "summary": "차근차근 이전의 모습을 되찾아가는 키보토스. 아유무가 시라토리구의 복구를 위해 도움을 요청한다.",
+      "l10n": {
+        "en": {
+          "series": "Restoration Project: D.U. Shiratori City",
+          "summary": "After the showdown against Phrenapates is over, the situation finally settles down. However, D.U. Shiratori Ward has been damaged in the aftermath. It's time to start the restoration work and restore Kivotos back to normal!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/824_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "復旧作業：D.U.シラトリ区",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8f/Event_Banner_824_Jp.png/480px-Event_Banner_824_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-082",
@@ -3508,6 +4282,11 @@
         "fit": "cover",
       },
       "summary": "긴 여정 끝에 돌입한 최종 국면. 모두가 기다리는 곳으로 돌아가기 위해 선생님은 최선을 다합니다. 이야기의 끝에서 만나는 기적은 어떤 모습일까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-083",
@@ -3545,6 +4324,11 @@
         "fit": "cover",
       },
       "summary": "긴 여정 끝에 돌입한 최종 국면. 모두가 기다리는 곳으로 돌아가기 위해 선생님은 최선을 다합니다. 이야기의 끝에서 만나는 기적은 어떤 모습일까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume F, Kivotos unites to defeat a destructive force.",
+        },
+      },
     },
     {
       "id": "story-084",
@@ -3576,10 +4360,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/oSdsLVPKejX6mNzL8kF4Z5OFvC8v3mFbCg1tRVjIYwtVV00Q6y12PHTapNkvfC3PJI7a18ZnJATWujtkFHN4AB_BNzagCh7b3_ZX6Ktu0ySmuxRPngKVjPKYtjU7F8e5qIfCFSJdKUHxTXLOyCK1vQ.webp",
+        "url": "https://i.namu.wiki/i/UE-oiYqo4yIuF1PfbhsaUCHPkZbvzSz2gZXYRBBaO6cqcqmhL5-Ls2ZMwA22lA9M1mhzdC2_Z2sa3E5qdFvhvUUnCeCy_ZNZFAoWoyPWHv2OueBLccZDpSInZ3YsXikGigsM6t2SQFzxYlNveZieFA.webp",
         "fit": "cover",
       },
       "summary": "C&C로 오해받은 게임개발부는 고저택의 경비 의뢰를 맡게 된다. 괴도로부터 미술품을 지켜 달라는 것이 의뢰의 내용이었다. 과연 미술품을 괴도로부터 지킬 수 있을 것인가?",
+      "l10n": {
+        "en": {
+          "series": "Alabaster Calling Card: Mansion Masquerade and the Essence of Beauty",
+          "summary": "Momoi was at the game center, and a client had mistaken Momoi for Neru from C&C and was asked to \"clean up\". The rest of the Game Development Club later learn about the request and decided to take on the request. They then changed into maid outfits and pretend to be C&C. Will they be able to complete the request...? The curtain rises on the slapstick mayhem surrounding the phantom thief and the aesthetic artwork!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/825_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "白亜の予告状～虚飾の館と美学の在り処～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/2/29/Event_Banner_825_jp.png/480px-Event_Banner_825_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-085",
@@ -3611,10 +4412,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/PSq41hs9aXWSRlLNE2NsjgYITXmUcC3FuZwgTTKfu7P_qKNrVIg_P5x4DathUVWtWwojc7S3cGxfb8Y4vFYVIdjJXQAV5GGIgd3UfcJyCjPWzFZuCHgzAue4FH5LIjCBoDAQuIJ5hvQQhj_pjvV9hg.webp",
+        "url": "https://i.namu.wiki/i/ahrE3xr4tShxv6IF-YiZdpN1zYthiunJ2kCkgMoJtUREb4jQIJ2KCYCztzPhZA5V5La6LxsbvXXJODZOpe6K94ZNkxzvjHLWwAdY_-f2pGef2a-lnQ8B5q-CYRKU-KNguDO78lkKlEeu-dFDtLSM5g.webp",
         "fit": "cover",
       },
       "summary": "현무상회와 현룡문이 위태롭게 균형을 이루고 있던 산해경. 그 균형에 돌을 던지는 위태로운 사건이 벌어지는데…… 과연 선생님과 학생들은 산해경을 혼돈으로 몰아갈 위기를 막을 수 있을 것인가?",
+      "l10n": {
+        "en": {
+          "series": "Dragon & Tortoise, Working Together for a Better Future",
+          "summary": "Genryumon, the student council of the Shanhaijing, which values history and tradition, and Black Tortoise Promenade, which believes in evolution. The two opposing forces existed in a precarious balance of power as the two major factions in Shanhaijing. In the midst of all this, the Black Tortoise Promenade were accused of smuggling out a certain item. Rumi had to ask for SCHALE's help in order to clear their name of suspicion. Will they be able to overcome this crisis and find the real culprit...?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/826_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "龍武同舟～思い描くは、ひとつの未来～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8e/Event_Banner_826_Jp.png/480px-Event_Banner_826_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-086",
@@ -3652,6 +4470,11 @@
         "fit": "cover",
       },
       "summary": "하루아침에 사라져버린 학원. SRT의 신입생들의 운명은 앞으로 어떻게 되는 것일까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 4, SRT Special Academy gets disbanded. Their former students, members of the RABBIT Squad and FOX Squad, attempt to survive without a school and revive their academy.",
+        },
+      },
     },
     {
       "id": "story-087",
@@ -3689,6 +4512,11 @@
         "fit": "cover",
       },
       "summary": "하루아침에 사라져버린 학원. SRT의 신입생들의 운명은 앞으로 어떻게 되는 것일까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 4, SRT Special Academy gets disbanded. Their former students, members of the RABBIT Squad and FOX Squad, attempt to survive without a school and revive their academy.",
+        },
+      },
     },
     {
       "id": "story-088",
@@ -3720,10 +4548,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/k_ZpA7AemaI7HSGJe9RWz_DEoniAbHCErcG7BXnZlD4N1otuO_CdsNwvXRAsJVKxwsGxgMyqNRUqYBrPfoCpe6_ueLVM5v6LJsHEeVR4RUzLbIaY2i13m4ik2FYKi-udy7qyjwczhxhZe3PM1V9nWQ.webp",
+        "url": "https://i.namu.wiki/i/xG3nMtQRhyplS9Q_7Hesa6yCtafBv0eQg4rDTqp3VIkfnrMu03q6_v-L7jOhUEoJ5j47F_21HuBjVijtEpiNXFdq0LJidBffEjxAtbspcsPHNxDh760ZAfAc2tYaqAgc3hzaKfTyWYaZ3l58I8D_jA.webp",
         "fit": "cover",
       },
       "summary": "무더운 어느 여름날, 평소처럼 공원에서 편의점 도시락을 먹던 RABBIT 소대원들은 D.U.에서 새우가 모두 사라졌다는 사실을 깨닫게 된다. 새우의 행방을 조사하기 위해 어촌에 잠입한 RABBIT 소대는 마을에서 수상한 전설을 듣게 되는데⋯⋯",
+      "l10n": {
+        "en": {
+          "series": "Special Summer Mission! RABBIT SQUAD and the Mystery of the Missing Shrimp",
+          "summary": "One summer day. RABBIT Squad members were eating their convenience store lunch box as usual when they noticed that, as of recent, shrimp had disappeared from their lunches. In order to find out the whereabouts of the missing shrimp, they decide to sneak into the fishing village disguised as tourists. Will the RABBIT Squad be able to retrieve the shrimp safely? The Midsummer Infiltration Mission begins now!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/827_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "夏の特殊作戦！RABBIT小隊と消えたエビの謎",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/02/Event_Banner_827_Jp.png/480px-Event_Banner_827_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-089",
@@ -3755,10 +4600,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/dNAPrW3aBo_JPYutXuVgoqxkKmJI__NIJ_7ftDIwckHQdQkQBrbpFyujSWkrpR77qnu9CKZrX1_tzTwaCve0uQp4EMhkmjBqynY1unick2LVQOkAC0pI4FrhfQwBFv1xmVYzvDPa652WwwkuWbkBIQ.webp",
+        "url": "https://i.namu.wiki/i/_w5sNhx_W5waN83sFaF65i8uLhucRObHiEhqSMYD6JiS2kPEk96apPYNAfHgl0StpuQb4NLdMQjmgfjJmj_seEicxXSWfXWomFsVqc9sTmEls8ulY8qejU9hhNQkvF5_RdIe2woYtNcfjwbkdc5GLg.webp",
         "fit": "cover",
       },
       "summary": "시스터후드의 경전을 몰래 복제한 사실을 들킨 우이. 하나코의 중재(?)로 유적지를 조사하는 임무를 맡게 되는데⋯⋯. 트리니티 근해의 무인도에서 펼쳐지는 좌충우돌 유적 탐험기!",
+      "l10n": {
+        "en": {
+          "series": "Trinity Extracurriculars: In Search of Hidden Ruins",
+          "summary": "At the request of Sakurako, Ui is assigned the task of investigating the ruins discovered by the Sisterhood, and together with Hinata, Hanako, and Koharu, they change into their swimsuits and head for the uninhabited island by the coast of Trinity. It seems like the place was once used by the Saint Justina Council...? Will the group be able to complete their investigation of the ruins safely? A slapstick exploration of the ruins begins now!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/828_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "隠されし遺産を求めて～トリニティの課外活動～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/4/4b/Event_Banner_828_jp.png/480px-Event_Banner_828_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-090",
@@ -3790,10 +4652,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/EQJ5sevBE7-pzJePbEPlLgTYOLNQ6gMp5nFpyx4qwVI8BIe3eHnwqh83hskaYKxmICbOd4ZOkP539x8Vvp8LwnmDFX4Qq5YA5vgme5J-IRPpZXQ91xUzzJykBGwsB5_sTq4QUhI2_egEWV8fBk-umA.webp",
+        "url": "https://i.namu.wiki/i/6z6b5UADeEonqDCpgC4teB79Xz70bbQT7zmXMIuZUPTL4XF1aL4FWq8Rv-7IwsGRP-AVPA6VKs8p2TC0tVbXcUxjOadHq4mQN0jw1q9pQNJ0uyZ2TKYzjiyz7KWRuYXs-5Xyw20OxXBWqvd2NBLLUg.webp",
         "fit": "cover",
       },
       "summary": "지식해방전선을 파국으로 몰아간 비운의 명작 <루나>. 모미지와의 화해를 위해, 지식해방전선의 재결합을 위해 메루는 미완의 <루나>를 완성시키려 하는데… 과연 동인의 길 앞엔 어떤 결말이?!",
+      "l10n": {
+        "en": {
+          "series": "Academy Club Story: A Pair's Final Adventure",
+          "summary": "The masterpiece manga LUNA that once took the world by storm. There is a rumor that a small number of copies of a mysterious final volume of the unfinished manga LUNA were in circulation. Meru, who had a fight with Momiji, sets out on a journey in search of the mysterious LUNA's Final Volume in order to reconcile with her. Will Meru be able to find the final volume safely? A story of friendship and hard work begins now!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/829_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "学漫同人物語～2人が求める最終回～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/1/1b/Event_Banner_829_jp.png/480px-Event_Banner_829_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-091",
@@ -3825,10 +4704,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/NnKNSp_t5niZ4xrSzufdLq-A9N9oETz0VZhHCcMxriK5bBN3dPwXV77m3x7w9K3t6xDNNaFM4VKXGChKDrqnnlNXtczRlqy2jr3KVas06y2eUOLFBSVRMhZgrFqPufFsyVO_5fvbMrVHbppmo9xwoQ.webp",
+        "url": "https://i.namu.wiki/i/_yc495KUn-ZCKQz9PlImbwWNxKZ-GkOE8-KF_8qgBcm-_XlJwYYcQyhfeRKsyp9E9wQNsQUHh3OD4R2jc0MXXWWOLmHvtk36LeRBiSxVpqbEY200oJwr3Ts2nHxpoDBUt5-qBXn5ccqUh6wAeDpMWg.webp",
         "fit": "cover",
       },
       "summary": "티파티의 정치적 명운을 가를 트리니티의 유물이, 게헨나로 향하는 열차에 실려있다! 이치카는 유물을 구해오기 위해 열차에 오르고, 그곳에서 게헨나의 현상수배범을 만나게 되는데…!",
+      "l10n": {
+        "en": {
+          "series": "Trip-Trap-Train",
+          "summary": "Ichika and Sensei are on a mission to transport an artifact back to Trinity, but they realize that the freight train they left their belongings on is headed to the wrong destination... They hastily board the train, and it seems that one of Gehenna's wanted criminals is also on boardー!? Will they be able to bring the artifact back to Trinity safely? The slapstick drama on the train is about to begin!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/830_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "Trip-Trap-Train",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/4/4d/Event_Banner_830_jp.png/480px-Event_Banner_830_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-092",
@@ -3860,7 +4756,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/94RCHcJJjfI8iT6_AtNAcNV1MKnD097Xf534MvFvUqoYacWlgAmgke7wwhWeUgG9c18Qw0VidoJJD2zcsIwtAu8Be9lqqErP8tMvkik2_Uj3ZIyAxYHyhutm7NXf-p2si9vr76n7HQil_nSvjZvYbg.webp",
+        "url": "https://i.namu.wiki/i/5NwTj2YY-_z5DEwPrWLg-32SJIKJkXJ-tS_uYvLRTEbo8oZbUKEORAALk5u4HKJVgSXzPN1iVh10_SX00-jOT7X3egRu3eYTNoqv0ZYHZJUQP6xp_vb1k9uqI4ZSVGm4AH04kK_U-yKxVKwl-O_m_Q.webp",
         "fit": "cover",
       },
       "summary": "뜨겁게 혁명하고, 뜨겁게 목욕하라! 227호 온천장의 폐쇄 이후 붉은겨울 학원에서 벌어진 사소한 후일담.",
@@ -3895,10 +4791,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/G2mwHrg4JbJIxOQmX7p7x_m6O-lm1ftnXUX_k6Ik1TVBcz_TfVOrR8VaRybbfDr6UehLLMB18GbDqgjlpnrohE1-1GQVlWqwCwvEHzeM_o2YHNElnOdjTG5q2pJWM_k8RnRfK8LhRb99rbXtNNfnww.webp",
+        "url": "https://i.namu.wiki/i/lP5NUb7AFw3XxTtjxh1h17LwYG3sLRlLunnVCw3Xi3gcjmHEL9yxeZXdIhdbHnK9ovcpO5iBC1kMD-QvRYC5eCheaRCm89DDKdYChKKZrNuDl8Lth9nxpCa8f11Rz3a6lJB9J3pFAH7TW_RJg3kytg.webp",
         "fit": "cover",
       },
       "summary": "화창한 어느 날 오후, 샬레에서 쉬고 있던 선생님은 에이미로부터 폐허에 사람이 쓰러져 있다는 연락을 받는다. 에이미의 말에 의하면, 그녀들은 다른 세계에서 온 것 같다는데⋯? 그녀들을 원래 세계로 되돌리기 위해, 지금 샬레가 움직인다!",
+      "l10n": {
+        "en": {
+          "series": "A Certain Scientific Record of Youth",
+          "summary": "One sunny afternoon, Sensei, while relaxing in SCHALE, receives a call from Eimi that there are people lying in the ruins. According to her, they seem to be from another world...? It is now up to SCHALE to find a way to return them to their original world!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/831_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "とある科学の青春記録",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/5/55/Event_Banner_831.png/480px-Event_Banner_831.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-094",
@@ -3923,10 +4836,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/I0i0ndvcLdSwI9JLFhbaegHtUFn9j8SWbtjk3wEgCKp6nqjStEfM_9Elr9sTxMfG_xYOvHwg57U0dNAVIJGwEwyrXgchujs6efX66RYyhAbFVw-FUG1Od3lWUhRYNvVpCeuQdXXvKG5IGPGhWzReLQ.webp",
+        "url": "https://i.namu.wiki/i/rDSsSyV4d4IL83Pr3GBCMoTpo_XwnFqM_ZjSM7AtIduRuZSTOgrwlAnSIZykHrMYDgfJ4EU_9OXnnS2E27B_-4Apn8uTibxGS0oCdyBymkMQ8FQPC6h4evMv03q59np-bb60HpQnU4hImNDMjE5cPg.webp",
         "fit": "cover",
       },
       "summary": "백귀야행의 멋진 문화를 알리기 위해 활양하는 음양부. 그러한 소녀들의 정취가 담긴 일상 기록.",
+      "l10n": {
+        "en": {
+          "series": "Yin-Yang Club",
+        },
+        "ja": {
+          "series": "陰陽部",
+        },
+      },
     },
     {
       "id": "story-095",
@@ -3964,6 +4885,11 @@
         "fit": "cover",
       },
       "summary": "각자의 이유를 들어 예전으로 돌아가기를 거절하는 백화요란의 부원들. 과연 선생님은 이들을 도와, 백화요란의 원래 모습을 되찾을 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 5, the Hyakkaryouran Resolution Council has rendered itself useless with its lack of purpose. It's time to join forces to solve this crisis.",
+        },
+      },
     },
     {
       "id": "story-096",
@@ -4001,6 +4927,11 @@
         "fit": "cover",
       },
       "summary": "각자의 이유를 들어 예전으로 돌아가기를 거절하는 백화요란의 부원들. 과연 선생님은 이들을 도와, 백화요란의 원래 모습을 되찾을 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 5, the Hyakkaryouran Resolution Council has rendered itself useless with its lack of purpose. It's time to join forces to solve this crisis.",
+        },
+      },
     },
     {
       "id": "story-097",
@@ -4032,10 +4963,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/9nyG04mVksWj7mca3JjmxZ87F0IZsjD7eH1OVGOXfbTM4GfdCdz8iCvVntEssikTUyv-GZWXp64IOEw-LHHJEH4ZtYYeh-0PFcImEx8HlXS0JzsHfNqwwfV8xS_0gy2hQQsQkHyNyp3FMKYxEdu2Yw.webp",
+        "url": "https://i.namu.wiki/i/7Xy4_9IoxMPg68lE1URsbyFjJlTN2-2WaPdHsrubDgobkcW2y1QCeVZ7dvkHTS0nvX3yvMiTh2-qcyXHu7GgmztdZQINKUlhOoETGomwyo0j_N2uuC6_ZVuqhvqmrGVmnSeqPgbcrntUwsp-hSq6Fg.webp",
         "fit": "cover",
       },
       "summary": "나태한 생활을 타파하고자 새해 해돋이를 보러 나선 베리타스 멤버들. 과연 그들은 무사히 해돋이를 볼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "series": "Cyber New Year March",
+          "summary": "To change up their sedentary lifestyle Veritas friends set out to see the first sunrise of the year. Will they be able to see the sunrise safely?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/832_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "（電脳）新春行進曲",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/b/b3/Event_Banner_832_jp.png/480px-Event_Banner_832_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-098",
@@ -4060,10 +5008,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/6gyCtCEV04mJx-qvmoM1fZLAcgQqybrUACRlfVrrQIFdUMEaUf4ozmXSlhaQrelmHyH8rsbRNf263ZboHzBjS_iisndWdsznKmZxzcvnKHAsvvQDXUKAGCnr5B2hC1HEcREFW_Q9yUQyCf9ooOf1hg.webp",
+        "url": "https://i.namu.wiki/i/owpmM3M2Vfscsel6Z1MdJI_hTRHlkFFMYcAPse5IJ-147Tse1wKTLuLrqjb_ynmeaFAwYf_f90hLWPguSLLCSPBx4x8AFzqW-5QnKx75PQKrHTlKPzpUcg1oSGo7tVR-GVx4giuLFIjnAgso570lCA.webp",
         "fit": "cover",
       },
       "summary": "건강한 신체에 건전한 정신이 깃든다! 건강한 신체를 가꾸기 위한 트레이닝부 학생들의 일상 기록.",
+      "l10n": {
+        "en": {
+          "series": "Athletics Training Club",
+        },
+        "ja": {
+          "series": "トレーニング部",
+        },
+      },
     },
     {
       "id": "story-099",
@@ -4105,6 +5061,11 @@
         "fit": "cover",
       },
       "summary": "선생님은 에이미의 안내로 초현상특무부의 부장, 히마리를 만나게 됩니다. 선생님은 초현상특무부와 함께 키보토스 곳곳을 돌아다니며, 미증유의 AI, 데카그라마톤의 실체를 파헤칩니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-100",
@@ -4136,10 +5097,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/O5q0NSRyQguDx15SXCm61Ez9CeC65nUhUVx_u2o9ORjPTFkmIQiXBKX6m0PcJpR20WJv2_WdC_gRqfvUtTUggS-VwJ78hNiQmyI4W4QGmKFkYaorveBmMegvcZU0KIVDGeFZxWFxewLabF_5BJz-9Q.webp",
+        "url": "https://i.namu.wiki/i/kDqQSJfaeSAnAiiqmod34cHWwAyfOZynP7B34f1FiZ_SoGLf_jIVq9khUeCl02vxnrbTQ3W8NzNmfS_F8OPnK9bFhocathyhEUVkmiWFJd5UfA6wBys8sVSW-xolMhBXc_k7G7Q0XRfAA3zUBkcYzQ.webp",
         "fit": "cover",
       },
       "summary": "발렌타인 데이를 맞아 <게헨나 특별 파티>의 준비를 위해 마코토를 돕는 선생님. 하지만 예상치 못한 게헨나의 일상이 마구 습격해 오는데⋯⋯?! 과연 선생님은 학생들을 도와 파티 준비를 무사히 끝마칠 수 있을 것인가?",
+      "l10n": {
+        "en": {
+          "series": "Basking in the Brilliance of Their Serenade",
+          "summary": "With Valentine's Day coming up, Sensei decides to help Makoto with preparations for the Gehenna Party. However, the daily life in Gehenna is fraught with complications! Will Sensei be able to finish the party preparations safely?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/833_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "陽ひらく彼女たちの小夜曲",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/a/ab/Event_Banner_833_jp.png/480px-Event_Banner_833_jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-101",
@@ -4177,6 +5155,11 @@
         "fit": "cover",
       },
       "summary": "카이저 그룹은 철수했지만 학교의 빚은 줄어들 생각이 없습니다. 새로운 위협에 맞서 대책위원회는 학교를 지켜낼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-102",
@@ -4214,6 +5197,11 @@
         "fit": "cover",
       },
       "summary": "카이저 그룹은 철수했지만 학교의 빚은 줄어들 생각이 없습니다. 새로운 위협에 맞서 대책위원회는 학교를 지켜낼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-103",
@@ -4251,6 +5239,11 @@
         "fit": "cover",
       },
       "summary": "카이저 그룹은 철수했지만 학교의 빚은 줄어들 생각이 없습니다. 새로운 위협에 맞서 대책위원회는 학교를 지켜낼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-104",
@@ -4288,6 +5281,11 @@
         "fit": "cover",
       },
       "summary": "카이저 그룹은 철수했지만 학교의 빚은 줄어들 생각이 없습니다. 새로운 위협에 맞서 대책위원회는 학교를 지켜낼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-105",
@@ -4325,6 +5323,11 @@
         "fit": "cover",
       },
       "summary": "카이저 그룹은 철수했지만 학교의 빚은 줄어들 생각이 없습니다. 새로운 위협에 맞서 대책위원회는 학교를 지켜낼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-106",
@@ -4362,6 +5365,11 @@
         "fit": "cover",
       },
       "summary": "카이저 그룹은 철수했지만 학교의 빚은 줄어들 생각이 없습니다. 새로운 위협에 맞서 대책위원회는 학교를 지켜낼 수 있을까요?",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1, the remaining students of Abydos High School seek to avert its closure.",
+        },
+      },
     },
     {
       "id": "story-107",
@@ -4393,10 +5401,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/lp8vshISGZGVRIKwfhl0lDc2nBPiEo2LRP85_nxovcSeR0NdkTYQs8nwSzFzkiAZs4sPbygaTuRyo9-WiAR5PyneHXoyWAKxglk7l-UNfqiu2z9CiN3bM817-HOblYhCMZyUC1K1QNHIk-hhxhPT1Q.webp",
+        "url": "https://i.namu.wiki/i/9viiZ1Jcxi4MaSULZuAUXyYOOiJdYZTVu4bJXKud6dGa1iLo-rZHWDAobtxAg2z5WLTHTc0lo3SWk233GB_WS6T1Tt7vmUxqd-2d2cgmpTAv65tpujpJs-TLDdlWlgZv0ZEkMAYEUyGJxcwx3eBnfQ.webp",
         "fit": "cover",
       },
       "summary": "어둠 속에서, 흥신소68이 움직인다! 타겟은 갱단 연합의 우두머리인 <돈 아란치노>. 과연, 그들은 성공적으로 의뢰를 완수할 수 있을 것인가?",
+      "l10n": {
+        "en": {
+          "series": "From Opera 0068 with Love!",
+          "summary": "Under the cover of darkness, Problem Solver 68 is on the move! Their target is Don Arancino, the head of a gang alliance. Will the girls be able to successfully complete this request?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/834_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "0068 オペラより愛をこめて！",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/81/Event_Banner_834_Jp.png/480px-Event_Banner_834_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-108",
@@ -4428,10 +5453,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/1DwVXzTqvVKJN9k8VG1ZD4jMP2Wj7que0itWRIcotnJkVX0vAI1_P6D19qS_-Wg8CY7T6WAdTmgH6C0gAPimkhIpjVPP-ubEL2LeTBHeIOTN0sVi7qNQslM-hs4gAG1EyDTqDdlglHsj_OWPYo61mA.webp",
+        "url": "https://i.namu.wiki/i/57IFKnCg9ZBAg5tNNrL04V8rGjGppUrSzVASEy2HHGdEtwOeQRM_nrRTRmiiwMCsI01NmsOrVWxM5JklwJaRe9frt_uAZRrz8yNwqQd20l4hSKJI5GUs_i7q053ddOX9UzyiTxzjEU2Ocb8lKMaykg.webp",
         "fit": "cover",
       },
       "summary": "백귀야행으로 수학여행을 떠나는 게헨나 학생들. 그리고 아무런 준비 없이 게헨나 학생들을 맞이하게 된 마츠리운영관리부! 과연 마츠리운영관리부는 가이드들의 도움을 받아 천방지축 사고뭉치 게헨나 학생들을 성공적으로 안내할 수 있을 것인가?",
+      "l10n": {
+        "en": {
+          "series": "Rowdy and Cheery",
+          "summary": "Gehenna students are visiting Hyakkiyako on a school trip. And the festival management committee is caught entirely unprepared! Will they be able to safely guide the mischievous Gehenna students?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/835_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "にぎにぎと ゆきゆきて",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/e/e6/Event_Banner_835_Jp.png/480px-Event_Banner_835_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-109",
@@ -4456,10 +5498,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/y85ZmlMZaULGRgXRYtqJ2d4hmcQHt5JHvXelynpn7nL4qy_cT1dAQqu_XcazV_DO-R0PaKWsnr2uW_SvuoOHup8pGzRCG4o401Jsoj96WtllRh0KZBHs2E-Ini50kNaGSuavsGuqLzhqZIkrBokcbQ.webp",
+        "url": "https://i.namu.wiki/i/JM7aunuYooeygMzvtYUT8ITeKuOxE7pRuRBftTxCdzw0Km3jBkMmQ8v8uWsODzNYxvgAsRSrKiWt8NJukPVgtdS_qwezd6VhVWSm9ErZH-1jCJiTdSwE8U0oSGEfeMCJLh8KJO2tipahyEtxWvTMaQ.webp",
         "fit": "cover",
       },
       "summary": "축제 준비는 맡겨만 주세요! 의욕 충만 마츠리운영관리부 등장!",
+      "l10n": {
+        "en": {
+          "series": "Festival Operations Department",
+        },
+        "ja": {
+          "series": "お祭り運営委員会",
+        },
+      },
     },
     {
       "id": "story-110",
@@ -4491,10 +5541,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/lRmgt0JvP0rf2AaaOgNxHyTF1nIcCJon-qB9KYkBiYMb475Zv0zlfTRBBbIN913WlpP4eUE87-Og-27V6aSYd6NCOlI8u5YIko5j4wMkSjf3KsLU2jGKdfO-XHJ7Hrwa-Fal_4__crU8n_YzekCgpw.webp",
+        "url": "https://i.namu.wiki/i/5_uYWAEcBnwN0WYdGBV1-QUVXJ_Ai0WhM8ILmlyafr3qCjIl7GHrEZx8sBYWk3caszM0MGbKrCPIEnbaIX_6T5DEYDDSK9rK59pJGitpXOFCfcJfuqZ9BkGOu-6SaI0szIjPnYFPOErHskKKKBs4-Q.webp",
         "fit": "cover",
       },
       "summary": "'밴드를 하자!' 목표는 너무 맛있어서 죽어버릴지도 모른다는 디저트의 여왕, <프레데리카 셈라>! 과연 방과후 디저트부는 성공적으로 디저트를 확보할 수 있을까요?",
+      "l10n": {
+        "en": {
+          "series": "-ive aLIVE!",
+          "summary": "\"Let's make a band!\" To secure their access to Fredericka Semla, the Queen of Desserts, after-school sweets club decides to form a band for the school festival. Will they be able to assemble the band in the pursuit of a dessert worth dying for!?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/836_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "-ive aLIVE!",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/f/f5/Event_Banner_836_Jp.png/480px-Event_Banner_836_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-111",
@@ -4526,7 +5593,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/-I8CsuXJIvAfZUevbjFjI23OlQ_l9NIu6NLq65RTkO3m92dlILigCCkwYsnctUaQUlYwVXoB6AaqCEZSdkMdynfkuqX8ppD33n0fGSFO2vr3g_PBULFn5wInjQyeoF546vyPe4dNuzOprOva-eLL9Q.webp",
+        "url": "https://i.namu.wiki/i/30ej-nL3QrsGzqh1-xX4eVTNWymH-ji421JNksbabXagb6tRo2ZQx8UxVURL6iQAEe8yR90ZcscDOgQHDt9eg2VIeYLXA_KX2e8rYAqsgWV5O3VwLoSVaVqRfP6qBKWkulkj11vS3TRLtb8MIRLHdA.webp",
         "fit": "cover",
       },
       "summary": "어느 때와 같은 좌충우돌의 평범한 일상을 보내고 있는 귀가부. 하지만 예기치 못한 변화는 갑작스레 찾아오곤 한다.",
@@ -4561,10 +5628,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/zeh7S3tCrBM9m_du3SgQHewd51r-v_Bubn48GiTD40a4DKpnvxzz3xswsfj_WvKuaH0tOHOeOT8PSCCHB2w4IjVLMe1z8TcGB0do8jhbEr5jkQgJtW_N4bRWA6tdoNRoQC2FmOV_8GCcwK_iHJV-NQ.webp",
+        "url": "https://i.namu.wiki/i/KK-iE6L-8YBxLKZnlPkklFMtwlTexXl0OenlQQ3h3bGpJ0b3NZXNDFLaD3FduJVmb5wr8mtB7VuwUpLE08snlqdqS4Tne5cMrLImzuirenoWeCSPWWGpxJJSgsj5hKPu8jWS21G27dsxAxn4XNHn-w.webp",
         "fit": "cover",
       },
       "summary": "워터파크에 파견된 칸나, 키리노, 후부키. 초보 라이프가드 세 명에게 미지의 위협이 다가오는데……?!",
+      "l10n": {
+        "en": {
+          "series": "Say-Bing!",
+          "summary": "Kanna, Kirino, and Fubuki are dispatched to the water park. The three novice lifeguards struggle with their unfamiliar duties. On top of that, an uninvited guest shows up... Will they be able to keep the peace at the water park?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/837_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "Say-Bing!",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/89/Event_Banner_837_Jp.png/480px-Event_Banner_837_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-113",
@@ -4596,10 +5680,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/v1442BULEzZLreUJ1zkoaNj0gITtZ25Z8zo8kW08Z0dfBcCUCaJFaj-_3TJymzKJT5qbN-cdYxAtt03tZUE2unQQ_LwRMBg-AmR6_0-Amz80z4eY6G4slo_NiZHUXt1G9Fc5FcqQQaHIgzb4ktczUQ.webp",
+        "url": "https://i.namu.wiki/i/VU_o-NRSsTGEFnLIG0EiggwBOkFANGi06eMhyYo2egDmOShu8QokQIej4U59IFx1CqUDHAzL14LnqAsTWybAl3z_kDBH15x7XJ4YVh3pJDOsduTEC9WcBG_LhXgZ2voRa_9RwlrA6oqSQ0pkg4spUw.webp",
         "fit": "cover",
       },
       "summary": "헬멧단이 주최한 축제가 '무법자 해변'에서 열린다. 이 성대한 축제에 각자의 방식으로 참가하게 된 아리우스 스쿼드. 그러나 이들을 못마땅히 여기는 의문의 세력이 호시탐탐 기회를 노리는데…….",
+      "l10n": {
+        "en": {
+          "series": "Sheside outside",
+          "summary": "A festival sponsored by the Helmet Gang will be held at the \"Outlaw Beach\". The Arius Squad is eager to participate in this grand festival while a certain organization appears, aiming to disturb the festivities... What will happen to their summer?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/838_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "Sheside outside",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/5/55/Event_Banner_838_Jp.png/480px-Event_Banner_838_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-114",
@@ -4631,10 +5732,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/rdumKFOtcmwK6Vs_lnrU-tNiJXR4U_oDa3TDOxVEFo9YIGKmOZcEzQOjoEZFW5nrSoBfqZfOKXzDqFDZTxh3osuDeO6suwy6apEuBhIJp-PIvPtLI5fW_xrtItBQYazzCe-J7cYnLZ69OwXyivZbJw.webp",
+        "url": "https://i.namu.wiki/i/AhDItl6aD46cPrvYIbmeJ945PqDgW5arif79Zv8WJmFFkogf5ei3lzD8_W6ebZ8PfxP4YohY7798kuCEmhyYaUFMD85qGj7y24nfVggL__lmOY28GrkQi3rr0_nX9z5fnzlx53B4hGAFSoTLWB-Hxw.webp",
         "fit": "cover",
       },
       "summary": "산해경 고급중학교와 붉은겨울 연방학원 사이에 교류회가 시작된다. 키사키와 체리노, 각자의 생각과 사정을 가지고 진행되는 교류회. 그러나 전통에 어긋난다는 이유로, 이 교류회를 탐탐치 않게 보는 학생들 역시 있었는데⋯⋯",
+      "l10n": {
+        "en": {
+          "series": "Radiant Moon, Raucous Dream",
+          "summary": "A school exchange event is held between Shanhaijing Senior High School and Redwinter Federal Academy. Kisaki and Cherino each have their own reasons and thoughts, but the event proceeds. Meanwhile, some students are hostile towards the exchange event because it goes against tradition...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/839_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "月華夢騒",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/e/e5/Event_Banner_839_Jp.png/480px-Event_Banner_839_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-115",
@@ -4661,10 +5779,18 @@
       ],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/0ckuvdTEXNmzOug1Mh05pjY-B8Z6KCMddynp1xJXkTW-XMaBvsBLnHlNkdqhNZmUpxtXHH_OUz_3y10_FaVE4GnGGuMInsFeq0IP0Av_nO8Om2OWTTHPzvQOZPhYpqc7WkRFTkB4FvmOP1YQ6cfRsg.webp",
+        "url": "https://i.namu.wiki/i/QYUWYk1jGwv_Yg8f0Ph5i1tL0WvOgnBFmJc0fPfkf32qqB_CfsW1u74ONXtjpozt5i7sth5p1Ym5RwW697yO5MKgtaQX2KpV3WCROR_98RisWBQyjmHMiEl0QmxFYDNRedTodo-beSj23-jDlN1fAg.webp",
         "fit": "cover",
       },
       "summary": "현룡문, 그리고 산해경의 일상! 어설픈 자는⋯⋯ 살아남지 못한다!",
+      "l10n": {
+        "en": {
+          "series": "Genryumon",
+        },
+        "ja": {
+          "series": "玄龍門",
+        },
+      },
     },
     {
       "id": "story-116",
@@ -4696,10 +5822,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/URoH9QZHOlMtPk6Dqb8bH6w_fZbjiB-T59mGRde5_13p_4HPD4SY4gpmEat4UAvcFjZZo5BabjvopadOb7oIdxR5Eeg9K9UsjQM0ZRgR70tl6owe2pI9CM-7s8AUwzYY1r3MzQM_wd76NKDdwkULxA.webp",
+        "url": "https://i.namu.wiki/i/cjje3szs3lCEYsAr3JMvgxa4NetIGXpHgWIFdvzzE8yMjFAPL6hpuvMVgT_yee8lm7bpXAKTp5x5kM7iN-7ed16enhRibD1Wj8wXw2zEknkGfEnD488eDWjDbAFeY5zvIZIl7jn28QQLkkBAS7iugA.webp",
         "fit": "cover",
       },
       "summary": "산해경 고급중학교 전통의 축제, 월영제가 시작된다. 그러나 붉은겨울과의 교류회에서부터 시작된, 여러 가지 불안한 분위기가 산해경을 감도는 가운데…… 누구도 예상하지 못했던 현상이, 돌연 산해경을 덮친다.",
+      "l10n": {
+        "en": {
+          "series": "The Senses Descend",
+          "summary": "With the traditional Moonlight Festival approaching, an uneasy atmosphere has been hanging over Shanhaijing High School since the exchange meeting with Red Winter Federal Academy. Meanwhile, a strange phenomenon has occurred...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/840_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "五塵来降",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/e/e1/Event_Banner_840_Jp.png/480px-Event_Banner_840_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-117",
@@ -4731,10 +5874,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/VIyze2cMCZVrR9-jSjzRhCqjoVClaxY6h8rOvoOg6IG25LgieZ0yqMy7ZS44LIaAmMPCIXKppfNn913QfOeV3vSKrlfAf1yUWeFh_A4Esk-fKbMHrxb6BtVbIkPQRvyCRNkyTP-Kg-0qMZAYYK9Cuw.webp",
+        "url": "https://i.namu.wiki/i/HnAdJtXyo5iROS2OVHLE_TDxxH4rB5m7KZZX2Qpp2UU9dLiSpLE29yiySt_6H6s1hdMWYbmCtm0qcbmrBMDOpn5Bc3uncqDwxPj0Uump7Ef1ZpSUiydyuCLU_Sb3ZRkx6k772Errtm5L2pI5T4L-pw.webp",
         "fit": "cover",
       },
       "summary": "트리니티와 게헨나⸺2개의 학원 자치구에 걸치듯이 있는 보더랜드 유원지. 라브가 이끄는 퐁당퐁당 헬멧단이 그곳에서 흉계를 꾸미고 있다는 이야기를 들은 시미코는, 자경단인 스즈미에게 도움을 구한다. 하지만 정치적으로 미묘한 입지에 있는 유원지에서 일을 크게 벌일 수는 없는지라……. 의뢰를 받은 스즈미와 레이사는 마법소녀로 분장해 잠입 임무를 수행하는 것이었다. 과연 보더랜드 유원지의 평화는 지켜질 것인가?",
+      "l10n": {
+        "en": {
+          "series": "Magical Girl Heavy Caliber: Era's Ambitions and the Qualifications of Justice",
+          "summary": "To stop a certain incident, Suzumi, Reisa, and Shimiko infiltrated an amusement park disguised as magical girls. Though each carried their own doubts, they set out determined — because someone had to do it.",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/851_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "魔法少女ヘヴィキャリバー～エラの野望と正義の資格～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/c/c8/Event_Banner_851_Jp.png/480px-Event_Banner_851_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-118",
@@ -4766,10 +5926,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/_G4bxashpJB1OxZ27YHDKGPdqjkAdrPaJg70XqVJ_QSf_Q8_tUKB6rbgwIGyIF5YmuTkQk1eWfxT7XUHf11snr40UrzgzCNeNYMQ3u_oCkyDGx3R6Ugzb9pdzByh2663bAqvHXyHx0ouMWRN1iXwMg.webp",
+        "url": "https://i.namu.wiki/i/6J1BddyS9mJN10XtqxXUqd_08VlxZkJv9JihdewrzQZC85PmIWSKXmKacbzAEYvn89P13DUQ8MRS7scVMIjSFpInfML1v08ZzDPivfPNswWh193RgFHda0GvF5-xqdFrJDG36-H2wvOIhNEdZTABFw.webp",
         "fit": "cover",
       },
       "summary": "성황리에 개최 중인 트리니티 사육제. 클라이맥스인 아이돌 라이브 공연을 준비하던 사쿠라코와 미네는, 자신들의 힘만으로는 어렵다고 판단해 마리에게 도움을 요청한다. 두 사람에게 힘이 되고 싶었던 마리는 다른 팀들을 답사하지만, 전개는 전혀 생각지 못한 방향으로 흘러가는데…….",
+      "l10n": {
+        "en": {
+          "series": "Serenade Promenade",
+          "summary": "Sakurako and Mine plan to participate in the \"Idol Contest\" held at the Trinity Carnival to improve the image of the Sisterhood and the Remedial Knights. Knowing precious little about idols, the two ask Mari for help. To meet their expectations, Mari learns about idols together with Sensei, but...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/841_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "Serenade Promenade",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/d/d1/Event_Banner_841_Jp.png/480px-Event_Banner_841_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-119",
@@ -4807,6 +5984,11 @@
         "fit": "cover",
       },
       "summary": "데카그라마톤을 쓰러트렸다고 생각했던 것도 잠시. 미지의 예언자의 징후가 또다시 나타나기 시작합니다. 이 위험에 맞서기 위해서는, 새로운 동료가 필요할지도 모릅니다!",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-120",
@@ -4844,6 +6026,11 @@
         "fit": "cover",
       },
       "summary": "데카그라마톤을 쓰러트렸다고 생각했던 것도 잠시. 미지의 예언자의 징후가 또다시 나타나기 시작합니다. 이 위험에 맞서기 위해서는, 새로운 동료가 필요할지도 모릅니다!",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-121",
@@ -4883,6 +6070,11 @@
         "fit": "cover",
       },
       "summary": "데카그라마톤을 쓰러트렸다고 생각했던 것도 잠시. 미지의 예언자의 징후가 또다시 나타나기 시작합니다. 이 위험에 맞서기 위해서는, 새로운 동료가 필요할지도 모릅니다!",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-122",
@@ -4907,10 +6099,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/CnNXKOdo_MvCKwdFjLlSfiNX_83Bh4Lz8OtiCIl-UDiuUii5_mfiowHQkZGPyJNGWtO_eSDeM3gvH5fUZ9ABVJSt0Zl6-PhcqkmI2nP0vTBHiNRS_aaJSxjaw9y1EquA8czhtp9txrzOae5JitR4sg.webp",
+        "url": "https://i.namu.wiki/i/Yf5q2YY2-OK185StHa7k01yrD5qBoKEWhhEXZ71nW7Tx4u1WjKtooTNolMjBwVtf5ktszqD3TujXdtFQo6o9ZFXqNjYJYFf5Sv0lQM7B-CPEiFZqYOtfpv4lU6nxqsiYoK-3Fwvq6fIVke56LCtUqQ.webp",
         "fit": "cover",
       },
       "summary": "온천이 있는 곳에 우리가 있고, 우리가 있는 곳에 온천이 있다! 온천개발부의 따끈따끈 일상.",
+      "l10n": {
+        "en": {
+          "series": "Hot Springs Department",
+        },
+        "ja": {
+          "series": "温泉開発部",
+        },
+      },
     },
     {
       "id": "story-123",
@@ -4942,7 +6142,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/mx0LgocM6Ic3-RFVECoTxR5_marowA1qIaSW0wrKkx08nLV7dtRLcXOCF9fWs1lEiXUbP3NaQ9uloLfpypmGDOZyISxQpsjmvAa3Ex1FUEnFPtaLFlOrFUeq_soQBI9QsZcjDXJ9ewGe2j9qBAHf1w.webp",
+        "url": "https://i.namu.wiki/i/DTWx28YaYMZNQoxZsVwt0IcJprN1EorRr-NcCNp6syFM0uT-3d80BC9YlmXrIn16N3FvT8NYigiL9yf5xSUokek-OzOGrW590q8nUue5BwzLrBEDYjwIxxc3hkzUNyMnuamyKDRqRWuNHJCpRoN6nQ.webp",
         "fit": "cover",
       },
       "summary": "오늘도 키보토스의 원활한 교통을 위해 최선을 다하는 하이랜더 철도학원 학생들. 그들의 하루를 들여다본다.",
@@ -4977,7 +6177,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/xS9NsVZqErMf8HQkedpcHqRycHLKJ95gTBtLHNHCztxJfMWWTcsxhQOHQOYH3UvGDJhTi0TohleItQ2T3tCPb997RlJhDPQjQUa8HKT0auVw9pKj5sYlh7YhdQg3ZaqcKOkxE88SJU_8Ia7ol_yoBA.webp",
+        "url": "https://i.namu.wiki/i/zAhZI2w_AIsbU2XJqdsNYEs9I9pf0Os0Uy5xJEU6KI67KO8a19ApRIOGMccwOXhuw4tGGrUQWsATQELsozVhTcR_WkJXaVM5rUx28nQZ2UbDoYv47L3SaYlRzZwpCxnuicNvuXcsYujIYzEiYjzQ6A.webp",
         "fit": "cover",
       },
       "summary": "크리스마스를 앞둔 어느 날, 소라가 발견한 주인 없는 선물 하나. 이 선물은 과연 누구를 위한 것일까?",
@@ -5012,10 +6212,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/a8y-xljlILPVplcbL_yAXygvS96aCRT-Llzx264nbI9tJy37rAze4Lx85UiHNwSimwJ0aPiNVnq1eTyKaVqROeQX-UaYcAcFtujKHAhZl-NHJK4LpHmr5KHMN01GMz1pGPwk-bMZlH1Om31sWxys0Q.webp",
+        "url": "https://i.namu.wiki/i/N5O1970PnRNBXYWeI_rKdeerUHcqp4vnFAG58o1I-FDRGFtFajJ_b8M6JrekjjDJrUF3xy_rLKNPsT3e03lMKuYMlO9nnkQNPtAmUpTaF-bec83GiDn0eWR7v5srVcY3wfNhzlY8mxbpOow37jHQ-A.webp",
         "fit": "cover",
       },
       "summary": "한 해의 마지막 날 밤. 반성실에서 반성하던 코유키와 밀린 업무를 몰아치던 선생님은 의기투합하여 땡땡이를 치고자 한다. 하지만 즐거웠던 시간도 잠시. 예상과 달리 유우카와 노아가 빠르게 세미나로 복귀하고, 즐거웠던 시간은 쫓고 쫓기는 추격극으로 뒤바뀌는데…….",
+      "l10n": {
+        "en": {
+          "series": "Secret Midnight Party: The Chimes of Tag",
+          "summary": "On New Year's Eve, Koyuki, who is unable to leave the reflection room, calls Sensei over and plans to spend the time playing with him. However, Yuuka and Noa unexpectedly show up, and a game of tag begins, with the New Year at stake...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/842_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "秘密のミッドナイトパーティー～オニの手は鐘と共に～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/1/19/Event_Banner_842_Jp.png/480px-Event_Banner_842_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-126",
@@ -5047,10 +6264,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/49duTeeX2pAnrNvouUzya0lK_HedY8wHMB0Tc7Fzy4ck80P43ydKLq7BgsDL3x8CYiF-p2Tc6Z6qxoSh1x1-vicmmO_v_OhDbA_dwM_Q2DPF4B7CalqSwhE8VFPdT-UY7I0j3J60MOJUmASXckHuSg.webp",
+        "url": "https://i.namu.wiki/i/dApKQ4Y9MEW7lpChquWNUuM4Io5qZFSe5bU0snDvoSOVjFUa5IA7KzwW0DpGmAbGPT3KhElzFOox3rSWgJzQl8upLTC1NKgu5KP6R3nDVLHMRWN_xnxOAPgT3oM5GxKMyzYpqj5XaDnQVEkeKI8LuQ.webp",
         "fit": "cover",
       },
       "summary": "밀레니엄 엑스포를 맞아 교류 학생 대표로 파견된 세이아. 하지만 엑스포의 이면에는 거대한 음모가 꿈틀거리고 있었는데……",
+      "l10n": {
+        "en": {
+          "series": "Code: BOX - The Shadow Approaching MillenniumOne Question, Two Answers",
+          "summary": "Seia is dispatched as the representative student for the Millennium EXPO. While active exchanges between schools are taking place, a plot that shakes Millennium is quietly progressing behind the scenes. After witnessing a suspicious transaction, Seia gets involved in a mission to protect the Millennium EXPO...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/843_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "Code:BOX ミレニアムに迫る影～一つの問いと二つの答え～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/3/3a/Event_Banner_843_Jp.png/480px-Event_Banner_843_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-127",
@@ -5083,7 +6317,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/Rl-BfR93QaPE5y9XnfrDuiZeUxXo4tBfkY23h_r5nSIzdvphCWErsgmMKSLoHgyiid84ml-bA_JjUgiNYTgffT-54cQlvPBhkWzGZl9irkoFVL_NkmDnnyucW7NTghrestw9yYyrzNaXNs38FTVqyw.webp",
+        "url": "https://i.namu.wiki/i/4jENEm9_3wFz9ui1HILGCrY7mPtaUgo_DZPSbHaT_ncYmFndm2Xf0JBxGeX9z4EJFuK3pjG1jJRZvDeZGDtuZ-iWNpU4Fum8BPzx6h_KKI7MzQpljMCzml1cE7PEimMvPPozv5rZj5LwDQA6CGkm6g.webp",
         "fit": "cover",
       },
       "summary": "우연의 일치로 생일이 겹친 히나와 키사키. 선도부와 현룡문은 각각의 생일 파티를 준비하려고 하는데…",
@@ -5118,10 +6352,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/BtLyoP7HXBxTrn962AByRA_UsE57DwDlyHaXZwM1g-W23elsRzAehDCgrHtZnvBt5w9KLcD1UUMxwB6_K6BXy26SFGq2YVi1ASal07UEcj_qU_Fp97dd4oGXhaCktJ-zvXePX57CcF_IXG_jKr2pcA.webp",
+        "url": "https://i.namu.wiki/i/8Oubv7YiHVI8fsWkxQPlTtFeDKEqPaTuP7UvN_IRZzqEOmvo-SHyPC-1RGzpGs8YuhFqIxUbRKN_WEZ9yoJYrIgfsXcDOqRcH4xaj0HZDh3J-dloeaYEWFiRQeIs_hgIUZHNglX2b2sq5e3c8DldVg.webp",
         "fit": "cover",
       },
       "summary": "주리는 아르바이트 중 팬케이크를 만들게 된다!놀랍게도 멋진 팬케이크를 만드는 데 성공했지만?!'그것'이, 팬케이크 사이에서 눈을 뜨기 시작했다…….",
+      "l10n": {
+        "en": {
+          "series": "Pandemic Hazard: Miraculous Pancake",
+          "summary": "While working part-time, Juri is tasked with making pancakes. The finished pancakes look delicious! But then, \"It\" starts to awaken amidst the pancakes... One by one, the students are getting attacked by \"It\"... Is this a miracle, or a tragedy?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/844_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "パンデミック・ハザード～奇跡の一枚～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/0a/Event_Banner_844_Jp.png/480px-Event_Banner_844_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-129",
@@ -5153,7 +6404,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/NilNtu2zUiE73fD92O3EApLCheysytuoaFQmLvMIf4tiJN9mQwK0mn-Zm5LyuiIbzQK_37caVCxH7e_sudhR_mBgkJXdncQONnVkWg38_xUO1v31QYWmE2bF2FqPwn0UjAQ36MBRxT4A7kw8HGODZw.webp",
+        "url": "https://i.namu.wiki/i/dp8CM1T0x93KZuAgpnTjf0qVNOjZdhCV2Z-WqFR7sYQh3B9STlzKG-5_HGLxD4K7fjuiXeSSlf9cfdmOJXeYfm6q2myd_I26VhKTKi9KWEsttoY28ZZ9CLD756mmGu-17dd_YBoMpRLkk8X01ZL17w.webp",
         "fit": "cover",
       },
       "summary": "후우카를 사이에 두고 만난 미식연구회와 구호기사단. 후우카를 차지할 사람은 과연 누가 될 것인가.",
@@ -5188,10 +6439,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/5bKEEZ2K2S7P4DoLss-qWguYAyD4oLl5zAgj_748zWYlaoHPQiMJFyuJYo1uL5YRy7vuwsvQyoLG2lTEkMCjXPbBIDQVtjc1Bu9qWel4mitmMpb02fzt0SSs1QAGhCfxfVCyhLkk3riLxwovpRjeNQ.webp",
+        "url": "https://i.namu.wiki/i/0rnxkiD43D09lHi1gMMEFw-WqRW4KVKLX4Mi99n6w818PI_Ug7LsIHGeUz3lJMxUR59EY6_RFjgK02LBn8yvaya4k1N4Byva5eJACp1EhvG_ZpJ7qK80iOZpq8zq29yc9Pu0UrKK1T_Xi764Q1-t1A.webp",
         "fit": "cover",
       },
       "summary": "야구 경기를 응원하기 위해 야구장을 찾은 레이와 스미레, 그리고 선생님. 그러나 경기는 시작부터 심상치 않은 방향으로 흘러가는데……",
+      "l10n": {
+        "en": {
+          "series": "Pray-Ball! Swing for the Grand Slam!",
+          "summary": "Rei, Sumire, and Sensei visit the stadium to cheer for the baseball game. However, the course of the game takes a suspicious turn from the start, and a conspiracy looms over the entire stadium...!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/845_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "プレイボール！ ～目指せ！満塁ホームラン～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/2/21/Event_Banner_845_Jp.png/480px-Event_Banner_845_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-131",
@@ -5224,7 +6492,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/oBjDEKJI2p3FwrS-a6jWg7x-ousdNx8efbKq_jMAQtv_TwBR86mKaC4eGq3ekOJgIAHcMrvN4SdUySR2m9VTjCCnc3E2bIej7bd-fB-4U9ZowE6HvCaBXN-G90u9rzdBvU7Wiq_9Bs5pmC-s8VFt-w.webp",
+        "url": "https://i.namu.wiki/i/UmZdK04MuKQkp0E2nrwSH5Xdv6zfYkA6kG1ZP0kyE_Ec91ZlG29z4Csw1_XaIzzUoX_Jc2xlS8-G_9Jc6SIp6uDe89F8qsS6_AGC9mBs3Awcjh9CgZdCvL3SfoMO6xLEfxCxZjDBjhJBvfVhihMxEw.webp",
         "fit": "cover",
       },
       "summary": "밀레니엄 헬스장의 수리로 다른 헬스장에 가게 된 스미레. 그곳에서 예상치 못한 사람을 만나게 된다.",
@@ -5259,10 +6527,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/ZY-E0e7wIFpJmQXxqSFicGSe-O6Y15snOJ5ZCoEDr8tHfOy0wo7e0mrm-qqhPZEJBKFgAsOST0Syhiqe-okzblpzNtNl5SfFrFkRkkcB1kZi1O7IO_piO_42lDXgErUgRr3Hg0A9QpQDKVX1MYPm5Q.webp",
+        "url": "https://i.namu.wiki/i/nB1C0_BGvuzWmlkWzO97ITzZs1SqHcyXCpZBFeYIG9jdM3l-0dx6Y8VlcQctDltXr7jVecV8TEvfV_pc-WygG_88WdZWHcnqlk5sLQSC1oZCIIkzECXYJAHiQswaFtslhB4Jcvwp20k6lcpUrGT69A.webp",
         "fit": "cover",
       },
       "summary": "잃어버린 화물 열차를 둘러싸고 파란만장한 추격 극이 펼쳐진다. 과연 선생님과 하이랜더 학생들은 성공적으로 임무를 수행할 수 있을까?",
+      "l10n": {
+        "en": {
+          "series": "Highlander Railroad Runaway Incident: And the Train Disappeared",
+          "summary": "A thrilling chase unfolds around a freight train loaded with mysterious cargo. Can Sensei and the Highlander students successfully complete their mission?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/846_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "ハイランダー鉄道爆走事件 〜そして列車はなくなった〜",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/08/Event_Banner_846_Jp.png/480px-Event_Banner_846_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-133",
@@ -5300,6 +6585,11 @@
         "fit": "cover",
       },
       "summary": "황혼에 먹혀 버린 나구사의 팔은 날이 갈수록 그 상태가 심해지는데… 과거를 곱씹으며 괴로워하던 나구사에게 예상치 못한 재회가 찾아옵니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 5, the Hyakkaryouran Resolution Council has rendered itself useless with its lack of purpose. It's time to join forces to solve this crisis.",
+        },
+      },
     },
     {
       "id": "story-134",
@@ -5337,6 +6627,11 @@
         "fit": "cover",
       },
       "summary": "황혼에 먹혀 버린 나구사의 팔은 날이 갈수록 그 상태가 심해지는데… 과거를 곱씹으며 괴로워하던 나구사에게 예상치 못한 재회가 찾아옵니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 5, the Hyakkaryouran Resolution Council has rendered itself useless with its lack of purpose. It's time to join forces to solve this crisis.",
+        },
+      },
     },
     {
       "id": "story-135",
@@ -5368,7 +6663,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/RPBXbBIdWynjYSs6Ime4wBc2fCO9s1h3RPVnWLe8uuy93m9djxS-NHdiddtJtj7q8S33hPtZMprGKXvw8_PeoHKipx9ooxF9vZN0f0436f-6qzqEHcHQwLph4pEhcPMGHMV0p8AiPf4YSUTiEFWEpA.webp",
+        "url": "https://i.namu.wiki/i/bZJNsgXj2WAX9UShh_eqFSHAFdek14QRH3luH_60qgwi82FH-wACo8bKoyTMhwP48pCHpT0g8bIRB1EazV1VVLby1Zx0p8XK8Rm0n5xK8Pj3-eXOuMJJIWmfYkK74xph9HA6fW1bjcYLeJPYHfS7mg.webp",
         "fit": "cover",
       },
       "summary": "백귀야행의 수수께끼적 존재, 망량즈! 그중 최고 거물들만 모인다는 비밀 회합이 열린다! 그 자리에 초청받은 것은…… 아라타?",
@@ -5403,10 +6698,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/g1vq8moUROQKJ3nkW7nPCy0-RhDhAsFvWonTnze_QrHagAuzbOao_O24Y5Nymp-I73OO33Tkuk7INyW_2-ZZw-TBIFrvKJoyPDC-2v69ofhCO3RezFWZlZi7vJRGQISeKZKUfq3HNLAFX7-9pjlDLg.webp",
+        "url": "https://i.namu.wiki/i/FMvvNTDAD-qQpqQQev9KVTAjjyYnYHgFZgTK-bK05PFk5PA_HcNX9hbNcp9YpCBk7V2R94c6qMNchjyH-gsRgmJfBQm9qlbStLFHoq8mSUKP5WQE0UKrTWi_zgfyi0ipDCaW5gEroszKGoU_bgMJMw.webp",
         "fit": "cover",
       },
       "summary": "100명 중에서 우승자를 가리는 수상 이벤트, <백야수상제>에 참가한 백화요란. 과연 최종 우승은 누구에게 돌아갈 것인가.",
+      "l10n": {
+        "en": {
+          "series": "A Flower Blooms Among the Hundred: Fair and Square Aquatic Showdown",
+          "summary": "On the sea stage, the 'Momoyo Water Festival' brings together 100 participants in fierce competition! In this summer battleground, will Hyakkaryouran survive and claim victory...?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/847_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "百ヨリ出ズル一輪ノ～いざ尋常に、水上勝負～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/7/7d/Event_Banner_847_Jp.png/480px-Event_Banner_847_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-137",
@@ -5438,10 +6750,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/8Powbr5u5uo9BklHECG6XlC2xphkosW9NA0JemEHXro5CF6xXPqGIrL45USxWtmkF0DL_R-AawOjPFQeqU5MeYdmyEIJEzn_T_hMunnMJCvkVc2ydvLsxsDg88_ZOUQSBYJzshkJUyNSoCWpWYRpyA.webp",
+        "url": "https://i.namu.wiki/i/kdDuUO2nPs4sPbhMeVGaRjqqFSmY8Fxx7ZRQ54aOFN9IIwKnskEBamO19BH2OiQPcMc_t7szTan6g16t_uWf-HWSp4WMtcBg0kRTUddLGJceR4fjsfvNKSmpJq6ffgpQSGfzQ-saHdO8Uua6WbUBew.webp",
         "fit": "cover",
       },
       "summary": "<공주의 호박 마차를 끌어준 생쥐는 어디서 왔을까?> 티파티 세 사람이 맞이한 특별한 여름휴가, 그 끝은 어디로 향하는가?",
+      "l10n": {
+        "en": {
+          "series": "Summer Sky's Promise",
+          "summary": "\"The pumpkin carriage carrying the princess — where did the mouse that pulled it come from?\" Each with their own feelings, the three members of the Tea Party embark on a special summer vacation. Where will each of their 'promises' lead...?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/848_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "夏空のやくそく",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8d/Event_Banner_848_Jp.png/480px-Event_Banner_848_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-138",
@@ -5466,10 +6795,18 @@
       "notes": [],
       "links": [],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/1jQfORl14TMPgMfLmxhQPpiIYgOf6beTZVvUqPmyr6Jvq09n8dvoAJZ6gAyxKPdEs5jt7S6_38ulT-7dCcqawTGDxr-zn2rUHbLKcB7bkuesTGMvDIy8W3g2cr74XVOND1bnyzgU43km90dCdj5Aaw.webp",
+        "url": "https://i.namu.wiki/i/1NMIn7LXJV5_CGd2E2LGSvR7B0Qadjs_GF24hAVTXpNtEN_cuIb210GN3RAoyie_j1K3plNX19_1TvChX_TILJUFjej83lZQbi9jF8U6DdogM9cRXWCIJLR9FPTkjPKpGAg5VOTNSoh3nUt8vhf2sg.webp",
         "fit": "cover",
       },
       "summary": "트리니티의 학생회, 그 소녀들의 우아하고 품격 있는 좌충우돌의 기록.",
+      "l10n": {
+        "en": {
+          "series": "Tea Party",
+        },
+        "ja": {
+          "series": "ティーパーティー",
+        },
+      },
     },
     {
       "id": "story-139",
@@ -5501,10 +6838,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/5seYzxITrhfQ042NrLYVgYHyMIOB3YF35rp3Xt2cElLpE8c9BwM7oJRvQ0ow8C8SC4NIDX55FT-ReB0zvkYCbLl7ABg_L3xJl2AcwivlqdLErah-8hq_bz-4m6U35PZUkYqInXgPPz7Ol8dn4CcHTw.webp",
+        "url": "https://i.namu.wiki/i/HqpWJccBu5HtrHecGl_NPQKqSaFNZXa67pkq4d2B1ifwwa9IO2XbMlgquo4vBKyMO3oEDQoz3cJj1CzwTTVZtgfhj2TLOTtbpb01jeBm3vfJFmXBjY2LUP45yxPCJU5c-GAyksJtnK9bOC3AUq65sA.webp",
         "fit": "cover",
       },
       "summary": "의도치 않은 계기로 패션모델로 데뷔하게 된 츠쿠요. 그로 인해 어쩔 수 없이 인법연구부의 활동에 소홀해지며, 동아리의 분위기도 조금씩 바뀌어가기 시작하는데…….",
+      "l10n": {
+        "en": {
+          "series": "An Unconcealed Path - Episode: Fashion Show Security Duty!",
+          "summary": "Tsukuyo unexpectedly makes her debut as a fashion model. Because of this, she neglects her activities in the Ninjutsu Research Club, and the atmosphere in the club begins to change...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/853_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "不忍ノ道 ～ファッションショー警護任務！の巻～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/6/6f/Event_Banner_853_Jp.png/480px-Event_Banner_853_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-140",
@@ -5542,6 +6896,11 @@
         "fit": "cover",
       },
       "summary": "선생님은 아리우스 분교로 향해…… '수업'을 하기로 결정합니다!",
+      "l10n": {
+        "en": {
+          "summary": "Even after the fall of Madame, many students within Arius continue to remain in their school and isolate themselves. This gets the attention of a now reformed Saori, Sensei, and the rest of the Squad, who are ordered to return to their old school and help their former classmates.",
+        },
+      },
     },
     {
       "id": "story-141",
@@ -5579,6 +6938,11 @@
         "fit": "cover",
       },
       "summary": "심상치 않은 사건들이 일어나기 시작한 아리우스 분교…… 이 모든 일의 정체는, 과연 무엇일까요?",
+      "l10n": {
+        "en": {
+          "summary": "Even after the fall of Madame, many students within Arius continue to remain in their school and isolate themselves. This gets the attention of a now reformed Saori, Sensei, and the rest of the Squad, who are ordered to return to their old school and help their former classmates.",
+        },
+      },
     },
     {
       "id": "story-142",
@@ -5618,6 +6982,11 @@
         "fit": "cover",
       },
       "summary": "결국 '무언가'가 되어 버린 스바루. 아리우스 학생들과 스쿼드는, 어디로 향하게 될까요?",
+      "l10n": {
+        "en": {
+          "summary": "Even after the fall of Madame, many students within Arius continue to remain in their school and isolate themselves. This gets the attention of a now reformed Saori, Sensei, and the rest of the Squad, who are ordered to return to their old school and help their former classmates.",
+        },
+      },
     },
     {
       "id": "story-143",
@@ -5649,10 +7018,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/4EvTw8cAFMlknEcKw9DOFQm-rvOnUv476QgY5m7me-Gfq5k71gK3arf5NhPDDa0AzugsHyhS4wbNicBxFA7Hw1a5fQdaODqzzOu16k5-fwoACAM9KDjAt_7hcu_amCiL7BmxCn2z20MxhfKewootLg.webp",
+        "url": "https://i.namu.wiki/i/5zFZQJO-owTqO0_FzmKGQtLyytCOcEgt7as5wGfWuIu_kZrvWpy4RjGgoVWzVT5mraA8KhLQiWdc1jxtswZ6iKODMATzTnhYds7eyIAoSFnFu4Cdm_VDUr4q8zhbOv3cua_KgnaSOXzG7nbHynT9kg.webp",
         "fit": "cover",
       },
       "summary": "예술의 고향 와일드헌트 예술학원. 선생님은 그곳에서 오컬연 아이들의 안내를 받으며 다양한 기현상과 마주하는데…….",
+      "l10n": {
+        "en": {
+          "series": "We Are the Occult Investigation Society! Ancient Spells and Mysteries",
+          "summary": "Wildhunt Art Academy, known as the \"home of the arts.\" While touring the academy with students from the Occult Research Society, Sensei encounters various mysterious phenomena...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/849_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "我らオカルト研究会！～学院の不思議と古の呪文～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/7/78/Event_Banner_849_Jp.png/480px-Event_Banner_849_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-144",
@@ -5684,8 +7070,25 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/SY5qG_RvxHjg6BqoKFSHPUJleyVhKBtfQ232vyqLOiFHPX9t3UN4tsL0FmEc7LvzgXHdhe2KYc2y_5sEz404ioYJ11sKvsXexTfof6_h-Kodml-wpkuvBx8rxbQL-cPYl59YlqjQPkOrFrYf0VA1uw.webp",
+        "url": "https://i.namu.wiki/i/eoqECKZKlqoo3lIpgyBVOQFz47S7VLHTaWs6kSgyurWrk3Hp9nHSyE6R_SQxXOddCxcCQAZ_3vebKMM1Mw3bg6yMejGbQ3c0_yJWy1VQoIcCmwRDtT3cMu1NKs0AoBh89f-mwIQkoHkTc1v-Qqkp0Q.webp",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "series": "To Whom Art Belongs: The Fate of Forgeries and Aesthetics",
+          "summary": "The Free Trade Cartel receives a strange request to replace a fake in a museum's storage vault with an authentic piece. The plan seems to be going smoothly, but a warning letter from the \"Benevolent Phantom Thief\" takes things in an unexpected direction...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/850_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "誰が為の芸術～偽飾の絵画と美学の行方～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/2/29/Event_Banner_850_Jp.png/480px-Event_Banner_850_Jp.png",
+            "fit": "cover",
+          },
+        },
       },
     },
     {
@@ -5718,7 +7121,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/scy4_eOKpDTXESlT1AbXPbSf901h-sCIerA6D-oUuRDNyMEPeGDaCXoYzARxUJ_-Qv-kf4OtT1buZnM4ri_CQH6HYRYxbe_DJW-Dm6qxyWyuQrZ97dA4idhstZ8_J_2JH7vyCR8BZ2Vihr8ftFOZ2A.webp",
+        "url": "https://i.namu.wiki/i/vK-VevQJBH5zKZX_APKEr8NTM32Te3WNVBtwBDHOHgi9sHPmafBPoZhZUSLqCs9oyP2uHcKTdPPH16J8aeGR25bqr_5o7KxRPcbBLqT2W8umdSJc5tuFfa18yMGU6-250Wyi7-Yf2eOZ7Jo6C94shA.webp",
         "fit": "cover",
       },
       "summary": "마침내 열린 와일드헌트 예술학원의 검문소. 까다롭고 엄격한 출입 절차와, 그곳을 지키는 한 사감대 소녀의 애환과 고충에 대한 이야기.",
@@ -5753,10 +7156,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/A5D1-GStNB66TC54YAChqJyg-HavZO6Abo8qyg4BEsoN-DQaXjTWKyVc1PwYMDpC0wta688wcfL2GOUlFCzooglF5FGmBWhdkEyY32mLXWbYPHA9tKyj4JmNmbn1ZqEc3sqj9a_ysV4UJOcAUyV9FQ.webp",
+        "url": "https://i.namu.wiki/i/Abj-Ds88O1t0-vmpnUvnq21PjOVzKSEcC5VWkW2WYOmQG-TRdmcmJqC31LYZdKlr38oWbgso5E2srRuuKACwRw7rHLQBvCb56_MQo0rUsGkP26239P0hn3yANFr60RXytCRIZd_kPIwIjSZCPuao0A.webp",
         "fit": "cover",
       },
       "summary": "지식해방전선의 '창작물'을 트리니티에 판매하려는 출판부. 그러나 그것이 그런 결과로 이어질 줄은… 아무도 몰랐다!",
+      "l10n": {
+        "en": {
+          "series": "Winter Sky's Renaissance: Thesis on Cultural Exchange",
+          "summary": "The Publishing Department was commissioned to produce a book by the Knowledge Liberation Front. In order to open up a new sales channel for books that cannot be sold within Red Winter, the girls head straight to Trinity.",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/852_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "冬空の文芸復興～健全なる文化の交流について～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/03/Event_Banner_852_Jp.png/480px-Event_Banner_852_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-147",
@@ -5788,7 +7208,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/mYd7VsGg8s3cPQVQNhnirc-PGPSwNtYjOYiXJepj-d1vYGBfYGtswCnykzRHXV-VGz3Mx6cal7hwTY0N7TlvaariZm240_S3igE0qbFKj9OmI9K273T30JlChIP1rLh11yH5L4QhPlwNv56Zd-oRFQ.webp",
+        "url": "https://i.namu.wiki/i/cZLo0_-E3rUgMNga0awedc4ti0QES7-xe-tSxTXAcknVMZMjg52mZLkjVgK8KOyD3Id8ec0JlGBO66vr-X2IX7K7Rw4y1ln6UmdZJbjTNBUFu4m0OS4l1BHX3qjhK_TqaXhQFbqIprqgm1q5dtxBUw.webp",
         "fit": "cover",
       },
       "summary": "슈퍼컴퓨터를 만들려고 하는 붉은겨울 연방학원. 무슨 수로 그걸 만들지?",
@@ -5829,6 +7249,11 @@
         "fit": "cover",
       },
       "summary": "화살표는 모였습니다. 일행은 모든 것을 마무리짓기 위해, 강철대륙으로 향합니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-149",
@@ -5866,6 +7291,11 @@
         "fit": "cover",
       },
       "summary": "화살표는 모였습니다. 일행은 모든 것을 마무리짓기 위해, 강철대륙으로 향합니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-150",
@@ -5897,10 +7327,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/HY3q3MMiODVYoH5ITqYoR-iox-l_s4akoqjQ4lwn4yHjnSZqHdSp1UIAmAcMdEtBOQLjxVSsBgqT9lsXIeYcAWo_4eX1ZzArGUzn8ohCvs_GI-1BCufb78SLAMCLsu0uVMHVHoY6u6knYe38PQ360g.webp",
+        "url": "https://i.namu.wiki/i/6J97LknTnFHmSNHhdPBT1uskZ3j5aQPf1NeWwOOslYHcU9W3FkEe9XYyWVfxPdiKt05P94YZzT2r_7ej1ncX4RXpK6QRZmcF1I_nI7Gp-9lirVpjDJjsuqbigWQNaSerieQLHXU7B9dlClRbph4YKg.webp",
         "fit": "cover",
       },
       "summary": "강철대륙 공략을 위한 준비는 끝났다. 선생님과 학생들, 그리고 아인, 소프, 오르와 예언자들. 각자의 의지가 맞부딪힌다.",
+      "l10n": {
+        "en": {
+          "series": "Operational Plan: Steel Continent",
+          "summary": "The time has finally come to begin the assault on the Steel Continent. The Sensei, Ein, Soph, Ohr, and the Prophet of Decagrammaton all clash against each other.",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/854_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "鋼鉄大陸攻略戦",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/4/45/Event_Banner_854_Jp.png/480px-Event_Banner_854_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-151",
@@ -5932,10 +7379,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/71LV3KI2yPagiI6AcVhaf2YM-ITYBV4U6DlYIzMvJwxgZRneAOvmU0X62Yp88gJ6qm0voZ_MBs-kxkeMDp_BEFVLtTbQlJUp8onkakuNBMQT_hD9UUR5DHxmvXZmg_fJAtH2hU55nNLbxesfBALWGw.webp",
+        "url": "https://i.namu.wiki/i/QWvea4KTonVjfi3ENLwgNXBWt2upCfFtGZ6YW9s1laObkJrCSM4PDCWd0Fn-jiG5AofNVAxuL_MWtD0igCnglk7JPbhb_g2WtQY-fmOJoanF8ED95WyloODBxIgWrOXXXa1OTlnsbTt4vI9TKqHFCw.webp",
         "fit": "cover",
       },
       "summary": "강철대륙 공략을 위한 준비는 끝났다. 선생님과 학생들, 그리고 아인, 소프, 오르와 예언자들. 각자의 의지가 맞부딪힌다.",
+      "l10n": {
+        "en": {
+          "series": "Operational Plan: Steel Continent",
+          "summary": "The time has finally come to begin the assault on the Steel Continent. The Sensei, Ein, Soph, Ohr, and the Prophet of Decagrammaton all clash against each other.",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/854_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "鋼鉄大陸攻略戦",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/4/45/Event_Banner_854_Jp.png/480px-Event_Banner_854_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-152",
@@ -5973,6 +7437,11 @@
         "fit": "cover",
       },
       "summary": "화살표는 모였습니다. 일행은 모든 것을 마무리짓기 위해, 강철대륙으로 향합니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-153",
@@ -6010,6 +7479,11 @@
         "fit": "cover",
       },
       "summary": "화살표는 모였습니다. 일행은 모든 것을 마무리짓기 위해, 강철대륙으로 향합니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-154",
@@ -6041,7 +7515,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/KzeOKHG-b_wVnm_kGhwXi_U4HSlxyG0ftkz1gKjSEZTgw7snTl-wER4KqFYiD-G9sBNcnvHI5ohTTHQqa1qR03GOoMg0uuHE_RLC2GeN_HiRRR0xpwA8qPRyJL5zH1M1bQYp-rJFDZYlM7n22g_nog.webp",
+        "url": "https://i.namu.wiki/i/-S15iZLEucabGwYhEzl1VNU_uEj8ybDrGF2u06M6CFNBQEmgXwoJJ00AeFNTZBkEOvKRqHiSpDU23NJgGVcIiSf7KqKil1r0DENyjnmMQ9c1-vgNyEbMGyE2HkVpDUg4bC7FnkG0MeR7X2tBUVVbxg.webp",
         "fit": "cover",
       },
       "summary": "강철대륙 공략을 위한 준비는 끝났다. 선생님과 학생들, 그리고 아인, 소프, 오르와 예언자들. 각자의 의지가 맞부딪힌다.",
@@ -6084,6 +7558,11 @@
         "fit": "cover",
       },
       "summary": "화살표는 모였습니다. 일행은 모든 것을 마무리짓기 위해, 강철대륙으로 향합니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, Sensei and the Super Phenomenon Task Force journey around Kivotos to uncover the true nature of Decagrammaton.",
+        },
+      },
     },
     {
       "id": "story-156",
@@ -6115,10 +7594,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/7AKP2F4TdQznLiJAk3hfF6TKmtSUO6XihPx6rER1orGnHfuRpCT42MpZP9itIVspNizbOlQgU0ykAzvyOp6NzUdKVvvDBM-EoOcyJav5u04w9oARLb0V-9yo39FCM1xUmXoa90SkrqVxu1NnuOiWxg.webp",
+        "url": "https://i.namu.wiki/i/dVvWDTz_T0R_eIOMFGzG6rv7tKDGvb8z1SAnHy4ZscLIhZ3yt-EFjmTSFkZZDLOAFbVG-iR0qNhm5AgrvfteHA5c2z1W6he_YfzHnnQkcvfTZsQT8nnbGTBb_y1MgQ2UtG5B7EedIWmz6p7p95uk0A.webp",
         "fit": "cover",
       },
       "summary": "과학적으로 설명할 수 없는 초자연 현상이 키보토스 각지에서 일어나고 있다! 그리고, 마침내 목격되었다는 전설 속의 생물 츠치노코! 그 진실을 찾아내기 위해, 탐사반 X 출동이다!",
+      "l10n": {
+        "en": {
+          "series": "Kivotos' Unsolved Mystery: In Search of Tsuchinoko, the Unknown Creature",
+          "summary": "Unexplained phenomena are occurring throughout Kivotos. Upon hearing reports of sightings of the legendary creature Tsuchinoko, Investigation Team X is dispatched!",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/856_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "キヴォトス・未確認ミステリー～邪を払うツチノコ大調査～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/2/21/Event_Banner_856_Jp.png/480px-Event_Banner_856_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-157",
@@ -6150,7 +7646,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/EqPkW5IujJeqrzRTz7Q_WbG2o-zWuCyVenJOp9E2WgOigFyOTW4q1nOi-Wh1LWVgQU6IwqinZyxkpYpu5M-9gj144-wk6oyYH-T8FLv9bEVE98Uou7-nOQcM4tePCGc9PJud6wCZfa_yeLKUDk3eDQ.webp",
+        "url": "https://i.namu.wiki/i/hUcw07NSiySrFdvzAmsYiG3plx3sLmgFj1MqmllJoykN9NjlglQ-wupcFt2LIEhh7G1VCcEh6Pqv_qJgMUibA549m7cDP8GHmS3EjsANjFFUAQUVtFi5FCpavoWJ8449yhX_K3gVdZoFUfWRjk5lDg.webp",
         "fit": "cover",
       },
       "summary": "일곱 죄수의 탈주극 이후……. 발키리 교정국은 여전히 그 자리에 있다.",
@@ -6183,8 +7679,13 @@
         },
       ],
       "thumbnail": {
-        "url": "https://static.wikitide.net/bluearchivewiki/thumb/6/64/BG_Bar_Night.jpg/480px-BG_Bar_Night.jpg",
+        "url": "https://static.wikitide.net/bluearchivewiki/thumb/a/a1/BG_CS_PR2_26.jpg/480px-BG_CS_PR2_26.jpg",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "summary": "In Prologue, a record of a sudden, yet small, turn of events.",
+        },
       },
     },
     {
@@ -6221,10 +7722,15 @@
         },
       ],
       "thumbnail": {
-        "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/06/BG_MainOffice.jpg/480px-BG_MainOffice.jpg",
+        "url": "https://static.wikitide.net/bluearchivewiki/thumb/0/09/BG_CS_PV_4_5_3.jpg/480px-BG_CS_PV_4_5_3.jpg",
         "fit": "cover",
       },
       "summary": "살구꽃이 피는 어느 봄날, 의외의 손님이 돌아옵니다. 당신이 전혀 예상하지 않았던 모습으로.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume 0, Rin, the chief officer of the General Student Council, is buried under a mountain of work again. Is there any way to help her unwind from the stress of missing the General Student Council President...?",
+        },
+      },
     },
     {
       "id": "story-160",
@@ -6264,6 +7770,11 @@
         "fit": "cover",
       },
       "summary": "무더운 정오에 아지랑이가 피어오를 때는 야외 활동에 주의하세요! 도로 한가운데에서 흰색 허수아비가 보이더라도, 절대 쳐다봐서는 안 됩니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, the unexplainable abnormalities have been popping around Kivotos—Lore. Will the FOX Squad be able to restore their everyday lives and rescue the students who have vanished?",
+        },
+      },
     },
     {
       "id": "story-161",
@@ -6295,7 +7806,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/nL8U5iuFle4ref_Jti-rXu5zb49U7agmM5lHOivI1HCLSaX4IJBhUm43HF5dPx2Pu8HfbAXohpJ1L_9yiUXjC-2QOe8yHE0LTYVCuDgHWvt-LB4Gzb-c3rAfpOOv3jrnI9ohl7sAiUW8ubC492rnGg.webp",
+        "url": "https://i.namu.wiki/i/lpUg0h2ruGPKdn9OnSWiI6W8-y5K2Ou9tsJo-FfdotnAzZpr6NsBbHwacvFkNUqzNw0qcjltQ_tpkogNgEx4eZ6Qec4xb-xYSgtAXlI-JIoD40m9HZe22aTP95an9H652IFnYiG15S0uxTMDhMA33Q.webp",
         "fit": "cover",
       },
       "summary": "파란의 게헨나 교내 방송. 과연 무사히 진행될 것인가?",
@@ -6336,6 +7847,11 @@
         "fit": "cover",
       },
       "summary": "사람을 습격하는 괴물 게의 이야기를 들어 보셨나요? 늦은 밤, 드럼통 구르는 소리와 함께 짤깍, 짤깍하는 집게발 소리가 들린다면…… 그때가 바로 도망쳐야 할 순간입니다.",
+      "l10n": {
+        "en": {
+          "summary": "In Volume EX, the unexplainable abnormalities have been popping around Kivotos—Lore. Will the FOX Squad be able to restore their everyday lives and rescue the students who have vanished?",
+        },
+      },
     },
     {
       "id": "story-163",
@@ -6367,7 +7883,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/jXEaeYojBz1LxuIojZU8qXY65jjFrlhCnXGr8nL9gDhCUX8xmDa_llMtpMVFcpnmU7RmBcShaICTjfuKcm27zz_fLfJ3ZKhoHLFNGGyVjHm7pOIruephntOd0aTnbI7bcnZi5JCTLfzgTBCAnFrnCQ.webp",
+        "url": "https://i.namu.wiki/i/7CysCoAHl0xyIo3OTz5tVR6C6Bj_G1emfB65_lA6uPXWyYrAy_PuoN3ePJv15FD1p55E9inDurjxpjufmgmAMd8MC6kDl88wV0JFm-YZip59XliFeNfRmGSWs_8O-4hsgjP0HzSkyMP4S_1CYhO_Ow.webp",
         "fit": "cover",
       },
       "summary": "오랜 적과 마주한 흥신소 68. 그것을 계기로 밝혀지는 하루카의 과거. 그리고 내일로 나아가는 소녀들의 이야기.",
@@ -6402,10 +7918,27 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/iHMAvAxzNDICmrjpzOMpl6qdhmXeK27UMD551iLN4wEYujBBrabAIg80o7L53Ez0DMEdPgMMMocePyAkUxr8rMw7EruGGEy8qrNzacNVQTlNQUsfDCtsQwoofZNvTbJWjhwcVAUfFdBOo-pKOR1DfQ.webp",
+        "url": "https://i.namu.wiki/i/od4UvDYgnuMdIRYXFcsc0ghyZ3jZRZfTXsXQUtUvc9Hf-01Tf_KitLtiM1BQg71jz4sxVkkIBHFeGBo2VZ2uhqphlifhOCznMhIKPiku0NbECPP-LEcnyXQaPhhSTJkpGkMBDf8pxE6qsZDKJu74ow.webp",
         "fit": "cover",
       },
       "summary": "여름. 현무상회의 자금이 산해경 외부의 어느 계곡에 출자되었다는 소식을 듣고, 현룡문이 자금의 사용처에 대해 간섭하려 한다. 이에 선생님은 출자 자금의 감사를 겸한 계곡 피서를 떠나자고, 모두에게 제안한다.",
+      "l10n": {
+        "en": {
+          "series": "The Calm After the Storm",
+          "summary": "Summer. After learning that the Black Tortoise Promenade has been making investments outside Shanhaijing, Genryumon moves to intervene over how those funds are being used. As tensions rise over the future direction of Shanhaijing, Sensei proposes an inspection trip to the mountain stream resort that received the investment.",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/859_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "嵐過天晴",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8e/Event_Banner_859_Jp.png/480px-Event_Banner_859_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-165",
@@ -6435,7 +7968,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/2-TgMPXwOs6o_1zh-_JD1jTsgkcH7-B130hiAAuO5FxIaWgx1wK8DsA1MbPy9v-kms2vUpaoI_VHim1VuAytRM8OQHTUOLT4vVRzRoCl1Ls89OTG-IkN_8MUANDnSlCOZojCE7q6l0fNePmhboaMaA.webp",
+        "url": "https://i.namu.wiki/i/EtiBD5qE_EkqQb4Wv7L2a8aJ_btJwYETL7_A5HiZm4ZXorxrFDMMe4XapCjBl3Zb2HC46CnBlHu_280fcGjKUc3C-ixVKRA1a9xv88czLJmX6y3qCJZ4xXhKLXmr5L4wh4KZMyyQpXO_Jg28LnXZWw.webp",
         "fit": "cover",
       },
     },
@@ -6472,6 +8005,23 @@
         "url": "https://static.wikitide.net/bluearchivewiki/thumb/b/b2/Event_Set_Sail%21_Man-of-Pandemonium_Chairman_Makoto%27s_Magnificent_Summer_Retreat.png/480px-Event_Set_Sail%21_Man-of-Pandemonium_Chairman_Makoto%27s_Magnificent_Summer_Retreat.png",
         "fit": "cover",
       },
+      "l10n": {
+        "en": {
+          "series": "出航！万魔船　マコト議長の華麗なる避暑",
+          "summary": "Sensei was supposed to be invited on a luxurious cruise trip to the Pandemonium Palace. Little did anyone know that this would mark the beginning of his life adrift at sea...",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/860_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "出航！万魔船　マコト議長の華麗なる避暑",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/f/f8/Event_Banner_860_Jp.png/480px-Event_Banner_860_Jp.png",
+            "fit": "cover",
+          },
+        },
+      },
     },
     {
       "id": "story-167",
@@ -6505,8 +8055,13 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/dgSaZdfui3P0QplOOcVw3cpG0EgFle9n2cjl4auTfscTVivI9HJAOzP-v6jpUVuVw_qiAyjonKl9CH6MFLt5DxyClToCFFo7JRKHMaV2e9uEvaSL8JMKN3ATTm5P73GFIwglfrRn7TeIxVDEmizNQA.webp",
+        "url": "https://i.namu.wiki/i/A8AP4pNb_oRWhGuPq4nunxfW4xQSdZiW3EXL07tBVXzGqDK-vOcGmhCcZHbTD2MplVp9ZcuS49IbRnULK0tIuo9_BfXCSlHA1ujqXfdkbepYCCE3LOIEU6qygX5uw9iwVA8I4KM-Sk9XeBRfeRT2Hw.webp",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1,",
+        },
       },
     },
     {
@@ -6539,8 +8094,13 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/dgSaZdfui3P0QplOOcVw3cpG0EgFle9n2cjl4auTfscTVivI9HJAOzP-v6jpUVuVw_qiAyjonKl9CH6MFLt5DxyClToCFFo7JRKHMaV2e9uEvaSL8JMKN3ATTm5P73GFIwglfrRn7TeIxVDEmizNQA.webp",
+        "url": "https://i.namu.wiki/i/A8AP4pNb_oRWhGuPq4nunxfW4xQSdZiW3EXL07tBVXzGqDK-vOcGmhCcZHbTD2MplVp9ZcuS49IbRnULK0tIuo9_BfXCSlHA1ujqXfdkbepYCCE3LOIEU6qygX5uw9iwVA8I4KM-Sk9XeBRfeRT2Hw.webp",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "summary": "In Volume 1,",
+        },
       },
     },
     {
@@ -6571,7 +8131,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/HZjox01bLzH8t9hw-IXaTJxdc5ZL9Wq-Lt0IgYON6xB2Tax8KC5x8NxryGYMLTfngKR-348VyCVzYMq2BdGT9t6HdX0Qot7s_xrpYl_7Ornad1KaP-ZOX0Ij7XAk1RZl-Q_ybyIv5TT7_NQphQolRw.webp",
+        "url": "https://i.namu.wiki/i/ACOH1RSKx28uBCkoZmJ4LewaHK1pMRr7r8wbCUrYWRgGtpi3bswhW9t9FaQJY6ioTOGk0v8cBA8dhGdcjCQXltxqHyRhFFTQ73KFM6ibt3qcVtaAVfZnFOl2sOOv-E1ajXNAI4JpFJ6G6FXliX1NtQ.webp",
         "fit": "cover",
       },
     },
@@ -6605,7 +8165,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/s6ByH00KcjFF8rEPWyj4T_tTk6fRSifEDxNbaAxpBUklwaPhknL2tTHuT-tn723ZervI4R1PO5gqfJvHXABazRWm5xAwUd4x9ICxURar4tKWprdmjH4aZOb49s-FBIdJdXF2aECOtGKNl5lmDXRrkg.webp",
+        "url": "https://i.namu.wiki/i/vUuurCh1uq-7UORMk8PXSQ22q06jVZHNBqNk4jkcXKVikdJxpR05os1Jo5LQQlfI_iCkUZ_bFuJatwEkS0JCRcg2Sl7DSF0PIGzMNnSBZhvset2vnNF_mEYbQiHFxR5SUjUHsF8CbesuFRmlJyHmxA.webp",
         "fit": "cover",
       },
     },
@@ -6641,7 +8201,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/s6ByH00KcjFF8rEPWyj4T_tTk6fRSifEDxNbaAxpBUklwaPhknL2tTHuT-tn723ZervI4R1PO5gqfJvHXABazRWm5xAwUd4x9ICxURar4tKWprdmjH4aZOb49s-FBIdJdXF2aECOtGKNl5lmDXRrkg.webp",
+        "url": "https://i.namu.wiki/i/vUuurCh1uq-7UORMk8PXSQ22q06jVZHNBqNk4jkcXKVikdJxpR05os1Jo5LQQlfI_iCkUZ_bFuJatwEkS0JCRcg2Sl7DSF0PIGzMNnSBZhvset2vnNF_mEYbQiHFxR5SUjUHsF8CbesuFRmlJyHmxA.webp",
         "fit": "cover",
       },
     },
@@ -6671,8 +8231,25 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/kGhstOkQOHOZ6CRbbaxexAaK77XVMB1ft7mt494JPZjC35NAOtTofio6vCdPd2T1urky0l5lRi9Ls01F6YtXqpaw4nuRxb8GhhQ-moYqIeuPaC2iv0xBBQjBFuFE2Q3ETUXKoA6o7jYuXyUho3a3Nw.webp",
+        "url": "https://i.namu.wiki/i/m-CFblq7jW9nGHhgHcpoZ9w-M_9KxPb4TwGhWQ275HSOj9xm65_eo_Eac0xAOpksB6VRKvHT4b10kGGCzCEWDvu4GBDy5GqX8PwWE2qQzI_r9g8aaqSv_F4kH0E8-V0-IA7KhTIt5D4Le0XoTX-7Hg.webp",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "series": "DIVE into OCEAN！",
+          "summary": "The Diving Club had been suffering from a chronic lack of funding to maintain its equipment. To make matters worse, an explosion accident left them with a massive debt... Can the Diving Club avoid being disbanded?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/861_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "DIVE into OCEAN！",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/a/a2/Event_Banner_861_Jp.png/480px-Event_Banner_861_Jp.png",
+            "fit": "cover",
+          },
+        },
       },
     },
     {
@@ -6703,7 +8280,7 @@
         },
       ],
       "thumbnail": {
-        "url": "https://i.namu.wiki/i/ab9yV3whAtk6PpJDNYAdoPCSCIo9OUVmtNRw177QEqPFx4EZt7bjVxaUCmmaDZaUUBNypRf0fTLqbMoJyhwSNsyBVJpVj7DsBXPXUESuy4kMERbb1uyb-GbYJO6dViPHXZW-0qYnrxr6TvGfy9ZHAg.webp",
+        "url": "https://i.namu.wiki/i/EN9YLEGTYK3LclB4aQv_zIm1U0cMS64HDfCSqAFdcQ99EQRs4nnBSxmze4zUp57vjQZ4HWSCffu23q3M6aZhSUnGG7OvxXAyXjubNvu3q0LMiQX-TJiFH8ooEfgeEaSB3cqyU3S-64pAx3Zy_wyoFw.webp",
         "fit": "cover",
       },
     },
@@ -6735,6 +8312,23 @@
       "thumbnail": {
         "url": "https://static.wikitide.net/bluearchivewiki/thumb/5/5b/Event_It%27s_our_Engine%21_%EF%BD%9EEscape_from_No._183%21%EF%BD%9E.png/480px-Event_It%27s_our_Engine%21_%EF%BD%9EEscape_from_No._183%21%EF%BD%9E.png",
         "fit": "cover",
+      },
+      "l10n": {
+        "en": {
+          "series": "It’s our Engine!　～183号を脱出せよ！～",
+          "summary": "The students of Special Class No. 183 plan to win the Gehenna Cup and use the glory of victory to secure a pardon from Cherino. Can they overcome the many obstacles in their path and make it to the qualifiers?",
+          "thumbnail": {
+            "url": "https://schaledb.com/images/eventlogo/862_En.webp",
+            "fit": "contain",
+          },
+        },
+        "ja": {
+          "series": "It’s our Engine!　～183号を脱出せよ！～",
+          "thumbnail": {
+            "url": "https://static.wikitide.net/bluearchivewiki/thumb/8/8a/Event_Banner_862_Jp.png/480px-Event_Banner_862_Jp.png",
+            "fit": "cover",
+          },
+        },
       },
     },
     {

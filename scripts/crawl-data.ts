@@ -8,13 +8,15 @@ import { isKoreanText } from "../src/korean-text.ts"
 const SOURCE_URL = "https://namu.wiki/w/틀:블루 아카이브 스토리 시점순"
 const OUTPUT_PATH = "src/data/blue-archive-story-order.jsonc"
 const STORY_KINDS = new Set(["메인", "이벤트", "그룹", "미니"])
-const SCHALEDB_LOCALIZATION_URL =
-  "https://schaledb.com/data/kr/localization.min.json"
+const SCHALEDB_LOCALIZATION_URL = (lang: string) =>
+  `https://schaledb.com/data/${lang}/localization.min.json`
 const WIKI_API_URL = "https://bluearchive.wiki/w/api.php"
-const EVENT_LOGO_URL = (id: string) =>
-  `https://schaledb.com/images/eventlogo/${id}_Kr.webp`
+const EVENT_LOGO_URL = (id: string, lang = "Kr") =>
+  `https://schaledb.com/images/eventlogo/${id}_${lang}.webp`
 const EVENT_PROMO_QUERY =
   '{{#invoke:BlueBucket|get|events|select = Id, PageName, Promo|where = Server = "JP"|order by = Id ASC|limit = 1000|format = json|default = []}}'
+const EVENT_ROWS_QUERY =
+  '{{#invoke:BlueBucket|get|events|select = Id, OriginalId, Server, NameEN, NameJP, Banner, Description|where = Server = "JP" OR Server = "GL"|limit = 2000|format = json|default = []}}'
 const MIN_CONTAINED_NAME_LENGTH = 4
 const IMAGEINFO_BATCH_SIZE = 50
 const SUMMARY_KINDS = new Set(["메인", "이벤트", "그룹"])
@@ -46,8 +48,12 @@ type StoryItem = {
   links: Link[]
   thumbnail?: Thumbnail
   summary?: string
+  l10n?: Partial<Record<Locale, Localized>>
 }
 type Thumbnail = { url: string; fit: "cover" | "contain" }
+// Korean is the base text; other locales override only what the wiki has.
+type Locale = "en" | "ja"
+type Localized = { series?: string; summary?: string; thumbnail?: Thumbnail }
 type StoryTreeNode = {
   id: string
   name?: string
@@ -528,28 +534,48 @@ export const mainVolumeKey = (series: string, segmentId: string) => {
   return volume === undefined ? undefined : `${act}:${volume}`
 }
 
-// Volume headings of the Main Story page and the file that follows each one.
-export const mainBackgrounds = (wikitext: string) => {
-  const backgrounds = new Map<string, string | undefined>()
+// Body lines under each volume heading of the Main Story page, keyed like
+// mainVolumeKey: "<act>:<volume token>".
+const volumeSections = (wikitext: string) => {
+  const sections = new Map<string, string[]>()
   let act = 0
-  let key: string | undefined
+  let lines: string[] | undefined
   for (const line of wikitext.split("\n")) {
     const heading = line.match(/^(={2,3})\s*(.*?)\s*\1\s*$/)
     if (heading?.[1] === "==") {
       act = Number(heading[2].match(/^Act (\d+)/)?.[1] ?? 0)
-      key = undefined
+      lines = undefined
     } else if (heading) {
       const volume = heading[2].match(/^\[\[\/(?:Act \d+\/)?Volume ([^|\]]+)\|/)
         ?.[1] ?? heading[2].match(/^Volume (\w+)/)?.[1]
-      key = volume === undefined ? undefined : `${act}:${volume.trim()}`
-      if (key !== undefined) backgrounds.set(key, undefined)
-    } else if (key !== undefined && backgrounds.get(key) === undefined) {
-      const file = line.match(/\[\[(File:[^|\]]+)/)?.[1]
-      if (file) backgrounds.set(key, file)
-    }
+      lines = volume === undefined ? undefined : []
+      if (volume !== undefined) sections.set(`${act}:${volume.trim()}`, lines!)
+    } else lines?.push(line)
   }
-  return backgrounds
+  return sections
 }
+
+// Volume headings of the Main Story page and the file that follows each one.
+export const mainBackgrounds = (wikitext: string) =>
+  new Map(
+    [...volumeSections(wikitext)].map(([key, lines]) => [
+      key,
+      lines.map((line) => line.match(/\[\[(File:[^|\]]+)/)?.[1]).find(Boolean),
+    ]),
+  )
+
+export const plainWikitext = (text: string) =>
+  text.replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/g, "$1")
+    .replace(/'{2,}|<[^>]+>/g, "").replace(/\s+/g, " ").trim()
+
+// The English blurb that follows each volume heading.
+export const mainBlurbs = (wikitext: string) =>
+  new Map(
+    [...volumeSections(wikitext)].flatMap(([key, lines]) => {
+      const blurb = lines.find((line) => /^[A-Z]/.test(line))
+      return blurb ? [[key, plainWikitext(blurb)] as const] : []
+    }),
+  )
 
 export const firstFile = (wikitext: string) =>
   wikitext.match(/\[\[(File:[^|\]]+)/)?.[1]?.trim()
@@ -661,6 +687,14 @@ const fetchWikitext = async (page: string) => {
   return response.parse?.wikitext
 }
 
+type Localization = {
+  EventName: Record<string, string>
+  Club: Record<string, string>
+}
+
+const fetchLocalization = (lang: string) =>
+  fetchJson<Localization>(SCHALEDB_LOCALIZATION_URL(lang))
+
 const fetchEventPromos = async () => {
   const response = await wikiApi<{ parse: { text: { "*": string } } }>({
     action: "parse",
@@ -727,11 +761,7 @@ export const enrichThumbnails = async (items: StoryItem[]) => {
   const [localization, promos, mainText] = await Promise.all([
     settle(
       "SchaleDB localization",
-      fetchJson<
-        { EventName: Record<string, string>; Club: Record<string, string> }
-      >(
-        SCHALEDB_LOCALIZATION_URL,
-      ),
+      fetchLocalization("kr"),
       { EventName: {}, Club: {} },
     ),
     settle("event promos", fetchEventPromos(), new Map<string, string>()),
@@ -1150,6 +1180,143 @@ export const enrichVolumeImages = async (
   })
 }
 
+type EventRow = {
+  Id: number
+  OriginalId: number
+  Server: "JP" | "GL"
+  NameEN?: string
+  NameJP?: string
+  Banner?: string
+  Description?: string
+}
+
+export const parseEventRows = (renderedHtml: string) =>
+  JSON.parse(stripHtml(renderedHtml).trim()) as EventRow[]
+
+// The wiki lists an event once per server and per reissue (permanent, rerun);
+// the row whose Id is the original id comes first.
+const eventRow = (rows: EventRow[], id: string, server: EventRow["Server"]) => {
+  const own = rows.filter((row) =>
+    String(row.OriginalId) === id && row.Server === server
+  )
+  return own.find((row) => String(row.Id) === id) ?? own[0]
+}
+
+const bannerFile = (file: string | undefined) =>
+  file ? [{ file, fit: "cover" as const }] : []
+
+// English banners exist on the wiki for a handful of events only; every
+// other event falls back to the in-game logo.
+export const eventLocalization = (options: {
+  id: string
+  rows: EventRow[]
+  names: Record<Locale, Record<string, string>>
+}): Record<Locale, Localized & { candidates: ThumbnailCandidate[] }> => {
+  const { id, rows, names } = options
+  const jp = eventRow(rows, id, "JP")
+  const gl = eventRow(rows, id, "GL")
+  return {
+    en: {
+      series: names.en[id] ?? gl?.NameEN ?? jp?.NameEN,
+      summary: jp?.Description?.replace(/\s+/g, " ").trim(),
+      candidates: [
+        ...["En", "en"].flatMap((tag) =>
+          bannerFile(`File:Event Banner ${id} ${tag}.png`)
+        ),
+        { url: EVENT_LOGO_URL(id, "En"), fit: "contain" },
+      ],
+    },
+    ja: {
+      series: names.ja[id] ?? jp?.NameJP,
+      candidates: [
+        ...bannerFile(jp?.Banner),
+        { url: EVENT_LOGO_URL(id, "Jp"), fit: "contain" },
+      ],
+    },
+  }
+}
+
+const fetchEventRows = async () => {
+  const response = await wikiApi<{ parse: { text: { "*": string } } }>({
+    action: "parse",
+    contentmodel: "wikitext",
+    prop: "text",
+    text: EVENT_ROWS_QUERY,
+  })
+  return parseEventRows(response.parse.text["*"])
+}
+
+// English and Japanese names, English summaries and banner images from
+// SchaleDB and the Blue Archive wiki. No source has Japanese summaries.
+export const enrichLocalizations = async (items: StoryItem[]) => {
+  const [kr, en, ja, rows, mainText] = await Promise.all([
+    settle("kr names", fetchLocalization("kr"), undefined),
+    settle("en names", fetchLocalization("en"), undefined),
+    settle("ja names", fetchLocalization("jp"), undefined),
+    settle("event rows", fetchEventRows(), [] as EventRow[]),
+    settle("main story page", fetchWikitext("Main_Story"), undefined),
+  ])
+  const names = {
+    en: en?.EventName ?? {},
+    ja: ja?.EventName ?? {},
+  }
+  const clubs = { en: en?.Club ?? {}, ja: ja?.Club ?? {} }
+  const blurbs = mainText ? mainBlurbs(mainText) : new Map<string, string>()
+
+  const pending = items.map((item) => {
+    const parts: Partial<
+      Record<Locale, Localized & { candidates?: ThumbnailCandidate[] }>
+    > = {}
+    if (item.kind === "이벤트" && kr) {
+      const id = matchName(item.series, kr.EventName)
+      if (id !== undefined) {
+        Object.assign(parts, eventLocalization({ id, rows, names }))
+      }
+    } else if (item.kind === "그룹" && kr) {
+      const code = matchName(item.series, kr.Club)
+      if (code !== undefined) {
+        parts.en = { series: clubs.en[code] }
+        parts.ja = { series: clubs.ja[code] }
+      }
+    } else if (item.kind === "메인") {
+      const summary = blurbs.get(
+        mainVolumeKey(item.series, item.segmentId) ?? "",
+      )
+      if (summary) parts.en = { summary }
+    }
+    return parts
+  })
+
+  const candidates = pending.flatMap((parts) =>
+    Object.values(parts).flatMap((part) => part.candidates ?? [])
+  )
+  const [thumbUrls, liveUrls] = await Promise.all([
+    settle(
+      "localized image info",
+      fetchThumbUrls(candidates.flatMap((c) => "file" in c ? [c.file] : [])),
+      new Map<string, string>(),
+    ),
+    settle(
+      "localized event logos",
+      fetchLiveUrls(candidates.flatMap((c) => "url" in c ? [c.url] : [])),
+      new Set<string>(),
+    ),
+  ])
+
+  return items.map((item, index) => {
+    const l10n: StoryItem["l10n"] = {}
+    for (const locale of ["en", "ja"] as const) {
+      const part = pending[index][locale]
+      if (!part) continue
+      const { candidates = [], ...text } = part
+      const thumbnail = pickThumbnail({ candidates, thumbUrls, liveUrls })
+      const localized = { ...text, ...(thumbnail ? { thumbnail } : {}) }
+      if (Object.values(localized).some(Boolean)) l10n[locale] = localized
+    }
+    return Object.keys(l10n).length > 0 ? { ...item, l10n } : item
+  })
+}
+
 const main = async () => {
   const options = parseArgs(Deno.args)
   const namu = createNamuBrowser()
@@ -1161,6 +1328,7 @@ const main = async () => {
     data.items = await enrichStoryCards(data.items, namu)
     data.items = await enrichVolumeImages(data.items, namu)
     data.items = await enrichSummaries(data.items, namu)
+    data.items = await enrichLocalizations(data.items)
     for (
       const { kind, series, matched, unmatched } of thumbnailCoverage(
         data.items,
@@ -1173,6 +1341,16 @@ const main = async () => {
     }
     for (const { kind, matched, total } of summaryCoverage(data.items)) {
       console.log(`Summaries ${kind}: ${matched}/${total} items`)
+    }
+    for (const locale of ["en", "ja"] as const) {
+      const counts = (["series", "summary", "thumbnail"] as const).map((key) =>
+        `${key} ${
+          data.items.filter((item) => item.l10n?.[locale]?.[key]).length
+        }`
+      )
+      console.log(
+        `Localized ${locale}: ${counts.join(", ")} of ${data.items.length}`,
+      )
     }
     await Deno.writeTextFile(options.output, stringifyJsonc(data))
     console.log(`Wrote ${data.items.length} stories to ${options.output}`)

@@ -8,11 +8,13 @@ import {
   chapterIntro,
   eventBannerFor,
   eventCandidates,
+  eventLocalization,
   fileCandidates,
   firstBackground,
   firstFile,
   itemSummary,
   mainBackgrounds,
+  mainBlurbs,
   mainVolumeKey,
   matchName,
   normalizeName,
@@ -20,10 +22,12 @@ import {
   overviewSynopsis,
   parseEventBanners,
   parseEventPromos,
+  parseEventRows,
   parseGlobalServiceDate,
   parseImageInfo,
   parseStoryCards,
   pickThumbnail,
+  plainWikitext,
   releaseFrom,
   storyCardFor,
   stringifyJsonc,
@@ -257,6 +261,72 @@ no file here
       ["2:0", "File:Act 2 Zero.png"],
     ]),
   )
+})
+
+Deno.test("reads the English blurb after each main story volume heading", () => {
+  const wikitext = `==Act 1==
+===[[/Volume 1|Volume 1: ''Foreclosure Task Force'']]===
+[[File:BG CS Abydos 04.jpg|thumb]]
+In [[/Volume 1|Volume 1]], the remaining students of [[Abydos High School|Abydos]] seek to '''avert''' its closure.
+{| class="wikitable"
+===[[/Volume 2|Volume 2]]===
+{| class="wikitable"
+`
+  assertEquals(
+    mainBlurbs(wikitext),
+    new Map([[
+      "1:1",
+      "In Volume 1, the remaining students of Abydos seek to avert its closure.",
+    ]]),
+  )
+  assertEquals(plainWikitext("[[A|b]] [[C]] ''d''"), "b C d")
+})
+
+const eventRows = parseEventRows(
+  `<p>[{&quot;Id&quot;:839,&quot;OriginalId&quot;:839,&quot;Server&quot;:&quot;JP&quot;,&quot;NameJP&quot;:&quot;月華夢騒&quot;,&quot;NameEN&quot;:&quot;Moonlight Dream&quot;,&quot;Banner&quot;:&quot;File:Event Banner 839 Jp.png&quot;,&quot;Description&quot;:&quot;An exchange.\\nIt begins.&quot;},` +
+    `{&quot;Id&quot;:900839,&quot;OriginalId&quot;:839,&quot;Server&quot;:&quot;JP&quot;,&quot;NameJP&quot;:&quot;Reissue&quot;},` +
+    `{&quot;Id&quot;:839,&quot;OriginalId&quot;:839,&quot;Server&quot;:&quot;GL&quot;,&quot;NameEN&quot;:&quot;Radiant Moon, Raucous Dream&quot;}]</p>`,
+)
+
+Deno.test("reads event rows out of rendered bucket html", () => {
+  assertEquals(eventRows.length, 3)
+  assertEquals(eventRows[0].NameJP, "月華夢騒")
+})
+
+Deno.test("localizes an event from SchaleDB names, wiki rows and banners", () => {
+  const found = eventLocalization({
+    id: "839",
+    rows: eventRows,
+    names: { en: {}, ja: { "839": "月華夢騒!" } },
+  })
+  assertEquals(found.en.series, "Radiant Moon, Raucous Dream")
+  assertEquals(found.en.summary, "An exchange. It begins.")
+  assertEquals(found.ja.series, "月華夢騒!")
+  assertEquals(found.ja.summary, undefined)
+  assertEquals(found.ja.candidates, [
+    { file: "File:Event Banner 839 Jp.png", fit: "cover" },
+    {
+      url: "https://schaledb.com/images/eventlogo/839_Jp.webp",
+      fit: "contain",
+    },
+  ])
+  assertEquals(found.en.candidates.at(-1), {
+    url: "https://schaledb.com/images/eventlogo/839_En.webp",
+    fit: "contain",
+  })
+})
+
+Deno.test("localizes nothing for an event the wiki does not list", () => {
+  const found = eventLocalization({
+    id: "1",
+    rows: eventRows,
+    names: { en: {}, ja: {} },
+  })
+  assertEquals([found.en.series, found.en.summary, found.ja.series], [
+    undefined,
+    undefined,
+    undefined,
+  ])
 })
 
 Deno.test("extracts the first file and first non-black background", () => {
